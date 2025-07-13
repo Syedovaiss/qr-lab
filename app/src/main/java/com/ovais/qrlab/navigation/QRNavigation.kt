@@ -7,6 +7,8 @@ import androidx.compose.runtime.remember
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import com.ovais.qrlab.features.create_qr.presentation.CreateQRView
+import com.ovais.qrlab.features.history.presentation.HistoryScreen
+import com.ovais.qrlab.features.home.presentation.HomeIntent
 import com.ovais.qrlab.features.home.presentation.HomeScreenView
 import com.ovais.qrlab.features.scan_qr.presentation.ScanQRView
 import com.ovais.qrlab.features.settings.presentation.SettingsView
@@ -24,14 +26,14 @@ fun QRNavigation(
                 is Routes.Home -> NavEntry(key) {
                     HomeScreenView(
                         scaffoldPadding = scaffoldPadding,
-                        onCreateQR = {
-                            backStack.add(Routes.CreateQR)
-                        },
-                        onScanQR = {
-                            backStack.add(Routes.ScanQR)
-                        },
-                        onSettingsClicked = {
-                            backStack.add(Routes.Settings)
+                        onClick = { intent ->
+                            val route = when (intent) {
+                                is HomeIntent.OnCreateCode -> Routes.CreateQR
+                                is HomeIntent.OnSettingsClicked -> Routes.Settings
+                                is HomeIntent.OnHistoryClicked -> Routes.History
+                                is HomeIntent.OnScanCode -> Routes.ScanQR
+                            }
+                            backStack.add(route)
                         }
                     )
                 }
@@ -46,6 +48,10 @@ fun QRNavigation(
 
                 is Routes.Settings -> NavEntry(key) {
                     SettingsView()
+                }
+
+                is Routes.History -> NavEntry(key) {
+                    HistoryScreen()
                 }
             }
         }

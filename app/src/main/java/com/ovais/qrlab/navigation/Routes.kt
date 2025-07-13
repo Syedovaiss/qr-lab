@@ -6,4 +6,5 @@ sealed interface Routes {
     data object ScanQR : Routes
     data object CreateQR : Routes
     data object Settings : Routes
+    data object History : Routes
 }
