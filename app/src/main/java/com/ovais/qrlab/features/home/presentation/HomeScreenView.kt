@@ -1,37 +1,47 @@
 package com.ovais.qrlab.features.home.presentation
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.LocalIndication
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.qrlab.R
+import com.ovais.qrlab.utils.components.GradientIconCard
 import com.ovais.qrlab.utils.components.HeadingText
-import com.ovais.qrlab.utils.components.SubtitleText
+import kotlinx.coroutines.flow.collectLatest
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun HomeScreenView(
     scaffoldPadding: PaddingValues = PaddingValues(),
-    onCreateQR: () -> Unit,
-    onScanQR: () -> Unit,
-    onSettingsClicked: () -> Unit
+    viewModel: HomeViewModel = koinViewModel(),
+    onClick: (HomeIntent) -> Unit
 ) {
     val context = LocalContext.current
+    val cardItems by viewModel.cardItems.collectAsStateWithLifecycle()
+    LaunchedEffect(Unit) {
+        viewModel.nextDestination.collectLatest { intent ->
+            onClick(intent)
+        }
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -40,76 +50,45 @@ fun HomeScreenView(
         HeadingText(
             text = context.getString(R.string.home_screen_title)
         )
-
-        HomeMenuItem(
-            label = context.getString(R.string.create_qr),
-            iconRes = R.drawable.ic_create_qr
-        ) {
-            onCreateQR()
-        }
-
-        HomeMenuItem(
-            label = context.getString(R.string.scan_qr),
-            iconRes = R.drawable.ic_scan_qr
-        ) {
-            onScanQR()
-        }
-
-        HomeMenuItem(
-            label = context.getString(R.string.settings),
-            iconRes = R.drawable.ic_settings
-        ) {
-            onSettingsClicked()
-        }
-    }
-}
-
-@Composable
-fun HomeMenuItem(
-    label: String,
-    iconRes: Int,
-    onClick: () -> Unit
-) {
-    val interactionSource = remember { MutableInteractionSource() }
-    Column(
-        modifier = Modifier.clickable(
-            interactionSource = interactionSource,
-            indication = LocalIndication.current
-        ) {
-            onClick()
-        }
-    ) {
-        Row(
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 12.dp, horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .padding(horizontal = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            contentPadding = PaddingValues(vertical = 16.dp)
         ) {
-            SubtitleText(
-                text = label,
-                modifier = Modifier.weight(1f)
-            )
-            Image(
-                painter = painterResource(id = iconRes),
-                contentDescription = label,
-                modifier = Modifier
-                    .size(24.dp)
-            )
+            items(cardItems) { item ->
+                GradientIconCard(
+                    modifier = Modifier
+                        .width(160.dp)
+                        .fillMaxHeight(),
+                    gradientColors = item.gradientColors,
+                    iconContent = {
+                        Image(
+                            painter = painterResource(item.iconRes),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .padding(top = 16.dp)
+                                .size(48.dp),
+                            colorFilter = ColorFilter.tint(Color.White)
+                        )
+                    },
+                    text = context.getString(item.title),
+                    textColor = Color.White,
+                    onClick = {
+                        viewModel.onAction(item.type)
+                    }
+                )
+            }
         }
-        HorizontalDivider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-        )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreenView(
-        onScanQR = {},
-        onCreateQR = {},
-        onSettingsClicked = {}
-    )
+    HomeScreenView {
+
+    }
 }

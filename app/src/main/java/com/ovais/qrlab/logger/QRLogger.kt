@@ -1,5 +1,6 @@
 package com.ovais.qrlab.logger
 
+import com.ovais.qrlab.BuildConfig
 import timber.log.Timber
 
 interface QRLogger {
@@ -13,11 +14,14 @@ class DefaultQRLogger : QRLogger {
     }
 
     override fun logInfo(vararg message: String) {
-        Timber.tag(TAG).i(message.joinToString())
+        if (BuildConfig.DEBUG) {
+            Timber.tag(TAG).i(message.joinToString())
+        }
     }
 
     override fun logException(vararg message: String) {
-        Timber.tag(TAG).e(message.joinToString())
-
+        if (BuildConfig.DEBUG) {
+            Timber.tag(TAG).e(message.joinToString())
+        }
     }
 }
