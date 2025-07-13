@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
-import com.ovais.qrlab.features.create_qr.presentation.CreateQRView
+import com.ovais.qrlab.features.create.presentation.CreateQRView
 import com.ovais.qrlab.features.history.presentation.HistoryScreen
 import com.ovais.qrlab.features.home.presentation.HomeIntent
 import com.ovais.qrlab.features.home.presentation.HomeScreenView
@@ -43,7 +43,7 @@ fun QRNavigation(
                 }
 
                 is Routes.CreateQR -> NavEntry(key) {
-                    CreateQRView()
+                    CreateQRView(scaffoldPadding)
                 }
 
                 is Routes.Settings -> NavEntry(key) {
