@@ -4,6 +4,35 @@ import com.ovais.qrlab.R
 import com.ovais.qrlab.features.create.data.CodeItem
 import com.ovais.qrlab.features.create.data.CodeType
 import com.ovais.qrlab.features.create.data.FieldMetaData
+import com.ovais.qrlab.utils.BODY
+import com.ovais.qrlab.utils.DATE_END
+import com.ovais.qrlab.utils.DATE_START
+import com.ovais.qrlab.utils.EMAIL
+import com.ovais.qrlab.utils.HINT_CRYPTO
+import com.ovais.qrlab.utils.HINT_DATE_END
+import com.ovais.qrlab.utils.HINT_DATE_START
+import com.ovais.qrlab.utils.HINT_DESCRIPTION
+import com.ovais.qrlab.utils.HINT_EMAIL
+import com.ovais.qrlab.utils.HINT_ENTER_TEXT
+import com.ovais.qrlab.utils.HINT_LATITUDE
+import com.ovais.qrlab.utils.HINT_LONGITUDE
+import com.ovais.qrlab.utils.HINT_MEETING_URL
+import com.ovais.qrlab.utils.HINT_MESSAGE
+import com.ovais.qrlab.utils.HINT_NAME
+import com.ovais.qrlab.utils.HINT_PASSWORD
+import com.ovais.qrlab.utils.HINT_PHONE_WITH_COUNTRY
+import com.ovais.qrlab.utils.HINT_SEARCH
+import com.ovais.qrlab.utils.HINT_TITLE
+import com.ovais.qrlab.utils.HINT_URL
+import com.ovais.qrlab.utils.HINT_USERNAME
+import com.ovais.qrlab.utils.HINT_WIFI_NAME
+import com.ovais.qrlab.utils.LATITUDE
+import com.ovais.qrlab.utils.LONGITUDE
+import com.ovais.qrlab.utils.NUMBER
+import com.ovais.qrlab.utils.PASSWORD
+import com.ovais.qrlab.utils.PHONE
+import com.ovais.qrlab.utils.TEXT
+import com.ovais.qrlab.utils.URL
 import com.ovais.qrlab.utils.inputs.InputType
 import com.ovais.qrlab.utils.usecase.UseCase
 
@@ -18,8 +47,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.text,
                 listOf(
                     FieldMetaData(
-                        name = "text",
-                        hint = "Enter your text",
+                        name = TEXT,
+                        hint = HINT_ENTER_TEXT,
                         inputType = InputType.Text
                     )
                 )
@@ -30,8 +59,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.website,
                 listOf(
                     FieldMetaData(
-                        name = "url",
-                        hint = "https://www.example.com",
+                        name = URL,
+                        hint = HINT_URL,
                         inputType = InputType.Url
                     )
                 )
@@ -43,8 +72,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.instagram,
                 listOf(
                     FieldMetaData(
-                        name = "text",
-                        hint = "@username",
+                        name = TEXT,
+                        hint = HINT_USERNAME,
                         inputType = InputType.Text
                     )
                 )
@@ -55,8 +84,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.facebook,
                 listOf(
                     FieldMetaData(
-                        name = "text",
-                        hint = "@username",
+                        name = TEXT,
+                        hint = HINT_USERNAME,
                         inputType = InputType.Text
                     )
                 )
@@ -67,13 +96,13 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.whatsapp,
                 listOf(
                     FieldMetaData(
-                        name = "number",
-                        hint = "phone number with country code",
+                        name = NUMBER,
+                        hint = HINT_PHONE_WITH_COUNTRY,
                         inputType = InputType.Number
                     ),
                     FieldMetaData(
-                        name = "text",
-                        hint = "Your Message....",
+                        name = TEXT,
+                        hint = HINT_MESSAGE,
                         inputType = InputType.Text
                     )
                 )
@@ -84,8 +113,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.youtube,
                 listOf(
                     FieldMetaData(
-                        name = "text",
-                        hint = "@username",
+                        name = TEXT,
+                        hint = HINT_USERNAME,
                         inputType = InputType.Text
                     )
                 )
@@ -96,12 +125,12 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.email,
                 listOf(
                     FieldMetaData(
-                        name = "email",
-                        hint = "someone@example.com",
+                        name = EMAIL,
+                        hint = HINT_EMAIL,
                         inputType = InputType.Email
                     ),
                     FieldMetaData(
-                        name = "body",
+                        name = BODY,
                         hint = "Message body...",
                         inputType = InputType.Text
                     ),
@@ -113,8 +142,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.google,
                 listOf(
                     FieldMetaData(
-                        name = "text",
-                        hint = "search here",
+                        name = TEXT,
+                        hint = HINT_SEARCH,
                         inputType = InputType.Text
                     )
                 )
@@ -125,8 +154,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.threads,
                 listOf(
                     FieldMetaData(
-                        name = "text",
-                        hint = "@username",
+                        name = TEXT,
+                        hint = HINT_USERNAME,
                         inputType = InputType.Text
                     )
                 )
@@ -137,8 +166,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.discord,
                 listOf(
                     FieldMetaData(
-                        name = "text",
-                        hint = "@username",
+                        name = TEXT,
+                        hint = HINT_USERNAME,
                         inputType = InputType.Text
                     )
                 )
@@ -149,12 +178,12 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.sms,
                 listOf(
                     FieldMetaData(
-                        name = "phone",
-                        hint = "Phone number with country code",
+                        name = PHONE,
+                        hint = HINT_PHONE_WITH_COUNTRY,
                         inputType = InputType.Number
                     ),
                     FieldMetaData(
-                        name = "text",
+                        name = TEXT,
                         hint = "Message Body",
                         inputType = InputType.Text
                     ),
@@ -166,8 +195,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.phone,
                 listOf(
                     FieldMetaData(
-                        name = "number",
-                        hint = "Phone number with country code",
+                        name = NUMBER,
+                        hint = HINT_PHONE_WITH_COUNTRY,
                         inputType = InputType.Phone
                     )
                 )
@@ -178,8 +207,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.linkedin,
                 listOf(
                     FieldMetaData(
-                        name = "text",
-                        hint = "@username",
+                        name = TEXT,
+                        hint = HINT_USERNAME,
                         inputType = InputType.Text
                     )
                 )
@@ -190,53 +219,14 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.wifi,
                 listOf(
                     FieldMetaData(
-                        name = "text",
-                        hint = "Wifi Name",
+                        name = TEXT,
+                        hint = HINT_WIFI_NAME,
                         inputType = InputType.Text
                     ),
                     FieldMetaData(
-                        name = "password",
-                        hint = "Password or empty if public...",
+                        name = PASSWORD,
+                        hint = HINT_PASSWORD,
                         inputType = InputType.Password
-                    ),
-                )
-            ),
-            CodeItem(
-                R.drawable.ic_contact,
-                CodeType.Contact,
-                R.string.contact,
-                listOf(
-                    FieldMetaData(
-                        name = "text",
-                        hint = "Name",
-                        inputType = InputType.Text
-                    )
-                )
-            ),
-            CodeItem(
-                R.drawable.ic_calendar,
-                CodeType.Calendar,
-                R.string.calendar,
-                listOf(
-                    FieldMetaData(
-                        name = "text",
-                        hint = "Title",
-                        inputType = InputType.Text
-                    ),
-                    FieldMetaData(
-                        name = "body",
-                        hint = "Description",
-                        inputType = InputType.Text
-                    ),
-                    FieldMetaData(
-                        name = "date",
-                        hint = "Start Date Time",
-                        inputType = InputType.DateTime
-                    ),
-                    FieldMetaData(
-                        name = "date",
-                        hint = "End Date Time",
-                        inputType = InputType.DateTime
                     ),
                 )
             ),
@@ -246,26 +236,14 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.location,
                 listOf(
                     FieldMetaData(
-                        name = "latitude",
-                        hint = "Latitude",
+                        name = LATITUDE,
+                        hint = HINT_LATITUDE,
                         inputType = InputType.Location
                     ),
                     FieldMetaData(
-                        name = "longitude",
-                        hint = "Longitude",
+                        name = LONGITUDE,
+                        hint = HINT_LONGITUDE,
                         inputType = InputType.Location
-                    )
-                )
-            ),
-            CodeItem(
-                R.drawable.ic_skype,
-                CodeType.Skype,
-                R.string.skype,
-                listOf(
-                    FieldMetaData(
-                        name = "text",
-                        hint = "@username",
-                        inputType = InputType.Text
                     )
                 )
             ),
@@ -275,8 +253,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.paypal,
                 listOf(
                     FieldMetaData(
-                        name = "text",
-                        hint = "@username",
+                        name = TEXT,
+                        hint = HINT_USERNAME,
                         inputType = InputType.Text
                     )
                 )
@@ -287,8 +265,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.bitcoin,
                 listOf(
                     FieldMetaData(
-                        name = "text",
-                        hint = "Please fill in the crypto address",
+                        name = TEXT,
+                        hint = HINT_CRYPTO,
                         inputType = InputType.Text
                     )
                 )
@@ -299,8 +277,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.zoom,
                 listOf(
                     FieldMetaData(
-                        name = "text",
-                        hint = "Meeting URL...",
+                        name = TEXT,
+                        hint = HINT_MEETING_URL,
                         inputType = InputType.Text
                     )
                 )
@@ -311,8 +289,8 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 R.string.snapchat,
                 listOf(
                     FieldMetaData(
-                        name = "text",
-                        hint = "@username",
+                        name = TEXT,
+                        hint = HINT_USERNAME,
                         inputType = InputType.Text
                     )
                 )

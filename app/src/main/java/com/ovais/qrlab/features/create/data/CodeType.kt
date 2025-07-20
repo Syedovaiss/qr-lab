@@ -15,10 +15,7 @@ sealed interface CodeType {
     data object Phone : CodeType
     data object LinkedIn : CodeType
     data object WiFi : CodeType
-    data object Contact : CodeType
-    data object Calendar : CodeType
     data object GeoLocation : CodeType
-    data object Skype : CodeType
     data object PayPal : CodeType
     data object Bitcoin : CodeType
     data object Zoom : CodeType
