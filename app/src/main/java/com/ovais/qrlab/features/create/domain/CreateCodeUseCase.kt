@@ -24,6 +24,6 @@ class DefaultCreateCodeUseCase(
     }
 
     private suspend fun createQR(param: CreateCodeParam): CodeResult {
-        return repository.createQRBarcode(param.selectedContentMap,param.type)
+        return repository.createQRCode(param.selectedContentMap,param.type,param.colors)
     }
 }

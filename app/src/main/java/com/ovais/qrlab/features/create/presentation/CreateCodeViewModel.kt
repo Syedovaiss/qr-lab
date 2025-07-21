@@ -1,6 +1,7 @@
 package com.ovais.qrlab.features.create.presentation
 
 import android.graphics.Bitmap
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ovais.qrlab.features.create.data.CodeFormats
@@ -22,6 +23,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+
+typealias BackgroundColor = Color
+typealias ForegroundColor = Color
 
 class CreateCodeViewModel(
     private val codeTypeUseCase: CodeTypeUseCase,
@@ -51,10 +55,11 @@ class CreateCodeViewModel(
     fun createCode(
         selectedValues: MutableMap<String, String>,
         selectedType: CodeFormats?,
-        type: CodeType
+        type: CodeType,
+        colors: Pair<BackgroundColor, ForegroundColor>
     ) {
         when (val result = validateInputs(selectedValues, type)) {
-            is ValidationResult.Valid -> createCodeBasedOnType(selectedValues, selectedType, type)
+            is ValidationResult.Valid -> createCodeBasedOnType(selectedValues, selectedType, type,colors)
             is ValidationResult.InValid -> updateError(result.message)
         }
     }
@@ -68,12 +73,14 @@ class CreateCodeViewModel(
     private fun createCodeBasedOnType(
         selectedValues: MutableMap<String, String>,
         selectedType: CodeFormats?,
-        type: CodeType
+        type: CodeType,
+        colors: Pair<BackgroundColor, ForegroundColor>
     ) {
         val param = CreateCodeParam(
             selectedValues,
             type,
-            selectedType
+            selectedType,
+            colors
         )
         viewModelScope.launch {
             when (val result = createCodeUseCase(param)) {

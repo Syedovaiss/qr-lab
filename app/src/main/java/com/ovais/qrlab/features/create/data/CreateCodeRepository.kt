@@ -1,5 +1,7 @@
 package com.ovais.qrlab.features.create.data
 
+import androidx.compose.ui.graphics.Color
+
 interface CreateCodeRepository {
     suspend fun createBarcode(
         selectedContentMap: MutableMap<String, String>,
@@ -7,8 +9,9 @@ interface CreateCodeRepository {
         type: CodeType
     ): CodeResult
 
-    suspend fun createQRBarcode(
+    suspend fun createQRCode(
         selectedContentMap: MutableMap<String, String>,
-        type: CodeType
+        type: CodeType,
+        colors: Pair<Color, Color>
     ): CodeResult
 }

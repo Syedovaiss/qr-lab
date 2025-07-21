@@ -1,25 +1,39 @@
 package com.ovais.qrlab.utils.components
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,6 +53,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import com.ovais.qrlab.R
 import com.ovais.qrlab.core.ui.font.Poppins
 
@@ -214,4 +229,104 @@ fun ComposablePreview() {
         textColor = Color.White,
         onClick = {}
     )
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun ColorPickerGrid(
+    title: String,
+    colors: List<Color>,
+    selectedColor: Color,
+    onColorSelected: (Color) -> Unit
+) {
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text(title, style = MaterialTheme.typography.titleMedium)
+        Spacer(modifier = Modifier.height(8.dp))
+
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(5), // Adjust columns as needed
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.heightIn(max = 240.dp) // or .fillMaxHeight(0.4f)
+        ) {
+
+            items(colors.size) { index ->
+                val color = colors[index]
+                val border = if (color == selectedColor) BorderStroke(2.dp, Color.Black) else null
+                val interactionSource = remember { MutableInteractionSource() }
+                Box(
+                    modifier = Modifier
+                        .size(40.dp)
+                        .clip(CircleShape)
+                        .background(color)
+                        .border(border ?: BorderStroke(0.dp, Color.Transparent), CircleShape)
+                        .clickable(
+                            interactionSource,
+                            LocalIndication.current
+                        ) { onColorSelected(color) }
+                )
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun ColorPickerDialog(
+    title: String = "Select Color",
+    colors: List<Color>,
+    selectedColor: Color,
+    onColorSelected: (Color) -> Unit,
+    onDismiss: () -> Unit
+) {
+    Dialog(onDismissRequest = onDismiss) {
+        Surface(
+            shape = RoundedCornerShape(8.dp),
+            tonalElevation = 8.dp,
+            color = MaterialTheme.colorScheme.background
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(20.dp)
+                    .widthIn(min = 300.dp, max = 360.dp)
+            ) {
+                Text(title, style = MaterialTheme.typography.titleLarge)
+                Spacer(modifier = Modifier.height(16.dp))
+
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(5),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    modifier = Modifier
+                        .heightIn(max = 240.dp)
+                        .fillMaxWidth()
+                ) {
+                    items(colors.size) { index ->
+                        val color = colors[index]
+                        val isSelected = color == selectedColor
+
+                        val interactionSource = remember { MutableInteractionSource() }
+
+                        Box(
+                            modifier = Modifier
+                                .size(40.dp)
+                                .clip(CircleShape)
+                                .background(color)
+                                .border(
+                                    width = if (isSelected) 3.dp else 1.dp,
+                                    color = if (isSelected) Color.Black else Color.LightGray,
+                                    shape = CircleShape
+                                )
+                                .clickable(
+                                    interactionSource = interactionSource,
+                                    indication = rememberRipple(bounded = true, radius = 24.dp)
+                                ) {
+                                    onColorSelected(color)
+                                }
+                        )
+                    }
+                }
+            }
+        }
+    }
 }
