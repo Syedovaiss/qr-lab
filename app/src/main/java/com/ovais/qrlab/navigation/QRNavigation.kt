@@ -1,6 +1,7 @@
 package com.ovais.qrlab.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
@@ -15,7 +16,8 @@ import com.ovais.qrlab.features.settings.presentation.SettingsView
 
 @Composable
 fun QRNavigation(
-    scaffoldPadding: PaddingValues = PaddingValues()
+    scaffoldPadding: PaddingValues = PaddingValues(),
+    snackBarHostState: SnackbarHostState
 ) {
     val backStack = remember { mutableStateListOf<Routes>(Routes.Home) }
     NavDisplay(
@@ -43,7 +45,10 @@ fun QRNavigation(
                 }
 
                 is Routes.CreateQR -> NavEntry(key) {
-                    CreateQRView(scaffoldPadding)
+                    CreateQRView(
+                        scaffoldPadding,
+                        snackbarHostState = snackBarHostState
+                    )
                 }
 
                 is Routes.Settings -> NavEntry(key) {

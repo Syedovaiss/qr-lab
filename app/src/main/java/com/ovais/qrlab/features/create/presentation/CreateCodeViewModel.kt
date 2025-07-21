@@ -1,5 +1,6 @@
 package com.ovais.qrlab.features.create.presentation
 
+import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ovais.qrlab.features.create.data.CodeFormats
@@ -18,6 +19,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
@@ -41,8 +43,10 @@ class CreateCodeViewModel(
 
     private val _errorMessage by lazy { MutableSharedFlow<String>() }
     val errorMessage: SharedFlow<String>
-        get() = _errorMessage
-
+        get() = _errorMessage.asSharedFlow()
+    private val _code by lazy { MutableSharedFlow<Bitmap?>() }
+    val code: SharedFlow<Bitmap?>
+        get() = _code.asSharedFlow()
 
     fun createCode(
         selectedValues: MutableMap<String, String>,
@@ -74,7 +78,7 @@ class CreateCodeViewModel(
         viewModelScope.launch {
             when (val result = createCodeUseCase(param)) {
                 is CodeResult.Success -> {
-                    logger.logInfo("Created!")
+                    _code.emit(result.code)
                 }
 
                 is CodeResult.Failure -> {
