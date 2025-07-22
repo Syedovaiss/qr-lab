@@ -7,8 +7,12 @@ import com.ovais.qrlab.features.scan_qr.data.ScanResult
 import com.ovais.qrlab.features.scan_qr.domain.ScanCodeUseCase
 import com.ovais.qrlab.utils.permissions.PermissionManager
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -17,9 +21,17 @@ class ScanViewModel(
     private val scanCodeUseCase: ScanCodeUseCase
 ) : ViewModel() {
 
+    private val _scanResult by lazy { MutableStateFlow<String?>(null) }
+    val scanResult: StateFlow<String?>
+        get() = _scanResult.asStateFlow()
+
     private val _permissionArray by lazy { MutableSharedFlow<ArrayList<String>>(replay = 1) }
     val permissionArray: SharedFlow<ArrayList<String>>
         get() = _permissionArray.asSharedFlow()
+
+    private val _errorMessage by lazy { MutableSharedFlow<String>() }
+    val errorMessage: SharedFlow<String>
+        get() = _errorMessage.asSharedFlow()
 
 
     fun checkPermissions() {
@@ -42,13 +54,19 @@ class ScanViewModel(
         viewModelScope.launch {
             when (val result = scanCodeUseCase(imageProxy)) {
                 is ScanResult.Success -> {
-                    Timber.i(result.content)
+                   _scanResult.update { result.content }
                 }
 
                 is ScanResult.Failure -> {
-                    Timber.e(result.message)
+                    onError(result.message)
                 }
             }
+        }
+    }
+
+    private fun onError(message: String) {
+        viewModelScope.launch {
+            _errorMessage.emit(message)
         }
     }
 }

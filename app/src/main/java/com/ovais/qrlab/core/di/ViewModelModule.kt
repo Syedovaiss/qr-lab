@@ -6,9 +6,8 @@ import com.ovais.qrlab.features.scan_qr.presentation.ScanViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
-
 val viewModelModule = module {
     viewModel { HomeViewModel(get(), get()) }
     viewModel { CreateCodeViewModel(get(), get(), get(), get(), get(), get(), get()) }
-    viewModel { ScanViewModel(get()) }
+    viewModel { ScanViewModel(get(),get()) }
 }

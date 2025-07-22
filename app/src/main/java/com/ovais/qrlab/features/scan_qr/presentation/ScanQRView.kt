@@ -1,5 +1,6 @@
 package com.ovais.qrlab.features.scan_qr.presentation
 
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -23,6 +25,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.qrlab.R
 import com.ovais.qrlab.utils.components.PermissionRationaleDialog
 import com.ovais.qrlab.utils.openAppSettings
@@ -32,8 +35,10 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun ScanQRView(
     scaffoldPaddingValues: PaddingValues,
-    viewModel: ScanViewModel = koinViewModel()
+    viewModel: ScanViewModel = koinViewModel(),
+    snackbarHostState: SnackbarHostState
 ) {
+    val scanResult by viewModel.scanResult.collectAsStateWithLifecycle()
     val context = LocalContext.current
     var arePermissionsDenied by remember { mutableStateOf(false) }
     var canShowPreview by remember { mutableStateOf(false) }
@@ -47,9 +52,19 @@ fun ScanQRView(
             arePermissionsDenied = true
         }
     }
+    LaunchedEffect(Unit) {
+        viewModel.errorMessage.collectLatest {
+            snackbarHostState.showSnackbar(it)
+        }
+    }
 
     LaunchedEffect(Unit) {
         viewModel.checkPermissions()
+    }
+    LaunchedEffect(scanResult) {
+        scanResult?.let {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        }
     }
     LaunchedEffect(Unit) {
         viewModel.permissionArray.collectLatest { permissions ->
