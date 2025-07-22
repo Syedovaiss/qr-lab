@@ -16,6 +16,8 @@ import com.ovais.qrlab.features.create.domain.CodeValidationUseCase
 import com.ovais.qrlab.features.create.domain.CreateCodeUseCase
 import com.ovais.qrlab.logger.QRLogger
 import com.ovais.qrlab.utils.ValidationResult
+import com.ovais.qrlab.utils.file.FileManager
+import com.ovais.qrlab.utils.permissions.PermissionManager
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -32,8 +34,12 @@ class CreateCodeViewModel(
     private val logger: QRLogger,
     private val codeFormatUseCase: CodeFormatUseCase,
     private val codeValidationUseCase: CodeValidationUseCase,
-    private val createCodeUseCase: CreateCodeUseCase
+    private val createCodeUseCase: CreateCodeUseCase,
+    private val permissionManager: PermissionManager,
+    private val fileManager: FileManager
 ) : ViewModel() {
+    val fileManagerImpl: FileManager
+        get() = fileManager
     private val _codeItems by lazy { MutableStateFlow(codeTypeUseCase()) }
     val codeItems: StateFlow<List<CodeItem>>
         get() = _codeItems
@@ -48,18 +54,53 @@ class CreateCodeViewModel(
     private val _errorMessage by lazy { MutableSharedFlow<String>() }
     val errorMessage: SharedFlow<String>
         get() = _errorMessage.asSharedFlow()
+
     private val _code by lazy { MutableSharedFlow<Bitmap?>() }
     val code: SharedFlow<Bitmap?>
         get() = _code.asSharedFlow()
+
+    private val _permissionArray by lazy { MutableSharedFlow<ArrayList<String>>() }
+    val permissionArray: SharedFlow<ArrayList<String>>
+        get() = _permissionArray.asSharedFlow()
+
+    fun onCodeSelection(format: CodeFormats) {
+        if (format is CodeFormats.QRCode) {
+            checkPermissions()
+        }
+    }
+
+    private fun checkPermissions() {
+        val permissions = arrayListOf<String>()
+        if (permissionManager.hasCameraPermission.not()) {
+            permissions.add(permissionManager.cameraPermission)
+        }
+        if (permissionManager.hasStoragePermission.not()) {
+            permissions.add(permissionManager.storagePermission)
+        }
+        if (permissionManager.hasNotificationPermission.not()) {
+            permissions.add(permissionManager.notificationPermission)
+        }
+        viewModelScope.launch {
+            _permissionArray.emit(permissions)
+        }
+    }
 
     fun createCode(
         selectedValues: MutableMap<String, String>,
         selectedType: CodeFormats?,
         type: CodeType,
-        colors: Pair<BackgroundColor, ForegroundColor>
+        colors: Pair<BackgroundColor, ForegroundColor>,
+        selectedLogo: Bitmap?
     ) {
         when (val result = validateInputs(selectedValues, type)) {
-            is ValidationResult.Valid -> createCodeBasedOnType(selectedValues, selectedType, type,colors)
+            is ValidationResult.Valid -> createCodeBasedOnType(
+                selectedValues,
+                selectedType,
+                type,
+                colors,
+                selectedLogo
+            )
+
             is ValidationResult.InValid -> updateError(result.message)
         }
     }
@@ -74,13 +115,15 @@ class CreateCodeViewModel(
         selectedValues: MutableMap<String, String>,
         selectedType: CodeFormats?,
         type: CodeType,
-        colors: Pair<BackgroundColor, ForegroundColor>
+        colors: Pair<BackgroundColor, ForegroundColor>,
+        selectedLogo: Bitmap?
     ) {
         val param = CreateCodeParam(
             selectedValues,
             type,
             selectedType,
-            colors
+            colors,
+            selectedLogo
         )
         viewModelScope.launch {
             when (val result = createCodeUseCase(param)) {
@@ -106,4 +149,5 @@ class CreateCodeViewModel(
             )
         )
     }
+
 }

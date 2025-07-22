@@ -1,5 +1,6 @@
 package com.ovais.qrlab.features.create.domain
 
+import android.graphics.Bitmap
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import com.google.zxing.BarcodeFormat
@@ -12,6 +13,7 @@ import com.ovais.qrlab.features.create.data.CreateCodeRepository
 import com.ovais.qrlab.features.create.data.toValidFormat
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import kotlin.math.log
 
 class DefaultCreateCodeRepository(
     private val barcodeManager: BarcodeManager,
@@ -41,7 +43,8 @@ class DefaultCreateCodeRepository(
     override suspend fun createQRCode(
         selectedContentMap: MutableMap<String, String>,
         type: CodeType,
-        colors: Pair<Color, Color>
+        colors: Pair<Color, Color>,
+        logo: Bitmap?
     ): CodeResult {
         return withContext(dispatcherIO) {
             val content = getContentBasedOnType(selectedContentMap, type)
@@ -54,7 +57,8 @@ class DefaultCreateCodeRepository(
                 content = content,
                 size = config.width,
                 backgroundColor = colors.first.toArgb(),
-                foregroundColor = colors.second.toArgb()
+                foregroundColor = colors.second.toArgb(),
+                logoBitmap = logo
             )?.let {
                 CodeResult.Success(it)
             } ?: CodeResult.Failure("Failed to create barcode!")

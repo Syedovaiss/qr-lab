@@ -36,4 +36,9 @@
     <string name="select_background_color">Select Background Color</string>
     <string name="select_foreground_color">Select Foreground Color</string>
     <string name="select_color">Select Color</string>
+    <string name="permission_denied_title">Permissions Needed</string>
+    <string name="permission_denied_message">This QR app requires Camera, Storage, and Notification permissions to function properly. Please grant these permissions to scan and save QR codes, and receive important alerts. If you’ve previously denied them, go to App Settings to enable them manually.</string>
+    <string name="grant">Grant</string>
+    <string name="upload_logo">Upload Logo</string>
+    <string name="image">Image</string>
 </resources>

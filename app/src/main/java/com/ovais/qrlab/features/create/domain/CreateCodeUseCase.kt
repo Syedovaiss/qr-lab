@@ -20,10 +20,15 @@ class DefaultCreateCodeUseCase(
     }
 
     private suspend fun createBarcode(param: CreateCodeParam): CodeResult {
-        return repository.createBarcode(param.selectedContentMap,param.format,param.type)
+        return repository.createBarcode(param.selectedContentMap, param.format, param.type)
     }
 
     private suspend fun createQR(param: CreateCodeParam): CodeResult {
-        return repository.createQRCode(param.selectedContentMap,param.type,param.colors)
+        return repository.createQRCode(
+            param.selectedContentMap,
+            param.type,
+            param.colors,
+            param.logo
+        )
     }
 }

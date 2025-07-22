@@ -1,5 +1,10 @@
 package com.ovais.qrlab.utils.components
 
+import android.graphics.Bitmap
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -11,8 +16,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,7 +31,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.rememberRipple
-import androidx.compose.material3.Button
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -35,17 +40,21 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -56,6 +65,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.ovais.qrlab.R
 import com.ovais.qrlab.core.ui.font.Poppins
+import com.ovais.qrlab.utils.file.FileManager
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -329,4 +340,111 @@ fun ColorPickerDialog(
             }
         }
     }
+}
+
+@Composable
+fun ImagePicker(
+    fileManager: FileManager,
+    onImagePicked: (Bitmap) -> Unit
+) {
+    val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
+    var imageUri by remember { mutableStateOf<Uri?>(null) }
+
+    val galleryLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri ->
+        uri?.let {
+            coroutineScope.launch {
+                val bitmap = fileManager.uriToBitmap(it)
+                bitmap?.let(onImagePicked)
+            }
+        }
+    }
+    // Camera capture
+    val cameraLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.TakePicture()
+    ) { success ->
+        if (success && imageUri != null) {
+            coroutineScope.launch {
+                val bitmap = fileManager.uriToBitmap(imageUri!!)
+                bitmap?.let(onImagePicked)
+            }
+        }
+    }
+    Column {
+        val boxModifier = Modifier
+            .weight(1f)
+            .padding(horizontal = 8.dp)
+            .background(Color(0xFFF5F5F5), RoundedCornerShape(12.dp))
+            .padding(24.dp)
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+        ) {
+            Box(
+                modifier = boxModifier,
+                contentAlignment = Alignment.Center
+            ) {
+                val interactionSource = remember { MutableInteractionSource() }
+                Image(
+                    painter = painterResource(id = R.drawable.ic_camera_add),
+                    contentDescription = "Camera",
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clickable(
+                            interactionSource = interactionSource,
+                            indication = LocalIndication.current
+                        ) {
+                            val uri = fileManager.createImageUri()
+                            imageUri = uri
+                            cameraLauncher.launch(uri)
+                        }
+                )
+            }
+
+            Box(
+                modifier = boxModifier,
+                contentAlignment = Alignment.Center
+            ) {
+                val interactionSource = remember { MutableInteractionSource() }
+
+                Image(
+                    painter = painterResource(id = R.drawable.ic_gallery_add),
+                    contentDescription = "Gallery",
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clickable(
+                            interactionSource = interactionSource,
+                            indication = LocalIndication.current
+                        ) {
+                            galleryLauncher.launch("image/*")
+                        }
+                )
+            }
+        }
+    }
+}
+
+
+@Composable
+fun PermissionRationaleDialog(
+    @StringRes title: Int,
+    @StringRes message: Int,
+    @StringRes confirmButtonText: Int,
+    onDismiss: () -> Unit,
+    onConfirmButtonClicked: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(title)) },
+        text = { Text(stringResource(message)) },
+        confirmButton = {
+            TextButton(onClick = onConfirmButtonClicked) {
+                Text(stringResource(confirmButtonText))
+            }
+        }
+    )
 }

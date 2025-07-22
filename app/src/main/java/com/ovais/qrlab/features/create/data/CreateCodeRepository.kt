@@ -1,5 +1,6 @@
 package com.ovais.qrlab.features.create.data
 
+import android.graphics.Bitmap
 import androidx.compose.ui.graphics.Color
 
 interface CreateCodeRepository {
@@ -12,6 +13,7 @@ interface CreateCodeRepository {
     suspend fun createQRCode(
         selectedContentMap: MutableMap<String, String>,
         type: CodeType,
-        colors: Pair<Color, Color>
+        colors: Pair<Color, Color>,
+        logo: Bitmap?
     ): CodeResult
 }
