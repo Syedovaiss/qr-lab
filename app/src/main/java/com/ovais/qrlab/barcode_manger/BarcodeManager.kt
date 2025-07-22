@@ -2,28 +2,40 @@ package com.ovais.qrlab.barcode_manger
 
 import android.content.res.Resources
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.ImageFormat
+import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
+import android.graphics.Rect
 import android.graphics.RectF
 import android.graphics.Typeface
+import android.graphics.YuvImage
 import android.util.TypedValue
+import androidx.camera.core.ImageProxy
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.scale
 import androidx.core.graphics.set
 import com.google.zxing.BarcodeFormat
+import com.google.zxing.BinaryBitmap
 import com.google.zxing.EncodeHintType
+import com.google.zxing.MultiFormatReader
 import com.google.zxing.MultiFormatWriter
+import com.google.zxing.RGBLuminanceSource
 import com.google.zxing.common.BitMatrix
+import com.google.zxing.common.HybridBinarizer
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import com.journeyapps.barcodescanner.BarcodeEncoder
+import com.ovais.qrlab.features.scan_qr.data.ScanResult
 import com.ovais.qrlab.logger.QRLogger
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import java.io.ByteArrayOutputStream
 import java.util.EnumMap
 
 
@@ -63,6 +75,8 @@ interface BarcodeManager {
         logoBitmap: Bitmap? = null,
         logoSizeRatio: Float = 0.2f
     ): Bitmap?
+
+    suspend fun scanCode(imageProxy: ImageProxy): ScanResult
 }
 
 class DefaultBarcodeManager(
@@ -298,6 +312,64 @@ class DefaultBarcodeManager(
             e.printStackTrace()
             null
         }
+    }
+
+
+    override suspend fun scanCode(imageProxy: ImageProxy): ScanResult = try {
+        val bitmap = imageProxyToBitmap(imageProxy)
+        val rotatedBitmap = rotateBitmap(bitmap, imageProxy.imageInfo.rotationDegrees)
+        val decodedText = decodeWithZxing(rotatedBitmap)
+        imageProxy.close()
+        decodedText?.let {
+            ScanResult.Success(decodedText)
+        } ?: run {
+            ScanResult.Failure("No QR or barcode found")
+        }
+    } catch (e: Exception) {
+        imageProxy.close()
+        Timber.e(e)
+        ScanResult.Failure("Decoding failed: ${e.message}")
+    }
+
+    private fun decodeWithZxing(bitmap: Bitmap): String? {
+        val intArray = IntArray(bitmap.width * bitmap.height)
+        bitmap.getPixels(intArray, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+
+        val source = RGBLuminanceSource(bitmap.width, bitmap.height, intArray)
+        val binaryBitmap = BinaryBitmap(HybridBinarizer(source))
+
+        return try {
+            val result = MultiFormatReader().decode(binaryBitmap)
+            result.text
+        } catch (e: Exception) {
+            Timber.e(e)
+            null
+        }
+    }
+
+    private fun imageProxyToBitmap(imageProxy: ImageProxy): Bitmap {
+        val planeProxy = imageProxy.planes[0]
+        val buffer = planeProxy.buffer
+        val bytes = ByteArray(buffer.remaining())
+        buffer.get(bytes)
+
+        val yuvImage = YuvImage(
+            bytes,
+            ImageFormat.NV21,
+            imageProxy.width,
+            imageProxy.height,
+            null
+        )
+        val out = ByteArrayOutputStream()
+        yuvImage.compressToJpeg(Rect(0, 0, imageProxy.width, imageProxy.height), 100, out)
+        val yuvBytes = out.toByteArray()
+        return BitmapFactory.decodeByteArray(yuvBytes, 0, yuvBytes.size)
+    }
+
+    private fun rotateBitmap(bitmap: Bitmap, rotationDegrees: Int): Bitmap {
+        val matrix = Matrix()
+        matrix.postRotate(rotationDegrees.toFloat())
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 
     private fun logInfo(content: String) {
