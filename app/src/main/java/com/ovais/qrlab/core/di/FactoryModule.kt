@@ -23,7 +23,7 @@ import org.koin.dsl.module
 
 
 val factoryModule = module {
-    factory { DefaultBarcodeManager(get(), get()) } bind BarcodeManager::class
+    factory { DefaultBarcodeManager(get(), get(), get()) } bind BarcodeManager::class
 
     // Repositories
     factory { DefaultCreateCodeRepository(get(), get()) } bind CreateCodeRepository::class

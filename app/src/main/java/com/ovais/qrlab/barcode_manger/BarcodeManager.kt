@@ -15,6 +15,7 @@ import android.graphics.Rect
 import android.graphics.RectF
 import android.graphics.Typeface
 import android.graphics.YuvImage
+import android.net.Uri
 import android.util.TypedValue
 import androidx.camera.core.ImageProxy
 import androidx.core.graphics.createBitmap
@@ -22,6 +23,7 @@ import androidx.core.graphics.scale
 import androidx.core.graphics.set
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.BinaryBitmap
+import com.google.zxing.DecodeHintType
 import com.google.zxing.EncodeHintType
 import com.google.zxing.MultiFormatReader
 import com.google.zxing.MultiFormatWriter
@@ -32,6 +34,8 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.ovais.qrlab.features.scan_qr.data.ScanResult
 import com.ovais.qrlab.logger.QRLogger
+import com.ovais.qrlab.utils.default
+import com.ovais.qrlab.utils.file.FileManager
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -77,11 +81,13 @@ interface BarcodeManager {
     ): Bitmap?
 
     suspend fun scanCode(imageProxy: ImageProxy): ScanResult
+    suspend fun scanCode(uri: Uri): ScanResult
 }
 
 class DefaultBarcodeManager(
     private val dispatcherDefault: CoroutineDispatcher,
-    private val logger: QRLogger
+    private val logger: QRLogger,
+    private val fileManager: FileManager
 ) : BarcodeManager {
 
     private companion object Companion {
@@ -329,6 +335,34 @@ class DefaultBarcodeManager(
         imageProxy.close()
         Timber.e(e)
         ScanResult.Failure("Decoding failed: ${e.message}")
+    }
+
+    override suspend fun scanCode(uri: Uri): ScanResult {
+        val bitmap = fileManager.uriToBitmap(uri)
+        val width = bitmap?.width
+        val height = bitmap?.height
+        val pixels = IntArray(width.default * height.default)
+        bitmap?.getPixels(pixels, 0, width.default, 0, 0, width.default, height.default)
+
+        val source = RGBLuminanceSource(width.default, height.default, pixels)
+        val binaryBitmap = BinaryBitmap(HybridBinarizer(source))
+
+        val reader = MultiFormatReader()
+
+        val hints = mapOf(
+            DecodeHintType.POSSIBLE_FORMATS to BarcodeFormat.entries,
+            DecodeHintType.TRY_HARDER to true
+        )
+
+        reader.setHints(hints)
+
+        return try {
+            val result = reader.decode(binaryBitmap)
+            ScanResult.Success(result.text)
+        } catch (e: Exception) {
+            Timber.e(e)
+            ScanResult.Failure(e.message.toString())
+        }
     }
 
     private fun decodeWithZxing(bitmap: Bitmap): String? {

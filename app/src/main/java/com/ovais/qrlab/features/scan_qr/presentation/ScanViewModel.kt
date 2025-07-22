@@ -1,8 +1,11 @@
 package com.ovais.qrlab.features.scan_qr.presentation
 
+import android.net.Uri
 import androidx.camera.core.ImageProxy
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ovais.qrlab.features.scan_qr.data.ScanCodeParam
+import com.ovais.qrlab.features.scan_qr.data.ScanCodeParamType
 import com.ovais.qrlab.features.scan_qr.data.ScanResult
 import com.ovais.qrlab.features.scan_qr.domain.ScanCodeUseCase
 import com.ovais.qrlab.utils.permissions.PermissionManager
@@ -14,7 +17,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class ScanViewModel(
     private val permissionManager: PermissionManager,
@@ -51,22 +53,40 @@ class ScanViewModel(
     }
 
     fun onImageProxy(imageProxy: ImageProxy) {
+        scanCode(
+            param = ScanCodeParam(
+                imageProxy = imageProxy,
+                type = ScanCodeParamType.ImageProxy
+            )
+        )
+    }
+
+    private fun onError(message: String) {
         viewModelScope.launch {
-            when (val result = scanCodeUseCase(imageProxy)) {
+            _errorMessage.emit(message)
+        }
+    }
+
+    fun onImagePickedFromGallery(uri: Uri) {
+        scanCode(
+            param = ScanCodeParam(
+                uri = uri,
+                type = ScanCodeParamType.Uri
+            )
+        )
+    }
+
+    private fun scanCode(param: ScanCodeParam) {
+        viewModelScope.launch {
+            when (val result = scanCodeUseCase(param)) {
                 is ScanResult.Success -> {
-                   _scanResult.update { result.content }
+                    _scanResult.update { result.content }
                 }
 
                 is ScanResult.Failure -> {
                     onError(result.message)
                 }
             }
-        }
-    }
-
-    private fun onError(message: String) {
-        viewModelScope.launch {
-            _errorMessage.emit(message)
         }
     }
 }
