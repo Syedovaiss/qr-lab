@@ -18,8 +18,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -35,7 +35,6 @@ fun HomeScreenView(
     viewModel: HomeViewModel = koinViewModel(),
     onClick: (HomeIntent) -> Unit
 ) {
-    val context = LocalContext.current
     val cardItems by viewModel.cardItems.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) {
         viewModel.nextDestination.collectLatest { intent ->
@@ -48,7 +47,7 @@ fun HomeScreenView(
             .padding(scaffoldPadding)
     ) {
         HeadingText(
-            text = context.getString(R.string.home_screen_title)
+            text = stringResource(R.string.home_screen_title)
         )
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
@@ -74,7 +73,7 @@ fun HomeScreenView(
                             colorFilter = ColorFilter.tint(Color.White)
                         )
                     },
-                    text = context.getString(item.title),
+                    text = stringResource(item.title),
                     textColor = Color.White,
                     onClick = {
                         viewModel.onAction(item.type)
