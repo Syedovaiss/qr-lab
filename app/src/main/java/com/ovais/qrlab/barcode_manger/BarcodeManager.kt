@@ -1,12 +1,16 @@
 package com.ovais.qrlab.barcode_manger
 
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
 import android.graphics.RectF
 import android.graphics.Typeface
+import android.util.TypedValue
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.scale
 import androidx.core.graphics.set
@@ -237,15 +241,39 @@ class DefaultBarcodeManager(
         val finalBitmap = qrBitmap.copy(Bitmap.Config.ARGB_8888, true)
         val canvas = Canvas(finalBitmap)
 
+        // Scale the logo to desired size
         val scaledLogo = logoBitmap.scale(
             (qrBitmap.width * logoSizeRatio).toInt(),
             (qrBitmap.height * logoSizeRatio).toInt()
         )
 
-        val left = (qrBitmap.width - scaledLogo.width) / 2
-        val top = (qrBitmap.height - scaledLogo.height) / 2
+        // Convert 12dp to pixels
+        val cornerRadius = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            12f,
+            Resources.getSystem().displayMetrics
+        )
 
-        canvas.drawBitmap(scaledLogo, left.toFloat(), top.toFloat(), null)
+        // Create rounded logo bitmap
+        val roundedLogo = createBitmap(scaledLogo.width, scaledLogo.height)
+
+        val logoCanvas = Canvas(roundedLogo)
+        val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        val rect = RectF(0f, 0f, scaledLogo.width.toFloat(), scaledLogo.height.toFloat())
+        logoCanvas.drawRoundRect(rect, cornerRadius, cornerRadius, paint)
+
+        // Use DST_IN to apply rounded mask
+        paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+        logoCanvas.drawBitmap(scaledLogo, 0f, 0f, paint)
+        paint.xfermode = null
+
+        // Center the rounded logo on QR
+        val left = (qrBitmap.width - roundedLogo.width) / 2f
+        val top = (qrBitmap.height - roundedLogo.height) / 2f
+
+        canvas.drawBitmap(roundedLogo, left, top, null)
+
         return finalBitmap
     }
 

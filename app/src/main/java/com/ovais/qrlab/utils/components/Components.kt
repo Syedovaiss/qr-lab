@@ -5,7 +5,6 @@ import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.LocalIndication
@@ -52,7 +51,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -244,45 +242,6 @@ fun ComposablePreview() {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ColorPickerGrid(
-    title: String,
-    colors: List<Color>,
-    selectedColor: Color,
-    onColorSelected: (Color) -> Unit
-) {
-    Column(modifier = Modifier.padding(16.dp)) {
-        Text(title, style = MaterialTheme.typography.titleMedium)
-        Spacer(modifier = Modifier.height(8.dp))
-
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(5), // Adjust columns as needed
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.heightIn(max = 240.dp) // or .fillMaxHeight(0.4f)
-        ) {
-
-            items(colors.size) { index ->
-                val color = colors[index]
-                val border = if (color == selectedColor) BorderStroke(2.dp, Color.Black) else null
-                val interactionSource = remember { MutableInteractionSource() }
-                Box(
-                    modifier = Modifier
-                        .size(40.dp)
-                        .clip(CircleShape)
-                        .background(color)
-                        .border(border ?: BorderStroke(0.dp, Color.Transparent), CircleShape)
-                        .clickable(
-                            interactionSource,
-                            LocalIndication.current
-                        ) { onColorSelected(color) }
-                )
-            }
-        }
-    }
-}
-
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
 fun ColorPickerDialog(
     title: String = "Select Color",
     colors: List<Color>,
@@ -347,7 +306,6 @@ fun ImagePicker(
     fileManager: FileManager,
     onImagePicked: (Bitmap) -> Unit
 ) {
-    val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     var imageUri by remember { mutableStateOf<Uri?>(null) }
 
@@ -384,44 +342,44 @@ fun ImagePicker(
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
         ) {
+            val cameraInteractionSource = remember { MutableInteractionSource() }
+            val galleryInteractionSource = remember { MutableInteractionSource() }
             Box(
-                modifier = boxModifier,
+                modifier = boxModifier.then(
+                    Modifier.clickable(
+                        cameraInteractionSource,
+                        LocalIndication.current
+                    ) {
+                        val uri = fileManager.createImageUri()
+                        imageUri = uri
+                        cameraLauncher.launch(uri)
+                    }),
                 contentAlignment = Alignment.Center
             ) {
-                val interactionSource = remember { MutableInteractionSource() }
+
                 Image(
                     painter = painterResource(id = R.drawable.ic_camera_add),
                     contentDescription = "Camera",
                     modifier = Modifier
                         .size(36.dp)
-                        .clickable(
-                            interactionSource = interactionSource,
-                            indication = LocalIndication.current
-                        ) {
-                            val uri = fileManager.createImageUri()
-                            imageUri = uri
-                            cameraLauncher.launch(uri)
-                        }
                 )
             }
 
             Box(
-                modifier = boxModifier,
+                modifier = boxModifier.then(
+                    Modifier.clickable(
+                        galleryInteractionSource,
+                        LocalIndication.current
+                    ) {
+                        galleryLauncher.launch("image/*")
+                    }),
                 contentAlignment = Alignment.Center
             ) {
-                val interactionSource = remember { MutableInteractionSource() }
-
                 Image(
                     painter = painterResource(id = R.drawable.ic_gallery_add),
                     contentDescription = "Gallery",
                     modifier = Modifier
                         .size(36.dp)
-                        .clickable(
-                            interactionSource = interactionSource,
-                            indication = LocalIndication.current
-                        ) {
-                            galleryLauncher.launch("image/*")
-                        }
                 )
             }
         }
