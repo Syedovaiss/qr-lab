@@ -29,6 +29,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenuItem
@@ -55,6 +56,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
@@ -405,4 +407,46 @@ fun PermissionRationaleDialog(
             }
         }
     )
+}
+
+@Composable
+fun SizeInputRow(
+    defaultWidth: String = "600",
+    defaultHeight: String = "600",
+    onWidthChange: (String) -> Unit,
+    onHeightChange: (String) -> Unit
+) {
+    var width by remember { mutableStateOf(defaultWidth) }
+    var height by remember { mutableStateOf(defaultHeight) }
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        OutlinedTextField(
+            value = width,
+            onValueChange = {
+                width = it
+                onWidthChange(it)
+            },
+            label = { Text(stringResource(R.string.width)) },
+            modifier = Modifier
+                .weight(1f),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
+
+        OutlinedTextField(
+            value = height,
+            onValueChange = {
+                height = it
+                onHeightChange(it)
+            },
+            label = { Text(stringResource(R.string.height)) },
+            modifier = Modifier
+                .weight(1f),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
+    }
 }

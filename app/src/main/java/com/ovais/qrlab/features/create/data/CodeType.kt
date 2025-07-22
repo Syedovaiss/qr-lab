@@ -14,7 +14,6 @@ sealed interface CodeType {
     data object SMS : CodeType
     data object Phone : CodeType
     data object LinkedIn : CodeType
-    data object WiFi : CodeType
     data object GeoLocation : CodeType
     data object PayPal : CodeType
     data object Bitcoin : CodeType

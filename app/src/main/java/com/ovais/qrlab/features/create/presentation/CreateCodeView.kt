@@ -35,6 +35,7 @@ import com.ovais.qrlab.features.create.data.CodeFormats
 import com.ovais.qrlab.utils.components.HeadingText
 import com.ovais.qrlab.utils.components.ImagePicker
 import com.ovais.qrlab.utils.components.PermissionRationaleDialog
+import com.ovais.qrlab.utils.components.SizeInputRow
 import com.ovais.qrlab.utils.components.SubtitleText
 import com.ovais.qrlab.utils.openAppSettings
 import kotlinx.coroutines.flow.collectLatest
@@ -111,6 +112,14 @@ fun CreateQRView(
             selectedType = it
             viewModel.onCodeSelection(it)
         }
+        SubtitleText(
+            stringResource(R.string.size),
+            paddingValues = PaddingValues(16.dp)
+        )
+        SizeInputRow(
+            onWidthChange = viewModel::onWidthUpdate,
+            onHeightChange = viewModel::onHeightUpdate
+        )
         if (selectedType is CodeFormats.QRCode) {
             BackgroundColorPicker {
                 backgroundColor = it

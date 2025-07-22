@@ -41,4 +41,7 @@
     <string name="grant">Grant</string>
     <string name="upload_logo">Upload Logo</string>
     <string name="image">Image</string>
+    <string name="size">Size</string>
+    <string name="width">Width</string>
+    <string name="height">Height</string>
 </resources>

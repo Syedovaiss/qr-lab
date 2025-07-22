@@ -14,3 +14,6 @@ fun Context.openAppSettings() {
     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     this.startActivity(intent)
 }
+
+val Int?.default: Int
+    get() = this ?: 0

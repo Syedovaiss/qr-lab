@@ -16,6 +16,7 @@ import com.ovais.qrlab.features.create.domain.CodeValidationUseCase
 import com.ovais.qrlab.features.create.domain.CreateCodeUseCase
 import com.ovais.qrlab.logger.QRLogger
 import com.ovais.qrlab.utils.ValidationResult
+import com.ovais.qrlab.utils.default
 import com.ovais.qrlab.utils.file.FileManager
 import com.ovais.qrlab.utils.permissions.PermissionManager
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -25,6 +26,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlin.text.toIntOrNull
 
 typealias BackgroundColor = Color
 typealias ForegroundColor = Color
@@ -38,6 +40,10 @@ class CreateCodeViewModel(
     private val permissionManager: PermissionManager,
     private val fileManager: FileManager
 ) : ViewModel() {
+
+    private var width = 600
+    private var height = 600
+
     val fileManagerImpl: FileManager
         get() = fileManager
     private val _codeItems by lazy { MutableStateFlow(codeTypeUseCase()) }
@@ -123,7 +129,9 @@ class CreateCodeViewModel(
             type,
             selectedType,
             colors,
-            selectedLogo
+            selectedLogo,
+            width,
+            height
         )
         viewModelScope.launch {
             when (val result = createCodeUseCase(param)) {
@@ -136,6 +144,14 @@ class CreateCodeViewModel(
                 }
             }
         }
+    }
+
+    fun onWidthUpdate(width: String) {
+        this.width = width.toIntOrNull().default
+    }
+
+    fun onHeightUpdate(height: String) {
+        this.height = height.toIntOrNull().default
     }
 
     private fun validateInputs(

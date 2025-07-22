@@ -35,7 +35,6 @@ class DefaultCodeValidationUseCase : CodeValidationUseCase {
         is CodeType.Threads,
         is CodeType.Discord,
         is CodeType.LinkedIn,
-        is CodeType.WiFi,
         is CodeType.PayPal,
         is CodeType.Bitcoin,
         is CodeType.Zoom,
@@ -49,14 +48,10 @@ class DefaultCodeValidationUseCase : CodeValidationUseCase {
 
         is CodeType.Email -> {
             val email = param.selectedContentMap[EMAIL]
-            val body = param.selectedContentMap[BODY]
             val emailResult = validateEmail(email)
-            emailResult as? ValidationResult.InValid
-                ?: if (!body.isNullOrBlank()) {
-                    ValidationResult.InValid(INVALID_EMAIL_CONTENT)
-                } else {
-                    ValidationResult.Valid
-                }
+            if (emailResult is ValidationResult.InValid) {
+                ValidationResult.InValid(INVALID_EMAIL)
+            } else ValidationResult.Valid
         }
 
         is CodeType.SMS -> {

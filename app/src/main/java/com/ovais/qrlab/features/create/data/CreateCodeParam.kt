@@ -8,5 +8,7 @@ data class CreateCodeParam(
     val type: CodeType,
     val format: CodeFormats?,
     val colors: Pair<Color, Color>,
-    val logo: Bitmap?
+    val logo: Bitmap?,
+    val width: Int,
+    val height: Int
 )

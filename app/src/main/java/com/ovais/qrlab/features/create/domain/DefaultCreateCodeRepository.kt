@@ -11,25 +11,34 @@ import com.ovais.qrlab.features.create.data.CodeResult
 import com.ovais.qrlab.features.create.data.CodeType
 import com.ovais.qrlab.features.create.data.CreateCodeRepository
 import com.ovais.qrlab.features.create.data.toValidFormat
+import com.ovais.qrlab.utils.BODY
+import com.ovais.qrlab.utils.EMAIL
+import com.ovais.qrlab.utils.NUMBER
+import com.ovais.qrlab.utils.PHONE
+import com.ovais.qrlab.utils.TEXT
+import com.ovais.qrlab.utils.URL
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import kotlin.math.log
+import java.net.URLEncoder
 
 class DefaultCreateCodeRepository(
     private val barcodeManager: BarcodeManager,
     private val dispatcherIO: CoroutineDispatcher
 ) : CreateCodeRepository {
+
     override suspend fun createBarcode(
         selectedContentMap: MutableMap<String, String>,
         format: CodeFormats?,
-        type: CodeType
+        type: CodeType,
+        width: Int,
+        height: Int
     ): CodeResult {
         return withContext(dispatcherIO) {
             format?.let { barcodeFormat ->
                 val content = getContentBasedOnType(selectedContentMap, type)
                 val config = BarcodeConfig(
-                    width = 600,
-                    height = 300,
+                    width = width,
+                    height = height,
                     barcodeFormat = barcodeFormat.toValidFormat()
                 )
                 barcodeManager.generateBarcode(content, config)?.let {
@@ -44,13 +53,15 @@ class DefaultCreateCodeRepository(
         selectedContentMap: MutableMap<String, String>,
         type: CodeType,
         colors: Pair<Color, Color>,
-        logo: Bitmap?
+        logo: Bitmap?,
+        width: Int,
+        height: Int
     ): CodeResult {
         return withContext(dispatcherIO) {
             val content = getContentBasedOnType(selectedContentMap, type)
             val config = BarcodeConfig(
-                width = 1024,
-                height = 1024,
+                width = width,
+                height = height,
                 barcodeFormat = BarcodeFormat.QR_CODE
             )
             barcodeManager.generateQRCode(
@@ -72,36 +83,37 @@ class DefaultCreateCodeRepository(
     ): String {
         return when (type) {
             is CodeType.Text -> {
-                selectedContentMap[com.ovais.qrlab.utils.TEXT].orEmpty()
+                selectedContentMap[TEXT].orEmpty()
             }
 
             is CodeType.Website -> {
-                selectedContentMap[com.ovais.qrlab.utils.URL].orEmpty()
+                selectedContentMap[URL].orEmpty()
             }
 
             is CodeType.Instagram -> {
-                val username = selectedContentMap[com.ovais.qrlab.utils.TEXT].orEmpty()
+                val username = selectedContentMap[TEXT].orEmpty()
                 "https://instagram.com/$username"
             }
 
             is CodeType.Facebook -> {
-                val username = selectedContentMap[com.ovais.qrlab.utils.TEXT].orEmpty()
+                val username = selectedContentMap[TEXT].orEmpty()
                 "https://facebook.com/$username"
             }
 
             is CodeType.WhatsApp -> {
-                val phone = selectedContentMap[com.ovais.qrlab.utils.NUMBER].orEmpty()
-                "https://wa.me/$phone"
+                val phone = selectedContentMap[NUMBER].orEmpty()
+                val message = selectedContentMap[TEXT].orEmpty()
+                "https://wa.me/$phone?text=${URLEncoder.encode(message, "UTF-8")}"
             }
 
             is CodeType.YouTube -> {
-                val id = selectedContentMap[com.ovais.qrlab.utils.TEXT].orEmpty()
+                val id = selectedContentMap[TEXT].orEmpty()
                 if (id.startsWith("http")) id else "https://youtube.com/$id"
             }
 
             is CodeType.Email -> {
-                val email = selectedContentMap[com.ovais.qrlab.utils.EMAIL].orEmpty()
-                val body = selectedContentMap[com.ovais.qrlab.utils.BODY]
+                val email = selectedContentMap[EMAIL].orEmpty()
+                val body = selectedContentMap[BODY]
                 if (body.isNullOrBlank()) {
                     "mailto:$email"
                 } else {
@@ -110,23 +122,23 @@ class DefaultCreateCodeRepository(
             }
 
             is CodeType.Search -> {
-                val query = selectedContentMap[com.ovais.qrlab.utils.TEXT].orEmpty()
+                val query = selectedContentMap[TEXT].orEmpty()
                 "https://www.google.com/search?q=${query}"
             }
 
             is CodeType.Threads -> {
-                val username = selectedContentMap[com.ovais.qrlab.utils.TEXT].orEmpty()
+                val username = selectedContentMap[TEXT].orEmpty()
                 "https://threads.net/@$username"
             }
 
             is CodeType.Discord -> {
-                val invite = selectedContentMap[com.ovais.qrlab.utils.TEXT].orEmpty()
+                val invite = selectedContentMap[TEXT].orEmpty()
                 "https://discord.gg/$invite"
             }
 
             is CodeType.SMS -> {
-                val phone = selectedContentMap[com.ovais.qrlab.utils.PHONE].orEmpty()
-                val message = selectedContentMap[com.ovais.qrlab.utils.TEXT]
+                val phone = selectedContentMap[PHONE].orEmpty()
+                val message = selectedContentMap[TEXT]
                 if (message.isNullOrBlank()) {
                     "sms:$phone"
                 } else {
@@ -135,43 +147,38 @@ class DefaultCreateCodeRepository(
             }
 
             is CodeType.Phone -> {
-                val phone = selectedContentMap[com.ovais.qrlab.utils.NUMBER].orEmpty()
+                val phone = selectedContentMap[NUMBER].orEmpty()
                 "tel:$phone"
             }
 
             is CodeType.LinkedIn -> {
-                val username = selectedContentMap[com.ovais.qrlab.utils.TEXT].orEmpty()
+                val username = selectedContentMap[TEXT].orEmpty()
                 "https://linkedin.com/in/$username"
-            }
-
-            is CodeType.WiFi -> {
-                val wifi = selectedContentMap[com.ovais.qrlab.utils.TEXT].orEmpty()
-                wifi // You may want to format this as per WiFi QR code standard
             }
 
             is CodeType.GeoLocation -> {
                 val lat = selectedContentMap[com.ovais.qrlab.utils.LATITUDE].orEmpty()
                 val lng = selectedContentMap[com.ovais.qrlab.utils.LONGITUDE].orEmpty()
-                "geo:$lat,$lng"
+                "geo:$lat,$lng?q=$lat,$lng"
             }
 
             is CodeType.PayPal -> {
-                val link = selectedContentMap[com.ovais.qrlab.utils.TEXT].orEmpty()
+                val link = selectedContentMap[TEXT].orEmpty()
                 "https://paypal.me/$link"
             }
 
             is CodeType.Bitcoin -> {
-                val address = selectedContentMap[com.ovais.qrlab.utils.TEXT].orEmpty()
+                val address = selectedContentMap[TEXT].orEmpty()
                 "bitcoin:$address"
             }
 
             is CodeType.Zoom -> {
-                val link = selectedContentMap[com.ovais.qrlab.utils.TEXT].orEmpty()
+                val link = selectedContentMap[TEXT].orEmpty()
                 link
             }
 
             is CodeType.Snapchat -> {
-                val username = selectedContentMap[com.ovais.qrlab.utils.TEXT].orEmpty()
+                val username = selectedContentMap[TEXT].orEmpty()
                 "https://snapchat.com/add/$username"
             }
         }

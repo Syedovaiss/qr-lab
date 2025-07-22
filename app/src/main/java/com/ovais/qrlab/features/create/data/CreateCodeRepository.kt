@@ -7,13 +7,17 @@ interface CreateCodeRepository {
     suspend fun createBarcode(
         selectedContentMap: MutableMap<String, String>,
         format: CodeFormats?,
-        type: CodeType
+        type: CodeType,
+        width: Int,
+        height: Int
     ): CodeResult
 
     suspend fun createQRCode(
         selectedContentMap: MutableMap<String, String>,
         type: CodeType,
         colors: Pair<Color, Color>,
-        logo: Bitmap?
+        logo: Bitmap?,
+        width: Int,
+        height: Int
     ): CodeResult
 }

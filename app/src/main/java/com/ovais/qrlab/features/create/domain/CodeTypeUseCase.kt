@@ -214,23 +214,6 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 )
             ),
             CodeItem(
-                R.drawable.ic_wifi,
-                CodeType.WiFi,
-                R.string.wifi,
-                listOf(
-                    FieldMetaData(
-                        name = TEXT,
-                        hint = HINT_WIFI_NAME,
-                        inputType = InputType.Text
-                    ),
-                    FieldMetaData(
-                        name = PASSWORD,
-                        hint = HINT_PASSWORD,
-                        inputType = InputType.Password
-                    ),
-                )
-            ),
-            CodeItem(
                 R.drawable.ic_location,
                 CodeType.GeoLocation,
                 R.string.location,

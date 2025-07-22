@@ -7,7 +7,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,12 +26,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ovais.qrlab.features.create.data.CodeItem
 import com.ovais.qrlab.features.create.data.CodeType
-import com.ovais.qrlab.utils.components.BodyText
 
 
 @Composable
@@ -79,7 +75,7 @@ fun CodeTypeSelector(
                         painter = painterResource(id = item.icon),
                         contentDescription = null,
                         modifier = Modifier
-                            .size(32.dp)
+                            .size(42.dp)
                             .clip(RoundedCornerShape(6.dp))
                     )
                 }
