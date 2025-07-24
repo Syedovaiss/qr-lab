@@ -38,6 +38,7 @@ import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -65,6 +66,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.ovais.qrlab.R
 import com.ovais.qrlab.core.ui.font.Poppins
+import com.ovais.qrlab.core.ui.theme.colorsForColorPicker
 import com.ovais.qrlab.utils.file.FileManager
 import kotlinx.coroutines.launch
 
@@ -246,8 +248,8 @@ fun ComposablePreview() {
 @Composable
 fun ColorPickerDialog(
     title: String = "Select Color",
-    colors: List<Color>,
-    selectedColor: Color,
+    colors: List<Color> = colorsForColorPicker,
+    selectedColor: Color = Color.Black,
     onColorSelected: (Color) -> Unit,
     onDismiss: () -> Unit
 ) {
@@ -449,4 +451,78 @@ fun SizeInputRow(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
     }
+}
+
+@Composable
+fun <T> RadioSelectionDialog(
+    title: String,
+    options: List<T>,
+    selectedOption: T?,
+    optionLabel: @Composable (T) -> String,
+    onOptionSelected: (T) -> Unit,
+    onDismissRequest: () -> Unit
+) {
+    var tempSelectedOption by remember { mutableStateOf(selectedOption) }
+
+    AlertDialog(
+        onDismissRequest = onDismissRequest,
+        title = {
+            Text(text = title, style = MaterialTheme.typography.titleMedium)
+        },
+        text = {
+            Column {
+                options.forEach { option ->
+                    val interactionSource = remember { MutableInteractionSource() }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp)
+                            .clickable(
+                                interactionSource = interactionSource,
+                                indication = rememberRipple()
+                            ) {
+                                tempSelectedOption = option
+                            },
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        RadioButton(
+                            selected = option == tempSelectedOption,
+                            onClick = { tempSelectedOption = option }
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = optionLabel(option))
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            val confirmInteractionSource = remember { MutableInteractionSource() }
+            Text(
+                text = "Confirm",
+                modifier = Modifier
+                    .padding(8.dp)
+                    .clickable(
+                        confirmInteractionSource,
+                        rememberRipple()
+                    ) {
+                        tempSelectedOption?.let { onOptionSelected(it) }
+                        onDismissRequest()
+                    },
+                color = MaterialTheme.colorScheme.primary
+            )
+        },
+        dismissButton = {
+            val dismissInteractionSource = remember { MutableInteractionSource() }
+            Text(
+                text = "Cancel",
+                modifier = Modifier
+                    .padding(8.dp)
+                    .clickable(
+                        dismissInteractionSource,
+                        rememberRipple()
+                    ) { onDismissRequest() },
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    )
 }

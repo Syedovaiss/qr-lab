@@ -1,6 +1,10 @@
 package com.ovais.qrlab.features.settings.presentation
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.LocalIndication
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -8,27 +12,50 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ovais.qrlab.R
+import com.ovais.qrlab.utils.components.ColorPickerDialog
 import com.ovais.qrlab.utils.components.HeadingText
+import com.ovais.qrlab.utils.components.RadioSelectionDialog
 import com.ovais.qrlab.utils.components.SubtitleText
+
 @Composable
 fun SettingsView(scaffoldPadding: PaddingValues) {
     val scrollState = rememberScrollState()
+    var canShowAppThemeSelection by remember { mutableStateOf(false) }
+    var selectedAppTheme by remember { mutableStateOf("System") }
+
+    var canShowQRCodeColorPickerDialog by remember { mutableStateOf(false) }
+    var selectedForegroundColor by remember { mutableStateOf(Color.Black) }
+
+    var canShowQRCodeBackgroundColorPickerDialog by remember { mutableStateOf(false) }
+    var selectedBackgroundColor by remember { mutableStateOf(Color.Black) }
+
+    var canShowExportFormatDialog by remember { mutableStateOf(false) }
+    var selectedExportFormat by remember { mutableStateOf("PNG") }
+    var vibrationCheckedState by remember { mutableStateOf(false) }
+    var soundCheckedState by remember { mutableStateOf(false) }
+    var autoCopyCheckedState by remember { mutableStateOf(false) }
+    var autoOpenURLState by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -40,27 +67,65 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
             stringResource(R.string.settings),
             paddingValues = PaddingValues(vertical = 8.dp)
         )
-        Spacer(modifier = Modifier.height(4.dp)) // reduced
+        Spacer(modifier = Modifier.height(4.dp))
         // --- Customization Section ---
         SettingsSection(title = stringResource(R.string.customization)) {
+            val appThemeInteractionSource = remember { MutableInteractionSource() }
+            val foregroundColorInteractionSource = remember { MutableInteractionSource() }
+            val backgroundColorInteractionSource = remember { MutableInteractionSource() }
+            val exportFormatInteractionSource = remember { MutableInteractionSource() }
             SettingRowItem(icon = R.drawable.ic_palette, label = "App Theme") {
-                Text("System")
+                Text(
+                    selectedAppTheme,
+                    modifier = Modifier.clickable(
+                        appThemeInteractionSource,
+                        LocalIndication.current
+                    ) {
+                        canShowAppThemeSelection = true
+                    }
+                )
             }
-            HorizontalDivider()
+
             SettingRowItem(icon = R.drawable.ic_color, label = "Default QR Code Color") {
-                Text("Black")
+                Box(
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(selectedForegroundColor)
+                        .clickable(
+                            foregroundColorInteractionSource,
+                            LocalIndication.current
+                        ) {
+                            canShowQRCodeColorPickerDialog = true
+                        }
+                )
             }
-            HorizontalDivider()
+
             SettingRowItem(icon = R.drawable.ic_color_fill, label = "Default QR Code Background") {
-                Text("Black")
+                Box(
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(selectedBackgroundColor)
+                        .clickable(
+                            backgroundColorInteractionSource,
+                            LocalIndication.current
+                        ) {
+                            canShowQRCodeBackgroundColorPickerDialog = true
+                        }
+                )
             }
-            HorizontalDivider()
-            SettingRowItem(icon = R.drawable.ic_image, label = "Default Logo on QR Code") {
-                Image(painterResource(R.drawable.ic_right), null)
-            }
-            HorizontalDivider()
+
             SettingRowItem(icon = R.drawable.ic_save, label = "Default QR Export Format") {
-                Text("PNG")
+                Text(
+                    selectedExportFormat,
+                    modifier = Modifier.clickable(
+                        exportFormatInteractionSource,
+                        LocalIndication.current
+                    ) {
+                        canShowExportFormatDialog = true
+                    }
+                )
             }
         }
 
@@ -71,31 +136,39 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
                 icon = R.drawable.ic_vibration,
                 label = "Vibration on Scan",
                 trailingAttribute = {
-                    Switch(checked = true, onCheckedChange = {})
+                    Switch(checked = vibrationCheckedState, onCheckedChange = {
+                        vibrationCheckedState = it
+                    })
                 }
             )
-            HorizontalDivider()
+
             SettingRowItem(
                 icon = R.drawable.ic_volume,
                 label = "Beep Sound on Scan",
                 trailingAttribute = {
-                    Switch(checked = true, onCheckedChange = {})
+                    Switch(
+                        checked = soundCheckedState,
+                        onCheckedChange = { soundCheckedState = it })
                 }
             )
-            HorizontalDivider()
+
             SettingRowItem(
                 icon = R.drawable.ic_copy,
                 label = "Auto Copy Scan Result to Clipboard",
                 trailingAttribute = {
-                    Switch(checked = true, onCheckedChange = {})
+                    Switch(checked = autoCopyCheckedState, onCheckedChange = {
+                        autoCopyCheckedState = it
+                    })
                 }
             )
-            HorizontalDivider()
+
             SettingRowItem(
                 icon = R.drawable.ic_browser,
                 label = "Auto Open URLs After Scan",
                 trailingAttribute = {
-                    Switch(checked = true, onCheckedChange = {})
+                    Switch(checked = autoOpenURLState, onCheckedChange = {
+                        autoOpenURLState = it
+                    })
                 }
             )
         }
@@ -106,7 +179,7 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
             SettingRowItem(icon = R.drawable.ic_delete, label = "Clear All Scan History") {
                 Text("Delete")
             }
-            HorizontalDivider()
+
             SettingRowItem(icon = R.drawable.ic_download, label = "Export History") {
                 Text("CSV")
             }
@@ -126,15 +199,15 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
             SettingRowItem(icon = R.drawable.ic_camera, label = "Camera Permission Status") {
                 Text("Granted")
             }
-            HorizontalDivider()
+
             SettingRowItem(icon = R.drawable.ic_image, label = "Gallery Permission Status") {
                 Text("Granted")
             }
-            HorizontalDivider()
+
             SettingRowItem(icon = R.drawable.ic_privacy, label = "Privacy Policy") {
                 Text("Granted")
             }
-            HorizontalDivider()
+
             SettingRowItem(icon = R.drawable.ic_bar_chart, label = "Send Anonymous Usage Data") {
                 Switch(checked = true, onCheckedChange = {})
             }
@@ -146,15 +219,58 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
             SettingRowItem(icon = R.drawable.ic_info, label = "App Version and Build Info") {
                 Text("v1.0.0(100)")
             }
-            HorizontalDivider()
+
             SettingRowItem(icon = R.drawable.ic_help, label = "About the App") {}
-            HorizontalDivider()
+
             SettingRowItem(icon = R.drawable.ic_rate, label = "Rate this App") {}
-            HorizontalDivider()
+
             SettingRowItem(icon = R.drawable.ic_share, label = "Share This App") {}
         }
 
-        Spacer(modifier = Modifier.height(24.dp)) // final spacing
+        Spacer(modifier = Modifier.height(24.dp))
+        if (canShowAppThemeSelection) {
+            RadioSelectionDialog(
+                title = "Select App Theme",
+                options = listOf("System", "Dark", "Light"),
+                selectedOption = selectedAppTheme,
+                optionLabel = { it },
+                onOptionSelected = { selectedAppTheme = it },
+                onDismissRequest = { canShowAppThemeSelection = false }
+            )
+        }
+        if (canShowQRCodeColorPickerDialog) {
+            ColorPickerDialog(
+                onColorSelected = {
+                    selectedForegroundColor = it
+                    canShowQRCodeColorPickerDialog = false
+                },
+                onDismiss = {
+                    canShowQRCodeColorPickerDialog = false
+                }
+            )
+        }
+        if (canShowQRCodeBackgroundColorPickerDialog) {
+            ColorPickerDialog(
+                onColorSelected = {
+                    selectedBackgroundColor = it
+                    canShowQRCodeBackgroundColorPickerDialog = false
+                },
+                onDismiss = {
+                    canShowQRCodeBackgroundColorPickerDialog = false
+                }
+            )
+        }
+
+        if (canShowExportFormatDialog) {
+            RadioSelectionDialog(
+                title = "Select Export Format",
+                options = listOf("PNG", "JPG/JPEG"),
+                selectedOption = selectedExportFormat,
+                optionLabel = { it },
+                onOptionSelected = { selectedExportFormat = it },
+                onDismissRequest = { canShowExportFormatDialog = false }
+            )
+        }
     }
 }
 
@@ -174,6 +290,7 @@ private fun SettingsSection(title: String, content: @Composable () -> Unit) {
         content()
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 private fun SettingsPreview() {
