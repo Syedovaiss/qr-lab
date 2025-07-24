@@ -14,19 +14,43 @@ import com.ovais.qrlab.features.create.domain.DefaultCreateCodeRepository
 import com.ovais.qrlab.features.create.domain.DefaultCreateCodeUseCase
 import com.ovais.qrlab.features.home.domain.CardItemsUseCase
 import com.ovais.qrlab.features.home.domain.DefaultCardItemsUseCase
+import com.ovais.qrlab.features.scan_qr.data.ScanRepository
+import com.ovais.qrlab.features.scan_qr.domain.DefaultScanCodeUseCase
+import com.ovais.qrlab.features.scan_qr.domain.DefaultScanRepository
+import com.ovais.qrlab.features.scan_qr.domain.ScanCodeUseCase
+import org.koin.core.qualifier.named
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
 
 val factoryModule = module {
-    factory { DefaultBarcodeManager(get(), get()) } bind BarcodeManager::class
+    factory {
+        DefaultBarcodeManager(
+            get(named(DEFAULT)),
+            get(),
+            get()
+        )
+    } bind BarcodeManager::class
 
     // Repositories
-    factory { DefaultCreateCodeRepository(get(), get()) } bind CreateCodeRepository::class
+    factory {
+        DefaultCreateCodeRepository(
+            get(),
+            get(named(BACKGROUD))
+        )
+    } bind CreateCodeRepository::class
+    factory {
+        DefaultScanRepository(
+            get()
+        )
+    } bind ScanRepository::class
     //Use cases
     factory { DefaultCardItemsUseCase() } bind CardItemsUseCase::class
     factory { DefaultCodeTypeUseCase() } bind CodeTypeUseCase::class
     factory { DefaultCodeFormatUseCase() } bind CodeFormatUseCase::class
     factory { DefaultCreateCodeUseCase(get()) } bind CreateCodeUseCase::class
     factory { DefaultCodeValidationUseCase() } bind CodeValidationUseCase::class
+    factory { DefaultScanCodeUseCase(get()) } bind ScanCodeUseCase::class
+
+
 }
