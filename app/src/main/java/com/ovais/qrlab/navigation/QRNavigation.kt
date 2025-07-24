@@ -42,7 +42,8 @@ fun QRNavigation(
 
                 is Routes.ScanQR -> NavEntry(key) {
                     ScanQRView(
-                        scaffoldPadding
+                        scaffoldPadding,
+                        snackbarHostState = snackBarHostState
                     )
                 }
 
