@@ -9,6 +9,7 @@ import com.ovais.qrlab.features.scan_qr.data.ScanCodeParamType
 import com.ovais.qrlab.features.scan_qr.data.ScanResult
 import com.ovais.qrlab.features.scan_qr.domain.ScanCodeUseCase
 import com.ovais.qrlab.utils.permissions.PermissionManager
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -17,23 +18,22 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ScanViewModel(
     private val permissionManager: PermissionManager,
-    private val scanCodeUseCase: ScanCodeUseCase
+    private val scanCodeUseCase: ScanCodeUseCase,
+    private val dispatcherMain: CoroutineDispatcher
 ) : ViewModel() {
 
     private val _scanResult by lazy { MutableStateFlow<String?>(null) }
     val scanResult: StateFlow<String?>
         get() = _scanResult.asStateFlow()
+    private var isScanning = false
 
     private val _permissionArray by lazy { MutableSharedFlow<ArrayList<String>>(replay = 1) }
     val permissionArray: SharedFlow<ArrayList<String>>
         get() = _permissionArray.asSharedFlow()
-
-    private val _errorMessage by lazy { MutableSharedFlow<String>() }
-    val errorMessage: SharedFlow<String>
-        get() = _errorMessage.asSharedFlow()
 
 
     fun checkPermissions() {
@@ -53,17 +53,19 @@ class ScanViewModel(
     }
 
     fun onImageProxy(imageProxy: ImageProxy) {
-        scanCode(
-            param = ScanCodeParam(
-                imageProxy = imageProxy,
-                type = ScanCodeParamType.ImageProxy
+        if (isScanning) {
+            imageProxy.close()
+            return
+        }
+        try {
+            scanCode(
+                param = ScanCodeParam(
+                    imageProxy = imageProxy,
+                    type = ScanCodeParamType.ImageProxy
+                )
             )
-        )
-    }
-
-    private fun onError(message: String) {
-        viewModelScope.launch {
-            _errorMessage.emit(message)
+        } finally {
+            isScanning = false
         }
     }
 
@@ -80,12 +82,12 @@ class ScanViewModel(
         viewModelScope.launch {
             when (val result = scanCodeUseCase(param)) {
                 is ScanResult.Success -> {
-                    _scanResult.update { result.content }
+                    withContext(dispatcherMain) {
+                        _scanResult.update { result.content }
+                    }
                 }
 
-                is ScanResult.Failure -> {
-                    onError(result.message)
-                }
+                is ScanResult.Failure -> Unit
             }
         }
     }

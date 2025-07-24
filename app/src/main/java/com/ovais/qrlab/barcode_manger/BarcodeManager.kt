@@ -92,33 +92,36 @@ class DefaultBarcodeManager(
 
     private companion object Companion {
         private const val BARCODE_MANAGER_LOG_TAG = "Barcode Manager Logs:"
+        private const val UTF_8 = "UTF-8"
     }
 
     override suspend fun generateBarcode(
         content: String,
         config: BarcodeConfig
     ): Bitmap? {
-        return try {
-            if (config.barcodeFormat == BarcodeFormat.QR_CODE) {
-                throw BarcodeMethodException()
+        return withContext(dispatcherDefault) {
+            try {
+                if (config.barcodeFormat == BarcodeFormat.QR_CODE) {
+                    throw BarcodeMethodException()
+                }
+                logInfo("Generating Barcode for:$content")
+                withContext(dispatcherDefault) {
+                    val bitMatrix: BitMatrix = MultiFormatWriter().encode(
+                        content,
+                        config.barcodeFormat,
+                        config.width,
+                        config.height
+                    )
+                    logInfo("Created bit-matrix for barcode")
+                    val bitmap = BarcodeEncoder().createBitmap(bitMatrix)
+                    logInfo("Bitmap created for:$content")
+                    bitmap
+                }
+            } catch (e: Exception) {
+                Timber.e(e)
+                logException("Failed to generate barcode because: ${e.printStackTrace()}")
+                null
             }
-            logInfo("Generating Barcode for:$content")
-            withContext(dispatcherDefault) {
-                val bitMatrix: BitMatrix = MultiFormatWriter().encode(
-                    content,
-                    config.barcodeFormat,
-                    config.width,
-                    config.height
-                )
-                logInfo("Created bit-matrix for barcode")
-                val bitmap = BarcodeEncoder().createBitmap(bitMatrix)
-                logInfo("Bitmap created for:$content")
-                bitmap
-            }
-        } catch (e: Exception) {
-            Timber.e(e)
-            logException("Failed to generate barcode because: ${e.printStackTrace()}")
-            null
         }
     }
 
@@ -127,49 +130,56 @@ class DefaultBarcodeManager(
         text: String,
         config: BarcodeConfig
     ): Bitmap? {
-        return try {
-            if (config.barcodeFormat == BarcodeFormat.QR_CODE) {
-                throw BarcodeMethodException()
-            }
-            logInfo("Generating Barcode for:$content")
-            withContext(dispatcherDefault) {
-                val bitMatrix =
-                    MultiFormatWriter().encode(
-                        content,
-                        config.barcodeFormat,
-                        config.width,
-                        config.height
-                    )
-                logInfo("Created bit-matrix for barcode")
-                val barcodeBitmap = BarcodeEncoder().createBitmap(bitMatrix)
-                logInfo("Bitmap created for:$content")
-                logInfo("Applying text on it")
-                // Prepare paint for text
-                val paint = Paint().apply {
-                    color = config.textColor
-                    this.textSize = config.textSize ?: textSize
-                    textAlign = Paint.Align.CENTER
-                    isAntiAlias = true
-                    typeface = Typeface.DEFAULT_BOLD
+        return withContext(dispatcherDefault) {
+            try {
+                if (config.barcodeFormat == BarcodeFormat.QR_CODE) {
+                    throw BarcodeMethodException()
                 }
-                val textHeight = (paint.descent() - paint.ascent()).toInt()
-                // padding between text and barcode
-                val totalHeight = barcodeBitmap.height + textHeight + 20
-                // Create new bitmap with space for text
-                val combinedBitmap = createBitmap(config.width, totalHeight)
-                val canvas = Canvas(combinedBitmap)
-                canvas.drawColor(Color.WHITE)
-                // Draw text at the top center
-                canvas.drawText(content, (config.width / 2).toFloat(), -paint.ascent() + 10, paint)
-                // Draw barcode below text
-                canvas.drawBitmap(barcodeBitmap, 0f, textHeight + 20f, null)
-                logInfo("Added Text on Barcode")
-                combinedBitmap
+                logInfo("Generating Barcode for:$content")
+                withContext(dispatcherDefault) {
+                    val bitMatrix =
+                        MultiFormatWriter().encode(
+                            content,
+                            config.barcodeFormat,
+                            config.width,
+                            config.height
+                        )
+                    logInfo("Created bit-matrix for barcode")
+                    val barcodeBitmap = BarcodeEncoder().createBitmap(bitMatrix)
+                    logInfo("Bitmap created for:$content")
+                    logInfo("Applying text on it")
+                    // Prepare paint for text
+                    val paint = Paint().apply {
+                        color = config.textColor
+                        this.textSize = config.textSize ?: textSize
+                        textAlign = Paint.Align.CENTER
+                        isAntiAlias = true
+                        typeface = Typeface.DEFAULT_BOLD
+                    }
+                    val textHeight = (paint.descent() - paint.ascent()).toInt()
+                    // padding between text and barcode
+                    val totalHeight = barcodeBitmap.height + textHeight + 20
+                    // Create new bitmap with space for text
+                    val combinedBitmap = createBitmap(config.width, totalHeight)
+                    val canvas = Canvas(combinedBitmap)
+                    canvas.drawColor(Color.WHITE)
+                    // Draw text at the top center
+                    canvas.drawText(
+                        content,
+                        (config.width / 2).toFloat(),
+                        -paint.ascent() + 10,
+                        paint
+                    )
+                    // Draw barcode below text
+                    canvas.drawBitmap(barcodeBitmap, 0f, textHeight + 20f, null)
+                    logInfo("Added Text on Barcode")
+                    combinedBitmap
+                }
+            } catch (e: Exception) {
+                Timber.e(e)
+                logException("Failed to generate barcode because: ${e.printStackTrace()}")
+                null
             }
-        } catch (e: Exception) {
-            Timber.e(e)
-            logException("Failed to generate barcode because: ${e.printStackTrace()}")
-            null
         }
     }
 
@@ -178,7 +188,7 @@ class DefaultBarcodeManager(
         size: Int
     ): BitMatrix {
         val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java).apply {
-            put(EncodeHintType.CHARACTER_SET, "UTF-8")
+            put(EncodeHintType.CHARACTER_SET, UTF_8)
             put(EncodeHintType.MARGIN, 1)
             put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H)
         }
@@ -306,62 +316,68 @@ class DefaultBarcodeManager(
         logoBitmap: Bitmap?,
         logoSizeRatio: Float
     ): Bitmap? {
-        return try {
-            val matrix = generateBitMatrixForQR(content, size)
-            var qrBitmap =
-                applyColorPattern(matrix, size, foregroundColor, backgroundColor, pattern)
-            logoBitmap?.let {
-                qrBitmap = addLogoToCenter(qrBitmap, logoBitmap, logoSizeRatio)
+        return withContext(dispatcherDefault) {
+            try {
+                val matrix = generateBitMatrixForQR(content, size)
+                var qrBitmap =
+                    applyColorPattern(matrix, size, foregroundColor, backgroundColor, pattern)
+                logoBitmap?.let {
+                    qrBitmap = addLogoToCenter(qrBitmap, logoBitmap, logoSizeRatio)
+                }
+                qrBitmap
+            } catch (e: Exception) {
+                e.printStackTrace()
+                null
             }
-            qrBitmap
-        } catch (e: Exception) {
-            e.printStackTrace()
-            null
         }
     }
 
 
-    override suspend fun scanCode(imageProxy: ImageProxy): ScanResult = try {
-        val bitmap = imageProxyToBitmap(imageProxy)
-        val rotatedBitmap = rotateBitmap(bitmap, imageProxy.imageInfo.rotationDegrees)
-        val decodedText = decodeWithZxing(rotatedBitmap)
-        imageProxy.close()
-        decodedText?.let {
-            ScanResult.Success(decodedText)
-        } ?: run {
-            ScanResult.Failure("No QR or barcode found")
+    override suspend fun scanCode(imageProxy: ImageProxy): ScanResult =
+        withContext(dispatcherDefault) {
+            try {
+                val bitmap = imageProxyToBitmap(imageProxy)
+                val rotatedBitmap = rotateBitmap(bitmap, imageProxy.imageInfo.rotationDegrees)
+                val decodedText = decodeWithZxing(rotatedBitmap)
+                imageProxy.close()
+                decodedText?.let {
+                    ScanResult.Success(decodedText)
+                } ?: run {
+                    ScanResult.Failure("No QR or barcode found")
+                }
+            } catch (e: Exception) {
+                imageProxy.close()
+                Timber.e(e)
+                ScanResult.Failure("Decoding failed: ${e.message}")
+            }
         }
-    } catch (e: Exception) {
-        imageProxy.close()
-        Timber.e(e)
-        ScanResult.Failure("Decoding failed: ${e.message}")
-    }
 
     override suspend fun scanCode(uri: Uri): ScanResult {
-        val bitmap = fileManager.uriToBitmap(uri)
-        val width = bitmap?.width
-        val height = bitmap?.height
-        val pixels = IntArray(width.default * height.default)
-        bitmap?.getPixels(pixels, 0, width.default, 0, 0, width.default, height.default)
+        return withContext(dispatcherDefault) {
+            try {
+                val bitmap = fileManager.uriToBitmap(uri)
+                val width = bitmap?.width
+                val height = bitmap?.height
+                val pixels = IntArray(width.default * height.default)
+                bitmap?.getPixels(pixels, 0, width.default, 0, 0, width.default, height.default)
 
-        val source = RGBLuminanceSource(width.default, height.default, pixels)
-        val binaryBitmap = BinaryBitmap(HybridBinarizer(source))
+                val source = RGBLuminanceSource(width.default, height.default, pixels)
+                val binaryBitmap = BinaryBitmap(HybridBinarizer(source))
 
-        val reader = MultiFormatReader()
+                val reader = MultiFormatReader()
 
-        val hints = mapOf(
-            DecodeHintType.POSSIBLE_FORMATS to BarcodeFormat.entries,
-            DecodeHintType.TRY_HARDER to true
-        )
+                val hints = mapOf(
+                    DecodeHintType.POSSIBLE_FORMATS to BarcodeFormat.entries,
+                    DecodeHintType.TRY_HARDER to true
+                )
 
-        reader.setHints(hints)
-
-        return try {
-            val result = reader.decode(binaryBitmap)
-            ScanResult.Success(result.text)
-        } catch (e: Exception) {
-            Timber.e(e)
-            ScanResult.Failure(e.message.toString())
+                reader.setHints(hints)
+                val result = reader.decode(binaryBitmap)
+                ScanResult.Success(result.text)
+            } catch (e: Exception) {
+                Timber.e(e)
+                ScanResult.Failure(e.message.toString())
+            }
         }
     }
 

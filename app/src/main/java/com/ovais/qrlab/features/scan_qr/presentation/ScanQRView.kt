@@ -1,7 +1,6 @@
 package com.ovais.qrlab.features.scan_qr.presentation
 
 import android.net.Uri
-import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraControl
@@ -25,7 +24,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
@@ -70,18 +69,13 @@ fun ScanQRView(
             arePermissionsDenied = true
         }
     }
-    LaunchedEffect(Unit) {
-        viewModel.errorMessage.collectLatest {
-            snackbarHostState.showSnackbar(it)
-        }
-    }
 
     LaunchedEffect(Unit) {
         viewModel.checkPermissions()
     }
     LaunchedEffect(scanResult) {
         scanResult?.let {
-            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            snackbarHostState.showSnackbar(it, duration = SnackbarDuration.Long)
         }
     }
     LaunchedEffect(Unit) {
@@ -123,7 +117,6 @@ fun ScanQRView(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BarcodeScannerView(
     imageProxy: (ImageProxy) -> Unit,
