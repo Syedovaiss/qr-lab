@@ -55,7 +55,9 @@ fun QRNavigation(
                 }
 
                 is Routes.Settings -> NavEntry(key) {
-                    SettingsView()
+                    SettingsView(
+                        scaffoldPadding
+                    )
                 }
 
                 is Routes.History -> NavEntry(key) {
