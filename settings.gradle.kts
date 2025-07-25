@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "qrlab"
+rootProject.name = "quickcode"
 include(":app")

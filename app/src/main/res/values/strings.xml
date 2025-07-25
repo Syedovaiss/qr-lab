@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">qrlab</string>
+    <string name="app_name">Quick Code</string>
     <string name="home_screen_title">Home</string>
     <string name="create_qr">Create</string>
     <string name="scan_qr">Scan</string>

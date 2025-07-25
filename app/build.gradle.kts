@@ -5,11 +5,11 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.serialization)
 }
 android {
-    namespace = "com.ovais.qrlab"
+    namespace = "com.ovais.quickcode"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.ovais.qrlab"
+        applicationId = "com.ovais.quickcode"
         minSdk = 24
         targetSdk = 36
         versionCode = 2
