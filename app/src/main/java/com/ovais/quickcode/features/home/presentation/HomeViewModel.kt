@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.ovais.quickcode.features.home.data.CardItemType
 import com.ovais.quickcode.features.home.data.HomeCardItem
 import com.ovais.quickcode.features.home.domain.CardItemsUseCase
-import com.ovais.quickcode.logger.QRLogger
+import com.ovais.quickcode.logger.AppLogger
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val cardItemsUseCase: CardItemsUseCase,
-    private val logger: QRLogger
+    private val logger: AppLogger
 ) : ViewModel() {
 
     private val _nextDestination by lazy { MutableSharedFlow<HomeIntent>() }

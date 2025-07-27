@@ -2,7 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.jetbrains.kotlin.serialization)
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 android {
     namespace = "com.ovais.quickcode"
@@ -19,14 +22,29 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField("String", "AES_KEY", "\"${property("AES_ENCRYPTION_KEY")}\"")
+        buildConfigField("String", "STORE_FILE", "\"${property("PREFERENCE_FILENAME")}\"")
+        buildConfigField("String", "DATABASE_PASSWORD", "\"${property("DATABASE_PASSWORD")}\"")
+        buildConfigField("String", "DATABASE_NAME", "\"${property("DATABASE_NAME")}\"")
     }
 
     buildTypes {
+        debug {
+            buildConfigField(
+                "Long", "REMOTE_CONFIG_INTERVAL",
+                property("DEBUG_REMOTE_CONFIG_INTERVAL") as String  + "L"
+            )
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
+            )
+            buildConfigField(
+                "Long",
+                "REMOTE_CONFIG_INTERVAL",
+                property("RELEASE_REMOTE_CONFIG_INTERVAL") as String  + "L"
             )
         }
     }
@@ -42,7 +60,7 @@ android {
         buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
     packaging {
         resources {
@@ -95,6 +113,22 @@ dependencies {
     implementation(libs.androidx.camera.video)
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.camera.extensions)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.config)
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.crashlytics.ndk)
+    implementation(libs.onesignal)
+    implementation(libs.datastore.preferences)
+
+
+    implementation(libs.sqlcipher.android)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
     // Testing Dependencies
     testImplementation(libs.ktor.client.mock)

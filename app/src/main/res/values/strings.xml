@@ -45,4 +45,7 @@
     <string name="width">Width</string>
     <string name="height">Height</string>
     <string name="customization">Customizations</string>
+    <string name="delete_history_dialog_title">Delete History</string>
+    <string name="delete_history_dialog_message">Are you sure want to delete all history?</string>
+    <string name="delete">Delete</string>
 </resources>

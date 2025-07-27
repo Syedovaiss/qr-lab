@@ -3,12 +3,12 @@ package com.ovais.quickcode.logger
 import com.ovais.quickcode.BuildConfig
 import timber.log.Timber
 
-interface QRLogger {
+interface AppLogger {
     fun logInfo(vararg message: String)
     fun logException(vararg message: String)
 }
 
-class DefaultQRLogger : QRLogger {
+class DefaultAppLogger : AppLogger {
     private companion object {
         private const val TAG = "QR-Log:"
     }

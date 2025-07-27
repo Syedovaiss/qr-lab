@@ -33,7 +33,7 @@ import com.google.zxing.common.HybridBinarizer
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.ovais.quickcode.features.scan_qr.data.ScanResult
-import com.ovais.quickcode.logger.QRLogger
+import com.ovais.quickcode.logger.AppLogger
 import com.ovais.quickcode.utils.default
 import com.ovais.quickcode.utils.file.FileManager
 import kotlinx.coroutines.CoroutineDispatcher
@@ -86,7 +86,7 @@ interface BarcodeManager {
 
 class DefaultBarcodeManager(
     private val dispatcherDefault: CoroutineDispatcher,
-    private val logger: QRLogger,
+    private val logger: AppLogger,
     private val fileManager: FileManager
 ) : BarcodeManager {
 

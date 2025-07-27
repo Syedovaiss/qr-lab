@@ -16,11 +16,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,6 +35,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ovais.quickcode.R
+import com.ovais.quickcode.features.info.presentation.StaticInfoFullScreenDialog
 import com.ovais.quickcode.utils.components.ColorPickerDialog
 import com.ovais.quickcode.utils.components.HeadingText
 import com.ovais.quickcode.utils.components.RadioSelectionDialog
@@ -56,6 +59,18 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
     var soundCheckedState by remember { mutableStateOf(false) }
     var autoCopyCheckedState by remember { mutableStateOf(false) }
     var autoOpenURLState by remember { mutableStateOf(false) }
+    var canClearHistory by remember { mutableStateOf(false) }
+    var canExportHistory by remember { mutableStateOf(false) }
+    var selectedHistoryExportFormat by remember { mutableStateOf("CSV") }
+    var appLanguage by remember { mutableStateOf("System") }
+    var canShowAppLanguage by remember { mutableStateOf(false) }
+    var cameraPermissionState by remember { mutableStateOf(true) }
+    var galleryPermissionState by remember { mutableStateOf(true) }
+    var canShowPrivacyPolicy by remember { mutableStateOf(false) }
+    var canSendAnonymouseUsageData by remember { mutableStateOf(false) }
+    var canShowAbout by remember { mutableStateOf(false) }
+    var canRateApp by remember { mutableStateOf(false) }
+    var canShareApp by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -209,7 +224,9 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
             }
 
             SettingRowItem(icon = R.drawable.ic_bar_chart, label = "Send Anonymous Usage Data") {
-                Switch(checked = true, onCheckedChange = {})
+                Switch(checked = canSendAnonymouseUsageData, onCheckedChange = {
+                    canSendAnonymouseUsageData = it
+                })
             }
         }
 
@@ -260,7 +277,6 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
                 }
             )
         }
-
         if (canShowExportFormatDialog) {
             RadioSelectionDialog(
                 title = "Select Export Format",
@@ -271,6 +287,56 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
                 onDismissRequest = { canShowExportFormatDialog = false }
             )
         }
+        if (canClearHistory) {
+            AlertDialog(
+                onDismissRequest = {
+
+                },
+                title = { Text(stringResource(R.string.delete_history_dialog_title)) },
+                text = { Text(stringResource(R.string.delete_history_dialog_message)) },
+                confirmButton = {
+                    TextButton(onClick = {
+                        // delete history
+                        canClearHistory = false
+                    }) {
+                        Text(stringResource(R.string.delete))
+                    }
+                }
+            )
+        }
+        if (canExportHistory) {
+            RadioSelectionDialog(
+                title = "Export History",
+                options = listOf("CSV", "PDF"),
+                selectedOption = "CSV",
+                optionLabel = { it },
+                onOptionSelected = { selectedHistoryExportFormat = it },
+                onDismissRequest = { canExportHistory = false }
+            )
+        }
+        if (canShowAppLanguage) {
+            RadioSelectionDialog(
+                title = "Select Language",
+                options = listOf("System", "English", "Urdu"),
+                selectedOption = "System",
+                optionLabel = { it },
+                onOptionSelected = { appLanguage = it },
+                onDismissRequest = { canShowAppLanguage = false }
+            )
+        }
+        StaticInfoFullScreenDialog(
+            canShowPrivacyPolicy,
+            ""
+        ) {
+            canShowPrivacyPolicy = false
+        }
+        StaticInfoFullScreenDialog(
+            canShowAbout,
+            ""
+        ) {
+            canShowAbout = false
+        }
+
     }
 }
 

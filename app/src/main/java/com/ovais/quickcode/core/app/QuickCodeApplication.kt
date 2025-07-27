@@ -1,12 +1,21 @@
 package com.ovais.quickcode.core.app
 
 import android.app.Application
+import com.ovais.quickcode.core.di.DEFAULT
 import com.ovais.quickcode.core.di.factoryModule
 import com.ovais.quickcode.core.di.singletonModule
 import com.ovais.quickcode.core.di.viewModelModule
+import com.ovais.quickcode.notification.DefaultQuickCodeNotificationManager
+import com.ovais.quickcode.storage.DefaultQuickCodeConfigurationManager
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.qualifier.named
 import timber.log.Timber
 
 class QuickCodeApplication : Application() {
@@ -15,6 +24,17 @@ class QuickCodeApplication : Application() {
         super.onCreate()
         initKoin()
         initTimber()
+        initNotifications()
+        initRemoteConfig()
+    }
+
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun initRemoteConfig() {
+        val dispatcherDefault = getKoin().get<CoroutineDispatcher>(named(DEFAULT))
+        val config = getKoin().get<DefaultQuickCodeConfigurationManager>()
+        GlobalScope.launch(dispatcherDefault) {
+            config.activate()
+        }
     }
 
     private fun initTimber() {
@@ -27,5 +47,10 @@ class QuickCodeApplication : Application() {
             androidContext(this@QuickCodeApplication)
             modules(singletonModule, viewModelModule, factoryModule)
         }
+    }
+
+    private fun initNotifications() {
+        val manager = getKoin().get<DefaultQuickCodeNotificationManager>()
+        manager.init()
     }
 }

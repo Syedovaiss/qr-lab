@@ -1,7 +1,17 @@
 package com.ovais.quickcode.core.di
 
-import com.ovais.quickcode.logger.DefaultQRLogger
-import com.ovais.quickcode.logger.QRLogger
+import com.ovais.quickcode.analytics.AppAnalyticsManager
+import com.ovais.quickcode.analytics.DefaultAppAnalyticsManager
+import com.ovais.quickcode.logger.DefaultAppLogger
+import com.ovais.quickcode.logger.AppLogger
+import com.ovais.quickcode.notification.DefaultQuickCodeNotificationManager
+import com.ovais.quickcode.notification.QuickCodeNotificationManager
+import com.ovais.quickcode.storage.DefaultQuickCodeConfigurationManager
+import com.ovais.quickcode.storage.DefaultQuickCodePreferenceManager
+import com.ovais.quickcode.storage.QuickCodeConfigurationManager
+import com.ovais.quickcode.storage.QuickCodePreferenceManager
+import com.ovais.quickcode.storage.db.AppStorageManager
+import com.ovais.quickcode.storage.db.DefaultAppStorageManager
 import com.ovais.quickcode.utils.file.DefaultFileManager
 import com.ovais.quickcode.utils.file.FileManager
 import com.ovais.quickcode.utils.permissions.DefaultPermissionManager
@@ -13,11 +23,11 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 
 
-const val BACKGROUD = "IO"
+const val BACKGROUND = "IO"
 const val UI = "Main"
 const val DEFAULT = "Default"
 val singletonModule = module {
-    single<CoroutineDispatcher>(named(BACKGROUD)) {
+    single<CoroutineDispatcher>(named(BACKGROUND)) {
         Dispatchers.IO
     }
     single<CoroutineDispatcher>(named(DEFAULT)) {
@@ -26,7 +36,12 @@ val singletonModule = module {
     single<CoroutineDispatcher>(named(UI)) {
         Dispatchers.Main
     }
-    single { DefaultQRLogger() } bind QRLogger::class
-    single { DefaultFileManager(get(), get(named(BACKGROUD))) } bind FileManager::class
+    single { DefaultAppLogger() } bind AppLogger::class
+    single { DefaultFileManager(get(), get(named(BACKGROUND))) } bind FileManager::class
     single { DefaultPermissionManager(get()) } bind PermissionManager::class
+    single { DefaultAppAnalyticsManager() } bind AppAnalyticsManager::class
+    single { DefaultQuickCodePreferenceManager(get(named(DEFAULT))) } bind QuickCodePreferenceManager::class
+    single { DefaultQuickCodeNotificationManager(get()) } bind QuickCodeNotificationManager::class
+    single { DefaultQuickCodeConfigurationManager(get()) } bind QuickCodeConfigurationManager::class
+    single { DefaultAppStorageManager(get(), get()) } bind AppStorageManager::class
 }

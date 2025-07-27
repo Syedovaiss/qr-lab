@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1011639452295",
+    "project_id": "quick-code-5870a",
+    "storage_bucket": "quick-code-5870a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011639452295:android:53f7ce3251cd119de0ae22",
+        "android_client_info": {
+          "package_name": "com.ovais.quickcode"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ4qPmxglLL_uPsmm7OHZ13zYJ9uVqagM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

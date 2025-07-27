@@ -1,19 +1,14 @@
 package com.ovais.quickcode.utils
 
-// Common field names
 const val TEXT = "text"
 const val URL = "url"
 const val EMAIL = "email"
 const val BODY = "body"
 const val NUMBER = "number"
 const val PHONE = "phone"
-const val PASSWORD = "password"
 const val LATITUDE = "latitude"
 const val LONGITUDE = "longitude"
-const val DATE_START = "date_start"
-const val DATE_END = "date_end"
 
-// Common hints
 const val HINT_ENTER_TEXT = "Enter your text"
 const val HINT_URL = "https://www.example.com"
 const val HINT_USERNAME = "@username"
@@ -21,13 +16,6 @@ const val HINT_PHONE_WITH_COUNTRY = "Phone number with country code"
 const val HINT_MESSAGE = "Your Message...."
 const val HINT_EMAIL = "someone@example.com"
 const val HINT_SEARCH = "Search here"
-const val HINT_WIFI_NAME = "Wifi Name"
-const val HINT_PASSWORD = "Password or empty if public..."
-const val HINT_NAME = "Name"
-const val HINT_TITLE = "Title"
-const val HINT_DESCRIPTION = "Description"
-const val HINT_DATE_START = "Start Date Time"
-const val HINT_DATE_END = "End Date Time"
 const val HINT_LATITUDE = "Latitude"
 const val HINT_LONGITUDE = "Longitude"
 const val HINT_CRYPTO = "Please fill in the crypto address"
@@ -37,9 +25,11 @@ const val INVALID_TEXT = "Please enter a valid value"
 const val INVALID_URL = "Please enter a valid url"
 const val INVALID_EMAIL = "Please enter a valid email"
 const val INVALID_PHONE = "Please enter a valid phone"
-const val INVALID_EMAIL_CONTENT = "Please enter a valid email body"
 const val INVALID_LAT = "Please enter a valid latitude"
 const val INVALID_LNG = "Please enter a valid longitude"
+
+
+const val TABLE_LOCAL_CONFIGURATION = "local_configuration"
 
 val validCountryCodes = setOf(
     "1", "7", "20", "27", "30", "31", "32", "33", "34", "36", "39", "40", "41", "43", "44", "45", "46",

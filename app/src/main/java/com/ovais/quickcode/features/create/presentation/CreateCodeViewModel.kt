@@ -14,7 +14,7 @@ import com.ovais.quickcode.features.create.domain.CodeFormatUseCase
 import com.ovais.quickcode.features.create.domain.CodeTypeUseCase
 import com.ovais.quickcode.features.create.domain.CodeValidationUseCase
 import com.ovais.quickcode.features.create.domain.CreateCodeUseCase
-import com.ovais.quickcode.logger.QRLogger
+import com.ovais.quickcode.logger.AppLogger
 import com.ovais.quickcode.utils.ValidationResult
 import com.ovais.quickcode.utils.default
 import com.ovais.quickcode.utils.file.FileManager
@@ -33,7 +33,7 @@ typealias ForegroundColor = Color
 
 class CreateCodeViewModel(
     private val codeTypeUseCase: CodeTypeUseCase,
-    private val logger: QRLogger,
+    private val logger: AppLogger,
     private val codeFormatUseCase: CodeFormatUseCase,
     private val codeValidationUseCase: CodeValidationUseCase,
     private val createCodeUseCase: CreateCodeUseCase,

@@ -36,7 +36,7 @@ val factoryModule = module {
     factory {
         DefaultCreateCodeRepository(
             get(),
-            get(named(BACKGROUD))
+            get(named(BACKGROUND))
         )
     } bind CreateCodeRepository::class
     factory {
