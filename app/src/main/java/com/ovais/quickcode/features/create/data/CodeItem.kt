@@ -4,8 +4,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
 data class CodeItem(
-    @DrawableRes val icon: Int,
+    @param:DrawableRes val icon: Int,
     val type: CodeType,
-    @StringRes val title: Int,
+    @param:StringRes val title: Int,
     val fieldMetaData: List<FieldMetaData>
 )

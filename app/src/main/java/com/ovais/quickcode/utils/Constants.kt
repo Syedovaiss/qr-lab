@@ -1,5 +1,6 @@
 package com.ovais.quickcode.utils
 
+const val EMPTY_STRING = ""
 const val TEXT = "text"
 const val URL = "url"
 const val EMAIL = "email"

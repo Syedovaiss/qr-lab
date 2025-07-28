@@ -9,7 +9,7 @@ import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import com.ovais.quickcode.features.create.presentation.CreateQRView
 import com.ovais.quickcode.features.history.presentation.HistoryScreen
-import com.ovais.quickcode.features.home.presentation.HomeIntent
+import com.ovais.quickcode.features.home.presentation.HomeAction
 import com.ovais.quickcode.features.home.presentation.HomeScreenView
 import com.ovais.quickcode.features.scan_qr.presentation.ScanQRView
 import com.ovais.quickcode.features.settings.presentation.SettingsView
@@ -30,10 +30,10 @@ fun QRNavigation(
                         scaffoldPadding = scaffoldPadding,
                         onClick = { intent ->
                             val route = when (intent) {
-                                is HomeIntent.OnCreateCode -> Routes.CreateQR
-                                is HomeIntent.OnSettingsClicked -> Routes.Settings
-                                is HomeIntent.OnHistoryClicked -> Routes.History
-                                is HomeIntent.OnScanCode -> Routes.ScanQR
+                                is HomeAction.OnCreateCode -> Routes.CreateQR
+                                is HomeAction.OnSettingsClicked -> Routes.Settings
+                                is HomeAction.OnHistoryClicked -> Routes.History
+                                is HomeAction.OnScanCode -> Routes.ScanQR
                             }
                             backStack.add(route)
                         }

@@ -2,6 +2,8 @@ package com.ovais.quickcode.core.di
 
 import com.ovais.quickcode.analytics.AppAnalyticsManager
 import com.ovais.quickcode.analytics.DefaultAppAnalyticsManager
+import com.ovais.quickcode.features.home.domain.DefaultGetTermsAndConditionsUseCase
+import com.ovais.quickcode.features.home.domain.GetTermsAndConditionsUseCase
 import com.ovais.quickcode.logger.DefaultAppLogger
 import com.ovais.quickcode.logger.AppLogger
 import com.ovais.quickcode.notification.DefaultQuickCodeNotificationManager
@@ -12,6 +14,8 @@ import com.ovais.quickcode.storage.QuickCodeConfigurationManager
 import com.ovais.quickcode.storage.QuickCodePreferenceManager
 import com.ovais.quickcode.storage.db.AppStorageManager
 import com.ovais.quickcode.storage.db.DefaultAppStorageManager
+import com.ovais.quickcode.utils.DefaultInitialProvider
+import com.ovais.quickcode.utils.InitialProvider
 import com.ovais.quickcode.utils.file.DefaultFileManager
 import com.ovais.quickcode.utils.file.FileManager
 import com.ovais.quickcode.utils.permissions.DefaultPermissionManager
@@ -36,6 +40,8 @@ val singletonModule = module {
     single<CoroutineDispatcher>(named(UI)) {
         Dispatchers.Main
     }
+
+    single { DefaultGetTermsAndConditionsUseCase(get()) } bind GetTermsAndConditionsUseCase::class
     single { DefaultAppLogger() } bind AppLogger::class
     single { DefaultFileManager(get(), get(named(BACKGROUND))) } bind FileManager::class
     single { DefaultPermissionManager(get()) } bind PermissionManager::class
@@ -44,4 +50,5 @@ val singletonModule = module {
     single { DefaultQuickCodeNotificationManager(get()) } bind QuickCodeNotificationManager::class
     single { DefaultQuickCodeConfigurationManager(get()) } bind QuickCodeConfigurationManager::class
     single { DefaultAppStorageManager(get(), get()) } bind AppStorageManager::class
+    single { DefaultInitialProvider() } bind InitialProvider::class
 }

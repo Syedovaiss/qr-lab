@@ -14,6 +14,8 @@ import com.ovais.quickcode.features.create.domain.DefaultCreateCodeRepository
 import com.ovais.quickcode.features.create.domain.DefaultCreateCodeUseCase
 import com.ovais.quickcode.features.home.domain.CardItemsUseCase
 import com.ovais.quickcode.features.home.domain.DefaultCardItemsUseCase
+import com.ovais.quickcode.features.home.domain.DefaultGetUserInfoUseCase
+import com.ovais.quickcode.features.home.domain.GetUserInfoUseCase
 import com.ovais.quickcode.features.scan_qr.data.ScanRepository
 import com.ovais.quickcode.features.scan_qr.domain.DefaultScanCodeUseCase
 import com.ovais.quickcode.features.scan_qr.domain.DefaultScanRepository
@@ -24,6 +26,14 @@ import org.koin.dsl.module
 
 
 val factoryModule = module {
+    factory {
+        DefaultGetUserInfoUseCase(
+            get(),
+            get(),
+            get()
+        )
+    } bind GetUserInfoUseCase::class
+
     factory {
         DefaultBarcodeManager(
             get(named(DEFAULT)),

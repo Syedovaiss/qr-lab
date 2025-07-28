@@ -34,8 +34,8 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.ovais.quickcode.features.scan_qr.data.ScanResult
 import com.ovais.quickcode.logger.AppLogger
-import com.ovais.quickcode.utils.default
 import com.ovais.quickcode.utils.file.FileManager
+import com.ovais.quickcode.utils.orZero
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -358,10 +358,10 @@ class DefaultBarcodeManager(
                 val bitmap = fileManager.uriToBitmap(uri)
                 val width = bitmap?.width
                 val height = bitmap?.height
-                val pixels = IntArray(width.default * height.default)
-                bitmap?.getPixels(pixels, 0, width.default, 0, 0, width.default, height.default)
+                val pixels = IntArray(width.orZero * height.orZero)
+                bitmap?.getPixels(pixels, 0, width.orZero, 0, 0, width.orZero, height.orZero)
 
-                val source = RGBLuminanceSource(width.default, height.default, pixels)
+                val source = RGBLuminanceSource(width.orZero, height.orZero, pixels)
                 val binaryBitmap = BinaryBitmap(HybridBinarizer(source))
 
                 val reader = MultiFormatReader()
