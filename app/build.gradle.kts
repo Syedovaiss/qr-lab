@@ -28,24 +28,33 @@ android {
         buildConfigField("String", "DATABASE_NAME", "\"${property("DATABASE_NAME")}\"")
         buildConfigField("String", "SERVER_CLIENT_ID", "\"${property("SERVER_CLIENT_ID")}\"")
     }
-
-    buildTypes {
-        debug {
+    flavorDimensions += "env"
+    productFlavors {
+        create("dev") {
+            dimension = "env"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
             buildConfigField(
                 "Long", "REMOTE_CONFIG_INTERVAL",
-                property("DEBUG_REMOTE_CONFIG_INTERVAL") as String  + "L"
+                property("DEBUG_REMOTE_CONFIG_INTERVAL") as String + "L"
             )
         }
+        create("prod") {
+            dimension = "env"
+            buildConfigField(
+                "Long",
+                "REMOTE_CONFIG_INTERVAL",
+                property("RELEASE_REMOTE_CONFIG_INTERVAL") as String + "L"
+            )
+        }
+    }
+
+    buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
-            )
-            buildConfigField(
-                "Long",
-                "REMOTE_CONFIG_INTERVAL",
-                property("RELEASE_REMOTE_CONFIG_INTERVAL") as String  + "L"
             )
         }
     }

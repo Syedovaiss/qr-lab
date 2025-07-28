@@ -14,6 +14,43 @@
       },
       "oauth_client": [
         {
+          "client_id": "1011639452295-temkpa9epftqll7gijk6hfs9bmvi7pf5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ovais.quickcode",
+            "certificate_hash": "01b7ea07bb48cfaa9f595f62c2bff98070443128"
+          }
+        },
+        {
+          "client_id": "1011639452295-1g4qj08m50o0khj3pek5da633pqe9b7o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ4qPmxglLL_uPsmm7OHZ13zYJ9uVqagM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1011639452295-1g4qj08m50o0khj3pek5da633pqe9b7o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011639452295:android:a0634f8380567996e0ae22",
+        "android_client_info": {
+          "package_name": "com.ovais.quickcode.dev"
+        }
+      },
+      "oauth_client": [
+        {
           "client_id": "1011639452295-1g4qj08m50o0khj3pek5da633pqe9b7o.apps.googleusercontent.com",
           "client_type": 3
         }
