@@ -28,6 +28,7 @@ fun QRNavigation(
                 is Routes.Home -> NavEntry(key) {
                     HomeScreenView(
                         scaffoldPadding = scaffoldPadding,
+                        snackBarHostState = snackBarHostState,
                         onClick = { intent ->
                             val route = when (intent) {
                                 is HomeAction.OnCreateCode -> Routes.CreateQR

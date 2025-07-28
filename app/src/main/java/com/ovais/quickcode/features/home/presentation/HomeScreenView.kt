@@ -1,6 +1,7 @@
 package com.ovais.quickcode.features.home.presentation
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -18,6 +19,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -54,6 +56,7 @@ import java.util.Calendar
 @Composable
 fun HomeScreenView(
     scaffoldPadding: PaddingValues = PaddingValues(),
+    snackBarHostState: SnackbarHostState,
     viewModel: HomeViewModel = koinViewModel(),
     onClick: (HomeAction) -> Unit
 ) {
@@ -67,6 +70,11 @@ fun HomeScreenView(
     LaunchedEffect(Unit) {
         viewModel.termsAndConditionsIUrl.collectLatest {
             context.openURL(it)
+        }
+    }
+    LaunchedEffect(Unit) {
+        viewModel.errorMessage.collectLatest {
+            snackBarHostState.showSnackbar(it)
         }
     }
     when (uiState) {
@@ -83,6 +91,9 @@ fun HomeScreenView(
                 },
                 onTermsAndConditionsClicked = {
                     viewModel.onTermsAndConditions()
+                },
+                onUserClick = {
+                    viewModel.onUserClick(context)
                 }
             )
         }
@@ -91,11 +102,20 @@ fun HomeScreenView(
 
 
 @Composable
-fun TopView(userInfo: UserInfo) {
+fun TopView(
+    userInfo: UserInfo,
+    onUserClick: () -> Unit
+) {
+
     Row(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier
+            .padding(16.dp)
+            .clickable(
+                remember { MutableInteractionSource() },
+                LocalIndication.current
+            ) { onUserClick() },
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Center,
     ) {
         AvatarView(
             imageUrl = userInfo.avatar,
@@ -110,7 +130,8 @@ fun HomeScreen(
     scaffoldPadding: PaddingValues,
     uiData: HomeUiData,
     onCardClick: (CardItemType) -> Unit,
-    onTermsAndConditionsClicked: () -> Unit
+    onTermsAndConditionsClicked: () -> Unit,
+    onUserClick: () -> Unit
 ) {
     val termsAndConditionsInteractionSource = remember { MutableInteractionSource() }
     Column(
@@ -120,7 +141,7 @@ fun HomeScreen(
             .background(appBackground)
     ) {
 
-        TopView(uiData.userInfo)
+        TopView(uiData.userInfo, onUserClick)
         HeadingText(
             text = stringResource(R.string.home_screen_title)
         )
@@ -207,6 +228,7 @@ fun HomeScreenPreview() {
             )
         ),
         onCardClick = {},
-        onTermsAndConditionsClicked = {}
+        onTermsAndConditionsClicked = {},
+        onUserClick = {}
     )
 }

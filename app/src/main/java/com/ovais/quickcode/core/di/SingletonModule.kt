@@ -1,9 +1,12 @@
 package com.ovais.quickcode.core.di
 
+import androidx.credentials.CredentialManager
 import com.ovais.quickcode.analytics.AppAnalyticsManager
 import com.ovais.quickcode.analytics.DefaultAppAnalyticsManager
-import com.ovais.quickcode.features.home.domain.DefaultGetTermsAndConditionsUseCase
-import com.ovais.quickcode.features.home.domain.GetTermsAndConditionsUseCase
+import com.ovais.quickcode.auth.AuthManager
+import com.ovais.quickcode.auth.DefaultAuthManager
+import com.ovais.quickcode.utils.usecase.DefaultGetTermsAndConditionsUseCase
+import com.ovais.quickcode.utils.usecase.GetTermsAndConditionsUseCase
 import com.ovais.quickcode.logger.DefaultAppLogger
 import com.ovais.quickcode.logger.AppLogger
 import com.ovais.quickcode.notification.DefaultQuickCodeNotificationManager
@@ -41,6 +44,7 @@ val singletonModule = module {
         Dispatchers.Main
     }
 
+    single { DefaultAuthManager(CredentialManager.create(get()), get()) } bind AuthManager::class
     single { DefaultGetTermsAndConditionsUseCase(get()) } bind GetTermsAndConditionsUseCase::class
     single { DefaultAppLogger() } bind AppLogger::class
     single { DefaultFileManager(get(), get(named(BACKGROUND))) } bind FileManager::class

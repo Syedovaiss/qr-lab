@@ -1,12 +1,20 @@
 package com.ovais.quickcode.features.home.presentation
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ovais.quickcode.auth.AuthManager
+import com.ovais.quickcode.auth.AuthResult
+import com.ovais.quickcode.auth.AuthType
+import com.ovais.quickcode.features.home.data.AuthState
 import com.ovais.quickcode.features.home.data.CardItemType
+import com.ovais.quickcode.features.home.data.LoggedInParam
+import com.ovais.quickcode.features.home.domain.CanLoginUseCase
 import com.ovais.quickcode.features.home.domain.CardItemsUseCase
-import com.ovais.quickcode.features.home.domain.GetTermsAndConditionsUseCase
-import com.ovais.quickcode.features.home.domain.GetUserInfoUseCase
+import com.ovais.quickcode.features.home.domain.LoginResultUseCase
 import com.ovais.quickcode.logger.AppLogger
+import com.ovais.quickcode.utils.usecase.GetTermsAndConditionsUseCase
+import com.ovais.quickcode.utils.usecase.GetUserInfoUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -20,7 +28,10 @@ class HomeViewModel(
     private val cardItemsUseCase: CardItemsUseCase,
     private val logger: AppLogger,
     private val userInfoUseCase: GetUserInfoUseCase,
-    private val termsAndConditionsUrl: GetTermsAndConditionsUseCase
+    private val termsAndConditionsUrl: GetTermsAndConditionsUseCase,
+    private val authManager: AuthManager,
+    private val loginResultUseCase: LoginResultUseCase,
+    private val canLoginUseCase: CanLoginUseCase
 ) : ViewModel() {
 
     private val _nextDestination by lazy { MutableSharedFlow<HomeAction>() }
@@ -34,6 +45,10 @@ class HomeViewModel(
     private val _termsAndConditionsIUrl by lazy { MutableSharedFlow<String>() }
     val termsAndConditionsIUrl: SharedFlow<String>
         get() = _termsAndConditionsIUrl
+
+    private val _errorMessage by lazy { MutableSharedFlow<String>() }
+    val errorMessage: SharedFlow<String>
+        get() = _errorMessage.asSharedFlow()
 
     init {
         initUiData()
@@ -88,5 +103,60 @@ class HomeViewModel(
         viewModelScope.launch {
             _termsAndConditionsIUrl.emit(termsAndConditionsUrl())
         }
+    }
+
+    fun onUserClick(context: Context) {
+        viewModelScope.launch {
+            if (canLoginUseCase()) {
+                authManager.signIn(context, AuthType.Google) { result ->
+                    when (result) {
+                        is AuthResult.Success -> {
+                            updateLoginResult(
+                                LoggedInParam(
+                                    email = result.email,
+                                    name = result.name,
+                                    avatar = result.avatar,
+                                    type = AuthType.Google
+
+                                )
+                            )
+                        }
+
+                        is AuthResult.Failure -> {
+                            updateError(result.message)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun updateLoginResult(param: LoggedInParam) {
+        viewModelScope.launch {
+            when (val result = loginResultUseCase(param)) {
+                is AuthState.LoggedIn -> {
+                    logger.logInfo("Login result saved!:$result")
+                    updateUI()
+                }
+
+                is AuthState.Failure -> {
+                    logger.logException("Couldn't save results")
+                }
+            }
+        }
+    }
+
+    private fun updateUI() {
+        viewModelScope.launch {
+            _uiState.value = HomeUiState.Loaded(
+                (uiState.value as HomeUiState.Loaded).uiData.copy(
+                    userInfo = userInfoUseCase()
+                )
+            )
+        }
+    }
+
+    private fun updateError(message: String) {
+        viewModelScope.launch { _errorMessage.emit(message) }
     }
 }

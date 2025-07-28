@@ -26,6 +26,7 @@ android {
         buildConfigField("String", "STORE_FILE", "\"${property("PREFERENCE_FILENAME")}\"")
         buildConfigField("String", "DATABASE_PASSWORD", "\"${property("DATABASE_PASSWORD")}\"")
         buildConfigField("String", "DATABASE_NAME", "\"${property("DATABASE_NAME")}\"")
+        buildConfigField("String", "SERVER_CLIENT_ID", "\"${property("SERVER_CLIENT_ID")}\"")
     }
 
     buildTypes {
@@ -130,6 +131,11 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
     implementation(libs.coil.compose)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+
     // Testing Dependencies
     testImplementation(libs.ktor.client.mock)
     testImplementation(libs.mockito.core)

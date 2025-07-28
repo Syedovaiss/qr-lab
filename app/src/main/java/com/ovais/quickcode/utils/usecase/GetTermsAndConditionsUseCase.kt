@@ -1,7 +1,6 @@
-package com.ovais.quickcode.features.home.domain
+package com.ovais.quickcode.utils.usecase
 
 import com.ovais.quickcode.storage.QuickCodeConfigurationManager
-import com.ovais.quickcode.utils.usecase.UseCase
 
 interface GetTermsAndConditionsUseCase : UseCase<String>
 

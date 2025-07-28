@@ -12,10 +12,14 @@ import com.ovais.quickcode.features.create.domain.DefaultCodeTypeUseCase
 import com.ovais.quickcode.features.create.domain.DefaultCodeValidationUseCase
 import com.ovais.quickcode.features.create.domain.DefaultCreateCodeRepository
 import com.ovais.quickcode.features.create.domain.DefaultCreateCodeUseCase
+import com.ovais.quickcode.features.home.domain.CanLoginUseCase
 import com.ovais.quickcode.features.home.domain.CardItemsUseCase
+import com.ovais.quickcode.features.home.domain.DefaultCanLoginUseCase
 import com.ovais.quickcode.features.home.domain.DefaultCardItemsUseCase
-import com.ovais.quickcode.features.home.domain.DefaultGetUserInfoUseCase
-import com.ovais.quickcode.features.home.domain.GetUserInfoUseCase
+import com.ovais.quickcode.features.home.domain.DefaultLoginResultUseCase
+import com.ovais.quickcode.features.home.domain.LoginResultUseCase
+import com.ovais.quickcode.utils.usecase.DefaultGetUserInfoUseCase
+import com.ovais.quickcode.utils.usecase.GetUserInfoUseCase
 import com.ovais.quickcode.features.scan_qr.data.ScanRepository
 import com.ovais.quickcode.features.scan_qr.domain.DefaultScanCodeUseCase
 import com.ovais.quickcode.features.scan_qr.domain.DefaultScanRepository
@@ -42,7 +46,8 @@ val factoryModule = module {
         )
     } bind BarcodeManager::class
 
-    // Repositories
+    factory { DefaultLoginResultUseCase(get(), get()) } bind LoginResultUseCase::class
+    factory { DefaultCanLoginUseCase(get(), get()) } bind CanLoginUseCase::class
     factory {
         DefaultCreateCodeRepository(
             get(),

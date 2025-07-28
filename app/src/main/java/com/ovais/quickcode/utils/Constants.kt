@@ -31,6 +31,7 @@ const val INVALID_LNG = "Please enter a valid longitude"
 
 
 const val TABLE_LOCAL_CONFIGURATION = "local_configuration"
+const val GOOGLE_PHOTO_BASE_URL =  "https://lh3.googleusercontent.com"
 
 val validCountryCodes = setOf(
     "1", "7", "20", "27", "30", "31", "32", "33", "34", "36", "39", "40", "41", "43", "44", "45", "46",

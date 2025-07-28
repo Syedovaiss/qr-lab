@@ -12,7 +12,12 @@
           "package_name": "com.ovais.quickcode"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1011639452295-1g4qj08m50o0khj3pek5da633pqe9b7o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBQ4qPmxglLL_uPsmm7OHZ13zYJ9uVqagM"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1011639452295-1g4qj08m50o0khj3pek5da633pqe9b7o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -71,6 +71,7 @@ class DefaultQuickCodePreferenceManager(
 
         val decrypted = withContext(dispatcherDefault) { decrypt(encrypted) }
 
+        @Suppress("UNCHECKED_CAST")
         return when (clazz) {
             String::class.java -> decrypted as T
             Boolean::class.java -> decrypted.toBoolean() as T
