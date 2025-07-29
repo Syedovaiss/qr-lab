@@ -12,7 +12,7 @@ import com.ovais.quickcode.features.history.presentation.HistoryScreen
 import com.ovais.quickcode.features.home.presentation.HomeAction
 import com.ovais.quickcode.features.home.presentation.HomeScreenView
 import com.ovais.quickcode.features.scan_qr.presentation.ScanQRView
-import com.ovais.quickcode.features.settings.presentation.SettingsView
+import com.ovais.quickcode.features.settings.presentation.SettingScreen
 
 @Composable
 fun QRNavigation(
@@ -56,7 +56,7 @@ fun QRNavigation(
                 }
 
                 is Routes.Settings -> NavEntry(key) {
-                    SettingsView(
+                    SettingScreen(
                         scaffoldPadding
                     )
                 }

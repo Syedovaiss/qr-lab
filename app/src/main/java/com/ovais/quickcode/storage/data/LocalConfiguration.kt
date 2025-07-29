@@ -7,7 +7,6 @@ import com.ovais.quickcode.utils.TABLE_LOCAL_CONFIGURATION
 import kotlinx.serialization.Serializable
 
 
-private const val APP_THEME = "default_app_theme"
 private const val FOREGROUND_COLOR = "default_foreground_color"
 private const val BACKGROUND_COLOR = "default_background_color"
 private const val QR_FORMAT = "default_qr_format"
@@ -25,8 +24,6 @@ private const val ANONYMOUSE_USAGE_STATUS = "default_anonymous_usage_state"
 data class LocalConfiguration(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    @ColumnInfo(APP_THEME)
-    val appTheme: String,
     @ColumnInfo(FOREGROUND_COLOR)
     val foregroundColor: String,
     @ColumnInfo(BACKGROUND_COLOR)

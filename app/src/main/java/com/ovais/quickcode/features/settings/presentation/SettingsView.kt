@@ -20,7 +20,6 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -36,17 +35,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ovais.quickcode.R
 import com.ovais.quickcode.features.info.presentation.StaticInfoFullScreenDialog
+import com.ovais.quickcode.utils.components.AppSwitch
 import com.ovais.quickcode.utils.components.ColorPickerDialog
 import com.ovais.quickcode.utils.components.HeadingText
 import com.ovais.quickcode.utils.components.RadioSelectionDialog
 import com.ovais.quickcode.utils.components.SubtitleText
+import org.koin.androidx.compose.koinViewModel
+
+@Composable
+fun SettingScreen(
+    scaffoldPadding: PaddingValues,
+    viewModel: SettingViewModel = koinViewModel()
+) {
+    SettingsView(scaffoldPadding)
+}
+
 
 @Composable
 fun SettingsView(scaffoldPadding: PaddingValues) {
     val scrollState = rememberScrollState()
-    var canShowAppThemeSelection by remember { mutableStateOf(false) }
-    var selectedAppTheme by remember { mutableStateOf("System") }
-
     var canShowQRCodeColorPickerDialog by remember { mutableStateOf(false) }
     var selectedForegroundColor by remember { mutableStateOf(Color.Black) }
 
@@ -85,23 +92,10 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
         Spacer(modifier = Modifier.height(4.dp))
         // --- Customization Section ---
         SettingsSection(title = stringResource(R.string.customization)) {
-            val appThemeInteractionSource = remember { MutableInteractionSource() }
             val foregroundColorInteractionSource = remember { MutableInteractionSource() }
             val backgroundColorInteractionSource = remember { MutableInteractionSource() }
             val exportFormatInteractionSource = remember { MutableInteractionSource() }
-            SettingRowItem(icon = R.drawable.ic_palette, label = "App Theme") {
-                Text(
-                    selectedAppTheme,
-                    modifier = Modifier.clickable(
-                        appThemeInteractionSource,
-                        LocalIndication.current
-                    ) {
-                        canShowAppThemeSelection = true
-                    }
-                )
-            }
-
-            SettingRowItem(icon = R.drawable.ic_color, label = "Default QR Code Color") {
+            SettingRowItem(label = "QR Color", description = "Default QR Code Color") {
                 Box(
                     modifier = Modifier
                         .size(24.dp)
@@ -111,12 +105,12 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
                             foregroundColorInteractionSource,
                             LocalIndication.current
                         ) {
-                            canShowQRCodeColorPickerDialog = true
+
                         }
                 )
             }
 
-            SettingRowItem(icon = R.drawable.ic_color_fill, label = "Default QR Code Background") {
+            SettingRowItem(label = "QR Background", description = "Default QR Code Background") {
                 Box(
                     modifier = Modifier
                         .size(24.dp)
@@ -131,7 +125,7 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
                 )
             }
 
-            SettingRowItem(icon = R.drawable.ic_save, label = "Default QR Export Format") {
+            SettingRowItem(label = "Export Format", description = "QR Export Format") {
                 Text(
                     selectedExportFormat,
                     modifier = Modifier.clickable(
@@ -148,40 +142,43 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
         // --- User Feedback & Behavior ---
         SettingsSection(title = "User Feedback & Behavior") {
             SettingRowItem(
-                icon = R.drawable.ic_vibration,
                 label = "Vibration on Scan",
+                description = "Vibrate when scanned code",
                 trailingAttribute = {
-                    Switch(checked = vibrationCheckedState, onCheckedChange = {
-                        vibrationCheckedState = it
-                    })
+                    AppSwitch(
+                        checked = vibrationCheckedState,
+                        onCheckedChange = {
+                            vibrationCheckedState = it
+                        }
+                    )
                 }
             )
 
             SettingRowItem(
-                icon = R.drawable.ic_volume,
-                label = "Beep Sound on Scan",
+                label = "Mute",
+                description = "Play beep sound when scanned",
                 trailingAttribute = {
-                    Switch(
+                    AppSwitch(
                         checked = soundCheckedState,
                         onCheckedChange = { soundCheckedState = it })
                 }
             )
 
             SettingRowItem(
-                icon = R.drawable.ic_copy,
-                label = "Auto Copy Scan Result to Clipboard",
+                label = "Copy to clipboard",
+                description = "Auto Copy Scan Result to Clipboard",
                 trailingAttribute = {
-                    Switch(checked = autoCopyCheckedState, onCheckedChange = {
+                    AppSwitch(checked = autoCopyCheckedState, onCheckedChange = {
                         autoCopyCheckedState = it
                     })
                 }
             )
 
             SettingRowItem(
-                icon = R.drawable.ic_browser,
-                label = "Auto Open URLs After Scan",
+                label = "Open URL",
+                description = "Auto Open URLs After Scan",
                 trailingAttribute = {
-                    Switch(checked = autoOpenURLState, onCheckedChange = {
+                    AppSwitch(checked = autoOpenURLState, onCheckedChange = {
                         autoOpenURLState = it
                     })
                 }
@@ -191,19 +188,15 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
         Spacer(modifier = Modifier.height(12.dp))
         // --- History & Storage ---
         SettingsSection(title = "History & Storage") {
-            SettingRowItem(icon = R.drawable.ic_delete, label = "Clear All Scan History") {
-                Text("Delete")
-            }
+            SettingRowItem(label = "Clear History", description = "Clear All Scan History",{})
 
-            SettingRowItem(icon = R.drawable.ic_download, label = "Export History") {
-                Text("CSV")
-            }
+            SettingRowItem(label = "Export History", description = "Export history to phone",{})
         }
 
         Spacer(modifier = Modifier.height(12.dp))
         // --- Language & Regional ---
         SettingsSection(title = "Language & Regional") {
-            SettingRowItem(icon = R.drawable.ic_lanugage, label = "App Language") {
+            SettingRowItem(label = "App Language","App locale") {
                 Text("System")
             }
         }
@@ -211,20 +204,18 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
         Spacer(modifier = Modifier.height(12.dp))
         // --- Privacy & Permissions ---
         SettingsSection(title = "Privacy & Permissions") {
-            SettingRowItem(icon = R.drawable.ic_camera, label = "Camera Permission Status") {
+            SettingRowItem(label ="Camera Status",description = "Camera Permission Status") {
                 Text("Granted")
             }
 
-            SettingRowItem(icon = R.drawable.ic_image, label = "Gallery Permission Status") {
+            SettingRowItem(label = "Gallery Status", description = "Gallery Permission Status") {
                 Text("Granted")
             }
 
-            SettingRowItem(icon = R.drawable.ic_privacy, label = "Privacy Policy") {
-                Text("Granted")
-            }
+            SettingRowItem(label = "Privacy Policy", description = "View privacy policy",{})
 
-            SettingRowItem(icon = R.drawable.ic_bar_chart, label = "Send Anonymous Usage Data") {
-                Switch(checked = canSendAnonymouseUsageData, onCheckedChange = {
+            SettingRowItem(label = "Send Anonymous Usage Data", description = "Send data for better stats") {
+                AppSwitch(checked = canSendAnonymouseUsageData, onCheckedChange = {
                     canSendAnonymouseUsageData = it
                 })
             }
@@ -233,28 +224,19 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
         Spacer(modifier = Modifier.height(12.dp))
         // --- App Info & Support ---
         SettingsSection(title = "App Info & Support") {
-            SettingRowItem(icon = R.drawable.ic_info, label = "App Version and Build Info") {
+            SettingRowItem(label = "Version","App Version and Build Info") {
                 Text("v1.0.0(100)")
             }
 
-            SettingRowItem(icon = R.drawable.ic_help, label = "About the App") {}
+            SettingRowItem(label = "About the App","Details about the app") {}
 
-            SettingRowItem(icon = R.drawable.ic_rate, label = "Rate this App") {}
+            SettingRowItem(label = "Rate this App","Rate app on Play Store") {}
 
-            SettingRowItem(icon = R.drawable.ic_share, label = "Share This App") {}
+            SettingRowItem(label = "Share This App","Share app to friends and family") {}
         }
 
         Spacer(modifier = Modifier.height(24.dp))
-        if (canShowAppThemeSelection) {
-            RadioSelectionDialog(
-                title = "Select App Theme",
-                options = listOf("System", "Dark", "Light"),
-                selectedOption = selectedAppTheme,
-                optionLabel = { it },
-                onOptionSelected = { selectedAppTheme = it },
-                onDismissRequest = { canShowAppThemeSelection = false }
-            )
-        }
+
         if (canShowQRCodeColorPickerDialog) {
             ColorPickerDialog(
                 onColorSelected = {
@@ -345,7 +327,7 @@ private fun SettingsSection(title: String, content: @Composable () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp, vertical = 4.dp), // tighter
+            .padding( vertical = 4.dp),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
     ) {

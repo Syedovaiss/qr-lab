@@ -79,7 +79,7 @@ fun HomeScreenView(
     }
     when (uiState) {
         is HomeUiState.Loading -> {
-            Text("Home Loading...")
+            HomeScreenLoadingView()
         }
 
         is HomeUiState.Loaded -> {
