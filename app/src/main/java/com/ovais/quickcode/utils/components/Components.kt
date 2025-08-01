@@ -744,10 +744,10 @@ fun AppSwitch(
     lineWidth: Dp = 40.dp,
     lineHeight: Dp = 3.dp,
     circleSize: Dp = 24.dp,
-    trackColorChecked: Color = Color(0xFF9C27B0),       // Purple
-    trackColorUnchecked: Color = Color(0xFFE0E0E0),     // Light Gray
-    thumbColorChecked: Color = Color(0xFF6A1B9A),       // Dark Purple
-    thumbColorUnchecked: Color = Color(0xFFBDBDBD),     // Gray
+    trackColorChecked: Color = Color(0xFF7c71b1),       // Purple
+    trackColorUnchecked: Color = Color(0xFFf1f1f1),     // Light Gray
+    thumbColorChecked: Color = Color(0xFFc0aefb),       // Dark Purple
+    thumbColorUnchecked: Color = Color(0xFFf1f1f1),     // Gray
     disabledTrackColor: Color = Color(0xFFE0E0E0),
     disabledThumbColor: Color = Color(0xFFBDBDBD)
 ) {

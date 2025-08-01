@@ -24,6 +24,10 @@ import com.ovais.quickcode.features.scan_code.data.ScanRepository
 import com.ovais.quickcode.features.scan_code.domain.DefaultScanCodeUseCase
 import com.ovais.quickcode.features.scan_code.domain.DefaultScanRepository
 import com.ovais.quickcode.features.scan_code.domain.ScanCodeUseCase
+import com.ovais.quickcode.features.settings.domain.DefaultGetPrivacyPolicyUseCase
+import com.ovais.quickcode.features.settings.domain.DefaultUpdateSettingUseCase
+import com.ovais.quickcode.features.settings.domain.GetPrivacyPolicyUseCase
+import com.ovais.quickcode.features.settings.domain.UpdateSettingUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -59,6 +63,10 @@ val factoryModule = module {
             get()
         )
     } bind ScanRepository::class
+
+    // Settings Use Case
+    factory { DefaultUpdateSettingUseCase(get(), get()) } bind UpdateSettingUseCase::class
+
     //Use cases
     factory { DefaultCardItemsUseCase() } bind CardItemsUseCase::class
     factory { DefaultCodeTypeUseCase() } bind CodeTypeUseCase::class
@@ -66,6 +74,5 @@ val factoryModule = module {
     factory { DefaultCreateCodeUseCase(get()) } bind CreateCodeUseCase::class
     factory { DefaultCodeValidationUseCase() } bind CodeValidationUseCase::class
     factory { DefaultScanCodeUseCase(get()) } bind ScanCodeUseCase::class
-
-
+    factory { DefaultGetPrivacyPolicyUseCase(get()) } bind GetPrivacyPolicyUseCase::class
 }

@@ -16,6 +16,7 @@ import com.ovais.quickcode.storage.DefaultQuickCodePreferenceManager
 import com.ovais.quickcode.storage.QuickCodeConfigurationManager
 import com.ovais.quickcode.storage.QuickCodePreferenceManager
 import com.ovais.quickcode.storage.db.AppStorageManager
+import com.ovais.quickcode.storage.db.ConfigurationDao
 import com.ovais.quickcode.storage.db.DefaultAppStorageManager
 import com.ovais.quickcode.utils.DefaultInitialProvider
 import com.ovais.quickcode.utils.InitialProvider
@@ -55,4 +56,7 @@ val singletonModule = module {
     single { DefaultQuickCodeConfigurationManager(get()) } bind QuickCodeConfigurationManager::class
     single { DefaultAppStorageManager(get(), get()) } bind AppStorageManager::class
     single { DefaultInitialProvider() } bind InitialProvider::class
+    
+    // Database DAO
+    single { get<AppStorageManager>().instance.configDao() } bind ConfigurationDao::class
 }

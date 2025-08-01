@@ -20,23 +20,24 @@ import com.ovais.quickcode.utils.components.BodyText
 fun SettingRowItem(
     label: String,
     description: String,
-    trailingAttribute: @Composable () -> Unit
+    trailingAttribute: @Composable () -> Unit = {}
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 6.dp, horizontal = 8.dp),
-        verticalAlignment = Alignment.Top
+            .padding(vertical = 8.dp, horizontal = 12.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
             modifier = Modifier
                 .weight(1f)
-                .padding(end = 8.dp)
+                .padding(end = 12.dp)
         ) {
             BodyText(
                 text = label,
                 fontSize = 16.sp,
-                paddingValues = PaddingValues()
+                fontWeight = FontWeight.Medium,
+                paddingValues = PaddingValues(bottom = 2.dp)
             )
             BodyText(
                 text = description,

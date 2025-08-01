@@ -26,6 +26,11 @@ class QuickCodeApplication : Application() {
         initTimber()
         initNotifications()
         initRemoteConfig()
+        initSQLCipher()
+    }
+
+    private fun initSQLCipher() {
+        System.loadLibrary("sqlcipher")
     }
 
     @OptIn(DelicateCoroutinesApi::class)
