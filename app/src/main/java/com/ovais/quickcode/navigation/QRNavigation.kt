@@ -11,7 +11,7 @@ import com.ovais.quickcode.features.create.presentation.CreateQRView
 import com.ovais.quickcode.features.history.presentation.HistoryScreen
 import com.ovais.quickcode.features.home.presentation.HomeAction
 import com.ovais.quickcode.features.home.presentation.HomeScreenView
-import com.ovais.quickcode.features.scan_qr.presentation.ScanQRView
+import com.ovais.quickcode.features.scan_code.presentation.ScanQRView
 import com.ovais.quickcode.features.settings.presentation.SettingScreen
 
 @Composable
@@ -44,7 +44,8 @@ fun QRNavigation(
                 is Routes.ScanQR -> NavEntry(key) {
                     ScanQRView(
                         scaffoldPadding,
-                        snackbarHostState = snackBarHostState
+                        snackbarHostState = snackBarHostState,
+                        onBack = { backStack.removeLastOrNull() }
                     )
                 }
 

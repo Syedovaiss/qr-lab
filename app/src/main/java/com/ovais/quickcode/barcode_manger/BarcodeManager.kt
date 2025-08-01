@@ -32,7 +32,7 @@ import com.google.zxing.common.BitMatrix
 import com.google.zxing.common.HybridBinarizer
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import com.journeyapps.barcodescanner.BarcodeEncoder
-import com.ovais.quickcode.features.scan_qr.data.ScanResult
+import com.ovais.quickcode.features.scan_code.data.ScanResult
 import com.ovais.quickcode.logger.AppLogger
 import com.ovais.quickcode.utils.file.FileManager
 import com.ovais.quickcode.utils.orZero

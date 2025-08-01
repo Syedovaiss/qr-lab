@@ -51,43 +51,5 @@
     <string name="default_name">Guest User</string>
     <string name="trademark">© %s Syed Ovais Akhtar. All rights reserved.</string>
     <string name="terms_and_conditions">Terms &amp; Conditions</string>
-    <string name="terms_and_conditions_content">
-    Terms and Conditions
-
-    Effective Date: July 28, 2025
-
-    1. Acceptance of Terms:
-    By using this application ("App"), you agree to be bound by these Terms and Conditions. If you do not agree, please do not use the App.
-
-    2. App Functionality:
-    This App allows you to generate and scan QR codes including text, email, contact, Wi-Fi, URLs, and more. All generated data is stored locally on your device unless you choose to share it.
-
-    3. User Responsibilities:
-    - You are solely responsible for the content you generate.
-    - You agree not to use the App for illegal or harmful purposes.
-    - You must follow local laws when sharing or scanning QR codes.
-
-    4. Data &amp; Privacy:
-    This App does not collect or send personal data to external servers. All data remains on your device unless you explicitly export or share it. You can clear history at any time.
-
-    5. Monetization:
-    The App may display ads or offer in-app purchases. Ads may use anonymous data for personalization. Please review third-party ad network policies for details.
-
-    6. Intellectual Property:
-    The App and its contents (design, code, branding) are the property of the developer. Generated QR codes belong to you, but you may not resell or redistribute the App.
-
-    7. Limitation of Liability:
-    The App is provided "as is" with no warranties. The developer is not responsible for any issues caused by the use of the App including data loss or misuse of QR codes.
-
-    8. Third-party Services:
-    The App may use open-source libraries (e.g., ZXing) and third-party SDKs (e.g., AdMob). These are governed by their own licenses and privacy policies.
-
-    9. Changes to Terms:
-    These terms may be updated in the future. Continued use of the App means you accept the updated terms.
-
-    10. Contact:
-    For questions or support, email: ovaisakhtar97@gmail.com
-
-    © %s Syed Ovais Akhtar. All rights reserved.
-</string>
+    <string name="zoom_level">%.1fx</string>
 </resources>

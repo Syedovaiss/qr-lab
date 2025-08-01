@@ -1,4 +1,4 @@
-package com.ovais.quickcode.features.scan_qr.data
+package com.ovais.quickcode.features.scan_code.data
 
 sealed interface ScanResult {
     data class Success(val content: String) : ScanResult

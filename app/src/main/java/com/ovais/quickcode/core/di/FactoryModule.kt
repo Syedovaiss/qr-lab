@@ -20,10 +20,10 @@ import com.ovais.quickcode.features.home.domain.DefaultLoginResultUseCase
 import com.ovais.quickcode.features.home.domain.LoginResultUseCase
 import com.ovais.quickcode.utils.usecase.DefaultGetUserInfoUseCase
 import com.ovais.quickcode.utils.usecase.GetUserInfoUseCase
-import com.ovais.quickcode.features.scan_qr.data.ScanRepository
-import com.ovais.quickcode.features.scan_qr.domain.DefaultScanCodeUseCase
-import com.ovais.quickcode.features.scan_qr.domain.DefaultScanRepository
-import com.ovais.quickcode.features.scan_qr.domain.ScanCodeUseCase
+import com.ovais.quickcode.features.scan_code.data.ScanRepository
+import com.ovais.quickcode.features.scan_code.domain.DefaultScanCodeUseCase
+import com.ovais.quickcode.features.scan_code.domain.DefaultScanRepository
+import com.ovais.quickcode.features.scan_code.domain.ScanCodeUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.bind
 import org.koin.dsl.module

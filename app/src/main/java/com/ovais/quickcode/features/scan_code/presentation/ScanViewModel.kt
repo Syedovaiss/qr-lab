@@ -1,13 +1,13 @@
-package com.ovais.quickcode.features.scan_qr.presentation
+package com.ovais.quickcode.features.scan_code.presentation
 
 import android.net.Uri
 import androidx.camera.core.ImageProxy
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ovais.quickcode.features.scan_qr.data.ScanCodeParam
-import com.ovais.quickcode.features.scan_qr.data.ScanCodeParamType
-import com.ovais.quickcode.features.scan_qr.data.ScanResult
-import com.ovais.quickcode.features.scan_qr.domain.ScanCodeUseCase
+import com.ovais.quickcode.features.scan_code.data.ScanCodeParam
+import com.ovais.quickcode.features.scan_code.data.ScanCodeParamType
+import com.ovais.quickcode.features.scan_code.data.ScanResult
+import com.ovais.quickcode.features.scan_code.domain.ScanCodeUseCase
 import com.ovais.quickcode.utils.permissions.PermissionManager
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableSharedFlow

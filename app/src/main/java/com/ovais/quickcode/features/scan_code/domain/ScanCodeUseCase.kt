@@ -1,8 +1,8 @@
-package com.ovais.quickcode.features.scan_qr.domain
+package com.ovais.quickcode.features.scan_code.domain
 
-import com.ovais.quickcode.features.scan_qr.data.ScanCodeParam
-import com.ovais.quickcode.features.scan_qr.data.ScanRepository
-import com.ovais.quickcode.features.scan_qr.data.ScanResult
+import com.ovais.quickcode.features.scan_code.data.ScanCodeParam
+import com.ovais.quickcode.features.scan_code.data.ScanRepository
+import com.ovais.quickcode.features.scan_code.data.ScanResult
 import com.ovais.quickcode.utils.usecase.SuspendParameterizedUseCase
 import kotlinx.coroutines.delay
 
