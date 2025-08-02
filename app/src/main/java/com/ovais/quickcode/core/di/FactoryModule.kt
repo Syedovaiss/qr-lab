@@ -12,18 +12,36 @@ import com.ovais.quickcode.features.create.domain.DefaultCodeTypeUseCase
 import com.ovais.quickcode.features.create.domain.DefaultCodeValidationUseCase
 import com.ovais.quickcode.features.create.domain.DefaultCreateCodeRepository
 import com.ovais.quickcode.features.create.domain.DefaultCreateCodeUseCase
+import com.ovais.quickcode.features.home.domain.CanLoginUseCase
 import com.ovais.quickcode.features.home.domain.CardItemsUseCase
+import com.ovais.quickcode.features.home.domain.DefaultCanLoginUseCase
 import com.ovais.quickcode.features.home.domain.DefaultCardItemsUseCase
-import com.ovais.quickcode.features.scan_qr.data.ScanRepository
-import com.ovais.quickcode.features.scan_qr.domain.DefaultScanCodeUseCase
-import com.ovais.quickcode.features.scan_qr.domain.DefaultScanRepository
-import com.ovais.quickcode.features.scan_qr.domain.ScanCodeUseCase
+import com.ovais.quickcode.features.home.domain.DefaultLoginResultUseCase
+import com.ovais.quickcode.features.home.domain.LoginResultUseCase
+import com.ovais.quickcode.utils.usecase.DefaultGetUserInfoUseCase
+import com.ovais.quickcode.utils.usecase.GetUserInfoUseCase
+import com.ovais.quickcode.features.scan_code.data.ScanRepository
+import com.ovais.quickcode.features.scan_code.domain.DefaultScanCodeUseCase
+import com.ovais.quickcode.features.scan_code.domain.DefaultScanRepository
+import com.ovais.quickcode.features.scan_code.domain.ScanCodeUseCase
+import com.ovais.quickcode.features.settings.domain.DefaultGetPrivacyPolicyUseCase
+import com.ovais.quickcode.features.settings.domain.DefaultUpdateSettingUseCase
+import com.ovais.quickcode.features.settings.domain.GetPrivacyPolicyUseCase
+import com.ovais.quickcode.features.settings.domain.UpdateSettingUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
 
 val factoryModule = module {
+    factory {
+        DefaultGetUserInfoUseCase(
+            get(),
+            get(),
+            get()
+        )
+    } bind GetUserInfoUseCase::class
+
     factory {
         DefaultBarcodeManager(
             get(named(DEFAULT)),
@@ -32,7 +50,8 @@ val factoryModule = module {
         )
     } bind BarcodeManager::class
 
-    // Repositories
+    factory { DefaultLoginResultUseCase(get(), get()) } bind LoginResultUseCase::class
+    factory { DefaultCanLoginUseCase(get(), get()) } bind CanLoginUseCase::class
     factory {
         DefaultCreateCodeRepository(
             get(),
@@ -44,6 +63,10 @@ val factoryModule = module {
             get()
         )
     } bind ScanRepository::class
+
+    // Settings Use Case
+    factory { DefaultUpdateSettingUseCase(get(), get()) } bind UpdateSettingUseCase::class
+
     //Use cases
     factory { DefaultCardItemsUseCase() } bind CardItemsUseCase::class
     factory { DefaultCodeTypeUseCase() } bind CodeTypeUseCase::class
@@ -51,6 +74,5 @@ val factoryModule = module {
     factory { DefaultCreateCodeUseCase(get()) } bind CreateCodeUseCase::class
     factory { DefaultCodeValidationUseCase() } bind CodeValidationUseCase::class
     factory { DefaultScanCodeUseCase(get()) } bind ScanCodeUseCase::class
-
-
+    factory { DefaultGetPrivacyPolicyUseCase(get()) } bind GetPrivacyPolicyUseCase::class
 }

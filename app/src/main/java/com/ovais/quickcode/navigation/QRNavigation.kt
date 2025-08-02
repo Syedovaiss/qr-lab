@@ -9,10 +9,10 @@ import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import com.ovais.quickcode.features.create.presentation.CreateQRView
 import com.ovais.quickcode.features.history.presentation.HistoryScreen
-import com.ovais.quickcode.features.home.presentation.HomeIntent
+import com.ovais.quickcode.features.home.presentation.HomeAction
 import com.ovais.quickcode.features.home.presentation.HomeScreenView
-import com.ovais.quickcode.features.scan_qr.presentation.ScanQRView
-import com.ovais.quickcode.features.settings.presentation.SettingsView
+import com.ovais.quickcode.features.scan_code.presentation.ScanQRView
+import com.ovais.quickcode.features.settings.presentation.SettingScreen
 
 @Composable
 fun QRNavigation(
@@ -28,12 +28,13 @@ fun QRNavigation(
                 is Routes.Home -> NavEntry(key) {
                     HomeScreenView(
                         scaffoldPadding = scaffoldPadding,
+                        snackBarHostState = snackBarHostState,
                         onClick = { intent ->
                             val route = when (intent) {
-                                is HomeIntent.OnCreateCode -> Routes.CreateQR
-                                is HomeIntent.OnSettingsClicked -> Routes.Settings
-                                is HomeIntent.OnHistoryClicked -> Routes.History
-                                is HomeIntent.OnScanCode -> Routes.ScanQR
+                                is HomeAction.OnCreateCode -> Routes.CreateQR
+                                is HomeAction.OnSettingsClicked -> Routes.Settings
+                                is HomeAction.OnHistoryClicked -> Routes.History
+                                is HomeAction.OnScanCode -> Routes.ScanQR
                             }
                             backStack.add(route)
                         }
@@ -43,7 +44,8 @@ fun QRNavigation(
                 is Routes.ScanQR -> NavEntry(key) {
                     ScanQRView(
                         scaffoldPadding,
-                        snackbarHostState = snackBarHostState
+                        snackbarHostState = snackBarHostState,
+                        onBack = { backStack.removeLastOrNull() }
                     )
                 }
 
@@ -55,7 +57,7 @@ fun QRNavigation(
                 }
 
                 is Routes.Settings -> NavEntry(key) {
-                    SettingsView(
+                    SettingScreen(
                         scaffoldPadding
                     )
                 }

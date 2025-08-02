@@ -16,8 +16,8 @@ import com.ovais.quickcode.features.create.domain.CodeValidationUseCase
 import com.ovais.quickcode.features.create.domain.CreateCodeUseCase
 import com.ovais.quickcode.logger.AppLogger
 import com.ovais.quickcode.utils.ValidationResult
-import com.ovais.quickcode.utils.default
 import com.ovais.quickcode.utils.file.FileManager
+import com.ovais.quickcode.utils.orZero
 import com.ovais.quickcode.utils.permissions.PermissionManager
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,7 +26,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlin.text.toIntOrNull
 
 typealias BackgroundColor = Color
 typealias ForegroundColor = Color
@@ -147,11 +146,11 @@ class CreateCodeViewModel(
     }
 
     fun onWidthUpdate(width: String) {
-        this.width = width.toIntOrNull().default
+        this.width = width.toIntOrNull().orZero
     }
 
     fun onHeightUpdate(height: String) {
-        this.height = height.toIntOrNull().default
+        this.height = height.toIntOrNull().orZero
     }
 
     private fun validateInputs(

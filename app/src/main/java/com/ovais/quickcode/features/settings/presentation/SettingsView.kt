@@ -1,10 +1,9 @@
 package com.ovais.quickcode.features.settings.presentation
 
-import androidx.compose.foundation.LocalIndication
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -14,66 +13,75 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ovais.quickcode.R
 import com.ovais.quickcode.features.info.presentation.StaticInfoFullScreenDialog
+import com.ovais.quickcode.utils.components.AppSwitch
 import com.ovais.quickcode.utils.components.ColorPickerDialog
 import com.ovais.quickcode.utils.components.HeadingText
 import com.ovais.quickcode.utils.components.RadioSelectionDialog
 import com.ovais.quickcode.utils.components.SubtitleText
+import com.ovais.quickcode.utils.openURL
+import kotlinx.coroutines.flow.collectLatest
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SettingsView(scaffoldPadding: PaddingValues) {
+fun SettingScreen(
+    scaffoldPadding: PaddingValues,
+    viewModel: SettingViewModel = koinViewModel()
+) {
+    SettingsView(scaffoldPadding, viewModel)
+}
+
+@Composable
+fun SettingsView(
+    scaffoldPadding: PaddingValues,
+    viewModel: SettingViewModel = koinViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsState()
+    val snackbarHostState = SnackbarHostState()
+    val context = LocalContext.current
+
+    LaunchedEffect(uiState.error) {
+        uiState.error?.let { error ->
+            snackbarHostState.showSnackbar(error)
+            viewModel.clearError()
+        }
+    }
+    LaunchedEffect(Unit) {
+        viewModel.initSettings()
+    }
+    LaunchedEffect(Unit) {
+        viewModel.privacyPolicyUrl.collectLatest {
+            context.openURL(it)
+        }
+    }
+
     val scrollState = rememberScrollState()
-    var canShowAppThemeSelection by remember { mutableStateOf(false) }
-    var selectedAppTheme by remember { mutableStateOf("System") }
 
-    var canShowQRCodeColorPickerDialog by remember { mutableStateOf(false) }
-    var selectedForegroundColor by remember { mutableStateOf(Color.Black) }
-
-    var canShowQRCodeBackgroundColorPickerDialog by remember { mutableStateOf(false) }
-    var selectedBackgroundColor by remember { mutableStateOf(Color.Black) }
-
-    var canShowExportFormatDialog by remember { mutableStateOf(false) }
-    var selectedExportFormat by remember { mutableStateOf("PNG") }
-    var vibrationCheckedState by remember { mutableStateOf(false) }
-    var soundCheckedState by remember { mutableStateOf(false) }
-    var autoCopyCheckedState by remember { mutableStateOf(false) }
-    var autoOpenURLState by remember { mutableStateOf(false) }
-    var canClearHistory by remember { mutableStateOf(false) }
-    var canExportHistory by remember { mutableStateOf(false) }
-    var selectedHistoryExportFormat by remember { mutableStateOf("CSV") }
-    var appLanguage by remember { mutableStateOf("System") }
-    var canShowAppLanguage by remember { mutableStateOf(false) }
-    var cameraPermissionState by remember { mutableStateOf(true) }
-    var galleryPermissionState by remember { mutableStateOf(true) }
-    var canShowPrivacyPolicy by remember { mutableStateOf(false) }
-    var canSendAnonymouseUsageData by remember { mutableStateOf(false) }
-    var canShowAbout by remember { mutableStateOf(false) }
-    var canRateApp by remember { mutableStateOf(false) }
-    var canShareApp by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color.White)
             .padding(scaffoldPadding)
             .padding(horizontal = 12.dp, vertical = 8.dp)
             .verticalScroll(scrollState)
@@ -82,273 +90,384 @@ fun SettingsView(scaffoldPadding: PaddingValues) {
             stringResource(R.string.settings),
             paddingValues = PaddingValues(vertical = 8.dp)
         )
+
         Spacer(modifier = Modifier.height(4.dp))
-        // --- Customization Section ---
-        SettingsSection(title = stringResource(R.string.customization)) {
-            val appThemeInteractionSource = remember { MutableInteractionSource() }
-            val foregroundColorInteractionSource = remember { MutableInteractionSource() }
-            val backgroundColorInteractionSource = remember { MutableInteractionSource() }
-            val exportFormatInteractionSource = remember { MutableInteractionSource() }
-            SettingRowItem(icon = R.drawable.ic_palette, label = "App Theme") {
-                Text(
-                    selectedAppTheme,
-                    modifier = Modifier.clickable(
-                        appThemeInteractionSource,
-                        LocalIndication.current
-                    ) {
-                        canShowAppThemeSelection = true
-                    }
-                )
-            }
 
-            SettingRowItem(icon = R.drawable.ic_color, label = "Default QR Code Color") {
-                Box(
+        if (uiState.isLoading) {
+            SettingLoadingView()
+        } else {
+            // --- Customization Section ---
+            SettingsSection(title = stringResource(R.string.customization)) {
+                SettingRowItem(
+                    label = "QR Color",
+                    description = "Default QR Code Color"
+                ) {
+                    RoundedColoredCircle(
+                        color = uiState.settings.foregroundColor,
+                        onClick = { viewModel.showColorPicker(ColorType.FOREGROUND) }
+                    )
+                }
+
+                SettingRowItem(
+                    label = "QR Background",
+                    description = "Default QR Code Background"
+                ) {
+                    RoundedColoredCircle(
+                        color = uiState.settings.backgroundColor,
+                        onClick = { viewModel.showColorPicker(ColorType.BACKGROUND) }
+                    )
+                }
+
+                SettingRowItem(
+                    label = "Export Format",
+                    description = "QR Export Format"
+                ) {
+                    val interactionSource = remember { MutableInteractionSource() }
+                    Text(
+                        uiState.settings.qrFormat,
+                        modifier = Modifier.clickable(
+                            interactionSource = interactionSource,
+                            indication = null
+                        ) { viewModel.showExportFormatDialog() }
+                    )
+                }
+                HorizontalDivider(
                     modifier = Modifier
-                        .size(24.dp)
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(selectedForegroundColor)
-                        .clickable(
-                            foregroundColorInteractionSource,
-                            LocalIndication.current
-                        ) {
-                            canShowQRCodeColorPickerDialog = true
-                        }
+                        .fillMaxWidth()
+                        .padding(16.dp)
                 )
             }
 
-            SettingRowItem(icon = R.drawable.ic_color_fill, label = "Default QR Code Background") {
-                Box(
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // --- User Feedback & Behavior ---
+            SettingsSection(title = "User Feedback & Behavior") {
+                SettingRowItem(
+                    label = "Vibration on Scan",
+                    description = "Vibrate when scanned code",
+                    trailingAttribute = {
+                        AppSwitch(
+                            checked = uiState.settings.canVibrateOnScan,
+                            onCheckedChange = { viewModel.updateVibrationSetting(it) }
+                        )
+                    }
+                )
+
+                SettingRowItem(
+                    label = "Sound on Scan",
+                    description = "Play beep sound when scanned",
+                    trailingAttribute = {
+                        AppSwitch(
+                            checked = uiState.settings.canBeepOnScan,
+                            onCheckedChange = { viewModel.updateBeepSetting(it) }
+                        )
+                    }
+                )
+
+                SettingRowItem(
+                    label = "Copy to clipboard",
+                    description = "Auto Copy Scan Result to Clipboard",
+                    trailingAttribute = {
+                        AppSwitch(
+                            checked = uiState.settings.canAutoCopyOnScan,
+                            onCheckedChange = { viewModel.updateAutoCopySetting(it) }
+                        )
+                    }
+                )
+
+                SettingRowItem(
+                    label = "Open URL",
+                    description = "Auto Open URLs After Scan",
+                    trailingAttribute = {
+                        AppSwitch(
+                            checked = uiState.settings.canAutoOpenURLOnScan,
+                            onCheckedChange = { viewModel.updateAutoOpenURLSetting(it) }
+                        )
+                    }
+                )
+                HorizontalDivider(
                     modifier = Modifier
-                        .size(24.dp)
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(selectedBackgroundColor)
-                        .clickable(
-                            backgroundColorInteractionSource,
-                            LocalIndication.current
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // --- History & Storage ---
+            SettingsSection(title = "History & Storage") {
+                SettingRowItem(
+                    label = "Clear History",
+                    description = "Clear All Scan History"
+                ) {
+                    val interactionSource = remember { MutableInteractionSource() }
+                    Text(
+                        "Clear",
+                        modifier = Modifier.clickable(
+                            interactionSource = interactionSource,
+                            indication = null
+                        ) { viewModel.showClearHistoryDialog() }
+                    )
+                }
+
+                SettingRowItem(
+                    label = "Export History",
+                    description = "Export history to phone"
+                ) {
+                    val interactionSource = remember { MutableInteractionSource() }
+                    Text(
+                        "Export",
+                        modifier = Modifier.clickable(
+                            interactionSource = interactionSource,
+                            indication = null
+                        ) { viewModel.showExportHistoryDialog() }
+                    )
+                }
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // --- Language & Regional ---
+            SettingsSection(title = "Language & Regional") {
+                SettingRowItem(
+                    label = "App Language",
+                    description = "App locale"
+                ) {
+                    val interactionSource = remember { MutableInteractionSource() }
+                    Text(
+                        uiState.settings.locale,
+                        modifier = Modifier.clickable(
+                            interactionSource = interactionSource,
+                            indication = null
+                        ) { viewModel.showLanguageDialog() }
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // --- Privacy & Permissions ---
+            SettingsSection(title = "Privacy & Permissions") {
+                SettingRowItem(
+                    label = "Camera Status",
+                    description = "Camera Permission Status"
+                ) {
+                    val icon =
+                        if (uiState.settings.cameraPermissionGranted) R.drawable.ic_tick_green else R.drawable.ic_cross_red
+                    Image(
+                        painter = painterResource(icon),
+                        null,
+                        modifier = Modifier.size(32.dp)
+                    )
+                }
+
+                SettingRowItem(
+                    label = "Gallery Status",
+                    description = "Gallery Permission Status"
+                ) {
+                    val icon =
+                        if (uiState.settings.galleryPermissionGranted) R.drawable.ic_tick_green else R.drawable.ic_cross_red
+                    Image(
+                        painter = painterResource(icon),
+                        null,
+                        modifier = Modifier.size(32.dp)
+                    )
+                }
+
+                SettingRowItem(
+                    label = "Privacy Policy",
+                    description = "View privacy policy"
+                ) {
+                    val interactionSource = remember { MutableInteractionSource() }
+                    Text(
+                        "View",
+                        modifier = Modifier.clickable(
+                            interactionSource = interactionSource,
+                            indication = rememberRipple()
                         ) {
-                            canShowQRCodeBackgroundColorPickerDialog = true
+                            viewModel.openPrivacyPolicy()
                         }
+                    )
+                }
+
+                SettingRowItem(
+                    label = "Send Anonymous Usage Data",
+                    description = "Send data for better stats",
+                    trailingAttribute = {
+                        AppSwitch(
+                            checked = uiState.settings.canSendAnonymousUsageData,
+                            onCheckedChange = { viewModel.updateAnonymousUsageDataSetting(it) }
+                        )
+                    }
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
                 )
             }
 
-            SettingRowItem(icon = R.drawable.ic_save, label = "Default QR Export Format") {
-                Text(
-                    selectedExportFormat,
-                    modifier = Modifier.clickable(
-                        exportFormatInteractionSource,
-                        LocalIndication.current
-                    ) {
-                        canShowExportFormatDialog = true
-                    }
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // --- App Info & Support ---
+            SettingsSection(title = "App Info & Support") {
+                SettingRowItem(
+                    label = "Version",
+                    description = "App Version and Build Info"
+                ) {
+                    Text(uiState.settings.appVersion)
+                }
+
+                SettingRowItem(
+                    label = "About the App",
+                    description = "Details about the app"
+                ) {
+                    val interactionSource = remember { MutableInteractionSource() }
+                    Text(
+                        "About",
+                        modifier = Modifier.clickable(
+                            interactionSource = interactionSource,
+                            indication = null
+                        ) { viewModel.showAboutDialog() }
+                    )
+                }
+
+                SettingRowItem(
+                    label = "Rate this App",
+                    description = "Rate app on Play Store"
+                ) {
+                    val interactionSource = remember { MutableInteractionSource() }
+                    Text(
+                        "Rate",
+                        modifier = Modifier.clickable(
+                            interactionSource = interactionSource,
+                            indication = null
+                        ) {
+                            // TODO: Implement rate app functionality
+                            // This would typically open the Play Store rating page
+                        }
+                    )
+                }
+
+                SettingRowItem(
+                    label = "Share This App",
+                    description = "Share app to friends and family"
+                ) {
+                    val interactionSource = remember { MutableInteractionSource() }
+                    Text(
+                        "Share",
+                        modifier = Modifier.clickable(
+                            interactionSource = interactionSource,
+                            indication = null
+                        ) {
+                            // TODO: Implement share app functionality
+                        }
+                    )
+                }
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
                 )
             }
-        }
 
-        Spacer(modifier = Modifier.height(12.dp)) // slightly reduced
-        // --- User Feedback & Behavior ---
-        SettingsSection(title = "User Feedback & Behavior") {
-            SettingRowItem(
-                icon = R.drawable.ic_vibration,
-                label = "Vibration on Scan",
-                trailingAttribute = {
-                    Switch(checked = vibrationCheckedState, onCheckedChange = {
-                        vibrationCheckedState = it
-                    })
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+
+    // Snackbar for error messages
+    SnackbarHost(
+        hostState = snackbarHostState,
+        modifier = Modifier.padding(16.dp)
+    )
+
+    // Dialogs
+    if (uiState.showColorPicker) {
+        ColorPickerDialog(
+            onColorSelected = { color ->
+                when (uiState.selectedColorType) {
+                    ColorType.FOREGROUND -> viewModel.updateForegroundColor(color)
+                    ColorType.BACKGROUND -> viewModel.updateBackgroundColor(color)
                 }
-            )
+                viewModel.hideColorPicker()
+            },
+            onDismiss = { viewModel.hideColorPicker() }
+        )
+    }
 
-            SettingRowItem(
-                icon = R.drawable.ic_volume,
-                label = "Beep Sound on Scan",
-                trailingAttribute = {
-                    Switch(
-                        checked = soundCheckedState,
-                        onCheckedChange = { soundCheckedState = it })
-                }
-            )
+    if (uiState.showExportFormatDialog) {
+        RadioSelectionDialog(
+            title = "Select Export Format",
+            options = listOf("PNG", "JPG/JPEG"),
+            selectedOption = uiState.settings.qrFormat,
+            optionLabel = { it },
+            onOptionSelected = { viewModel.updateQRFormat(it) },
+            onDismissRequest = { viewModel.hideExportFormatDialog() }
+        )
+    }
 
-            SettingRowItem(
-                icon = R.drawable.ic_copy,
-                label = "Auto Copy Scan Result to Clipboard",
-                trailingAttribute = {
-                    Switch(checked = autoCopyCheckedState, onCheckedChange = {
-                        autoCopyCheckedState = it
-                    })
-                }
-            )
-
-            SettingRowItem(
-                icon = R.drawable.ic_browser,
-                label = "Auto Open URLs After Scan",
-                trailingAttribute = {
-                    Switch(checked = autoOpenURLState, onCheckedChange = {
-                        autoOpenURLState = it
-                    })
-                }
-            )
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-        // --- History & Storage ---
-        SettingsSection(title = "History & Storage") {
-            SettingRowItem(icon = R.drawable.ic_delete, label = "Clear All Scan History") {
-                Text("Delete")
-            }
-
-            SettingRowItem(icon = R.drawable.ic_download, label = "Export History") {
-                Text("CSV")
-            }
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-        // --- Language & Regional ---
-        SettingsSection(title = "Language & Regional") {
-            SettingRowItem(icon = R.drawable.ic_lanugage, label = "App Language") {
-                Text("System")
-            }
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-        // --- Privacy & Permissions ---
-        SettingsSection(title = "Privacy & Permissions") {
-            SettingRowItem(icon = R.drawable.ic_camera, label = "Camera Permission Status") {
-                Text("Granted")
-            }
-
-            SettingRowItem(icon = R.drawable.ic_image, label = "Gallery Permission Status") {
-                Text("Granted")
-            }
-
-            SettingRowItem(icon = R.drawable.ic_privacy, label = "Privacy Policy") {
-                Text("Granted")
-            }
-
-            SettingRowItem(icon = R.drawable.ic_bar_chart, label = "Send Anonymous Usage Data") {
-                Switch(checked = canSendAnonymouseUsageData, onCheckedChange = {
-                    canSendAnonymouseUsageData = it
-                })
-            }
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-        // --- App Info & Support ---
-        SettingsSection(title = "App Info & Support") {
-            SettingRowItem(icon = R.drawable.ic_info, label = "App Version and Build Info") {
-                Text("v1.0.0(100)")
-            }
-
-            SettingRowItem(icon = R.drawable.ic_help, label = "About the App") {}
-
-            SettingRowItem(icon = R.drawable.ic_rate, label = "Rate this App") {}
-
-            SettingRowItem(icon = R.drawable.ic_share, label = "Share This App") {}
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
-        if (canShowAppThemeSelection) {
-            RadioSelectionDialog(
-                title = "Select App Theme",
-                options = listOf("System", "Dark", "Light"),
-                selectedOption = selectedAppTheme,
-                optionLabel = { it },
-                onOptionSelected = { selectedAppTheme = it },
-                onDismissRequest = { canShowAppThemeSelection = false }
-            )
-        }
-        if (canShowQRCodeColorPickerDialog) {
-            ColorPickerDialog(
-                onColorSelected = {
-                    selectedForegroundColor = it
-                    canShowQRCodeColorPickerDialog = false
-                },
-                onDismiss = {
-                    canShowQRCodeColorPickerDialog = false
-                }
-            )
-        }
-        if (canShowQRCodeBackgroundColorPickerDialog) {
-            ColorPickerDialog(
-                onColorSelected = {
-                    selectedBackgroundColor = it
-                    canShowQRCodeBackgroundColorPickerDialog = false
-                },
-                onDismiss = {
-                    canShowQRCodeBackgroundColorPickerDialog = false
-                }
-            )
-        }
-        if (canShowExportFormatDialog) {
-            RadioSelectionDialog(
-                title = "Select Export Format",
-                options = listOf("PNG", "JPG/JPEG"),
-                selectedOption = selectedExportFormat,
-                optionLabel = { it },
-                onOptionSelected = { selectedExportFormat = it },
-                onDismissRequest = { canShowExportFormatDialog = false }
-            )
-        }
-        if (canClearHistory) {
-            AlertDialog(
-                onDismissRequest = {
-
-                },
-                title = { Text(stringResource(R.string.delete_history_dialog_title)) },
-                text = { Text(stringResource(R.string.delete_history_dialog_message)) },
-                confirmButton = {
-                    TextButton(onClick = {
-                        // delete history
-                        canClearHistory = false
-                    }) {
-                        Text(stringResource(R.string.delete))
+    if (uiState.showClearHistoryDialog) {
+        AlertDialog(
+            onDismissRequest = { viewModel.hideClearHistoryDialog() },
+            title = { Text(stringResource(R.string.delete_history_dialog_title)) },
+            text = { Text(stringResource(R.string.delete_history_dialog_message)) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        viewModel.clearHistory()
                     }
+                ) {
+                    Text(stringResource(R.string.delete))
                 }
-            )
-        }
-        if (canExportHistory) {
-            RadioSelectionDialog(
-                title = "Export History",
-                options = listOf("CSV", "PDF"),
-                selectedOption = "CSV",
-                optionLabel = { it },
-                onOptionSelected = { selectedHistoryExportFormat = it },
-                onDismissRequest = { canExportHistory = false }
-            )
-        }
-        if (canShowAppLanguage) {
-            RadioSelectionDialog(
-                title = "Select Language",
-                options = listOf("System", "English", "Urdu"),
-                selectedOption = "System",
-                optionLabel = { it },
-                onOptionSelected = { appLanguage = it },
-                onDismissRequest = { canShowAppLanguage = false }
-            )
-        }
-        StaticInfoFullScreenDialog(
-            canShowPrivacyPolicy,
-            ""
-        ) {
-            canShowPrivacyPolicy = false
-        }
-        StaticInfoFullScreenDialog(
-            canShowAbout,
-            ""
-        ) {
-            canShowAbout = false
-        }
+            },
+            dismissButton = {
+                TextButton(onClick = { viewModel.hideClearHistoryDialog() }) {
+                    Text("Cancel")
+                }
+            }
+        )
+    }
 
+    if (uiState.showExportHistoryDialog) {
+        RadioSelectionDialog(
+            title = "Export History",
+            options = listOf("CSV", "PDF"),
+            selectedOption = "CSV",
+            optionLabel = { it },
+            onOptionSelected = { viewModel.exportHistory(it) },
+            onDismissRequest = { viewModel.hideExportHistoryDialog() }
+        )
+    }
+
+    if (uiState.showLanguageDialog) {
+        RadioSelectionDialog(
+            title = "Select Language",
+            options = listOf("System", "English", "Urdu"),
+            selectedOption = uiState.settings.locale,
+            optionLabel = { it },
+            onOptionSelected = { viewModel.updateLocale(it) },
+            onDismissRequest = { viewModel.hideLanguageDialog() }
+        )
+    }
+
+    if (uiState.showAboutDialog) {
+        StaticInfoFullScreenDialog(
+            canShow = uiState.showAboutDialog,
+            content = "About the app content goes here..."
+        ) {
+            viewModel.hideAboutDialog()
+        }
     }
 }
 
 @Composable
 private fun SettingsSection(title: String, content: @Composable () -> Unit) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 8.dp, vertical = 4.dp), // tighter
-        shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
-    ) {
+    Column {
         SubtitleText(
             title,
             paddingValues = PaddingValues(top = 12.dp, start = 12.dp, end = 12.dp, bottom = 4.dp)
@@ -356,6 +475,7 @@ private fun SettingsSection(title: String, content: @Composable () -> Unit) {
         content()
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable

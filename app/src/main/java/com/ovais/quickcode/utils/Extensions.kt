@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import androidx.compose.ui.graphics.Color
+import androidx.core.net.toUri
 
 
 fun Context.openAppSettings() {
@@ -15,5 +17,15 @@ fun Context.openAppSettings() {
     this.startActivity(intent)
 }
 
-val Int?.default: Int
+val Int?.orZero: Int
     get() = this ?: 0
+
+val Boolean?.orFalse: Boolean
+    get() = this ?: false
+val String?.orEmpty: String
+    get() = this ?: EMPTY_STRING
+
+fun Context.openURL(url: String) {
+    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+    startActivity(intent)
+}

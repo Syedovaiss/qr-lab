@@ -1,4 +1,4 @@
-package com.ovais.quickcode.features.scan_qr.data
+package com.ovais.quickcode.features.scan_code.data
 
 import android.net.Uri
 import androidx.camera.core.ImageProxy

@@ -1,10 +1,10 @@
-package com.ovais.quickcode.features.scan_qr.domain
+package com.ovais.quickcode.features.scan_code.domain
 
 import com.ovais.quickcode.barcode_manger.BarcodeManager
-import com.ovais.quickcode.features.scan_qr.data.ScanCodeParam
-import com.ovais.quickcode.features.scan_qr.data.ScanCodeParamType
-import com.ovais.quickcode.features.scan_qr.data.ScanRepository
-import com.ovais.quickcode.features.scan_qr.data.ScanResult
+import com.ovais.quickcode.features.scan_code.data.ScanCodeParam
+import com.ovais.quickcode.features.scan_code.data.ScanCodeParamType
+import com.ovais.quickcode.features.scan_code.data.ScanRepository
+import com.ovais.quickcode.features.scan_code.data.ScanResult
 
 class DefaultScanRepository(
     private val barcodeManager: BarcodeManager
