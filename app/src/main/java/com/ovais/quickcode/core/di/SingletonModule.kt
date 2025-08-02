@@ -5,10 +5,8 @@ import com.ovais.quickcode.analytics.AppAnalyticsManager
 import com.ovais.quickcode.analytics.DefaultAppAnalyticsManager
 import com.ovais.quickcode.auth.AuthManager
 import com.ovais.quickcode.auth.DefaultAuthManager
-import com.ovais.quickcode.utils.usecase.DefaultGetTermsAndConditionsUseCase
-import com.ovais.quickcode.utils.usecase.GetTermsAndConditionsUseCase
-import com.ovais.quickcode.logger.DefaultAppLogger
 import com.ovais.quickcode.logger.AppLogger
+import com.ovais.quickcode.logger.DefaultAppLogger
 import com.ovais.quickcode.notification.DefaultQuickCodeNotificationManager
 import com.ovais.quickcode.notification.QuickCodeNotificationManager
 import com.ovais.quickcode.storage.DefaultQuickCodeConfigurationManager
@@ -19,11 +17,17 @@ import com.ovais.quickcode.storage.db.AppStorageManager
 import com.ovais.quickcode.storage.db.ConfigurationDao
 import com.ovais.quickcode.storage.db.DefaultAppStorageManager
 import com.ovais.quickcode.utils.DefaultInitialProvider
+import com.ovais.quickcode.utils.DefaultLocalConfigurationManager
 import com.ovais.quickcode.utils.InitialProvider
+import com.ovais.quickcode.utils.LocalConfigurationManager
 import com.ovais.quickcode.utils.file.DefaultFileManager
 import com.ovais.quickcode.utils.file.FileManager
 import com.ovais.quickcode.utils.permissions.DefaultPermissionManager
 import com.ovais.quickcode.utils.permissions.PermissionManager
+import com.ovais.quickcode.utils.usecase.DefaultGetTermsAndConditionsUseCase
+import com.ovais.quickcode.utils.usecase.DefaultLocalConfigurationUseCase
+import com.ovais.quickcode.utils.usecase.GetTermsAndConditionsUseCase
+import com.ovais.quickcode.utils.usecase.LocalConfigurationUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.qualifier.named
@@ -44,7 +48,9 @@ val singletonModule = module {
     single<CoroutineDispatcher>(named(UI)) {
         Dispatchers.Main
     }
+    single { DefaultLocalConfigurationManager() } bind LocalConfigurationManager::class
 
+    single { DefaultLocalConfigurationUseCase(get()) } bind LocalConfigurationUseCase::class
     single { DefaultAuthManager(CredentialManager.create(get()), get()) } bind AuthManager::class
     single { DefaultGetTermsAndConditionsUseCase(get()) } bind GetTermsAndConditionsUseCase::class
     single { DefaultAppLogger() } bind AppLogger::class
@@ -56,7 +62,7 @@ val singletonModule = module {
     single { DefaultQuickCodeConfigurationManager(get()) } bind QuickCodeConfigurationManager::class
     single { DefaultAppStorageManager(get(), get()) } bind AppStorageManager::class
     single { DefaultInitialProvider() } bind InitialProvider::class
-    
+
     // Database DAO
     single { get<AppStorageManager>().instance.configDao() } bind ConfigurationDao::class
 }

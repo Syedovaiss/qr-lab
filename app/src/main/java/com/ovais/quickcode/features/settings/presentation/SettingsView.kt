@@ -33,6 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
 import com.ovais.quickcode.features.info.presentation.StaticInfoFullScreenDialog
 import com.ovais.quickcode.utils.components.AppSwitch
@@ -40,7 +41,9 @@ import com.ovais.quickcode.utils.components.ColorPickerDialog
 import com.ovais.quickcode.utils.components.HeadingText
 import com.ovais.quickcode.utils.components.RadioSelectionDialog
 import com.ovais.quickcode.utils.components.SubtitleText
+import com.ovais.quickcode.utils.openPlayStore
 import com.ovais.quickcode.utils.openURL
+import com.ovais.quickcode.utils.shareApp
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
 
@@ -60,6 +63,7 @@ fun SettingsView(
     val uiState by viewModel.uiState.collectAsState()
     val snackbarHostState = SnackbarHostState()
     val context = LocalContext.current
+    val appConfig by viewModel.appConfig.collectAsStateWithLifecycle()
 
     LaunchedEffect(uiState.error) {
         uiState.error?.let { error ->
@@ -72,6 +76,11 @@ fun SettingsView(
     }
     LaunchedEffect(Unit) {
         viewModel.privacyPolicyUrl.collectLatest {
+            context.openURL(it)
+        }
+    }
+    LaunchedEffect(Unit) {
+        viewModel.aboutUsUrl.collectLatest {
             context.openURL(it)
         }
     }
@@ -320,7 +329,13 @@ fun SettingsView(
                     label = "Version",
                     description = "App Version and Build Info"
                 ) {
-                    Text(uiState.settings.appVersion)
+                    Text(
+                        stringResource(
+                            R.string.app_version,
+                            appConfig.appVersion,
+                            appConfig.versionCode
+                        )
+                    )
                 }
 
                 SettingRowItem(
@@ -348,8 +363,7 @@ fun SettingsView(
                             interactionSource = interactionSource,
                             indication = null
                         ) {
-                            // TODO: Implement rate app functionality
-                            // This would typically open the Play Store rating page
+                            context.openPlayStore()
                         }
                     )
                 }
@@ -365,7 +379,10 @@ fun SettingsView(
                             interactionSource = interactionSource,
                             indication = null
                         ) {
-                            // TODO: Implement share app functionality
+                            context.shareApp(
+                                title = R.string.share_title,
+                                description = R.string.share_description
+                            )
                         }
                     )
                 }

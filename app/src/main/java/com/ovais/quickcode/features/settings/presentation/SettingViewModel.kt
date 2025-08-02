@@ -3,8 +3,11 @@ package com.ovais.quickcode.features.settings.presentation
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ovais.quickcode.features.settings.domain.GetPrivacyPolicyUseCase
+import com.ovais.quickcode.utils.usecase.GetPrivacyPolicyUseCase
 import com.ovais.quickcode.features.settings.domain.UpdateSettingUseCase
+import com.ovais.quickcode.utils.LocalConfiguration
+import com.ovais.quickcode.utils.usecase.GetAboutUsUseCase
+import com.ovais.quickcode.utils.usecase.LocalConfigurationUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -14,8 +17,14 @@ import kotlinx.coroutines.launch
 
 class SettingViewModel(
     private val updateSettingUseCase: UpdateSettingUseCase,
-    private val privacyPolicyUseCase: GetPrivacyPolicyUseCase
+    private val privacyPolicyUseCase: GetPrivacyPolicyUseCase,
+    private val localConfigurationUseCase: LocalConfigurationUseCase,
+    private val getAboutUse: GetAboutUsUseCase
 ) : ViewModel() {
+
+    private val _appConfig by lazy { MutableStateFlow(localConfigurationUseCase()) }
+    val appConfig: StateFlow<LocalConfiguration>
+        get() = _appConfig
 
     private val _uiState = MutableStateFlow(SettingsUiState())
     val uiState: StateFlow<SettingsUiState> = _uiState.asStateFlow()
@@ -23,6 +32,10 @@ class SettingViewModel(
     private val _privacyPolicyUrl by lazy { MutableSharedFlow<String>() }
     val privacyPolicyUrl: SharedFlow<String>
         get() = _privacyPolicyUrl
+
+    private val _aboutUsUrl by lazy { MutableSharedFlow<String>() }
+    val aboutUsUrl: SharedFlow<String>
+        get() = _aboutUsUrl
 
     init {
         initializeDefaultSettings()
@@ -173,28 +186,14 @@ class SettingViewModel(
     }
 
     fun clearHistory() {
-        viewModelScope.launch {
-            try {
-                updateSettingUseCase.clearHistory()
-                _uiState.value = _uiState.value.copy(showClearHistoryDialog = false)
-            } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(error = e.message)
-            }
-        }
+
+        // delete history
     }
 
     fun exportHistory(format: String) {
-        viewModelScope.launch {
-            try {
-                updateSettingUseCase.exportHistory(format)
-                _uiState.value = _uiState.value.copy(showExportHistoryDialog = false)
-            } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(error = e.message)
-            }
-        }
+        // download file
     }
 
-    // UI State Management
     fun showColorPicker(colorType: ColorType) {
         _uiState.value = _uiState.value.copy(
             showColorPicker = true,
@@ -204,14 +203,6 @@ class SettingViewModel(
 
     fun hideColorPicker() {
         _uiState.value = _uiState.value.copy(showColorPicker = false)
-    }
-
-    fun showBackgroundColorPicker() {
-        _uiState.value = _uiState.value.copy(showBackgroundColorPicker = true)
-    }
-
-    fun hideBackgroundColorPicker() {
-        _uiState.value = _uiState.value.copy(showBackgroundColorPicker = false)
     }
 
     fun showExportFormatDialog() {
@@ -246,16 +237,10 @@ class SettingViewModel(
         _uiState.value = _uiState.value.copy(showLanguageDialog = false)
     }
 
-    fun showPrivacyPolicyDialog() {
-        _uiState.value = _uiState.value.copy(showPrivacyPolicyDialog = true)
-    }
-
-    fun hidePrivacyPolicyDialog() {
-        _uiState.value = _uiState.value.copy(showPrivacyPolicyDialog = false)
-    }
-
     fun showAboutDialog() {
-        _uiState.value = _uiState.value.copy(showAboutDialog = true)
+        viewModelScope.launch {
+            _aboutUsUrl.emit(getAboutUse())
+        }
     }
 
     fun hideAboutDialog() {

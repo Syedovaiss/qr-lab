@@ -52,4 +52,7 @@
     <string name="trademark">© %s Syed Ovais Akhtar. All rights reserved.</string>
     <string name="terms_and_conditions">Terms &amp; Conditions</string>
     <string name="zoom_level">%.1fx</string>
+    <string name="app_version">v%s(%s)</string>
+    <string name="share_title">Check out this QR Code App!</string>
+    <string name="share_description">Hey! Try out this awesome QR Code Generator &amp; Scanner app</string>
 </resources>

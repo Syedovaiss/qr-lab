@@ -14,7 +14,6 @@ data class AppSettings(
     val canAutoOpenURLOnScan: Boolean = false,
     val locale: String = "System",
     val canSendAnonymousUsageData: Boolean = false,
-    val appVersion: String = "v1.0.0(100)",
     val cameraPermissionGranted: Boolean = false,
     val galleryPermissionGranted: Boolean = false
 ) {

@@ -17,8 +17,6 @@ interface UpdateSettingUseCase {
     suspend fun updateAutoOpenURLSetting(enabled: Boolean)
     suspend fun updateLocale(locale: String)
     suspend fun updateAnonymousUsageDataSetting(enabled: Boolean)
-    suspend fun clearHistory()
-    suspend fun exportHistory(format: String)
     fun getSettings(): Flow<AppSettings>
     suspend fun initializeDefaultSettings()
 }
@@ -89,18 +87,6 @@ class DefaultUpdateSettingUseCase(
         config?.let {
             configurationDao.updateAnonymousUsageDataSetting(it.id, enabled.toString())
         }
-    }
-
-    override suspend fun clearHistory() {
-        // This would typically clear scan history from a separate table
-        // For now, we'll just log it
-        println("Clearing scan history...")
-    }
-
-    override suspend fun exportHistory(format: String) {
-        // This would typically export scan history to a file
-        // For now, we'll just log it
-        println("Exporting history in $format format...")
     }
 
     override fun getSettings(): Flow<AppSettings> {

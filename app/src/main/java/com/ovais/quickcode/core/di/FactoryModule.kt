@@ -24,10 +24,12 @@ import com.ovais.quickcode.features.scan_code.data.ScanRepository
 import com.ovais.quickcode.features.scan_code.domain.DefaultScanCodeUseCase
 import com.ovais.quickcode.features.scan_code.domain.DefaultScanRepository
 import com.ovais.quickcode.features.scan_code.domain.ScanCodeUseCase
-import com.ovais.quickcode.features.settings.domain.DefaultGetPrivacyPolicyUseCase
+import com.ovais.quickcode.utils.usecase.DefaultGetPrivacyPolicyUseCase
 import com.ovais.quickcode.features.settings.domain.DefaultUpdateSettingUseCase
-import com.ovais.quickcode.features.settings.domain.GetPrivacyPolicyUseCase
+import com.ovais.quickcode.utils.usecase.GetPrivacyPolicyUseCase
 import com.ovais.quickcode.features.settings.domain.UpdateSettingUseCase
+import com.ovais.quickcode.utils.usecase.DefaultGetAboutUsUseCase
+import com.ovais.quickcode.utils.usecase.GetAboutUsUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -75,4 +77,5 @@ val factoryModule = module {
     factory { DefaultCodeValidationUseCase() } bind CodeValidationUseCase::class
     factory { DefaultScanCodeUseCase(get()) } bind ScanCodeUseCase::class
     factory { DefaultGetPrivacyPolicyUseCase(get()) } bind GetPrivacyPolicyUseCase::class
+    factory { DefaultGetAboutUsUseCase(get()) } bind GetAboutUsUseCase::class
 }
