@@ -14,8 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -113,7 +113,7 @@ fun SettingsView(
         if (uiState.isLoading) {
             SettingLoadingView()
         } else {
-            // --- Customization Section ---
+
             SettingsSection(title = stringResource(R.string.customization)) {
                 SettingRowItem(
                     label = "QR Color",
@@ -217,28 +217,26 @@ fun SettingsView(
                     label = "Clear History",
                     description = "Clear All Scan History"
                 ) {
-                    val interactionSource = remember { MutableInteractionSource() }
-                    Text(
-                        "Clear",
-                        modifier = Modifier.clickable(
-                            interactionSource = interactionSource,
-                            indication = null
-                        ) { viewModel.showClearHistoryDialog() }
-                    )
+                    Button(
+                        onClick = {
+                            viewModel.showClearHistoryDialog()
+                        }
+                    ) {
+                        Text("Clear")
+                    }
                 }
 
                 SettingRowItem(
                     label = "Export History",
                     description = "Export history to phone"
                 ) {
-                    val interactionSource = remember { MutableInteractionSource() }
-                    Text(
-                        "Export",
-                        modifier = Modifier.clickable(
-                            interactionSource = interactionSource,
-                            indication = null
-                        ) { viewModel.showExportHistoryDialog() }
-                    )
+                    Button(
+                        onClick = {
+                            viewModel.showExportHistoryDialog()
+                        }
+                    ) {
+                        Text("Export")
+                    }
                 }
                 HorizontalDivider(
                     modifier = Modifier
@@ -300,16 +298,14 @@ fun SettingsView(
                     label = "Privacy Policy",
                     description = "View privacy policy"
                 ) {
-                    val interactionSource = remember { MutableInteractionSource() }
-                    Text(
-                        "View",
-                        modifier = Modifier.clickable(
-                            interactionSource = interactionSource,
-                            indication = rememberRipple()
-                        ) {
+
+                    Button(
+                        onClick = {
                             viewModel.openPrivacyPolicy()
                         }
-                    )
+                    ) {
+                        Text("Rate")
+                    }
                 }
 
                 SettingRowItem(
@@ -350,49 +346,42 @@ fun SettingsView(
                     label = "About the App",
                     description = "Details about the app"
                 ) {
-                    val interactionSource = remember { MutableInteractionSource() }
-                    Text(
-                        "About",
-                        modifier = Modifier.clickable(
-                            interactionSource = interactionSource,
-                            indication = null
-                        ) { viewModel.showAboutDialog() }
-                    )
+                    Button(
+                        onClick = {
+                            viewModel.showAboutDialog()
+                        }
+                    ) {
+                        Text("View")
+                    }
                 }
 
                 SettingRowItem(
                     label = "Rate this App",
                     description = "Rate app on Play Store"
                 ) {
-                    val interactionSource = remember { MutableInteractionSource() }
-                    Text(
-                        "Rate",
-                        modifier = Modifier.clickable(
-                            interactionSource = interactionSource,
-                            indication = null
-                        ) {
+                    Button(
+                        onClick = {
                             context.openPlayStore()
                         }
-                    )
+                    ) {
+                        Text("Rate")
+                    }
                 }
 
                 SettingRowItem(
                     label = "Share This App",
                     description = "Share app to friends and family"
                 ) {
-                    val interactionSource = remember { MutableInteractionSource() }
-                    Text(
-                        "Share",
-                        modifier = Modifier.clickable(
-                            interactionSource = interactionSource,
-                            indication = null
-                        ) {
+                    Button(
+                        onClick = {
                             context.shareApp(
                                 title = R.string.share_title,
                                 description = R.string.share_description
                             )
                         }
-                    )
+                    ) {
+                        Text("Rate")
+                    }
                 }
                 HorizontalDivider(
                     modifier = Modifier
