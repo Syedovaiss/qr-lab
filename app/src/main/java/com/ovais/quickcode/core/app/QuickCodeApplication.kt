@@ -5,12 +5,15 @@ import com.ovais.quickcode.core.di.DEFAULT
 import com.ovais.quickcode.core.di.factoryModule
 import com.ovais.quickcode.core.di.singletonModule
 import com.ovais.quickcode.core.di.viewModelModule
+import com.ovais.quickcode.locale.DefaultAppLocaleManager
 import com.ovais.quickcode.notification.DefaultQuickCodeNotificationManager
 import com.ovais.quickcode.storage.DefaultQuickCodeConfigurationManager
+import com.ovais.quickcode.storage.db.ConfigurationDao
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -27,6 +30,7 @@ class QuickCodeApplication : Application() {
         initNotifications()
         initRemoteConfig()
         initSQLCipher()
+        initLocale()
     }
 
     private fun initSQLCipher() {
@@ -58,4 +62,15 @@ class QuickCodeApplication : Application() {
         val manager = getKoin().get<DefaultQuickCodeNotificationManager>()
         manager.init()
     }
+
+    private fun initLocale() {
+        val localeManager = getKoin().get<DefaultAppLocaleManager>()
+        val configurationDao = getKoin().get<ConfigurationDao>()
+        runBlocking {
+            configurationDao.getLocale()?.let {
+                localeManager.setLocale(it)
+            }
+        }
+    }
+
 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ovais.quickcode.utils.usecase.GetPrivacyPolicyUseCase
 import com.ovais.quickcode.features.settings.domain.UpdateSettingUseCase
-import com.ovais.quickcode.utils.LocalConfiguration
+import com.ovais.quickcode.utils.local_config.LocalConfiguration
 import com.ovais.quickcode.utils.usecase.GetAboutUsUseCase
 import com.ovais.quickcode.utils.usecase.LocalConfigurationUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -36,6 +36,10 @@ class SettingViewModel(
     private val _aboutUsUrl by lazy { MutableSharedFlow<String>() }
     val aboutUsUrl: SharedFlow<String>
         get() = _aboutUsUrl
+
+    private val _canRestartApp by lazy { MutableSharedFlow<Boolean>() }
+    val canRestartApp: SharedFlow<Boolean>
+        get() = _canRestartApp
 
     init {
         initializeDefaultSettings()
@@ -162,13 +166,16 @@ class SettingViewModel(
         viewModelScope.launch {
             try {
                 updateSettingUseCase.updateLocale(locale)
-                _uiState.value = _uiState.value.copy(
-                    settings = _uiState.value.settings.copy(locale = locale),
-                    showLanguageDialog = false
-                )
+                updateAppLocale()
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(error = e.message)
             }
+        }
+    }
+
+    private fun updateAppLocale() {
+        viewModelScope.launch {
+            _canRestartApp.emit(true)
         }
     }
 

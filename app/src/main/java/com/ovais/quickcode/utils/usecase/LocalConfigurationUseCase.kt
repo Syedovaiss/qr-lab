@@ -1,7 +1,7 @@
 package com.ovais.quickcode.utils.usecase
 
-import com.ovais.quickcode.utils.LocalConfiguration
-import com.ovais.quickcode.utils.LocalConfigurationManager
+import com.ovais.quickcode.utils.local_config.LocalConfiguration
+import com.ovais.quickcode.utils.local_config.LocalConfigurationManager
 
 interface LocalConfigurationUseCase : UseCase<LocalConfiguration>
 

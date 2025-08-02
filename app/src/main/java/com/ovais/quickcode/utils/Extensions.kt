@@ -1,12 +1,16 @@
 package com.ovais.quickcode.utils
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
+import android.os.Build
 import android.provider.Settings
-import androidx.compose.ui.graphics.Color
 import androidx.core.net.toUri
+import timber.log.Timber
+import java.util.Locale
 
 
 fun Context.openAppSettings() {
@@ -66,8 +70,22 @@ fun Context.openPlayStore() {
     try {
         this.startActivity(goToMarketIntent)
     } catch (e: ActivityNotFoundException) {
+        Timber.e(e)
         // Play Store not installed; fallback to browser
         val webUri = "https://play.google.com/store/apps/details?id=$packageName".toUri()
         this.startActivity(Intent(Intent.ACTION_VIEW, webUri))
     }
+}
+
+val systemLocale: String
+    get() = Resources.getSystem().configuration.locales.get(0).language
+
+fun Context.restartApp() {
+    val intent = this.packageManager.getLaunchIntentForPackage(this.packageName)
+    intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+    this.startActivity(intent)
+    if (this is Activity) {
+        this.finish()
+    }
+    Runtime.getRuntime().exit(0)
 }

@@ -1,4 +1,4 @@
-package com.ovais.quickcode.utils
+package com.ovais.quickcode.utils.local_config
 
 import com.ovais.quickcode.BuildConfig
 

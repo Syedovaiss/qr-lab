@@ -43,6 +43,7 @@ import com.ovais.quickcode.utils.components.RadioSelectionDialog
 import com.ovais.quickcode.utils.components.SubtitleText
 import com.ovais.quickcode.utils.openPlayStore
 import com.ovais.quickcode.utils.openURL
+import com.ovais.quickcode.utils.restartApp
 import com.ovais.quickcode.utils.shareApp
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
@@ -82,6 +83,13 @@ fun SettingsView(
     LaunchedEffect(Unit) {
         viewModel.aboutUsUrl.collectLatest {
             context.openURL(it)
+        }
+    }
+    LaunchedEffect(Unit) {
+        viewModel.canRestartApp.collectLatest {
+            if (it) {
+                context.restartApp()
+            }
         }
     }
 
