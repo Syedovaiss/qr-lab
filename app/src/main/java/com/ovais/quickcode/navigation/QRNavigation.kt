@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
+import com.ovais.quickcode.features.code_details.presentation.BarcodeDetailsScreen
 import com.ovais.quickcode.features.create.presentation.CreateQRView
 import com.ovais.quickcode.features.history.presentation.HistoryScreen
 import com.ovais.quickcode.features.home.presentation.HomeAction
@@ -52,7 +53,10 @@ fun QRNavigation(
                 is Routes.CreateQR -> NavEntry(key) {
                     CreateQRView(
                         scaffoldPadding,
-                        snackbarHostState = snackBarHostState
+                        snackbarHostState = snackBarHostState,
+                        onCodeScanned = {
+                            backStack.add(Routes.BarcodeDetails(it))
+                        }
                     )
                 }
 
@@ -65,6 +69,12 @@ fun QRNavigation(
 
                 is Routes.History -> NavEntry(key) {
                     HistoryScreen()
+                }
+                is Routes.BarcodeDetails -> NavEntry(key) {
+                    BarcodeDetailsScreen(
+                        data = key.args,
+                        onBack = { backStack.removeLastOrNull() }
+                    )
                 }
             }
         }

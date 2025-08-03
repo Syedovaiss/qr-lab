@@ -1,5 +1,7 @@
 package com.ovais.quickcode.navigation
 
+import android.graphics.Bitmap
+
 
 sealed interface Routes {
     data object Home : Routes
@@ -7,4 +9,7 @@ sealed interface Routes {
     data object CreateQR : Routes
     data object Settings : Routes
     data object History : Routes
+    data class BarcodeDetails(
+        val args: Pair<Bitmap?, MutableMap<String, String>>
+    ) : Routes
 }

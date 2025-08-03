@@ -55,7 +55,7 @@ fun HomeScreenLoadingView() {
             verticalArrangement = Arrangement.spacedBy(16.dp),
             contentPadding = PaddingValues(vertical = 16.dp)
         ) {
-            items(6) {
+            items(4) {
                 ShimmerCardPlaceholder(
                     modifier = Modifier
                         .width(160.dp)

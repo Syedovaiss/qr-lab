@@ -14,6 +14,5 @@ data class SettingsUiState(
     val showExportHistoryDialog: Boolean = false,
     val showLanguageDialog: Boolean = false,
     val showPrivacyPolicyDialog: Boolean = false,
-    val showAboutDialog: Boolean = false,
     val selectedColorType: ColorType = ColorType.FOREGROUND
 )

@@ -55,4 +55,21 @@
     <string name="app_version">v%s(%s)</string>
     <string name="share_title">Check out this QR Code App!</string>
     <string name="share_description">Hey! Try out this awesome QR Code Generator &amp; Scanner app</string>
+    <string name="barcode_details">Barcode Details</string>
+    <string name="generated_barcode">Generated Barcode</string>
+    <string name="barcode_image">Barcode Image</string>
+    <string name="save_image">Save Image</string>
+    <string name="share">Share</string>
+    <string name="content_details">Content Details</string>
+    <string name="save_barcode">Save Barcode</string>
+    <string name="save_barcode_message">Choose where to save your barcode image</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="success">Success</string>
+    <string name="image_saved_successfully">Image saved successfully!</string>
+    <string name="ok">OK</string>
+    <string name="error">Error</string>
+    <string name="failed_to_save_image">Failed to save image. Please try again.</string>
+    <string name="invalid_barcode">Invalid or corrupted barcode image</string>
+    <string name="go_back">Go Back</string>
 </resources>

@@ -89,3 +89,16 @@ fun Context.restartApp() {
     }
     Runtime.getRuntime().exit(0)
 }
+
+fun Context.shareIntent(uri: Uri) {
+    val shareIntent = Intent().apply {
+        action = Intent.ACTION_SEND
+        putExtra(Intent.EXTRA_STREAM, uri)
+        type = "image/png"
+        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+    }
+
+    val chooser = Intent.createChooser(shareIntent, "Share Barcode")
+    chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    startActivity(chooser)
+}
