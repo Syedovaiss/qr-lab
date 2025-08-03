@@ -23,7 +23,11 @@ import com.ovais.quickcode.utils.components.ShimmerLine
 
 @Composable
 fun HomeScreenLoadingView() {
-    Column(Modifier.padding(16.dp)) {
+    Column(
+        Modifier
+            .padding(16.dp)
+            .background(appBackground)
+    ) {
         Row(
             Modifier.padding(vertical = 60.dp)
         ) {

@@ -34,8 +34,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -43,10 +45,13 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
@@ -62,7 +67,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -83,7 +87,9 @@ import androidx.compose.ui.window.Dialog
 import coil.compose.AsyncImage
 import com.ovais.quickcode.R
 import com.ovais.quickcode.core.ui.font.Poppins
-import com.ovais.quickcode.core.ui.theme.CardElevated
+import com.ovais.quickcode.core.ui.theme.ButtonColor
+import com.ovais.quickcode.core.ui.theme.ButtonDisabled
+import com.ovais.quickcode.core.ui.theme.ButtonTextColor
 import com.ovais.quickcode.core.ui.theme.InitialsBgColors
 import com.ovais.quickcode.core.ui.theme.colorsForColorPicker
 import com.ovais.quickcode.utils.file.FileManager
@@ -153,7 +159,6 @@ fun BodyText(
     Text(
         text = text,
         modifier = modifier
-            .fillMaxWidth()
             .padding(paddingValues),
         fontSize = fontSize,
         fontWeight = fontWeight,
@@ -163,60 +168,6 @@ fun BodyText(
     )
 }
 
-@Composable
-fun GradientIconCard(
-    modifier: Modifier = Modifier,
-    gradientColors: List<Color>,
-    iconContent: @Composable () -> Unit,
-    text: String,
-    textColor: Color = Color.White,
-    elevation: Dp = 16.dp,
-    shadowColor: Color = CardElevated,
-    onClick: () -> Unit = {}
-) {
-    val interactionSource = remember { MutableInteractionSource() }
-
-    Surface(
-        modifier = modifier
-            .drawBehind {
-                drawRect(
-                    color = shadowColor,
-                    topLeft = this.center.copy(x = 0f, y = 0f),
-                    size = this.size,
-                    alpha = 0.6f
-                )
-            }
-            .clip(RoundedCornerShape(16.dp)) // optional if you're not applying shape to Surface itself
-            .clickable(
-                interactionSource = interactionSource,
-                indication = LocalIndication.current
-            ) { onClick() },
-        tonalElevation = elevation,
-        shape = RoundedCornerShape(16.dp),
-        shadowElevation = elevation,
-        color = Color.Transparent
-    ) {
-        Box(
-            modifier = Modifier
-                .background(Brush.verticalGradient(gradientColors))
-                .padding(16.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                iconContent()
-                Spacer(modifier = Modifier.height(8.dp))
-                SubtitleText(
-                    text,
-                    texColor = textColor,
-                    textAlign = TextAlign.Center
-                )
-            }
-        }
-    }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -261,27 +212,6 @@ fun <T> CustomDropdown(
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ComposablePreview() {
-    GradientIconCard(
-        gradientColors = listOf(Color.Red, Color.Green),
-        modifier = Modifier
-            .padding(100.dp)
-            .width(150.dp)
-            .height(150.dp),
-        iconContent = {
-            Image(
-                painter = painterResource(R.drawable.ic_create_qr),
-                contentDescription = null
-            )
-        },
-        text = "Create QR",
-        textColor = Color.White,
-        onClick = {}
-    )
 }
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -525,26 +455,28 @@ fun <T> RadioSelectionDialog(
         },
         text = {
             Column {
-                options.forEach { option ->
-                    val interactionSource = remember { MutableInteractionSource() }
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 4.dp)
-                            .clickable(
-                                interactionSource = interactionSource,
-                                indication = rememberRipple()
-                            ) {
-                                tempSelectedOption = option
-                            },
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        RadioButton(
-                            selected = option == tempSelectedOption,
-                            onClick = { tempSelectedOption = option }
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(text = optionLabel(option))
+                LazyColumn {
+                    items(options) { option ->
+                        val interactionSource = remember { MutableInteractionSource() }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 4.dp)
+                                .clickable(
+                                    interactionSource = interactionSource,
+                                    indication = rememberRipple()
+                                ) {
+                                    tempSelectedOption = option
+                                },
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(
+                                selected = option == tempSelectedOption,
+                                onClick = { tempSelectedOption = option }
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(text = optionLabel(option))
+                        }
                     }
                 }
             }
@@ -832,4 +764,69 @@ fun TopBar(
             stringResource(title)
         )
     }
+}
+
+@Composable
+fun PrimaryButton(
+    modifier: Modifier = Modifier,
+    @StringRes title: Int,
+    onClick: () -> Unit
+) {
+    Button(
+        modifier = modifier,
+        onClick = onClick,
+        shape = RoundedCornerShape(12.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = ButtonColor,
+            disabledContainerColor = ButtonDisabled
+        )
+    ) {
+        SubtitleText(
+            text = stringResource(title),
+            texColor = ButtonTextColor,
+            textAlign = TextAlign.Center,
+        )
+    }
+}
+
+@Composable
+fun IconCircle(
+    iconRes: Int,
+    backgroundColor: Color,
+    iconTint: Color = Color.White,
+    size: Dp = 64.dp,
+    iconSize: Dp = 32.dp,
+    onClick: () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .size(size)
+            .clip(CircleShape)
+            .background(backgroundColor)
+            .clickable(
+                remember { MutableInteractionSource() },
+                rememberRipple()
+            ) { onClick() },
+        contentAlignment = Alignment.Center
+    ) {
+        Icon(
+            painter = painterResource(id = iconRes),
+            contentDescription = null,
+            tint = iconTint,
+            modifier = Modifier.size(iconSize)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ComposablePreview() {
+    PrimaryButton(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(100.dp)
+            .padding(horizontal = 16.dp),
+        title = R.string.create_new,
+        onClick = {}
+    )
 }

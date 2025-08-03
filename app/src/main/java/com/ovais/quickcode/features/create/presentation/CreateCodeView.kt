@@ -8,7 +8,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -33,8 +32,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
 import com.ovais.quickcode.features.create.data.CodeFormats
-import com.ovais.quickcode.utils.components.BackIcon
-import com.ovais.quickcode.utils.components.HeadingText
 import com.ovais.quickcode.utils.components.ImagePicker
 import com.ovais.quickcode.utils.components.PermissionRationaleDialog
 import com.ovais.quickcode.utils.components.SizeInputRow
@@ -64,6 +61,7 @@ fun CreateQRView(
     var selectedLogo by remember { mutableStateOf<Bitmap?>(null) }
     var canShowImagePicker by remember { mutableStateOf(false) }
     var arePermissionsDenied by remember { mutableStateOf(false) }
+    val codeSize by viewModel.codeSize.collectAsStateWithLifecycle()
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { resultMap ->
@@ -104,9 +102,9 @@ fun CreateQRView(
         modifier = Modifier
             .fillMaxSize()
             .padding(scaffoldPaddingValues)
+            .background(Color.White)
             .verticalScroll(scrollState)
     ) {
-
         TopBar(
             R.string.create_new,
             onBack
@@ -124,6 +122,8 @@ fun CreateQRView(
             paddingValues = PaddingValues(16.dp)
         )
         SizeInputRow(
+            defaultWidth = codeSize.width.toString(),
+            defaultHeight = codeSize.height.toString(),
             onWidthChange = viewModel::onWidthUpdate,
             onHeightChange = viewModel::onHeightUpdate
         )

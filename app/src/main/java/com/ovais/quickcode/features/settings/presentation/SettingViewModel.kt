@@ -3,10 +3,11 @@ package com.ovais.quickcode.features.settings.presentation
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ovais.quickcode.utils.usecase.GetPrivacyPolicyUseCase
+import com.ovais.quickcode.features.settings.domain.GetLocaleUseCase
 import com.ovais.quickcode.features.settings.domain.UpdateSettingUseCase
 import com.ovais.quickcode.utils.local_config.LocalConfiguration
 import com.ovais.quickcode.utils.usecase.GetAboutUsUseCase
+import com.ovais.quickcode.utils.usecase.GetPrivacyPolicyUseCase
 import com.ovais.quickcode.utils.usecase.LocalConfigurationUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,8 +20,15 @@ class SettingViewModel(
     private val updateSettingUseCase: UpdateSettingUseCase,
     private val privacyPolicyUseCase: GetPrivacyPolicyUseCase,
     private val localConfigurationUseCase: LocalConfigurationUseCase,
-    private val getAboutUse: GetAboutUsUseCase
+    private val getAboutUse: GetAboutUsUseCase,
+    private val getLocaleUseCase: GetLocaleUseCase
 ) : ViewModel() {
+
+    private val _locale by lazy {
+        MutableStateFlow<List<String>>(getLocaleUseCase().keys.toList())
+    }
+    val locale: StateFlow<List<String>>
+        get() = _locale.asStateFlow()
 
     private val _appConfig by lazy { MutableStateFlow(localConfigurationUseCase()) }
     val appConfig: StateFlow<LocalConfiguration>
@@ -194,11 +202,10 @@ class SettingViewModel(
 
     fun clearHistory() {
 
-        // delete history
     }
 
     fun exportHistory(format: String) {
-        // download file
+
     }
 
     fun showColorPicker(colorType: ColorType) {

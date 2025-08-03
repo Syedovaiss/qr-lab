@@ -26,8 +26,10 @@ import com.ovais.quickcode.features.scan_code.domain.DefaultCanVibrateAndBeepUse
 import com.ovais.quickcode.features.scan_code.domain.DefaultScanCodeUseCase
 import com.ovais.quickcode.features.scan_code.domain.DefaultScanRepository
 import com.ovais.quickcode.features.scan_code.domain.ScanCodeUseCase
+import com.ovais.quickcode.features.settings.domain.DefaultGetLocaleUseCase
 import com.ovais.quickcode.utils.usecase.DefaultGetPrivacyPolicyUseCase
 import com.ovais.quickcode.features.settings.domain.DefaultUpdateSettingUseCase
+import com.ovais.quickcode.features.settings.domain.GetLocaleUseCase
 import com.ovais.quickcode.utils.usecase.GetPrivacyPolicyUseCase
 import com.ovais.quickcode.features.settings.domain.UpdateSettingUseCase
 import com.ovais.quickcode.utils.usecase.DefaultGetAboutUsUseCase
@@ -86,4 +88,7 @@ val factoryModule = module {
             get(named(BACKGROUND))
         )
     } bind CanVibrateAndBeepUseCase::class
+    factory {
+        DefaultGetLocaleUseCase(get())
+    } bind GetLocaleUseCase::class
 }

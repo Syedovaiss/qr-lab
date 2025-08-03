@@ -9,10 +9,10 @@ val appBackground = Color(0xFFeef3f6)
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
-val HomeCardOne = listOf(Color(0xFFFF6EC7), Color(0xFFFC0FC0)) // Bubblegum Pop
-val HomeCardTwo = listOf(Color(0xFFFFA726), Color(0xFFFF7043)) // Sunset Orange
-val HomeCardThree = listOf(Color(0xFFBA68C8), Color(0xFF9C27B0)) // Electric Purple
-val HomeCardFour = listOf(Color(0xFF56CCF2), Color(0xFF2F80ED)) // Sky to Aqua
+val HomeCardOne = listOf(Color(0xFF6F55E8), Color(0xFF9986EE))
+val HomeCardTwo = listOf(Color(0xFFFE7475), Color(0xFFFBA3A4))
+val HomeCardThree = listOf(Color(0xFFEFD26D), Color(0xFFF2E0A0))
+val HomeCardFour = listOf(Color(0xFF34B883), Color(0xFF6EDAAF))
 val InitialsBgColors = listOf(
     Color(0xFFFFCDD2), // Light Pink
     Color(0xFFE1BEE7), // Light Purple
@@ -61,15 +61,9 @@ val colorsForColorPicker = listOf(
     Color(0xFF3E2723), // Coffee Brown
     Color(0xFF1A237E), // Indigo
 )
-val PrimaryColor = Color(0xFF2F80ED) // Bright blue
-val SecondaryColor = Color(0xFFFF6EC7) // Vibrant pink
-val CardElevated = Color(0xFFF1F5F9)
-val ButtonColor = Color(0xFF1A73E8) // deep sky blue
+
+val ButtonColor = Color(0xFF6F55E8) // deep sky blue
 val ButtonTextColor = Color.White
-val ButtonSecondary = Color(0xFFE0ECFF) // very light blue
-val ButtonSecondaryText = Color(0xFF2F80ED)
 val ButtonDisabled = Color(0xFFD3DDE4)
-val ButtonDisabledText = Color(0xFF9AA5AE)
-val DividerColor = Color(0xFFE2E8F0)
-val ErrorColor = Color(0xFFEF5350)
-val SuccessColor = Color(0xFF4CAF50)
+val Violet = Color(0xFFAB47BC)
+val LightPurple = Color(0xFF9986EE)

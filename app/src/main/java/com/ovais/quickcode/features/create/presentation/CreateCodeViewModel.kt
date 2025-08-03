@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.ovais.quickcode.features.create.data.CodeFormats
 import com.ovais.quickcode.features.create.data.CodeItem
 import com.ovais.quickcode.features.create.data.CodeResult
+import com.ovais.quickcode.features.create.data.CodeSize
 import com.ovais.quickcode.features.create.data.CodeType
 import com.ovais.quickcode.features.create.data.CodeValidationParams
 import com.ovais.quickcode.features.create.data.CreateCodeParam
@@ -14,7 +15,6 @@ import com.ovais.quickcode.features.create.domain.CodeFormatUseCase
 import com.ovais.quickcode.features.create.domain.CodeTypeUseCase
 import com.ovais.quickcode.features.create.domain.CodeValidationUseCase
 import com.ovais.quickcode.features.create.domain.CreateCodeUseCase
-import com.ovais.quickcode.logger.AppLogger
 import com.ovais.quickcode.utils.ValidationResult
 import com.ovais.quickcode.utils.file.FileManager
 import com.ovais.quickcode.utils.orZero
@@ -25,6 +25,7 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 typealias BackgroundColor = Color
@@ -32,7 +33,6 @@ typealias ForegroundColor = Color
 
 class CreateCodeViewModel(
     private val codeTypeUseCase: CodeTypeUseCase,
-    private val logger: AppLogger,
     private val codeFormatUseCase: CodeFormatUseCase,
     private val codeValidationUseCase: CodeValidationUseCase,
     private val createCodeUseCase: CreateCodeUseCase,
@@ -40,8 +40,9 @@ class CreateCodeViewModel(
     private val fileManager: FileManager
 ) : ViewModel() {
 
-    private var width = 600
-    private var height = 600
+    private val _codeSize by lazy { MutableStateFlow(CodeSize(600, 600)) }
+    val codeSize: StateFlow<CodeSize>
+        get() = _codeSize
 
     val fileManagerImpl: FileManager
         get() = fileManager
@@ -71,6 +72,12 @@ class CreateCodeViewModel(
     fun onCodeSelection(format: CodeFormats) {
         if (format is CodeFormats.QRCode) {
             checkPermissions()
+        } else {
+            _codeSize.update {
+                codeSize.value.copy(
+                    height = 150
+                )
+            }
         }
     }
 
@@ -129,8 +136,8 @@ class CreateCodeViewModel(
             selectedType,
             colors,
             selectedLogo,
-            width,
-            height
+            codeSize.value.width,
+            codeSize.value.height
         )
         viewModelScope.launch {
             when (val result = createCodeUseCase(param)) {
@@ -146,11 +153,11 @@ class CreateCodeViewModel(
     }
 
     fun onWidthUpdate(width: String) {
-        this.width = width.toIntOrNull().orZero
+        this.codeSize.value.width = width.toIntOrNull().orZero
     }
 
     fun onHeightUpdate(height: String) {
-        this.height = height.toIntOrNull().orZero
+        this.codeSize.value.height = height.toIntOrNull().orZero
     }
 
     private fun validateInputs(
