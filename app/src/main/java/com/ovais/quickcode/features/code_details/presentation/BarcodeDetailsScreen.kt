@@ -24,6 +24,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -114,7 +115,7 @@ fun BarcodeDetailsScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(vertical = 32.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             BackIcon(onBack)
@@ -125,21 +126,33 @@ fun BarcodeDetailsScreen(
         }
 
         // Content Details Section
-        Column(
-            modifier = Modifier.padding(16.dp)
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+            shape = RoundedCornerShape(12.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.White)
         ) {
-            SubtitleText(
-                text = stringResource(R.string.content_details),
-                paddingValues = PaddingValues(bottom = 16.dp)
-            )
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                SubtitleText(
+                    text = stringResource(R.string.content_details),
+                    paddingValues = PaddingValues(bottom = 16.dp)
+                )
 
-            contentMap.forEach { (key, value) ->
-                if (value.isNotBlank()) {
-                    ContentDetailItem(
-                        label = key.replaceFirstChar { it.uppercase() },
-                        value = value
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
+                contentMap.forEach { (key, value) ->
+                    if (value.isNotBlank()) {
+                        ContentDetailItem(
+                            label = key.replaceFirstChar { it.uppercase() },
+                            value = value
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        HorizontalDivider(
+                            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+                        )
+                    }
                 }
             }
         }
@@ -290,30 +303,21 @@ private fun ContentDetailItem(
     label: String,
     value: String
 ) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-        shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White
-        )
+    Column(
+        modifier = Modifier.padding(12.dp)
     ) {
-        Column(
-            modifier = Modifier.padding(12.dp)
-        ) {
-            Text(
-                text = label,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colorScheme.primary
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = value,
-                fontSize = 16.sp,
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Start
-            )
-        }
+        Text(
+            text = label,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = MaterialTheme.colorScheme.primary
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = value,
+            fontSize = 16.sp,
+            color = MaterialTheme.colorScheme.onSurface,
+            textAlign = TextAlign.Start
+        )
     }
 }
