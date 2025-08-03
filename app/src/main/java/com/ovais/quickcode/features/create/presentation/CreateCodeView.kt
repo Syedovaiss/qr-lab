@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -32,11 +33,13 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
 import com.ovais.quickcode.features.create.data.CodeFormats
+import com.ovais.quickcode.utils.components.BackIcon
 import com.ovais.quickcode.utils.components.HeadingText
 import com.ovais.quickcode.utils.components.ImagePicker
 import com.ovais.quickcode.utils.components.PermissionRationaleDialog
 import com.ovais.quickcode.utils.components.SizeInputRow
 import com.ovais.quickcode.utils.components.SubtitleText
+import com.ovais.quickcode.utils.components.TopBar
 import com.ovais.quickcode.utils.openAppSettings
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
@@ -46,7 +49,8 @@ fun CreateQRView(
     scaffoldPaddingValues: PaddingValues,
     viewModel: CreateCodeViewModel = koinViewModel(),
     snackbarHostState: SnackbarHostState,
-    onCodeScanned: (Pair<Bitmap, MutableMap<String,String>>) -> Unit
+    onCodeScanned: (Pair<Bitmap, MutableMap<String, String>>) -> Unit,
+    onBack: () -> Unit
 ) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
@@ -103,9 +107,9 @@ fun CreateQRView(
             .verticalScroll(scrollState)
     ) {
 
-        HeadingText(
-            stringResource(R.string.create_new),
-            paddingValues = PaddingValues(16.dp)
+        TopBar(
+            R.string.create_new,
+            onBack
         )
         SubtitleText(
             stringResource(R.string.code_format),

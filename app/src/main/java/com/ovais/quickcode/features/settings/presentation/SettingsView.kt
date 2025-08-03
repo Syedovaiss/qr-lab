@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,11 +36,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
 import com.ovais.quickcode.utils.components.AppSwitch
-import com.ovais.quickcode.utils.components.BackIcon
 import com.ovais.quickcode.utils.components.ColorPickerDialog
-import com.ovais.quickcode.utils.components.HeadingText
 import com.ovais.quickcode.utils.components.RadioSelectionDialog
 import com.ovais.quickcode.utils.components.SubtitleText
+import com.ovais.quickcode.utils.components.TopBar
 import com.ovais.quickcode.utils.openPlayStore
 import com.ovais.quickcode.utils.openURL
 import com.ovais.quickcode.utils.restartApp
@@ -106,14 +104,10 @@ fun SettingsView(
             .padding(horizontal = 12.dp, vertical = 8.dp)
             .verticalScroll(scrollState)
     ) {
-        Row {
-            BackIcon(onBack)
-            HeadingText(
-                stringResource(R.string.settings),
-                paddingValues = PaddingValues(vertical = 8.dp)
-            )
-        }
-
+        TopBar(
+            R.string.settings,
+            onBack
+        )
         Spacer(modifier = Modifier.height(4.dp))
 
         if (uiState.isLoading) {

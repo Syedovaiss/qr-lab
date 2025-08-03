@@ -21,6 +21,8 @@ import com.ovais.quickcode.features.home.domain.LoginResultUseCase
 import com.ovais.quickcode.utils.usecase.DefaultGetUserInfoUseCase
 import com.ovais.quickcode.utils.usecase.GetUserInfoUseCase
 import com.ovais.quickcode.features.scan_code.data.ScanRepository
+import com.ovais.quickcode.features.scan_code.domain.CanVibrateAndBeepUseCase
+import com.ovais.quickcode.features.scan_code.domain.DefaultCanVibrateAndBeepUseCase
 import com.ovais.quickcode.features.scan_code.domain.DefaultScanCodeUseCase
 import com.ovais.quickcode.features.scan_code.domain.DefaultScanRepository
 import com.ovais.quickcode.features.scan_code.domain.ScanCodeUseCase
@@ -78,4 +80,10 @@ val factoryModule = module {
     factory { DefaultScanCodeUseCase(get()) } bind ScanCodeUseCase::class
     factory { DefaultGetPrivacyPolicyUseCase(get()) } bind GetPrivacyPolicyUseCase::class
     factory { DefaultGetAboutUsUseCase(get()) } bind GetAboutUsUseCase::class
+    factory {
+        DefaultCanVibrateAndBeepUseCase(
+            get(),
+            get(named(BACKGROUND))
+        )
+    } bind CanVibrateAndBeepUseCase::class
 }

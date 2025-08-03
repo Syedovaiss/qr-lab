@@ -9,8 +9,8 @@ import android.os.Vibrator
 import android.os.VibratorManager
 
 interface AppSoundManager {
-    fun startVibrating(duration: Long = 200L)
-    fun playBeep(ms: Int = 200)
+    fun startVibrating(duration: Long = 1000L)
+    fun playBeep(ms: Int = 1000)
 }
 
 class DefaultAppSoundManager(

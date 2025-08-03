@@ -56,7 +56,8 @@ fun QRNavigation(
                         snackbarHostState = snackBarHostState,
                         onCodeScanned = {
                             backStack.add(Routes.BarcodeDetails(it))
-                        }
+                        },
+                        onBack = { backStack.removeLastOrNull() }
                     )
                 }
 
@@ -68,8 +69,11 @@ fun QRNavigation(
                 }
 
                 is Routes.History -> NavEntry(key) {
-                    HistoryScreen()
+                    HistoryScreen(
+                        onBack = { backStack.removeLastOrNull() }
+                    )
                 }
+
                 is Routes.BarcodeDetails -> NavEntry(key) {
                     BarcodeDetailsScreen(
                         data = key.args,
@@ -79,5 +83,4 @@ fun QRNavigation(
             }
         }
     )
-
 }

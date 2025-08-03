@@ -7,8 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.ovais.quickcode.features.scan_code.data.ScanCodeParam
 import com.ovais.quickcode.features.scan_code.data.ScanCodeParamType
 import com.ovais.quickcode.features.scan_code.data.ScanResult
+import com.ovais.quickcode.features.scan_code.domain.CanVibrateAndBeepUseCase
 import com.ovais.quickcode.features.scan_code.domain.ScanCodeUseCase
 import com.ovais.quickcode.utils.permissions.PermissionManager
+import com.ovais.quickcode.utils.sound.AppSoundManager
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,7 +25,9 @@ import kotlinx.coroutines.withContext
 class ScanViewModel(
     private val permissionManager: PermissionManager,
     private val scanCodeUseCase: ScanCodeUseCase,
-    private val dispatcherMain: CoroutineDispatcher
+    private val dispatcherMain: CoroutineDispatcher,
+    private val canBeepAndVibrateOnScanUseCase: CanVibrateAndBeepUseCase,
+    private val soundManager: AppSoundManager
 ) : ViewModel() {
 
     private val _scanResult by lazy { MutableStateFlow<String?>(null) }
@@ -83,12 +87,31 @@ class ScanViewModel(
             when (val result = scanCodeUseCase(param)) {
                 is ScanResult.Success -> {
                     withContext(dispatcherMain) {
-                        _scanResult.update { result.content }
+                        onCodeScanned(result.content)
                     }
                 }
 
                 is ScanResult.Failure -> Unit
             }
         }
+    }
+
+    private suspend fun onCodeScanned(content: String) {
+        val (canBeep, canVibrate) = canBeepAndVibrateOnScanUseCase()
+        when {
+            canBeep && canVibrate -> {
+                soundManager.playBeep()
+                soundManager.startVibrating()
+            }
+
+            canBeep -> {
+                soundManager.playBeep()
+            }
+
+            canVibrate -> {
+                soundManager.startVibrating()
+            }
+        }
+        _scanResult.update { content }
     }
 }

@@ -817,3 +817,19 @@ fun BackIcon(callback: () -> Unit) {
             ) { callback() }
     )
 }
+
+@Composable
+fun TopBar(
+    title: Int,
+    onBack: () -> Unit
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        BackIcon(onBack)
+        HeadingText(
+            stringResource(title)
+        )
+    }
+}
