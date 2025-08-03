@@ -54,4 +54,6 @@ interface ConfigurationDao {
 
     @Query("SELECT default_app_language FROM local_configuration ORDER BY id LIMIT 1")
     suspend fun getLocale(): String?
+    @Query("SELECT default_qr_format FROM local_configuration ORDER BY id LIMIT 1")
+    suspend fun getQRFormat(): String?
 }

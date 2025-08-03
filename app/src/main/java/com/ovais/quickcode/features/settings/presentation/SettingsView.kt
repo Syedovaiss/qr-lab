@@ -36,7 +36,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
-import com.ovais.quickcode.features.info.presentation.StaticInfoFullScreenDialog
 import com.ovais.quickcode.utils.components.AppSwitch
 import com.ovais.quickcode.utils.components.BackIcon
 import com.ovais.quickcode.utils.components.ColorPickerDialog
@@ -355,7 +354,7 @@ fun SettingsView(
                 ) {
                     Button(
                         onClick = {
-                            viewModel.showAboutDialog()
+                            viewModel.openAboutLink()
                         }
                     ) {
                         Text("View")
@@ -474,15 +473,6 @@ fun SettingsView(
             onOptionSelected = { viewModel.updateLocale(it) },
             onDismissRequest = { viewModel.hideLanguageDialog() }
         )
-    }
-
-    if (uiState.showAboutDialog) {
-        StaticInfoFullScreenDialog(
-            canShow = uiState.showAboutDialog,
-            content = "About the app content goes here..."
-        ) {
-            viewModel.hideAboutDialog()
-        }
     }
 }
 

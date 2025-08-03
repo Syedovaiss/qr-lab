@@ -244,14 +244,10 @@ class SettingViewModel(
         _uiState.value = _uiState.value.copy(showLanguageDialog = false)
     }
 
-    fun showAboutDialog() {
+    fun openAboutLink() {
         viewModelScope.launch {
             _aboutUsUrl.emit(getAboutUse())
         }
-    }
-
-    fun hideAboutDialog() {
-        _uiState.value = _uiState.value.copy(showAboutDialog = false)
     }
 
     fun clearError() {

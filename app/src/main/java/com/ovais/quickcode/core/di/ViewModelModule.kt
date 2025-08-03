@@ -1,5 +1,6 @@
 package com.ovais.quickcode.core.di
 
+import com.ovais.quickcode.features.code_details.presentation.BarcodeDetailsViewModel
 import com.ovais.quickcode.features.create.presentation.CreateCodeViewModel
 import com.ovais.quickcode.features.home.presentation.HomeViewModel
 import com.ovais.quickcode.features.scan_code.presentation.ScanViewModel
@@ -41,6 +42,13 @@ val viewModelModule = module {
     viewModel {
         SettingViewModel(
             get(),
+            get(),
+            get(),
+            get()
+        )
+    }
+    viewModel {
+        BarcodeDetailsViewModel(
             get(),
             get(),
             get()

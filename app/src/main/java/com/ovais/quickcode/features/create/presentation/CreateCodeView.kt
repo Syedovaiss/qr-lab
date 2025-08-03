@@ -45,7 +45,8 @@ import org.koin.androidx.compose.koinViewModel
 fun CreateQRView(
     scaffoldPaddingValues: PaddingValues,
     viewModel: CreateCodeViewModel = koinViewModel(),
-    snackbarHostState: SnackbarHostState
+    snackbarHostState: SnackbarHostState,
+    onCodeScanned: (Pair<Bitmap, MutableMap<String,String>>) -> Unit
 ) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
@@ -70,6 +71,7 @@ fun CreateQRView(
             canShowImagePicker = false
         }
     }
+    var codeValues: MutableMap<String, String> by remember { mutableMapOf() }
     LaunchedEffect(Unit) {
         viewModel.errorMessage.collectLatest {
             snackbarHostState.showSnackbar(it)
@@ -88,8 +90,9 @@ fun CreateQRView(
     LaunchedEffect(Unit) {
         viewModel.code.collectLatest { bitmap ->
             bitmap?.let {
-                generatedBitmap = it
-                showGeneratedCode = true
+                if (!it.isRecycled) {
+                    onCodeScanned(Pair(it, codeValues))
+                }
             }
         }
     }
@@ -155,16 +158,18 @@ fun CreateQRView(
         CodeTypeFormScreen(
             codeItems,
             onCreateCode = { selectedValues, type ->
+                codeValues = selectedValues
                 val colorPair = Pair(backgroundColor, foregroundColor)
                 viewModel.createCode(selectedValues, selectedType, type, colorPair, selectedLogo)
             }
         )
-        BarcodeViewDialog(
-            show = showGeneratedCode,
-            bitmap = generatedBitmap
-        ) {
-            showGeneratedCode = false
-        }
+        if (showGeneratedCode)
+            BarcodeViewDialog(
+                show = showGeneratedCode,
+                bitmap = generatedBitmap
+            ) {
+                showGeneratedCode = false
+            }
         if (arePermissionsDenied) {
             PermissionRationaleDialog(
                 title = R.string.permission_denied_title,

@@ -5,6 +5,8 @@ import com.ovais.quickcode.analytics.AppAnalyticsManager
 import com.ovais.quickcode.analytics.DefaultAppAnalyticsManager
 import com.ovais.quickcode.auth.AuthManager
 import com.ovais.quickcode.auth.DefaultAuthManager
+import com.ovais.quickcode.features.code_details.domain.DefaultImageFormatUseCase
+import com.ovais.quickcode.features.code_details.domain.ImageFormatUseCase
 import com.ovais.quickcode.locale.AppLocaleManager
 import com.ovais.quickcode.locale.DefaultAppLocaleManager
 import com.ovais.quickcode.locale.DefaultLocaleProvider
@@ -32,10 +34,14 @@ import com.ovais.quickcode.utils.permissions.DefaultPermissionManager
 import com.ovais.quickcode.utils.permissions.PermissionManager
 import com.ovais.quickcode.utils.sound.AppSoundManager
 import com.ovais.quickcode.utils.sound.DefaultAppSoundManager
+import com.ovais.quickcode.utils.usecase.DefaultGetContentUriUseCase
 import com.ovais.quickcode.utils.usecase.DefaultGetTermsAndConditionsUseCase
 import com.ovais.quickcode.utils.usecase.DefaultLocalConfigurationUseCase
+import com.ovais.quickcode.utils.usecase.DefaultSaveImageUseCase
+import com.ovais.quickcode.utils.usecase.GetContentUriUseCase
 import com.ovais.quickcode.utils.usecase.GetTermsAndConditionsUseCase
 import com.ovais.quickcode.utils.usecase.LocalConfigurationUseCase
+import com.ovais.quickcode.utils.usecase.SaveImageUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.qualifier.named
@@ -58,6 +64,9 @@ val singletonModule = module {
     }
     single { DefaultLocalConfigurationManager() } bind LocalConfigurationManager::class
 
+    single { DefaultGetContentUriUseCase(get()) } bind GetContentUriUseCase::class
+    single { DefaultSaveImageUseCase(get()) } bind SaveImageUseCase::class
+    single { DefaultImageFormatUseCase(get(),get(named(BACKGROUND))) } bind ImageFormatUseCase::class
     single { DefaultClipboardManager(get()) } bind ClipboardManager::class
     single { DefaultAppSoundManager(get()) } bind AppSoundManager::class
     single { DefaultLocalConfigurationUseCase(get()) } bind LocalConfigurationUseCase::class
