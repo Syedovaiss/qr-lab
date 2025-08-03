@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,6 +38,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
 import com.ovais.quickcode.features.info.presentation.StaticInfoFullScreenDialog
 import com.ovais.quickcode.utils.components.AppSwitch
+import com.ovais.quickcode.utils.components.BackIcon
 import com.ovais.quickcode.utils.components.ColorPickerDialog
 import com.ovais.quickcode.utils.components.HeadingText
 import com.ovais.quickcode.utils.components.RadioSelectionDialog
@@ -51,14 +53,16 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun SettingScreen(
     scaffoldPadding: PaddingValues,
+    onBack: () -> Unit,
     viewModel: SettingViewModel = koinViewModel()
 ) {
-    SettingsView(scaffoldPadding, viewModel)
+    SettingsView(scaffoldPadding, onBack, viewModel)
 }
 
 @Composable
 fun SettingsView(
     scaffoldPadding: PaddingValues,
+    onBack: () -> Unit,
     viewModel: SettingViewModel = koinViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -103,10 +107,13 @@ fun SettingsView(
             .padding(horizontal = 12.dp, vertical = 8.dp)
             .verticalScroll(scrollState)
     ) {
-        HeadingText(
-            stringResource(R.string.settings),
-            paddingValues = PaddingValues(vertical = 8.dp)
-        )
+        Row {
+            BackIcon(onBack)
+            HeadingText(
+                stringResource(R.string.settings),
+                paddingValues = PaddingValues(vertical = 8.dp)
+            )
+        }
 
         Spacer(modifier = Modifier.height(4.dp))
 
@@ -494,5 +501,5 @@ private fun SettingsSection(title: String, content: @Composable () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 private fun SettingsPreview() {
-    SettingsView(PaddingValues(16.dp))
+    SettingsView(PaddingValues(16.dp), onBack = {})
 }

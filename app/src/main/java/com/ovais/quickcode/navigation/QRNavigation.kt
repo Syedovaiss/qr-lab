@@ -58,7 +58,8 @@ fun QRNavigation(
 
                 is Routes.Settings -> NavEntry(key) {
                     SettingScreen(
-                        scaffoldPadding
+                        scaffoldPadding,
+                        onBack = { backStack.removeLastOrNull() }
                     )
                 }
 

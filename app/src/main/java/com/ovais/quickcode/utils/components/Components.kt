@@ -801,3 +801,19 @@ fun AppSwitch(
         )
     }
 }
+
+@Composable
+fun BackIcon(callback: () -> Unit) {
+    val interactionSource = remember { MutableInteractionSource() }
+    Image(
+        painter = painterResource(R.drawable.ic_back),
+        contentDescription = null,
+        modifier = Modifier
+            .padding(PaddingValues(16.dp))
+            .size(24.dp)
+            .clickable(
+                interactionSource,
+                rememberRipple()
+            ) { callback() }
+    )
+}
