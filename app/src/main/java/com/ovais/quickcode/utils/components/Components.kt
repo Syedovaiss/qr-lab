@@ -59,6 +59,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -404,6 +405,10 @@ fun SizeInputRow(
 ) {
     var width by remember { mutableStateOf(defaultWidth) }
     var height by remember { mutableStateOf(defaultHeight) }
+    LaunchedEffect(defaultWidth, defaultHeight) {
+        width = defaultWidth
+        height = defaultHeight
+    }
 
     Row(
         modifier = Modifier
@@ -785,6 +790,7 @@ fun PrimaryButton(
             text = stringResource(title),
             texColor = ButtonTextColor,
             textAlign = TextAlign.Center,
+            paddingValues = PaddingValues()
         )
     }
 }

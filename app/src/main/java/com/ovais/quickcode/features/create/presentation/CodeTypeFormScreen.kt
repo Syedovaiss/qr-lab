@@ -3,7 +3,10 @@ package com.ovais.quickcode.features.create.presentation
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.ovais.quickcode.R
 import com.ovais.quickcode.features.create.data.CodeItem
 import com.ovais.quickcode.features.create.data.CodeType
+import com.ovais.quickcode.utils.components.PrimaryButton
 import com.ovais.quickcode.utils.components.SubtitleText
 
 
@@ -57,15 +61,14 @@ fun CodeTypeFormScreen(
                 onValueChange = { key, value -> formState[key] = value }
             )
             Spacer(Modifier.height(12.dp))
-            Button(
-                onClick = {
-                    onCreateCode(formState, item.type)
-                },
+            PrimaryButton(
                 modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-            ) {
-                Text("Create Code")
-            }
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .height(50.dp),
+                title = R.string.create,
+                onClick = {}
+            )
         }
     }
 }

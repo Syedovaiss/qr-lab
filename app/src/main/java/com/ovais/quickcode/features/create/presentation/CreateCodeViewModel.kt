@@ -11,6 +11,7 @@ import com.ovais.quickcode.features.create.data.CodeSize
 import com.ovais.quickcode.features.create.data.CodeType
 import com.ovais.quickcode.features.create.data.CodeValidationParams
 import com.ovais.quickcode.features.create.data.CreateCodeParam
+import com.ovais.quickcode.features.create.domain.CodeDefaultColorUseCase
 import com.ovais.quickcode.features.create.domain.CodeFormatUseCase
 import com.ovais.quickcode.features.create.domain.CodeTypeUseCase
 import com.ovais.quickcode.features.create.domain.CodeValidationUseCase
@@ -37,9 +38,20 @@ class CreateCodeViewModel(
     private val codeValidationUseCase: CodeValidationUseCase,
     private val createCodeUseCase: CreateCodeUseCase,
     private val permissionManager: PermissionManager,
-    private val fileManager: FileManager
+    private val fileManager: FileManager,
+    private val colorCodeUseCase: CodeDefaultColorUseCase
 ) : ViewModel() {
 
+    private val _defaultColors by lazy {
+        MutableStateFlow(
+            Pair(
+                Color.White,
+                Color.Black
+            )
+        )
+    }
+    val defaultColors: StateFlow<Pair<Color, Color>>
+        get() = _defaultColors.asStateFlow()
     private val _codeSize by lazy { MutableStateFlow(CodeSize(600, 600)) }
     val codeSize: StateFlow<CodeSize>
         get() = _codeSize
@@ -69,6 +81,16 @@ class CreateCodeViewModel(
     val permissionArray: SharedFlow<ArrayList<String>>
         get() = _permissionArray.asSharedFlow()
 
+    init {
+        loadDefaultColors()
+    }
+
+    private fun loadDefaultColors() {
+        viewModelScope.launch {
+            val colors = colorCodeUseCase()
+            _defaultColors.value = colors
+        }
+    }
     fun onCodeSelection(format: CodeFormats) {
         if (format is CodeFormats.QRCode) {
             checkPermissions()

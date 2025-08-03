@@ -3,10 +3,12 @@ package com.ovais.quickcode.core.di
 import com.ovais.quickcode.barcode_manger.BarcodeManager
 import com.ovais.quickcode.barcode_manger.DefaultBarcodeManager
 import com.ovais.quickcode.features.create.data.CreateCodeRepository
+import com.ovais.quickcode.features.create.domain.CodeDefaultColorUseCase
 import com.ovais.quickcode.features.create.domain.CodeFormatUseCase
 import com.ovais.quickcode.features.create.domain.CodeTypeUseCase
 import com.ovais.quickcode.features.create.domain.CodeValidationUseCase
 import com.ovais.quickcode.features.create.domain.CreateCodeUseCase
+import com.ovais.quickcode.features.create.domain.DefaultCodeDefaultColorUseCase
 import com.ovais.quickcode.features.create.domain.DefaultCodeFormatUseCase
 import com.ovais.quickcode.features.create.domain.DefaultCodeTypeUseCase
 import com.ovais.quickcode.features.create.domain.DefaultCodeValidationUseCase
@@ -91,4 +93,8 @@ val factoryModule = module {
     factory {
         DefaultGetLocaleUseCase(get())
     } bind GetLocaleUseCase::class
+
+    factory {
+        DefaultCodeDefaultColorUseCase(get(), get(named(BACKGROUND)))
+    } bind CodeDefaultColorUseCase::class
 }

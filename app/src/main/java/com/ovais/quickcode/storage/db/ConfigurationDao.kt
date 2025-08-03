@@ -63,4 +63,10 @@ interface ConfigurationDao {
 
     @Query("SELECT can_vibrate_on_scan FROM local_configuration ORDER BY id LIMIT 1")
     suspend fun canVibrateOnScan(): Boolean?
+
+    @Query("SELECT default_background_color FROM local_configuration ORDER BY id LIMIT 1")
+    suspend fun getDefaultBackgroundColor(): String?
+
+    @Query("SELECT default_foreground_color FROM local_configuration ORDER BY id LIMIT 1")
+    suspend fun getDefaultForegroundColor(): String?
 }

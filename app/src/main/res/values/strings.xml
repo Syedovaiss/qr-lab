@@ -120,4 +120,6 @@
     <string name="option_csv">CSV</string>
     <string name="option_pdf">PDF</string>
     <string name="select_language">Select Language</string>
+    <string name="default_color_description">If no color is selected, default colors will be applied. You can change this later from Settings.</string>
+    <string name="create">Create</string>
 </resources>

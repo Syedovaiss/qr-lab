@@ -56,8 +56,9 @@ fun CreateQRView(
     var selectedType by remember { mutableStateOf<CodeFormats?>(null) }
     var showGeneratedCode by remember { mutableStateOf(false) }
     var generatedBitmap by remember { mutableStateOf<Bitmap?>(null) }
-    var backgroundColor by remember { mutableStateOf(Color.White) }
-    var foregroundColor by remember { mutableStateOf(Color.Black) }
+    val defaultColors by viewModel.defaultColors.collectAsStateWithLifecycle()
+    var backgroundColor by remember { mutableStateOf(defaultColors.first) }
+    var foregroundColor by remember { mutableStateOf(defaultColors.second) }
     var selectedLogo by remember { mutableStateOf<Bitmap?>(null) }
     var canShowImagePicker by remember { mutableStateOf(false) }
     var arePermissionsDenied by remember { mutableStateOf(false) }
@@ -72,6 +73,10 @@ fun CreateQRView(
             arePermissionsDenied = true
             canShowImagePicker = false
         }
+    }
+    LaunchedEffect(defaultColors) {
+        backgroundColor = defaultColors.first
+        foregroundColor = defaultColors.second
     }
     var codeValues: MutableMap<String, String> by remember { mutableMapOf() }
     LaunchedEffect(Unit) {
