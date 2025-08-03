@@ -2,14 +2,17 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.jetbrains.kotlin.serialization)
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 android {
-    namespace = "com.ovais.qrlab"
+    namespace = "com.ovais.quickcode"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.ovais.qrlab"
+        applicationId = "com.ovais.quickcode"
         minSdk = 24
         targetSdk = 36
         versionCode = 2
@@ -18,6 +21,31 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+        buildConfigField("String", "AES_KEY", "\"${property("AES_ENCRYPTION_KEY")}\"")
+        buildConfigField("String", "STORE_FILE", "\"${property("PREFERENCE_FILENAME")}\"")
+        buildConfigField("String", "DATABASE_PASSWORD", "\"${property("DATABASE_PASSWORD")}\"")
+        buildConfigField("String", "DATABASE_NAME", "\"${property("DATABASE_NAME")}\"")
+        buildConfigField("String", "SERVER_CLIENT_ID", "\"${property("SERVER_CLIENT_ID")}\"")
+    }
+    flavorDimensions += "env"
+    productFlavors {
+        create("dev") {
+            dimension = "env"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+            buildConfigField(
+                "Long", "REMOTE_CONFIG_INTERVAL",
+                property("DEBUG_REMOTE_CONFIG_INTERVAL") as String + "L"
+            )
+        }
+        create("prod") {
+            dimension = "env"
+            buildConfigField(
+                "Long",
+                "REMOTE_CONFIG_INTERVAL",
+                property("RELEASE_REMOTE_CONFIG_INTERVAL") as String + "L"
+            )
         }
     }
 
@@ -42,7 +70,7 @@ android {
         buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
     packaging {
         resources {
@@ -95,6 +123,27 @@ dependencies {
     implementation(libs.androidx.camera.video)
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.camera.extensions)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.config)
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.crashlytics.ndk)
+    implementation(libs.onesignal)
+    implementation(libs.datastore.preferences)
+
+
+    implementation(libs.sqlcipher.android)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.coil.compose)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
 
     // Testing Dependencies
     testImplementation(libs.ktor.client.mock)

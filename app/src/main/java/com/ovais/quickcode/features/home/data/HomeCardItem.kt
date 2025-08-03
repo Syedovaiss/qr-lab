@@ -1,0 +1,13 @@
+package com.ovais.quickcode.features.home.data
+
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import androidx.compose.ui.graphics.Color
+
+data class HomeCardItem(
+    @param:DrawableRes val iconRes: Int,
+    @param:StringRes val title: Int,
+    val type: CardItemType,
+    val gradientColors: List<Color>,
+    val titleColor: Color = Color.White
+)

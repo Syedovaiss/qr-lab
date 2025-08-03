@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">qrlab</string>
-    <string name="home_screen_title">Home</string>
+    <string name="app_name">Quick Code</string>
+    <string name="home_screen_title">Welcome \nto Quick Code</string>
     <string name="create_qr">Create</string>
     <string name="scan_qr">Scan</string>
     <string name="settings">Settings</string>
@@ -44,4 +44,15 @@
     <string name="size">Size</string>
     <string name="width">Width</string>
     <string name="height">Height</string>
+    <string name="customization">Customizations</string>
+    <string name="delete_history_dialog_title">Delete History</string>
+    <string name="delete_history_dialog_message">Are you sure want to delete all history?</string>
+    <string name="delete">Delete</string>
+    <string name="default_name">Guest User</string>
+    <string name="trademark">© %s Syed Ovais Akhtar. All rights reserved.</string>
+    <string name="terms_and_conditions">Terms &amp; Conditions</string>
+    <string name="zoom_level">%.1fx</string>
+    <string name="app_version">v%s(%s)</string>
+    <string name="share_title">Check out this QR Code App!</string>
+    <string name="share_description">Hey! Try out this awesome QR Code Generator &amp; Scanner app</string>
 </resources>
