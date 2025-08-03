@@ -67,7 +67,9 @@ fun CodeTypeFormScreen(
                     .padding(16.dp)
                     .height(50.dp),
                 title = R.string.create,
-                onClick = {}
+                onClick = {
+                    onCreateCode(formState, item.type)
+                }
             )
         }
     }
