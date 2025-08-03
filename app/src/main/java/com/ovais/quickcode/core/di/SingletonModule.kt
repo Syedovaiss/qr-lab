@@ -66,7 +66,12 @@ val singletonModule = module {
 
     single { DefaultGetContentUriUseCase(get()) } bind GetContentUriUseCase::class
     single { DefaultSaveImageUseCase(get()) } bind SaveImageUseCase::class
-    single { DefaultImageFormatUseCase(get(),get(named(BACKGROUND))) } bind ImageFormatUseCase::class
+    single {
+        DefaultImageFormatUseCase(
+            get(),
+            get(named(BACKGROUND))
+        )
+    } bind ImageFormatUseCase::class
     single { DefaultClipboardManager(get()) } bind ClipboardManager::class
     single { DefaultAppSoundManager(get()) } bind AppSoundManager::class
     single { DefaultLocalConfigurationUseCase(get()) } bind LocalConfigurationUseCase::class
@@ -75,7 +80,12 @@ val singletonModule = module {
     single { DefaultAppLogger() } bind AppLogger::class
     single { DefaultFileManager(get(), get(named(BACKGROUND))) } bind FileManager::class
     single { DefaultPermissionManager(get()) } bind PermissionManager::class
-    single { DefaultAppAnalyticsManager() } bind AppAnalyticsManager::class
+    single {
+        DefaultAppAnalyticsManager(
+            get(),
+            get(named(BACKGROUND))
+        )
+    } bind AppAnalyticsManager::class
     single { DefaultQuickCodePreferenceManager(get(named(DEFAULT))) } bind QuickCodePreferenceManager::class
     single { DefaultQuickCodeNotificationManager(get()) } bind QuickCodeNotificationManager::class
     single { DefaultQuickCodeConfigurationManager(get()) } bind QuickCodeConfigurationManager::class

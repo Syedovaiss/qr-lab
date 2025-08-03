@@ -50,3 +50,13 @@ val validCountryCodes = setOf(
     "888", "960", "961", "962", "963", "964", "965", "966", "967", "968", "970", "971", "972", "973",
     "974", "975", "976", "977", "992", "993", "994", "995", "996", "998"
 )
+
+object  AnalyticsConstant{
+    const val SAVE_IMAGE = "Saving Image to Gallery"
+    const val ERROR = "Error"
+    const val ERROR_REASON = "Reason"
+    const val DATA = "Data"
+    const val IMAGE_SAVED = "Image saved to phone"
+    const val SHARE_IMAGE = "Sharing Image"
+    const val IMAGE_SHARED = "Image shared"
+}
