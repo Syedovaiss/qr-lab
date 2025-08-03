@@ -54,6 +54,7 @@ val viewModelModule = module {
         BarcodeDetailsViewModel(
             get(),
             get(),
+            get(),
             get()
         )
     }

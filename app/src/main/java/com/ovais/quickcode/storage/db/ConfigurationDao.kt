@@ -71,5 +71,5 @@ interface ConfigurationDao {
     suspend fun getDefaultForegroundColor(): String?
 
     @Query("SELECT default_anonymous_usage_state FROM local_configuration ORDER BY id LIMIT 1")
-    suspend fun canAddAnalytics(): Boolean?
+    suspend fun canAddAnalytics(): String?
 }

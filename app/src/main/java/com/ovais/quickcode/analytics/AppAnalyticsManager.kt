@@ -37,7 +37,7 @@ class DefaultAppAnalyticsManager(
 
     private fun canLogEvent() {
         scope.launch {
-            canLogEvent = configurationDao.canAddAnalytics().orFalse
+            canLogEvent = configurationDao.canAddAnalytics()?.toBooleanStrictOrNull().orFalse
         }
     }
 
