@@ -19,13 +19,11 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -77,7 +75,7 @@ fun BarcodeDetailsScreen(
                 ERROR,
                 hashMapOf(ERROR_REASON to "Bitmap is null or recycled!")
             )
-        },onBack)
+        }, onBack)
         return
     }
 
@@ -131,7 +129,12 @@ fun BarcodeDetailsScreen(
         ) {
             TopBar(
                 title = R.string.barcode_details,
-                onBack = onBack
+                onBack = {
+                    showSuccessMessage = false
+                    showSaveDialog = false
+                    showErrorMessage = false
+                    onBack()
+                }
             )
         }
 
@@ -139,7 +142,7 @@ fun BarcodeDetailsScreen(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(horizontal = 16.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
             shape = RoundedCornerShape(12.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White)
@@ -240,58 +243,34 @@ fun BarcodeDetailsScreen(
         }
     }
 
-    // Save Dialog
-    if (showSaveDialog) {
-        AlertDialog(
-            onDismissRequest = { showSaveDialog = false },
-            title = { Text(stringResource(R.string.save_barcode)) },
-            text = { Text(stringResource(R.string.save_barcode_message)) },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        showSaveDialog = false
-                        if (!bitmap.isRecycled) {
-                            saveLauncher.launch("barcode_${System.currentTimeMillis()}.png")
-                        }
-                    }
-                ) {
-                    Text(stringResource(R.string.save))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showSaveDialog = false }) {
-                    Text(stringResource(R.string.cancel))
-                }
+    SaveBarcodeDialog(
+        show = showSaveDialog,
+        onDismiss = {
+            showSaveDialog = false
+            viewModel.updateStateToIdle()
+        },
+        onConfirm = {
+            showSaveDialog = false
+            viewModel.updateStateToIdle()
+            if (!bitmap.isRecycled) {
+                saveLauncher.launch("code_${System.currentTimeMillis()}.png")
             }
-        )
-    }
-
-    // Success Message
-    if (showSuccessMessage) {
-        AlertDialog(
-            onDismissRequest = { showSuccessMessage = false },
-            title = { Text(stringResource(R.string.success)) },
-            text = { Text(stringResource(R.string.image_saved_successfully)) },
-            confirmButton = {
-                TextButton(onClick = { showSuccessMessage = false }) {
-                    Text(stringResource(R.string.ok))
-                }
-            }
-        )
-    }
-
-    if (showErrorMessage) {
-        AlertDialog(
-            onDismissRequest = { showErrorMessage = false },
-            title = { Text(stringResource(R.string.error)) },
-            text = { Text(stringResource(R.string.failed_to_save_image)) },
-            confirmButton = {
-                TextButton(onClick = { showErrorMessage = false }) {
-                    Text(stringResource(R.string.ok))
-                }
-            }
-        )
-    }
+        }
+    )
+    SuccessDialog(
+        show = showSuccessMessage,
+        onDismiss = {
+            viewModel.updateStateToIdle()
+            showSuccessMessage = false
+        }
+    )
+    ErrorDialog(
+        show = showErrorMessage,
+        onDismiss = {
+            viewModel.updateStateToIdle()
+            showErrorMessage = false
+        }
+    )
 }
 
 @Composable

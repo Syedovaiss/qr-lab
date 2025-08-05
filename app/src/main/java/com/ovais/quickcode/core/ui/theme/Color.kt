@@ -62,3 +62,4 @@ val colorsForColorPicker = listOf(
 )
 
 val ButtonDisabled = Color(0xFFD3DDE4)
+val ErrorColor = Color(0xFFA10326)
