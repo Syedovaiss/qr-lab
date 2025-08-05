@@ -12,20 +12,36 @@ import com.ovais.quickcode.features.create.presentation.CreateQRView
 import com.ovais.quickcode.features.history.presentation.HistoryScreen
 import com.ovais.quickcode.features.home.presentation.HomeAction
 import com.ovais.quickcode.features.home.presentation.HomeScreenView
+import com.ovais.quickcode.features.on_boarding.presentation.OnboardingScreen
 import com.ovais.quickcode.features.scan_code.presentation.ScanQRView
 import com.ovais.quickcode.features.settings.presentation.SettingScreen
+import com.ovais.quickcode.features.splash.presentation.SplashView
 
 @Composable
-fun QRNavigation(
+fun QuickCodeNavigation(
     scaffoldPadding: PaddingValues = PaddingValues(),
     snackBarHostState: SnackbarHostState
 ) {
-    val backStack = remember { mutableStateListOf<Routes>(Routes.Home) }
+    val backStack = remember { mutableStateListOf<Routes>(Routes.Splash) }
     NavDisplay(
         backStack = backStack,
         onBack = { backStack.removeLastOrNull() },
         entryProvider = { key ->
             when (key) {
+                is Routes.Splash -> NavEntry(key) {
+                    SplashView(
+                        onNavigate = { route ->
+                            backStack.add(route)
+                        }
+                    )
+                }
+
+                is Routes.OnBoarding -> NavEntry(key) {
+                    OnboardingScreen {
+                        backStack.add(Routes.Home)
+                    }
+                }
+
                 is Routes.Home -> NavEntry(key) {
                     HomeScreenView(
                         scaffoldPadding = scaffoldPadding,

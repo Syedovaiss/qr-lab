@@ -39,7 +39,8 @@ fun CodeTypeFormScreen(
             .fillMaxSize()
     ) {
         SubtitleText(
-            text = stringResource(R.string.platform)
+            text = stringResource(R.string.platform),
+            modifier = Modifier.padding(16.dp)
         )
         CodeTypeSelector(
             codeItems = codeItems,
@@ -53,7 +54,8 @@ fun CodeTypeFormScreen(
         selectedCodeItem?.let { item ->
             Spacer(Modifier.height(16.dp))
             SubtitleText(
-                text = stringResource(R.string.enter_details, stringResource(item.title))
+                text = stringResource(R.string.enter_details, stringResource(item.title)),
+                modifier = Modifier.padding(16.dp)
             )
             DynamicQRInputForm(
                 fields = item.fieldMetaData,
@@ -65,7 +67,7 @@ fun CodeTypeFormScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
-                    .height(50.dp),
+                    .wrapContentHeight(),
                 title = R.string.create,
                 onClick = {
                     onCreateCode(formState, item.type)

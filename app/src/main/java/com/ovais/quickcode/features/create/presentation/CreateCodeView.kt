@@ -140,7 +140,10 @@ fun CreateQRView(
                 foregroundColor = it
             }
             if (canShowImagePicker) {
-                SubtitleText(stringResource(R.string.upload_logo))
+                SubtitleText(
+                    stringResource(R.string.upload_logo),
+                    modifier = Modifier.padding(16.dp)
+                )
                 ImagePicker(viewModel.fileManagerImpl) {
                     selectedLogo = it
                 }

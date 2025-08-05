@@ -114,7 +114,10 @@ fun TopView(
             imageUrl = userInfo.avatar,
             initials = userInfo.initials
         )
-        SubtitleText(userInfo.name.split(" ").take(2).joinToString("\n"))
+        SubtitleText(
+            userInfo.name.split(" ").take(2).joinToString("\n"),
+            modifier = Modifier.padding(horizontal = 4.dp)
+        )
     }
 }
 
@@ -173,18 +176,20 @@ fun HomeScreen(
         )
         SubtitleText(
             text = stringResource(R.string.terms_and_conditions),
-            texColor = Color.Gray,
+            textColor = Color.Gray,
             textAlign = TextAlign.Center,
             fontSize = 16.sp,
             paddingValues = PaddingValues(
                 vertical = 8.dp
             ),
-            modifier = Modifier.clickable(
-                termsAndConditionsInteractionSource,
-                rememberRipple()
-            ) {
-                onTermsAndConditionsClicked()
-            }
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable(
+                    termsAndConditionsInteractionSource,
+                    rememberRipple()
+                ) {
+                    onTermsAndConditionsClicked()
+                }
         )
 
     }

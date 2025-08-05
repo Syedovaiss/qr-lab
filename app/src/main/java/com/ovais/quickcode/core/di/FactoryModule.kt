@@ -2,6 +2,8 @@ package com.ovais.quickcode.core.di
 
 import com.ovais.quickcode.barcode_manger.BarcodeManager
 import com.ovais.quickcode.barcode_manger.DefaultBarcodeManager
+import com.ovais.quickcode.core.app.domain.DefaultStartDestinationUseCase
+import com.ovais.quickcode.core.app.domain.StartDestinationUseCase
 import com.ovais.quickcode.features.create.data.CreateCodeRepository
 import com.ovais.quickcode.features.create.domain.CodeDefaultColorUseCase
 import com.ovais.quickcode.features.create.domain.CodeFormatUseCase
@@ -20,6 +22,10 @@ import com.ovais.quickcode.features.home.domain.DefaultCanLoginUseCase
 import com.ovais.quickcode.features.home.domain.DefaultCardItemsUseCase
 import com.ovais.quickcode.features.home.domain.DefaultLoginResultUseCase
 import com.ovais.quickcode.features.home.domain.LoginResultUseCase
+import com.ovais.quickcode.features.on_boarding.domain.DefaultGetOnBoardingItemsUseCase
+import com.ovais.quickcode.features.on_boarding.domain.DefaultUpdateOnBoardingStatusUseCase
+import com.ovais.quickcode.features.on_boarding.domain.GetOnBoardingItemsUseCase
+import com.ovais.quickcode.features.on_boarding.domain.UpdateOnBoardingStatusUseCase
 import com.ovais.quickcode.utils.usecase.DefaultGetUserInfoUseCase
 import com.ovais.quickcode.utils.usecase.GetUserInfoUseCase
 import com.ovais.quickcode.features.scan_code.data.ScanRepository
@@ -42,6 +48,12 @@ import org.koin.dsl.module
 
 
 val factoryModule = module {
+    factory {
+        DefaultStartDestinationUseCase(get(), get(),get(named(BACKGROUND)))
+    } bind StartDestinationUseCase::class
+    factory {
+        DefaultUpdateOnBoardingStatusUseCase(get(), get(),get(named(BACKGROUND)))
+    } bind UpdateOnBoardingStatusUseCase::class
     factory {
         DefaultGetUserInfoUseCase(
             get(),
@@ -97,4 +109,8 @@ val factoryModule = module {
     factory {
         DefaultCodeDefaultColorUseCase(get(), get(named(BACKGROUND)))
     } bind CodeDefaultColorUseCase::class
+
+    factory {
+        DefaultGetOnBoardingItemsUseCase()
+    } bind GetOnBoardingItemsUseCase::class
 }

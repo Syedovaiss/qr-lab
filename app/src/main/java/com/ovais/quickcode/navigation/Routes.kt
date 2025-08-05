@@ -4,6 +4,8 @@ import android.graphics.Bitmap
 
 
 sealed interface Routes {
+    data object Splash: Routes
+    data object OnBoarding : Routes
     data object Home : Routes
     data object ScanQR : Routes
     data object CreateQR : Routes

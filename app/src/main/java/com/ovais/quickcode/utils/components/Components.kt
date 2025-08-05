@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -34,6 +35,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -86,6 +88,11 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.times
 import androidx.compose.ui.window.Dialog
 import coil.compose.AsyncImage
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.ovais.quickcode.R
 import com.ovais.quickcode.core.ui.font.Poppins
 import com.ovais.quickcode.core.ui.theme.ButtonColor
@@ -129,22 +136,21 @@ fun SubtitleText(
     fontFamily: FontFamily = Poppins,
     fontWeight: FontWeight = FontWeight.SemiBold,
     textAlign: TextAlign = TextAlign.Start,
-    paddingValues: PaddingValues = PaddingValues(vertical = 16.dp, horizontal = 16.dp),
-    texColor: Color = Color.Black
+    textColor: Color = Color.Black,
+    paddingValues: PaddingValues = PaddingValues(0.dp)
 ) {
     Text(
         text = text,
         modifier = modifier
-            .fillMaxWidth()
+            .wrapContentWidth()
             .padding(paddingValues),
         fontSize = fontSize,
         fontWeight = fontWeight,
         textAlign = textAlign,
         fontFamily = fontFamily,
-        color = texColor
+        color = textColor
     )
 }
-
 
 @Composable
 fun BodyText(
@@ -778,19 +784,19 @@ fun PrimaryButton(
     onClick: () -> Unit
 ) {
     Button(
-        modifier = modifier,
         onClick = onClick,
+        modifier = modifier,
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = ButtonColor,
             disabledContainerColor = ButtonDisabled
-        )
+        ),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp)
     ) {
         SubtitleText(
             text = stringResource(title),
-            texColor = ButtonTextColor,
-            textAlign = TextAlign.Center,
-            paddingValues = PaddingValues()
+            textColor = ButtonTextColor,
+            textAlign = TextAlign.Center
         )
     }
 }
@@ -822,6 +828,30 @@ fun IconCircle(
             modifier = Modifier.size(iconSize)
         )
     }
+}
+
+@Composable
+fun ComposableLottieAnimation(
+    modifier: Modifier,
+    @RawRes resId: Int,
+    restartOnPlay: Boolean = true,
+    iteration: Int = LottieConstants.IterateForever,
+    reverseOnRepeat: Boolean = false
+) {
+    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(resId))
+
+    val progress by animateLottieCompositionAsState(
+        composition = composition,
+        restartOnPlay = restartOnPlay,
+        iterations = iteration,
+        reverseOnRepeat = reverseOnRepeat
+    )
+
+    LottieAnimation(
+        modifier = modifier,
+        composition = composition,
+        progress = { progress })
+
 }
 
 @Preview(showBackground = true)
