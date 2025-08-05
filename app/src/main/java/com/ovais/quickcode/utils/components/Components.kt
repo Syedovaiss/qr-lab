@@ -197,7 +197,7 @@ fun <T> CustomDropdown(
             value = selectedItem?.let { itemToString(it) } ?: "",
             onValueChange = {},
             readOnly = true,
-            label = { Text(label) },
+            label = { BodyText(label) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
             modifier = Modifier
                 .menuAnchor()
@@ -210,7 +210,7 @@ fun <T> CustomDropdown(
         ) {
             items.forEach { item ->
                 DropdownMenuItem(
-                    text = { Text(itemToString(item)) },
+                    text = { BodyText(itemToString(item)) },
                     onClick = {
                         onItemSelected(item)
                         expanded = false
@@ -242,9 +242,9 @@ fun ColorPickerDialog(
                     .widthIn(min = 300.dp, max = 360.dp)
                     .verticalScroll(rememberScrollState()) // enable scroll if needed
             ) {
-                Text(
+                SubtitleText(
                     text = title,
-                    style = MaterialTheme.typography.titleLarge
+                    modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -392,11 +392,11 @@ fun PermissionRationaleDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(stringResource(title)) },
-        text = { Text(stringResource(message)) },
+        title = { SubtitleText(stringResource(title), modifier = Modifier.fillMaxWidth()) },
+        text = { BodyText(stringResource(message)) },
         confirmButton = {
             TextButton(onClick = onConfirmButtonClicked) {
-                Text(stringResource(confirmButtonText))
+                BodyText(stringResource(confirmButtonText))
             }
         }
     )
@@ -428,7 +428,7 @@ fun SizeInputRow(
                 width = it
                 onWidthChange(it)
             },
-            label = { Text(stringResource(R.string.width)) },
+            label = { BodyText(stringResource(R.string.width)) },
             modifier = Modifier
                 .weight(1f),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
@@ -440,7 +440,7 @@ fun SizeInputRow(
                 height = it
                 onHeightChange(it)
             },
-            label = { Text(stringResource(R.string.height)) },
+            label = { BodyText(stringResource(R.string.height)) },
             modifier = Modifier
                 .weight(1f),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
@@ -462,7 +462,7 @@ fun <T> RadioSelectionDialog(
     AlertDialog(
         onDismissRequest = onDismissRequest,
         title = {
-            Text(text = title, style = MaterialTheme.typography.titleMedium)
+            SubtitleText(text = title,modifier = Modifier.fillMaxWidth())
         },
         text = {
             Column {
@@ -486,7 +486,7 @@ fun <T> RadioSelectionDialog(
                                 onClick = { tempSelectedOption = option }
                             )
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text(text = optionLabel(option))
+                            BodyText(text = optionLabel(option))
                         }
                     }
                 }
@@ -494,7 +494,7 @@ fun <T> RadioSelectionDialog(
         },
         confirmButton = {
             val confirmInteractionSource = remember { MutableInteractionSource() }
-            Text(
+            BodyText(
                 text = "Confirm",
                 modifier = Modifier
                     .padding(8.dp)
@@ -510,7 +510,7 @@ fun <T> RadioSelectionDialog(
         },
         dismissButton = {
             val dismissInteractionSource = remember { MutableInteractionSource() }
-            Text(
+            BodyText(
                 text = "Cancel",
                 modifier = Modifier
                     .padding(8.dp)
@@ -551,7 +551,7 @@ fun AvatarView(
                 contentScale = ContentScale.Crop
             )
         } else {
-            Text(
+            BodyText(
                 text = initials,
                 color = Color.Black,
                 fontWeight = FontWeight.Bold,

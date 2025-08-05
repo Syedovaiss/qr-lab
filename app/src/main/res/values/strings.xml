@@ -131,4 +131,26 @@
     <string name="skip">Skip</string>
     <string name="next">Next</string>
     <string name="get_started">Get Started</string>
+    <string name="scan_help_title">How to Scan QR Codes &amp; Barcodes</string>
+
+    <!-- Step Titles -->
+    <string name="scan_step_1_title">Position the Code</string>
+    <string name="scan_step_2_title">Ensure Good Lighting</string>
+    <string name="scan_step_3_title">Hold Steady</string>
+    <string name="scan_step_4_title">Alternative: Gallery</string>
+
+    <!-- Step Descriptions -->
+    <string name="scan_step_1_desc">Place the QR code or barcode within the scanning area (the rounded rectangle with corner indicators).</string>
+    <string name="scan_step_2_desc">Make sure the code is well-lit. Use the torch button if needed for better visibility.</string>
+    <string name="scan_step_3_desc">Keep your device steady and wait for the code to be automatically detected and scanned.</string>
+    <string name="scan_step_4_desc">If scanning doesn\'t work, you can also select an image from your gallery using the gallery button.</string>
+
+    <!-- Tips Section -->
+    <string name="scan_tips_title">💡 Tips for Better Scanning:</string>
+    <string name="scan_tips_bullets">• Clean the camera lens\n• Avoid reflective surfaces\n• Use zoom slider if needed\n• Ensure code is not damaged</string>
+
+    <!-- Button -->
+    <string name="got_it">Got it!</string>
+    <string name="close">Close</string>
+    <string name="copy">Copy</string>
 </resources>
