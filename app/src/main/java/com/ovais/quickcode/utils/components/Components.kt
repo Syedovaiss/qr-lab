@@ -95,9 +95,8 @@ import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.ovais.quickcode.R
 import com.ovais.quickcode.core.ui.font.Poppins
-import com.ovais.quickcode.core.ui.theme.ButtonColor
 import com.ovais.quickcode.core.ui.theme.ButtonDisabled
-import com.ovais.quickcode.core.ui.theme.ButtonTextColor
+import com.ovais.quickcode.core.ui.theme.ColorPrimary
 import com.ovais.quickcode.core.ui.theme.InitialsBgColors
 import com.ovais.quickcode.core.ui.theme.colorsForColorPicker
 import com.ovais.quickcode.utils.file.FileManager
@@ -404,8 +403,8 @@ fun PermissionRationaleDialog(
 
 @Composable
 fun SizeInputRow(
-    defaultWidth: String = "600",
-    defaultHeight: String = "600",
+    defaultWidth: String = "400",
+    defaultHeight: String = "150",
     onWidthChange: (String) -> Unit,
     onHeightChange: (String) -> Unit
 ) {
@@ -788,14 +787,14 @@ fun PrimaryButton(
         modifier = modifier,
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = ButtonColor,
+            containerColor = ColorPrimary,
             disabledContainerColor = ButtonDisabled
         ),
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp)
     ) {
         SubtitleText(
             text = stringResource(title),
-            textColor = ButtonTextColor,
+            textColor = Color.White,
             textAlign = TextAlign.Center
         )
     }

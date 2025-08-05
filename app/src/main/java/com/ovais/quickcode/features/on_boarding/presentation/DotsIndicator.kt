@@ -15,7 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.ovais.quickcode.core.ui.theme.ButtonColor
+import com.ovais.quickcode.core.ui.theme.ColorPrimary
 
 @Composable
 fun DotsIndicator(
@@ -24,7 +24,7 @@ fun DotsIndicator(
     modifier: Modifier = Modifier,
     dotSize: Dp = 10.dp,
     dotSpacing: Dp = 8.dp,
-    selectedColor: Color = ButtonColor,
+    selectedColor: Color = ColorPrimary,
     unSelectedColor: Color = selectedColor.copy(alpha = 0.3f)
 ) {
     Row(

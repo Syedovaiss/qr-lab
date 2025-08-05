@@ -61,8 +61,8 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
-import com.ovais.quickcode.core.ui.theme.ButtonColor
-import com.ovais.quickcode.core.ui.theme.LightPurple
+import com.ovais.quickcode.core.ui.theme.ColorPrimary
+import com.ovais.quickcode.core.ui.theme.ColorSecondary
 import com.ovais.quickcode.utils.components.PermissionRationaleDialog
 import com.ovais.quickcode.utils.openAppSettings
 import com.ovais.quickcode.utils.orEmpty
@@ -516,7 +516,7 @@ fun CodeScannerView(
                                     modifier = Modifier
                                         .size(24.dp)
                                         .background(
-                                            color = ButtonColor,
+                                            color = ColorPrimary,
                                             shape = RoundedCornerShape(12.dp)
                                         ),
                                     contentAlignment = Alignment.Center
@@ -547,7 +547,7 @@ fun CodeScannerView(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .background(
-                                    color = LightPurple.copy(alpha = 0.2f),
+                                    color = ColorSecondary.copy(alpha = 0.2f),
                                     shape = RoundedCornerShape(12.dp)
                                 )
                                 .padding(16.dp)
@@ -556,13 +556,13 @@ fun CodeScannerView(
                                 Text(
                                     text = stringResource(R.string.scan_tips_title),
                                     fontSize = 14.sp,
-                                    color = ButtonColor
+                                    color = ColorPrimary
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     text = stringResource(R.string.scan_tips_bullets),
                                     fontSize = 12.sp,
-                                    color = ButtonColor
+                                    color = ColorPrimary
                                 )
                             }
                         }
@@ -572,7 +572,7 @@ fun CodeScannerView(
                     (TextButton(onClick = { showHelpDialog = false }) {
                         Text(
                             text = stringResource(R.string.got_it),
-                            color = ButtonColor
+                            color = ColorPrimary
                         )
                     })
                 }

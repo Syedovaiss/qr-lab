@@ -29,6 +29,7 @@ import com.ovais.quickcode.utils.components.SubtitleText
 @Composable
 fun CodeTypeFormScreen(
     codeItems: List<CodeItem>,
+    isQrCode: Boolean,
     onCreateCode: (MutableMap<String, String>, type: CodeType) -> Unit
 ) {
     var selectedCodeItem by remember { mutableStateOf<CodeItem?>(null) }
@@ -45,6 +46,7 @@ fun CodeTypeFormScreen(
         CodeTypeSelector(
             codeItems = codeItems,
             selectedType = selectedCodeItem?.type,
+            isQRCode = isQrCode,
             onSelected = { item ->
                 selectedCodeItem = item
                 formState.clear()

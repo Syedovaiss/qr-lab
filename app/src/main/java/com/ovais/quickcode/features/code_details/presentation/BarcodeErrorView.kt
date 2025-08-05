@@ -24,6 +24,7 @@ import com.ovais.quickcode.utils.components.BackIcon
 
 @Composable
 fun BarcodeErrorView(
+    onError:() -> Unit,
     onBack:() -> Unit
 ) {
     Column(
@@ -36,6 +37,7 @@ fun BarcodeErrorView(
     ) {
         BackIcon(onBack)
         Spacer(modifier = Modifier.height(32.dp))
+        onError()
         Text(
             text = stringResource(R.string.invalid_barcode),
             fontSize = 18.sp,

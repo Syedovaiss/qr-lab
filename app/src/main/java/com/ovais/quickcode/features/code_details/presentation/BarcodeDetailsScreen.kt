@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -45,6 +46,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ovais.quickcode.R
 import com.ovais.quickcode.core.ui.theme.appBackground
+import com.ovais.quickcode.utils.AnalyticsConstant.BITMAP_CONTENT
+import com.ovais.quickcode.utils.AnalyticsConstant.DATA
+import com.ovais.quickcode.utils.AnalyticsConstant.ERROR
+import com.ovais.quickcode.utils.AnalyticsConstant.ERROR_REASON
+import com.ovais.quickcode.utils.AnalyticsConstant.VIEW_SCANNED_CODE_CONTENT
+import com.ovais.quickcode.utils.AnalyticsConstant.VIEW_SCANNED_CODE_EVENT
+import com.ovais.quickcode.utils.AnalyticsConstant.VIEW_SCANNED_CODE_IMAGE
+import com.ovais.quickcode.utils.AnalyticsConstant.VIEW_SCANNED_IMAGE_EVENT
 import com.ovais.quickcode.utils.components.PrimaryButton
 import com.ovais.quickcode.utils.components.SubtitleText
 import com.ovais.quickcode.utils.components.TopBar
@@ -62,7 +71,13 @@ fun BarcodeDetailsScreen(
     val (bitmap, contentMap) = data
 
     if (bitmap == null || bitmap.isRecycled) {
-        BarcodeErrorView(onBack)
+        BarcodeErrorView(onError = {
+            viewModel.logEvent(
+                BITMAP_CONTENT,
+                ERROR,
+                hashMapOf(ERROR_REASON to "Bitmap is null or recycled!")
+            )
+        },onBack)
         return
     }
 
@@ -136,7 +151,11 @@ fun BarcodeDetailsScreen(
                     text = stringResource(R.string.content_details),
                     paddingValues = PaddingValues(bottom = 16.dp)
                 )
-
+                viewModel.logEvent(
+                    VIEW_SCANNED_CODE_EVENT,
+                    VIEW_SCANNED_CODE_CONTENT,
+                    hashMapOf(DATA to contentMap)
+                )
                 contentMap.forEach { (key, value) ->
                     if (value.isNotBlank()) {
                         ContentDetailItem(
@@ -178,6 +197,11 @@ fun BarcodeDetailsScreen(
                         .clip(RoundedCornerShape(12.dp)),
                     contentAlignment = Alignment.Center
                 ) {
+                    viewModel.logEvent(
+                        VIEW_SCANNED_IMAGE_EVENT,
+                        VIEW_SCANNED_CODE_IMAGE
+                    )
+
                     Image(
                         bitmap = bitmap.asImageBitmap(),
                         contentDescription = stringResource(R.string.barcode_image),
@@ -198,7 +222,8 @@ fun BarcodeDetailsScreen(
                         title = R.string.save_image,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 16.dp, vertical = 8.dp)
+                            .wrapContentHeight()
+                            .padding(vertical = 8.dp)
                     ) {
                         showSaveDialog = true
                     }
@@ -206,7 +231,7 @@ fun BarcodeDetailsScreen(
                         title = R.string.share,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 16.dp, vertical = 8.dp)
+                            .wrapContentHeight()
                     ) {
                         viewModel.shareBarcode(bitmap)
                     }

@@ -118,7 +118,7 @@ fun CreateQRView(
             stringResource(R.string.code_format),
             paddingValues = PaddingValues(16.dp)
         )
-        CodeFormatDropDown(codeFormats, selectedType) {
+        CodeFormatDropDown(codeFormats, selectedType ?: CodeFormats.Code128) {
             selectedType = it
             viewModel.onCodeSelection(it)
         }
@@ -169,6 +169,7 @@ fun CreateQRView(
         }
         CodeTypeFormScreen(
             codeItems,
+            isQrCode = selectedType == CodeFormats.QRCode,
             onCreateCode = { selectedValues, type ->
                 codeValues = selectedValues
                 val colorPair = Pair(backgroundColor, foregroundColor)

@@ -14,7 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
-import com.ovais.quickcode.core.ui.theme.ButtonColor
+import com.ovais.quickcode.core.ui.theme.ColorPrimary
 import com.ovais.quickcode.navigation.Routes
 import org.koin.androidx.compose.koinViewModel
 
@@ -27,7 +27,7 @@ fun SplashView(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(ButtonColor),
+            .background(ColorPrimary),
         contentAlignment = Alignment.Center
     ) {
         Icon(

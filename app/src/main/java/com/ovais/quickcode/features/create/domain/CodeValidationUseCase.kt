@@ -17,7 +17,6 @@ import com.ovais.quickcode.utils.TEXT
 import com.ovais.quickcode.utils.URL
 import com.ovais.quickcode.utils.ValidationResult
 import com.ovais.quickcode.utils.usecase.ParameterizedUseCase
-import com.ovais.quickcode.utils.validCountryCodes
 
 interface CodeValidationUseCase :
     ParameterizedUseCase<CodeValidationParams, ValidationResult>
@@ -122,24 +121,7 @@ class DefaultCodeValidationUseCase : CodeValidationUseCase {
     private fun validatePhone(phone: String?): ValidationResult {
         return if (phone.isNullOrBlank()) {
             ValidationResult.InValid(INVALID_PHONE)
-        } else if (isValidPhone(phone).not()) {
-            ValidationResult.InValid(INVALID_PHONE)
         } else ValidationResult.Valid
-    }
-
-    private fun isValidPhone(phone: String, checkCountryCode: Boolean = false): Boolean {
-        // E.164: starts with +, then 8 to 15 digits
-        val phoneRegex = Regex("^\\+?[1-9]\\d{7,14}$")
-
-        if (!phoneRegex.matches(phone)) return false
-
-        if (checkCountryCode) {
-            val match = Regex("^\\+(\\d{1,4})").find(phone)
-            val code = match?.groupValues?.get(1)
-            return code != null && code in validCountryCodes
-        }
-
-        return true
     }
 
 }

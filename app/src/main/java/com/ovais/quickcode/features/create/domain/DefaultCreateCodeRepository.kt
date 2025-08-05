@@ -36,14 +36,18 @@ class DefaultCreateCodeRepository(
         return withContext(dispatcherIO) {
             format?.let { barcodeFormat ->
                 val content = getContentBasedOnType(selectedContentMap, type)
-                val config = BarcodeConfig(
-                    width = width,
-                    height = height,
-                    barcodeFormat = barcodeFormat.toValidFormat()
-                )
-                barcodeManager.generateBarcode(content, config)?.let {
-                    CodeResult.Success(it)
-                } ?: CodeResult.Failure("Failed to create barcode!")
+                if (content.length > 25) {
+                    CodeResult.Failure("Barcode can't contain more than 25 character!")
+                } else {
+                    val config = BarcodeConfig(
+                        width = width,
+                        height = height,
+                        barcodeFormat = barcodeFormat.toValidFormat()
+                    )
+                    barcodeManager.generateBarcode(content, config)?.let {
+                        CodeResult.Success(it)
+                    } ?: CodeResult.Failure("Failed to create barcode!")
+                }
 
             } ?: CodeResult.Failure("Invalid code format!")
         }

@@ -33,8 +33,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
-import com.ovais.quickcode.core.ui.theme.ButtonColor
-import com.ovais.quickcode.core.ui.theme.Violet
+import com.ovais.quickcode.core.ui.theme.ColorPrimary
+import com.ovais.quickcode.core.ui.theme.ColorTertiary
 import com.ovais.quickcode.utils.components.AppSwitch
 import com.ovais.quickcode.utils.components.BodyText
 import com.ovais.quickcode.utils.components.ColorPickerDialog
@@ -145,7 +145,7 @@ fun SettingsView(
                     val interactionSource = remember { MutableInteractionSource() }
                     BodyText(
                         uiState.settings.qrFormat,
-                        color = Violet,
+                        color = ColorTertiary,
                         modifier = Modifier.clickable(
                             interactionSource = interactionSource,
                             indication = null
@@ -223,7 +223,7 @@ fun SettingsView(
                 ) {
                     IconCircle(
                         iconRes = R.drawable.ic_delete,
-                        backgroundColor = ButtonColor,
+                        backgroundColor = ColorPrimary,
                         size = 36.dp,
                         iconSize = 20.dp
                     ) {
@@ -237,7 +237,7 @@ fun SettingsView(
                 ) {
                     IconCircle(
                         iconRes = R.drawable.ic_right,
-                        backgroundColor = ButtonColor,
+                        backgroundColor = ColorPrimary,
                         size = 36.dp,
                         iconSize = 20.dp
                     ) {
@@ -263,7 +263,7 @@ fun SettingsView(
                     val interactionSource = remember { MutableInteractionSource() }
                     BodyText(
                         uiState.settings.locale,
-                        color = Violet,
+                        color = ColorTertiary,
                         modifier = Modifier.clickable(
                             interactionSource = interactionSource,
                             indication = null
@@ -308,7 +308,7 @@ fun SettingsView(
                 ) {
                     IconCircle(
                         iconRes = R.drawable.ic_right,
-                        backgroundColor = ButtonColor,
+                        backgroundColor = ColorPrimary,
                         size = 36.dp,
                         iconSize = 20.dp
                     ) {
@@ -347,7 +347,7 @@ fun SettingsView(
                             appConfig.appVersion,
                             appConfig.versionCode
                         ),
-                        color = Violet
+                        color = ColorTertiary
                     )
                 }
 
@@ -357,7 +357,7 @@ fun SettingsView(
                 ) {
                     IconCircle(
                         iconRes = R.drawable.ic_right,
-                        backgroundColor = ButtonColor,
+                        backgroundColor = ColorPrimary,
                         size = 36.dp,
                         iconSize = 20.dp
                     ) {
@@ -371,7 +371,7 @@ fun SettingsView(
                 ) {
                     IconCircle(
                         iconRes = R.drawable.ic_right,
-                        backgroundColor = ButtonColor,
+                        backgroundColor = ColorPrimary,
                         size = 36.dp,
                         iconSize = 20.dp
                     ) {
@@ -385,7 +385,7 @@ fun SettingsView(
                 ) {
                     IconCircle(
                         iconRes = R.drawable.ic_right,
-                        backgroundColor = ButtonColor,
+                        backgroundColor = ColorPrimary,
                         size = 36.dp,
                         iconSize = 20.dp
                     ) {

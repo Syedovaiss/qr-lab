@@ -10,7 +10,6 @@ import kotlinx.coroutines.withContext
 
 interface StartDestinationUseCase : SuspendUseCase<Routes>
 
-
 class DefaultStartDestinationUseCase(
     private val preferenceManager: QuickCodePreferenceManager,
     private val context: Context,

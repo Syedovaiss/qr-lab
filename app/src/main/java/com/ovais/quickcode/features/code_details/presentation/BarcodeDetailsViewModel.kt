@@ -31,7 +31,6 @@ class BarcodeDetailsViewModel(
     private val analyticsManager: AppAnalyticsManager
 ) : ViewModel() {
 
-
     private val _uiState = MutableStateFlow<BarcodeUiState>(BarcodeUiState.Idle)
     val uiState: StateFlow<BarcodeUiState> = _uiState
     private val _canStartSharing by lazy { MutableSharedFlow<Pair<Boolean, Uri>>() }
@@ -40,7 +39,7 @@ class BarcodeDetailsViewModel(
 
     fun saveImageToGallery(bitmap: Bitmap?, uri: Uri) {
         if (bitmap == null || bitmap.isRecycled) {
-            analyticsManager.logEvent(
+            logEvent(
                 SAVE_IMAGE,
                 ERROR,
                 hashMapOf(ERROR_REASON to "Invalid Bitmap")
@@ -52,7 +51,7 @@ class BarcodeDetailsViewModel(
             val imageFormat = imageFormatUseCase()
             when (val result = saveImageUseCase(Triple(bitmap, uri, imageFormat))) {
                 is SaveImageResult.Saved -> {
-                    analyticsManager.logEvent(
+                    logEvent(
                         SAVE_IMAGE,
                         IMAGE_SAVED,
                         hashMapOf(DATA to imageFormat)
@@ -61,7 +60,7 @@ class BarcodeDetailsViewModel(
                 }
 
                 is SaveImageResult.Failure -> {
-                    analyticsManager.logEvent(
+                    logEvent(
                         SAVE_IMAGE,
                         ERROR,
                         hashMapOf(ERROR_REASON to result.message)
@@ -74,7 +73,7 @@ class BarcodeDetailsViewModel(
 
     fun shareBarcode(bitmap: Bitmap?) {
         if (bitmap == null || bitmap.isRecycled) {
-            analyticsManager.logEvent(
+            logEvent(
                 SHARE_IMAGE,
                 ERROR,
                 hashMapOf(ERROR_REASON to "Bitmap is null or recycled!")
@@ -85,7 +84,7 @@ class BarcodeDetailsViewModel(
         viewModelScope.launch {
             when (val result = getContentUriUseCase(bitmap)) {
                 is ContentResult.Success -> {
-                    analyticsManager.logEvent(
+                    logEvent(
                         SHARE_IMAGE,
                         IMAGE_SHARED,
                         hashMapOf(DATA to bitmap)
@@ -94,7 +93,7 @@ class BarcodeDetailsViewModel(
                 }
 
                 is ContentResult.Failure -> {
-                    analyticsManager.logEvent(
+                    logEvent(
                         SHARE_IMAGE,
                         ERROR,
                         hashMapOf(ERROR_REASON to result.message)
@@ -103,5 +102,13 @@ class BarcodeDetailsViewModel(
                 }
             }
         }
+    }
+
+    fun logEvent(
+        eventType: String,
+        message: String,
+        params: HashMap<String, Any> = hashMapOf()
+    ) {
+        analyticsManager.logEvent(eventType, message, params)
     }
 }

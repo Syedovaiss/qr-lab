@@ -25,7 +25,7 @@ class SettingViewModel(
 ) : ViewModel() {
 
     private val _locale by lazy {
-        MutableStateFlow<List<String>>(getLocaleUseCase().keys.toList())
+        MutableStateFlow(getLocaleUseCase().keys.toList())
     }
     val locale: StateFlow<List<String>>
         get() = _locale.asStateFlow()
