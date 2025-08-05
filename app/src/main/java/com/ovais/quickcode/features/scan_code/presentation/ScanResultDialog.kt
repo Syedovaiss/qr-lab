@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -21,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -33,8 +33,10 @@ import com.ovais.quickcode.utils.components.SubtitleText
 fun ScanResultDialog(
     resultText: String,
     onDismiss: () -> Unit,
+    copy: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+
     AlertDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
@@ -52,6 +54,7 @@ fun ScanResultDialog(
                     .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                // Lottie animation
                 ComposableLottieAnimation(
                     modifier = Modifier.size(120.dp),
                     resId = R.raw.success
@@ -60,13 +63,14 @@ fun ScanResultDialog(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 SubtitleText(
-                    text = "Scan Successful!",
+                    text = stringResource(R.string.scan_successful),
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
                 )
 
                 Spacer(modifier = Modifier.height(12.dp))
 
+                // Result Text
                 BodyText(
                     text = resultText,
                     textAlign = TextAlign.Center,
@@ -79,13 +83,13 @@ fun ScanResultDialog(
 
                 Spacer(modifier = Modifier.height(12.dp))
 
+                // Copy Button
                 OutlinedButton(
                     onClick = {
-//                        val clipboard = LocalClipboard.current
-//                        clipboard.setClipEntry(ClipEntry(ClipData.Item.Builder().setText(AnnotatedString(resultText)).build()))
+                        copy()
                     }
                 ) {
-                    Icon(Icons.Default.AccountCircle, contentDescription = null)
+                    Icon(painter = painterResource(R.drawable.ic_copy), contentDescription = null)
                     Spacer(modifier = Modifier.width(8.dp))
                     BodyText(stringResource(R.string.copy))
                 }

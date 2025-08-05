@@ -4,11 +4,14 @@ import android.net.Uri
 import androidx.camera.core.ImageProxy
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ovais.quickcode.features.create.domain.CanAutoOpenUrlUseCase
+import com.ovais.quickcode.features.create.domain.CanCopyToClipboardUseCase
 import com.ovais.quickcode.features.scan_code.data.ScanCodeParam
 import com.ovais.quickcode.features.scan_code.data.ScanCodeParamType
 import com.ovais.quickcode.features.scan_code.data.ScanResult
 import com.ovais.quickcode.features.scan_code.domain.CanVibrateAndBeepUseCase
 import com.ovais.quickcode.features.scan_code.domain.ScanCodeUseCase
+import com.ovais.quickcode.utils.clipboard.ClipboardManager
 import com.ovais.quickcode.utils.permissions.PermissionManager
 import com.ovais.quickcode.utils.sound.AppSoundManager
 import kotlinx.coroutines.CoroutineDispatcher
@@ -27,7 +30,10 @@ class ScanViewModel(
     private val scanCodeUseCase: ScanCodeUseCase,
     private val dispatcherMain: CoroutineDispatcher,
     private val canBeepAndVibrateOnScanUseCase: CanVibrateAndBeepUseCase,
-    private val soundManager: AppSoundManager
+    private val soundManager: AppSoundManager,
+    private val canAutoOpenUrlUseCase: CanAutoOpenUrlUseCase,
+    private val canCopyToClipboardUseCase: CanCopyToClipboardUseCase,
+    private val clipboardManager: ClipboardManager
 ) : ViewModel() {
 
     private val _scanResult by lazy { MutableStateFlow<String?>(null) }
@@ -39,6 +45,32 @@ class ScanViewModel(
     val permissionArray: SharedFlow<ArrayList<String>>
         get() = _permissionArray.asSharedFlow()
 
+
+    private val _canAutoCopyToClipboard by lazy { MutableStateFlow(false) }
+    val canAutoCopyToClipboard: StateFlow<Boolean>
+        get() = _canAutoCopyToClipboard.asStateFlow()
+
+
+    private val _canAutoOpenURL by lazy { MutableStateFlow(false) }
+    val canAutoOpenURL: StateFlow<Boolean>
+        get() = _canAutoOpenURL.asStateFlow()
+
+    init {
+        initAutoCopyState()
+        initAutoOpenURLState()
+    }
+
+    private fun initAutoCopyState() {
+        viewModelScope.launch {
+            _canAutoCopyToClipboard.value = canCopyToClipboardUseCase()
+        }
+    }
+
+    private fun initAutoOpenURLState() {
+        viewModelScope.launch {
+            _canAutoOpenURL.value = canAutoOpenUrlUseCase()
+        }
+    }
 
     fun checkPermissions() {
         val permissions = arrayListOf<String>()
@@ -113,5 +145,9 @@ class ScanViewModel(
             }
         }
         _scanResult.update { content }
+    }
+
+    fun copyToClipboard(label: String, content: String) {
+        clipboardManager.copy(label, content)
     }
 }

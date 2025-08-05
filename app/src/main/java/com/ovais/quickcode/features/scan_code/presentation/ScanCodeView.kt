@@ -31,6 +31,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.VerticalDivider
@@ -64,7 +65,9 @@ import com.ovais.quickcode.R
 import com.ovais.quickcode.core.ui.theme.ColorPrimary
 import com.ovais.quickcode.core.ui.theme.ColorSecondary
 import com.ovais.quickcode.utils.components.PermissionRationaleDialog
+import com.ovais.quickcode.utils.isURL
 import com.ovais.quickcode.utils.openAppSettings
+import com.ovais.quickcode.utils.openURL
 import com.ovais.quickcode.utils.orEmpty
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
@@ -73,6 +76,7 @@ import timber.log.Timber
 @Composable
 fun ScanQRView(
     scaffoldPaddingValues: PaddingValues,
+    snackBarHostState: SnackbarHostState,
     viewModel: ScanViewModel = koinViewModel(),
     onBack: () -> Unit
 ) {
@@ -91,6 +95,16 @@ fun ScanQRView(
         }
     }
     var showDialog by remember { mutableStateOf(true) }
+    val canAutoCopyToClipboard by viewModel.canAutoCopyToClipboard.collectAsStateWithLifecycle()
+    val canAutoOpenURL by viewModel.canAutoOpenURL.collectAsStateWithLifecycle()
+    var canShowCopiedSnackBar by remember { mutableStateOf(false) }
+    val copiedText = stringResource(R.string.copied_to_clipboard)
+
+    LaunchedEffect(canShowCopiedSnackBar) {
+        if (canShowCopiedSnackBar) {
+            snackBarHostState.showSnackbar(copiedText)
+        }
+    }
     LaunchedEffect(Unit) {
         viewModel.checkPermissions()
     }
@@ -102,10 +116,20 @@ fun ScanQRView(
         }
     }
     if (showDialog) {
+        val label = stringResource(R.string.clipboard_label)
         ScanResultDialog(
             resultText = scanResult.orEmpty,
+            copy = {
+                viewModel.copyToClipboard(label, scanResult.orEmpty)
+            },
             onDismiss = { showDialog = false }
         )
+        if (canAutoCopyToClipboard) {
+            viewModel.copyToClipboard(label, scanResult.orEmpty)
+        }
+        if (canAutoOpenURL && scanResult.orEmpty.isURL) {
+            context.openURL(scanResult.orEmpty)
+        }
     }
     LaunchedEffect(Unit) {
         viewModel.permissionArray.collectLatest { permissions ->
@@ -128,7 +152,10 @@ fun ScanQRView(
                 onGalleryImagePicked = { uri ->
                     viewModel.onImagePickedFromGallery(uri)
                 },
-                onBack = onBack
+                onBack = {
+                    showDialog = false
+                    onBack()
+                }
             )
         }
         if (arePermissionsDenied) {

@@ -44,6 +44,9 @@ val viewModelModule = module {
             get(),
             get(named(UI)),
             get(),
+            get(),
+            get(),
+            get(),
             get()
         )
     }

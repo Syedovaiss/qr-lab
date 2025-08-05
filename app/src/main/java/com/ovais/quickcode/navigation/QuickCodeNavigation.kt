@@ -61,6 +61,7 @@ fun QuickCodeNavigation(
                 is Routes.ScanQR -> NavEntry(key) {
                     ScanQRView(
                         scaffoldPadding,
+                        snackBarHostState = snackBarHostState,
                         onBack = { backStack.removeLastOrNull() }
                     )
                 }
