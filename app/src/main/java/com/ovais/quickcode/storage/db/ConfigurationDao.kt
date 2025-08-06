@@ -54,6 +54,24 @@ interface ConfigurationDao {
 
     @Query("SELECT default_app_language FROM local_configuration ORDER BY id LIMIT 1")
     suspend fun getLocale(): String?
+
     @Query("SELECT default_qr_format FROM local_configuration ORDER BY id LIMIT 1")
     suspend fun getQRFormat(): String?
+
+    @Query("SELECT can_beep_on_scan FROM local_configuration ORDER BY id LIMIT 1")
+    suspend fun canPlayBeepSound(): Boolean?
+
+    @Query("SELECT can_vibrate_on_scan FROM local_configuration ORDER BY id LIMIT 1")
+    suspend fun canVibrateOnScan(): Boolean?
+
+    @Query("SELECT default_background_color FROM local_configuration ORDER BY id LIMIT 1")
+    suspend fun getDefaultBackgroundColor(): String?
+
+    @Query("SELECT default_foreground_color FROM local_configuration ORDER BY id LIMIT 1")
+    suspend fun getDefaultForegroundColor(): String?
+
+    @Query("SELECT default_anonymous_usage_state FROM local_configuration ORDER BY id LIMIT 1")
+    suspend fun canAddAnalytics(): String?
+    @Query("SELECT can_auto_open_url_on_scan FROM local_configuration ORDER BY id LIMIT 1")
+    suspend fun canAutoOpenUrl(): Boolean?
 }

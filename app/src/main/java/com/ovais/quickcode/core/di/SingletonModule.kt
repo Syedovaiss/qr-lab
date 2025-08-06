@@ -7,14 +7,14 @@ import com.ovais.quickcode.auth.AuthManager
 import com.ovais.quickcode.auth.DefaultAuthManager
 import com.ovais.quickcode.features.code_details.domain.DefaultImageFormatUseCase
 import com.ovais.quickcode.features.code_details.domain.ImageFormatUseCase
+import com.ovais.quickcode.features.splash.domain.DefaultUpdateLocaleUseCase
+import com.ovais.quickcode.features.splash.domain.UpdateLocaleUseCase
 import com.ovais.quickcode.locale.AppLocaleManager
 import com.ovais.quickcode.locale.DefaultAppLocaleManager
 import com.ovais.quickcode.locale.DefaultLocaleProvider
 import com.ovais.quickcode.locale.LocaleProvider
 import com.ovais.quickcode.logger.AppLogger
 import com.ovais.quickcode.logger.DefaultAppLogger
-import com.ovais.quickcode.notification.DefaultQuickCodeNotificationManager
-import com.ovais.quickcode.notification.QuickCodeNotificationManager
 import com.ovais.quickcode.storage.DefaultQuickCodeConfigurationManager
 import com.ovais.quickcode.storage.DefaultQuickCodePreferenceManager
 import com.ovais.quickcode.storage.QuickCodeConfigurationManager
@@ -23,13 +23,13 @@ import com.ovais.quickcode.storage.db.AppStorageManager
 import com.ovais.quickcode.storage.db.ConfigurationDao
 import com.ovais.quickcode.storage.db.DefaultAppStorageManager
 import com.ovais.quickcode.utils.DefaultInitialProvider
-import com.ovais.quickcode.utils.local_config.DefaultLocalConfigurationManager
 import com.ovais.quickcode.utils.InitialProvider
 import com.ovais.quickcode.utils.clipboard.ClipboardManager
 import com.ovais.quickcode.utils.clipboard.DefaultClipboardManager
-import com.ovais.quickcode.utils.local_config.LocalConfigurationManager
 import com.ovais.quickcode.utils.file.DefaultFileManager
 import com.ovais.quickcode.utils.file.FileManager
+import com.ovais.quickcode.utils.local_config.DefaultLocalConfigurationManager
+import com.ovais.quickcode.utils.local_config.LocalConfigurationManager
 import com.ovais.quickcode.utils.permissions.DefaultPermissionManager
 import com.ovais.quickcode.utils.permissions.PermissionManager
 import com.ovais.quickcode.utils.sound.AppSoundManager
@@ -66,7 +66,12 @@ val singletonModule = module {
 
     single { DefaultGetContentUriUseCase(get()) } bind GetContentUriUseCase::class
     single { DefaultSaveImageUseCase(get()) } bind SaveImageUseCase::class
-    single { DefaultImageFormatUseCase(get(),get(named(BACKGROUND))) } bind ImageFormatUseCase::class
+    single {
+        DefaultImageFormatUseCase(
+            get(),
+            get(named(BACKGROUND))
+        )
+    } bind ImageFormatUseCase::class
     single { DefaultClipboardManager(get()) } bind ClipboardManager::class
     single { DefaultAppSoundManager(get()) } bind AppSoundManager::class
     single { DefaultLocalConfigurationUseCase(get()) } bind LocalConfigurationUseCase::class
@@ -75,9 +80,13 @@ val singletonModule = module {
     single { DefaultAppLogger() } bind AppLogger::class
     single { DefaultFileManager(get(), get(named(BACKGROUND))) } bind FileManager::class
     single { DefaultPermissionManager(get()) } bind PermissionManager::class
-    single { DefaultAppAnalyticsManager() } bind AppAnalyticsManager::class
+    single {
+        DefaultAppAnalyticsManager(
+            get(),
+            get(named(BACKGROUND))
+        )
+    } bind AppAnalyticsManager::class
     single { DefaultQuickCodePreferenceManager(get(named(DEFAULT))) } bind QuickCodePreferenceManager::class
-    single { DefaultQuickCodeNotificationManager(get()) } bind QuickCodeNotificationManager::class
     single { DefaultQuickCodeConfigurationManager(get()) } bind QuickCodeConfigurationManager::class
     single { DefaultAppStorageManager(get(), get()) } bind AppStorageManager::class
     single { DefaultInitialProvider() } bind InitialProvider::class
@@ -88,4 +97,7 @@ val singletonModule = module {
 
     // Database DAO
     single { get<AppStorageManager>().instance.configDao() } bind ConfigurationDao::class
+    single {
+        DefaultUpdateLocaleUseCase(get(), get(), get(named(BACKGROUND)))
+    } bind UpdateLocaleUseCase::class
 }

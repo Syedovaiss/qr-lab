@@ -113,8 +113,6 @@ dependencies {
     implementation(libs.zxing.android.embedded)
     // Timber
     implementation(libs.timber)
-    // Leaks
-    debugImplementation(libs.leakcanary.android)
 
     //Camera
     implementation(libs.androidx.camera.core)
@@ -127,11 +125,11 @@ dependencies {
     // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.cloud.messaging)
     implementation(libs.firebase.config)
     implementation(libs.firebase.storage)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.crashlytics.ndk)
-    implementation(libs.onesignal)
     implementation(libs.datastore.preferences)
 
 
@@ -144,7 +142,7 @@ dependencies {
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
-
+    implementation(libs.lottie.compose)
     // Testing Dependencies
     testImplementation(libs.ktor.client.mock)
     testImplementation(libs.mockito.core)

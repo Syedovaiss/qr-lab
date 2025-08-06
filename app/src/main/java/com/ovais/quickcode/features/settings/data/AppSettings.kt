@@ -2,18 +2,19 @@ package com.ovais.quickcode.features.settings.data
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import com.ovais.quickcode.utils.QRFormat
 import androidx.compose.ui.graphics.Color as ComposeColor
 
 data class AppSettings(
     val foregroundColor: Color = Color.Black,
     val backgroundColor: Color = Color.White,
-    val qrFormat: String = "PNG",
+    val qrFormat: String = QRFormat.PNG.name,
     val canVibrateOnScan: Boolean = true,
     val canBeepOnScan: Boolean = true,
     val canAutoCopyOnScan: Boolean = false,
     val canAutoOpenURLOnScan: Boolean = false,
     val locale: String = "System",
-    val canSendAnonymousUsageData: Boolean = false,
+    val canSendAnonymousUsageData: Boolean = true,
     val cameraPermissionGranted: Boolean = false,
     val galleryPermissionGranted: Boolean = false
 ) {
@@ -30,7 +31,7 @@ data class AppSettings(
             canSendAnonymousUsageData = canSendAnonymousUsageData.toString()
         )
     }
-    
+
     companion object {
         fun fromLocalConfiguration(config: com.ovais.quickcode.storage.data.LocalConfiguration): AppSettings {
             return AppSettings(

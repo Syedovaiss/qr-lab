@@ -32,11 +32,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
 import com.ovais.quickcode.features.create.data.CodeFormats
-import com.ovais.quickcode.utils.components.HeadingText
 import com.ovais.quickcode.utils.components.ImagePicker
 import com.ovais.quickcode.utils.components.PermissionRationaleDialog
 import com.ovais.quickcode.utils.components.SizeInputRow
 import com.ovais.quickcode.utils.components.SubtitleText
+import com.ovais.quickcode.utils.components.TopBar
 import com.ovais.quickcode.utils.openAppSettings
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
@@ -46,7 +46,8 @@ fun CreateQRView(
     scaffoldPaddingValues: PaddingValues,
     viewModel: CreateCodeViewModel = koinViewModel(),
     snackbarHostState: SnackbarHostState,
-    onCodeScanned: (Pair<Bitmap, MutableMap<String,String>>) -> Unit
+    onCodeScanned: (Pair<Bitmap, MutableMap<String, String>>) -> Unit,
+    onBack: () -> Unit
 ) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
@@ -55,11 +56,13 @@ fun CreateQRView(
     var selectedType by remember { mutableStateOf<CodeFormats?>(null) }
     var showGeneratedCode by remember { mutableStateOf(false) }
     var generatedBitmap by remember { mutableStateOf<Bitmap?>(null) }
-    var backgroundColor by remember { mutableStateOf(Color.White) }
-    var foregroundColor by remember { mutableStateOf(Color.Black) }
+    val defaultColors by viewModel.defaultColors.collectAsStateWithLifecycle()
+    var backgroundColor by remember { mutableStateOf(defaultColors.first) }
+    var foregroundColor by remember { mutableStateOf(defaultColors.second) }
     var selectedLogo by remember { mutableStateOf<Bitmap?>(null) }
     var canShowImagePicker by remember { mutableStateOf(false) }
     var arePermissionsDenied by remember { mutableStateOf(false) }
+    val codeSize by viewModel.codeSize.collectAsStateWithLifecycle()
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { resultMap ->
@@ -70,6 +73,10 @@ fun CreateQRView(
             arePermissionsDenied = true
             canShowImagePicker = false
         }
+    }
+    LaunchedEffect(defaultColors) {
+        backgroundColor = defaultColors.first
+        foregroundColor = defaultColors.second
     }
     var codeValues: MutableMap<String, String> by remember { mutableMapOf() }
     LaunchedEffect(Unit) {
@@ -100,18 +107,18 @@ fun CreateQRView(
         modifier = Modifier
             .fillMaxSize()
             .padding(scaffoldPaddingValues)
+            .background(Color.White)
             .verticalScroll(scrollState)
     ) {
-
-        HeadingText(
-            stringResource(R.string.create_new),
-            paddingValues = PaddingValues(16.dp)
+        TopBar(
+            R.string.create_new,
+            onBack
         )
         SubtitleText(
             stringResource(R.string.code_format),
             paddingValues = PaddingValues(16.dp)
         )
-        CodeFormatDropDown(codeFormats, selectedType) {
+        CodeFormatDropDown(codeFormats, selectedType ?: CodeFormats.Code128) {
             selectedType = it
             viewModel.onCodeSelection(it)
         }
@@ -120,6 +127,8 @@ fun CreateQRView(
             paddingValues = PaddingValues(16.dp)
         )
         SizeInputRow(
+            defaultWidth = codeSize.width.toString(),
+            defaultHeight = codeSize.height.toString(),
             onWidthChange = viewModel::onWidthUpdate,
             onHeightChange = viewModel::onHeightUpdate
         )
@@ -131,7 +140,10 @@ fun CreateQRView(
                 foregroundColor = it
             }
             if (canShowImagePicker) {
-                SubtitleText(stringResource(R.string.upload_logo))
+                SubtitleText(
+                    stringResource(R.string.upload_logo),
+                    modifier = Modifier.padding(16.dp)
+                )
                 ImagePicker(viewModel.fileManagerImpl) {
                     selectedLogo = it
                 }
@@ -157,6 +169,7 @@ fun CreateQRView(
         }
         CodeTypeFormScreen(
             codeItems,
+            isQrCode = selectedType == CodeFormats.QRCode,
             onCreateCode = { selectedValues, type ->
                 codeValues = selectedValues
                 val colorPair = Pair(backgroundColor, foregroundColor)

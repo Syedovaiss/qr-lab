@@ -1,5 +1,6 @@
 package com.ovais.quickcode.barcode_manger
 
+import android.annotation.SuppressLint
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -13,7 +14,6 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
 import android.graphics.Rect
 import android.graphics.RectF
-import android.graphics.Typeface
 import android.graphics.YuvImage
 import android.net.Uri
 import android.util.TypedValue
@@ -46,12 +46,6 @@ import java.util.EnumMap
 interface BarcodeManager {
     suspend fun generateBarcode(
         content: String,
-        config: BarcodeConfig
-    ): Bitmap?
-
-    suspend fun generateBarcode(
-        content: String,
-        text: String,
         config: BarcodeConfig
     ): Bitmap?
 
@@ -116,64 +110,6 @@ class DefaultBarcodeManager(
                     val bitmap = BarcodeEncoder().createBitmap(bitMatrix)
                     logInfo("Bitmap created for:$content")
                     bitmap
-                }
-            } catch (e: Exception) {
-                Timber.e(e)
-                logException("Failed to generate barcode because: ${e.printStackTrace()}")
-                null
-            }
-        }
-    }
-
-    override suspend fun generateBarcode(
-        content: String,
-        text: String,
-        config: BarcodeConfig
-    ): Bitmap? {
-        return withContext(dispatcherDefault) {
-            try {
-                if (config.barcodeFormat == BarcodeFormat.QR_CODE) {
-                    throw BarcodeMethodException()
-                }
-                logInfo("Generating Barcode for:$content")
-                withContext(dispatcherDefault) {
-                    val bitMatrix =
-                        MultiFormatWriter().encode(
-                            content,
-                            config.barcodeFormat,
-                            config.width,
-                            config.height
-                        )
-                    logInfo("Created bit-matrix for barcode")
-                    val barcodeBitmap = BarcodeEncoder().createBitmap(bitMatrix)
-                    logInfo("Bitmap created for:$content")
-                    logInfo("Applying text on it")
-                    // Prepare paint for text
-                    val paint = Paint().apply {
-                        color = config.textColor
-                        this.textSize = config.textSize ?: textSize
-                        textAlign = Paint.Align.CENTER
-                        isAntiAlias = true
-                        typeface = Typeface.DEFAULT_BOLD
-                    }
-                    val textHeight = (paint.descent() - paint.ascent()).toInt()
-                    // padding between text and barcode
-                    val totalHeight = barcodeBitmap.height + textHeight + 20
-                    // Create new bitmap with space for text
-                    val combinedBitmap = createBitmap(config.width, totalHeight)
-                    val canvas = Canvas(combinedBitmap)
-                    canvas.drawColor(Color.WHITE)
-                    // Draw text at the top center
-                    canvas.drawText(
-                        content,
-                        (config.width / 2).toFloat(),
-                        -paint.ascent() + 10,
-                        paint
-                    )
-                    // Draw barcode below text
-                    canvas.drawBitmap(barcodeBitmap, 0f, textHeight + 20f, null)
-                    logInfo("Added Text on Barcode")
-                    combinedBitmap
                 }
             } catch (e: Exception) {
                 Timber.e(e)
@@ -337,13 +273,17 @@ class DefaultBarcodeManager(
         withContext(dispatcherDefault) {
             try {
                 val bitmap = imageProxyToBitmap(imageProxy)
-                val rotatedBitmap = rotateBitmap(bitmap, imageProxy.imageInfo.rotationDegrees)
-                val decodedText = decodeWithZxing(rotatedBitmap)
-                imageProxy.close()
-                decodedText?.let {
-                    ScanResult.Success(decodedText)
+                bitmap?.let {
+                    val rotatedBitmap = rotateBitmap(bitmap, imageProxy.imageInfo.rotationDegrees)
+                    val decodedText = decodeWithZxing(rotatedBitmap)
+                    imageProxy.close()
+                    decodedText?.let {
+                        ScanResult.Success(decodedText)
+                    } ?: run {
+                        ScanResult.Failure("No QR or barcode found")
+                    }
                 } ?: run {
-                    ScanResult.Failure("No QR or barcode found")
+                    ScanResult.Failure("Bitmap is null!")
                 }
             } catch (e: Exception) {
                 imageProxy.close()
@@ -397,23 +337,40 @@ class DefaultBarcodeManager(
         }
     }
 
-    private fun imageProxyToBitmap(imageProxy: ImageProxy): Bitmap {
-        val planeProxy = imageProxy.planes[0]
-        val buffer = planeProxy.buffer
-        val bytes = ByteArray(buffer.remaining())
-        buffer.get(bytes)
+    @SuppressLint("UnsafeOptInUsageError")
+    private fun imageProxyToBitmap(imageProxy: ImageProxy): Bitmap? {
+        val image = imageProxy.image ?: return null
 
-        val yuvImage = YuvImage(
-            bytes,
-            ImageFormat.NV21,
-            imageProxy.width,
-            imageProxy.height,
-            null
-        )
+        if (image.format != ImageFormat.YUV_420_888 || image.planes.size < 3) {
+            logger.logException("Image Convert:Unsupported format or corrupted planes")
+            return null
+        }
+
+        val yBuffer = image.planes[0].buffer
+        val uBuffer = image.planes[1].buffer
+        val vBuffer = image.planes[2].buffer
+
+        val ySize = yBuffer.remaining()
+        val uSize = uBuffer.remaining()
+        val vSize = vBuffer.remaining()
+
+        val nv21 = ByteArray(ySize + uSize + vSize)
+
+        yBuffer.get(nv21, 0, ySize)
+        vBuffer.get(nv21, ySize, vSize)
+        uBuffer.get(nv21, ySize + vSize, uSize)
+
+        val yuvImage = YuvImage(nv21, ImageFormat.NV21, imageProxy.width, imageProxy.height, null)
         val out = ByteArrayOutputStream()
-        yuvImage.compressToJpeg(Rect(0, 0, imageProxy.width, imageProxy.height), 100, out)
-        val yuvBytes = out.toByteArray()
-        return BitmapFactory.decodeByteArray(yuvBytes, 0, yuvBytes.size)
+        val success =
+            yuvImage.compressToJpeg(Rect(0, 0, imageProxy.width, imageProxy.height), 100, out)
+
+        return if (success) {
+            val jpegBytes = out.toByteArray()
+            BitmapFactory.decodeByteArray(jpegBytes, 0, jpegBytes.size)
+        } else {
+            null
+        }
     }
 
     private fun rotateBitmap(bitmap: Bitmap, rotationDegrees: Int): Bitmap {

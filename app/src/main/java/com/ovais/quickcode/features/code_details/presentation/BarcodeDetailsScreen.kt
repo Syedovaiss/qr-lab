@@ -5,7 +5,6 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -16,18 +15,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -41,7 +37,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -49,9 +44,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ovais.quickcode.R
 import com.ovais.quickcode.core.ui.theme.appBackground
-import com.ovais.quickcode.utils.components.BackIcon
-import com.ovais.quickcode.utils.components.HeadingText
+import com.ovais.quickcode.utils.AnalyticsConstant.BITMAP_CONTENT
+import com.ovais.quickcode.utils.AnalyticsConstant.DATA
+import com.ovais.quickcode.utils.AnalyticsConstant.ERROR
+import com.ovais.quickcode.utils.AnalyticsConstant.ERROR_REASON
+import com.ovais.quickcode.utils.AnalyticsConstant.VIEW_SCANNED_CODE_CONTENT
+import com.ovais.quickcode.utils.AnalyticsConstant.VIEW_SCANNED_CODE_EVENT
+import com.ovais.quickcode.utils.AnalyticsConstant.VIEW_SCANNED_CODE_IMAGE
+import com.ovais.quickcode.utils.AnalyticsConstant.VIEW_SCANNED_IMAGE_EVENT
+import com.ovais.quickcode.utils.components.PrimaryButton
 import com.ovais.quickcode.utils.components.SubtitleText
+import com.ovais.quickcode.utils.components.TopBar
 import com.ovais.quickcode.utils.shareIntent
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
@@ -66,7 +69,13 @@ fun BarcodeDetailsScreen(
     val (bitmap, contentMap) = data
 
     if (bitmap == null || bitmap.isRecycled) {
-        BarcodeErrorView(onBack)
+        BarcodeErrorView(onError = {
+            viewModel.logEvent(
+                BITMAP_CONTENT,
+                ERROR,
+                hashMapOf(ERROR_REASON to "Bitmap is null or recycled!")
+            )
+        }, onBack)
         return
     }
 
@@ -118,10 +127,14 @@ fun BarcodeDetailsScreen(
                 .padding(vertical = 32.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            BackIcon(onBack)
-            HeadingText(
-                text = stringResource(R.string.barcode_details),
-                paddingValues = PaddingValues(8.dp)
+            TopBar(
+                title = R.string.barcode_details,
+                onBack = {
+                    showSuccessMessage = false
+                    showSaveDialog = false
+                    showErrorMessage = false
+                    onBack()
+                }
             )
         }
 
@@ -129,7 +142,7 @@ fun BarcodeDetailsScreen(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(horizontal = 16.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
             shape = RoundedCornerShape(12.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White)
@@ -141,7 +154,11 @@ fun BarcodeDetailsScreen(
                     text = stringResource(R.string.content_details),
                     paddingValues = PaddingValues(bottom = 16.dp)
                 )
-
+                viewModel.logEvent(
+                    VIEW_SCANNED_CODE_EVENT,
+                    VIEW_SCANNED_CODE_CONTENT,
+                    hashMapOf(DATA to contentMap)
+                )
                 contentMap.forEach { (key, value) ->
                     if (value.isNotBlank()) {
                         ContentDetailItem(
@@ -150,7 +167,9 @@ fun BarcodeDetailsScreen(
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         HorizontalDivider(
-                            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 16.dp)
                         )
                     }
                 }
@@ -181,6 +200,11 @@ fun BarcodeDetailsScreen(
                         .clip(RoundedCornerShape(12.dp)),
                     contentAlignment = Alignment.Center
                 ) {
+                    viewModel.logEvent(
+                        VIEW_SCANNED_IMAGE_EVENT,
+                        VIEW_SCANNED_CODE_IMAGE
+                    )
+
                     Image(
                         bitmap = bitmap.asImageBitmap(),
                         contentDescription = stringResource(R.string.barcode_image),
@@ -194,108 +218,59 @@ fun BarcodeDetailsScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 // Action Buttons
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                Column(
+                    modifier = Modifier.fillMaxWidth()
                 ) {
-                    Button(
-                        onClick = { showSaveDialog = true },
-                        modifier = Modifier.weight(1f)
+                    PrimaryButton(
+                        title = R.string.save_image,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight()
+                            .padding(vertical = 8.dp)
                     ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            Image(
-                                painter = painterResource(R.drawable.ic_save),
-                                contentDescription = null,
-                                modifier = Modifier.size(20.dp)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(stringResource(R.string.save_image))
-                        }
+                        showSaveDialog = true
                     }
-
-                    Spacer(modifier = Modifier.width(16.dp))
-
-                    Button(
-                        onClick = {
-                            if (!bitmap.isRecycled) {
-                                viewModel.shareBarcode(bitmap)
-                            }
-                        },
-                        modifier = Modifier.weight(1f)
+                    PrimaryButton(
+                        title = R.string.share,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight()
                     ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            Image(
-                                painter = painterResource(R.drawable.ic_share),
-                                contentDescription = null,
-                                modifier = Modifier.size(20.dp)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(stringResource(R.string.share))
-                        }
+                        viewModel.shareBarcode(bitmap)
                     }
                 }
             }
         }
     }
 
-    // Save Dialog
-    if (showSaveDialog) {
-        AlertDialog(
-            onDismissRequest = { showSaveDialog = false },
-            title = { Text(stringResource(R.string.save_barcode)) },
-            text = { Text(stringResource(R.string.save_barcode_message)) },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        showSaveDialog = false
-                        if (!bitmap.isRecycled) {
-                            saveLauncher.launch("barcode_${System.currentTimeMillis()}.png")
-                        }
-                    }
-                ) {
-                    Text(stringResource(R.string.save))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showSaveDialog = false }) {
-                    Text(stringResource(R.string.cancel))
-                }
+    SaveBarcodeDialog(
+        show = showSaveDialog,
+        onDismiss = {
+            showSaveDialog = false
+            viewModel.updateStateToIdle()
+        },
+        onConfirm = {
+            showSaveDialog = false
+            viewModel.updateStateToIdle()
+            if (!bitmap.isRecycled) {
+                saveLauncher.launch("code_${System.currentTimeMillis()}.png")
             }
-        )
-    }
-
-    // Success Message
-    if (showSuccessMessage) {
-        AlertDialog(
-            onDismissRequest = { showSuccessMessage = false },
-            title = { Text(stringResource(R.string.success)) },
-            text = { Text(stringResource(R.string.image_saved_successfully)) },
-            confirmButton = {
-                TextButton(onClick = { showSuccessMessage = false }) {
-                    Text(stringResource(R.string.ok))
-                }
-            }
-        )
-    }
-
-    if (showErrorMessage) {
-        AlertDialog(
-            onDismissRequest = { showErrorMessage = false },
-            title = { Text(stringResource(R.string.error)) },
-            text = { Text(stringResource(R.string.failed_to_save_image)) },
-            confirmButton = {
-                TextButton(onClick = { showErrorMessage = false }) {
-                    Text(stringResource(R.string.ok))
-                }
-            }
-        )
-    }
+        }
+    )
+    SuccessDialog(
+        show = showSuccessMessage,
+        onDismiss = {
+            viewModel.updateStateToIdle()
+            showSuccessMessage = false
+        }
+    )
+    ErrorDialog(
+        show = showErrorMessage,
+        onDismiss = {
+            viewModel.updateStateToIdle()
+            showErrorMessage = false
+        }
+    )
 }
 
 @Composable

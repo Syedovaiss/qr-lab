@@ -11,9 +11,10 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.ovais.quickcode.core.ui.theme.QuickCodeTheme
-import com.ovais.quickcode.navigation.QRNavigation
+import com.ovais.quickcode.navigation.QuickCodeNavigation
 
 class QuickCodeActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -24,7 +25,7 @@ class QuickCodeActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     snackbarHost = { SnackbarHost(snackBarHostState) }
                 ) { innerPadding ->
-                    QRNavigation(
+                    QuickCodeNavigation(
                         innerPadding,
                         snackBarHostState
                     )

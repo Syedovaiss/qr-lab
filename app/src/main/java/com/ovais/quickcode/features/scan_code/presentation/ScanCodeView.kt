@@ -29,11 +29,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Slider
-import androidx.compose.material3.SnackbarDuration
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Slider
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -44,7 +44,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.RoundRect
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathFillType
@@ -58,8 +62,13 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
+import com.ovais.quickcode.core.ui.theme.ColorPrimary
+import com.ovais.quickcode.core.ui.theme.ColorSecondary
 import com.ovais.quickcode.utils.components.PermissionRationaleDialog
+import com.ovais.quickcode.utils.isURL
 import com.ovais.quickcode.utils.openAppSettings
+import com.ovais.quickcode.utils.openURL
+import com.ovais.quickcode.utils.orEmpty
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
 import timber.log.Timber
@@ -67,8 +76,8 @@ import timber.log.Timber
 @Composable
 fun ScanQRView(
     scaffoldPaddingValues: PaddingValues,
+    snackBarHostState: SnackbarHostState,
     viewModel: ScanViewModel = koinViewModel(),
-    snackbarHostState: SnackbarHostState,
     onBack: () -> Unit
 ) {
     val scanResult by viewModel.scanResult.collectAsStateWithLifecycle()
@@ -85,13 +94,46 @@ fun ScanQRView(
             arePermissionsDenied = true
         }
     }
+    var showDialog by remember { mutableStateOf(false) }
+    val canAutoCopyToClipboard by viewModel.canAutoCopyToClipboard.collectAsStateWithLifecycle()
+    val canAutoOpenURL by viewModel.canAutoOpenURL.collectAsStateWithLifecycle()
+    var canShowCopiedSnackBar by remember { mutableStateOf(false) }
+    val copiedText = stringResource(R.string.copied_to_clipboard)
 
+    LaunchedEffect(canShowCopiedSnackBar) {
+        if (canShowCopiedSnackBar) {
+            snackBarHostState.showSnackbar(copiedText)
+        }
+    }
     LaunchedEffect(Unit) {
         viewModel.checkPermissions()
     }
     LaunchedEffect(scanResult) {
         scanResult?.let {
-            snackbarHostState.showSnackbar(it, duration = SnackbarDuration.Long)
+            if (it.isNotEmpty()) {
+                showDialog = true
+            }
+        }
+    }
+
+    if (showDialog) {
+        val label = stringResource(R.string.clipboard_label)
+        ScanResultDialog(
+            resultText = scanResult.orEmpty,
+            copy = {
+                viewModel.copyToClipboard(label, scanResult.orEmpty)
+            },
+            onDismiss = {
+                viewModel.clearScannedResults()
+                showDialog = false
+            }
+        )
+        if (canAutoCopyToClipboard) {
+            canShowCopiedSnackBar = true
+            viewModel.copyToClipboard(label, scanResult.orEmpty)
+        }
+        if (canAutoOpenURL && scanResult.orEmpty.isURL) {
+            context.openURL(scanResult.orEmpty)
         }
     }
     LaunchedEffect(Unit) {
@@ -115,7 +157,10 @@ fun ScanQRView(
                 onGalleryImagePicked = { uri ->
                     viewModel.onImagePickedFromGallery(uri)
                 },
-                onBack = onBack
+                onBack = {
+                    showDialog = false
+                    onBack()
+                }
             )
         }
         if (arePermissionsDenied) {
@@ -216,15 +261,15 @@ fun CodeScannerView(
                 val overlayPath = Path().apply {
                     fillType = PathFillType.EvenOdd
                     // Start with the full screen
-                    addRect(androidx.compose.ui.geometry.Rect(0f, 0f, screenWidth, screenHeight))
+                    addRect(Rect(0f, 0f, screenWidth, screenHeight))
                     // Cut out the scanning area (this creates a hole in the overlay)
                     addRoundRect(
-                        androidx.compose.ui.geometry.RoundRect(
+                        RoundRect(
                             left = scanAreaX,
                             top = scanAreaY,
                             right = scanAreaX + scanAreaSize,
                             bottom = scanAreaY + scanAreaSize,
-                            cornerRadius = androidx.compose.ui.geometry.CornerRadius(20f, 20f)
+                            cornerRadius = CornerRadius(20f, 20f)
                         )
                     )
                 }
@@ -244,8 +289,8 @@ fun CodeScannerView(
                 drawRoundRect(
                     color = Color.White,
                     topLeft = Offset(scanAreaX, scanAreaY),
-                    size = androidx.compose.ui.geometry.Size(cornerLength, cornerThickness),
-                    cornerRadius = androidx.compose.ui.geometry.CornerRadius(
+                    size = Size(cornerLength, cornerThickness),
+                    cornerRadius = CornerRadius(
                         cornerRadius,
                         cornerRadius
                     )
@@ -253,8 +298,8 @@ fun CodeScannerView(
                 drawRoundRect(
                     color = Color.White,
                     topLeft = Offset(scanAreaX, scanAreaY),
-                    size = androidx.compose.ui.geometry.Size(cornerThickness, cornerLength),
-                    cornerRadius = androidx.compose.ui.geometry.CornerRadius(
+                    size = Size(cornerThickness, cornerLength),
+                    cornerRadius = CornerRadius(
                         cornerRadius,
                         cornerRadius
                     )
@@ -264,8 +309,8 @@ fun CodeScannerView(
                 drawRoundRect(
                     color = Color.White,
                     topLeft = Offset(scanAreaX + scanAreaSize - cornerLength, scanAreaY),
-                    size = androidx.compose.ui.geometry.Size(cornerLength, cornerThickness),
-                    cornerRadius = androidx.compose.ui.geometry.CornerRadius(
+                    size = Size(cornerLength, cornerThickness),
+                    cornerRadius = CornerRadius(
                         cornerRadius,
                         cornerRadius
                     )
@@ -273,8 +318,8 @@ fun CodeScannerView(
                 drawRoundRect(
                     color = Color.White,
                     topLeft = Offset(scanAreaX + scanAreaSize - cornerThickness, scanAreaY),
-                    size = androidx.compose.ui.geometry.Size(cornerThickness, cornerLength),
-                    cornerRadius = androidx.compose.ui.geometry.CornerRadius(
+                    size = Size(cornerThickness, cornerLength),
+                    cornerRadius = CornerRadius(
                         cornerRadius,
                         cornerRadius
                     )
@@ -284,8 +329,8 @@ fun CodeScannerView(
                 drawRoundRect(
                     color = Color.White,
                     topLeft = Offset(scanAreaX, scanAreaY + scanAreaSize - cornerThickness),
-                    size = androidx.compose.ui.geometry.Size(cornerLength, cornerThickness),
-                    cornerRadius = androidx.compose.ui.geometry.CornerRadius(
+                    size = Size(cornerLength, cornerThickness),
+                    cornerRadius = CornerRadius(
                         cornerRadius,
                         cornerRadius
                     )
@@ -293,8 +338,8 @@ fun CodeScannerView(
                 drawRoundRect(
                     color = Color.White,
                     topLeft = Offset(scanAreaX, scanAreaY + scanAreaSize - cornerLength),
-                    size = androidx.compose.ui.geometry.Size(cornerThickness, cornerLength),
-                    cornerRadius = androidx.compose.ui.geometry.CornerRadius(
+                    size = Size(cornerThickness, cornerLength),
+                    cornerRadius = CornerRadius(
                         cornerRadius,
                         cornerRadius
                     )
@@ -307,8 +352,8 @@ fun CodeScannerView(
                         scanAreaX + scanAreaSize - cornerLength,
                         scanAreaY + scanAreaSize - cornerThickness
                     ),
-                    size = androidx.compose.ui.geometry.Size(cornerLength, cornerThickness),
-                    cornerRadius = androidx.compose.ui.geometry.CornerRadius(
+                    size = Size(cornerLength, cornerThickness),
+                    cornerRadius = CornerRadius(
                         cornerRadius,
                         cornerRadius
                     )
@@ -319,8 +364,8 @@ fun CodeScannerView(
                         scanAreaX + scanAreaSize - cornerThickness,
                         scanAreaY + scanAreaSize - cornerLength
                     ),
-                    size = androidx.compose.ui.geometry.Size(cornerThickness, cornerLength),
-                    cornerRadius = androidx.compose.ui.geometry.CornerRadius(
+                    size = Size(cornerThickness, cornerLength),
+                    cornerRadius = CornerRadius(
                         cornerRadius,
                         cornerRadius
                     )
@@ -469,8 +514,6 @@ fun CodeScannerView(
                 fontSize = 12.sp
             )
         }
-
-        // Help Dialog
         if (showHelpDialog) {
             AlertDialog(
                 onDismissRequest = { showHelpDialog = false },
@@ -478,7 +521,7 @@ fun CodeScannerView(
                 shape = RoundedCornerShape(20.dp),
                 title = {
                     Text(
-                        text = "How to Scan QR Codes & Barcodes",
+                        text = stringResource(R.string.scan_help_title),
                         fontSize = 18.sp,
                         color = Color.Black
                     )
@@ -488,139 +531,46 @@ fun CodeScannerView(
                         modifier = Modifier.padding(vertical = 8.dp),
                         verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
-                        // Step 1
-                        Row(
-                            verticalAlignment = Alignment.Top,
-                            horizontalArrangement = Arrangement.spacedBy(12.dp)
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .size(24.dp)
-                                    .background(
-                                        color = Color(0xFF2196F3),
-                                        shape = RoundedCornerShape(12.dp)
-                                    ),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text(
-                                    text = "1",
-                                    color = Color.White,
-                                    fontSize = 12.sp
-                                )
-                            }
-                            Column {
-                                Text(
-                                    text = "Position the Code",
-                                    fontSize = 14.sp,
-                                    color = Color.Black
-                                )
-                                Text(
-                                    text = "Place the QR code or barcode within the scanning area (the rounded rectangle with corner indicators).",
-                                    fontSize = 12.sp,
-                                    color = Color.Gray
-                                )
-                            }
-                        }
+                        // Steps
+                        val steps = listOf(
+                            R.string.scan_step_1_title to R.string.scan_step_1_desc,
+                            R.string.scan_step_2_title to R.string.scan_step_2_desc,
+                            R.string.scan_step_3_title to R.string.scan_step_3_desc,
+                            R.string.scan_step_4_title to R.string.scan_step_4_desc
+                        )
 
-                        // Step 2
-                        Row(
-                            verticalAlignment = Alignment.Top,
-                            horizontalArrangement = Arrangement.spacedBy(12.dp)
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .size(24.dp)
-                                    .background(
-                                        color = Color(0xFF2196F3),
-                                        shape = RoundedCornerShape(12.dp)
-                                    ),
-                                contentAlignment = Alignment.Center
+                        steps.forEachIndexed { index, (titleRes, descRes) ->
+                            Row(
+                                verticalAlignment = Alignment.Top,
+                                horizontalArrangement = Arrangement.spacedBy(12.dp)
                             ) {
-                                Text(
-                                    text = "2",
-                                    color = Color.White,
-                                    fontSize = 12.sp
-                                )
-                            }
-                            Column {
-                                Text(
-                                    text = "Ensure Good Lighting",
-                                    fontSize = 14.sp,
-                                    color = Color.Black
-                                )
-                                Text(
-                                    text = "Make sure the code is well-lit. Use the torch button if needed for better visibility.",
-                                    fontSize = 12.sp,
-                                    color = Color.Gray
-                                )
-                            }
-                        }
-
-                        // Step 3
-                        Row(
-                            verticalAlignment = Alignment.Top,
-                            horizontalArrangement = Arrangement.spacedBy(12.dp)
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .size(24.dp)
-                                    .background(
-                                        color = Color(0xFF2196F3),
-                                        shape = RoundedCornerShape(12.dp)
-                                    ),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text(
-                                    text = "3",
-                                    color = Color.White,
-                                    fontSize = 12.sp
-                                )
-                            }
-                            Column {
-                                Text(
-                                    text = "Hold Steady",
-                                    fontSize = 14.sp,
-                                    color = Color.Black
-                                )
-                                Text(
-                                    text = "Keep your device steady and wait for the code to be automatically detected and scanned.",
-                                    fontSize = 12.sp,
-                                    color = Color.Gray
-                                )
-                            }
-                        }
-
-                        // Step 4
-                        Row(
-                            verticalAlignment = Alignment.Top,
-                            horizontalArrangement = Arrangement.spacedBy(12.dp)
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .size(24.dp)
-                                    .background(
-                                        color = Color(0xFF2196F3),
-                                        shape = RoundedCornerShape(12.dp)
-                                    ),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text(
-                                    text = "4",
-                                    color = Color.White,
-                                    fontSize = 12.sp
-                                )
-                            }
-                            Column {
-                                Text(
-                                    text = "Alternative: Gallery",
-                                    fontSize = 14.sp,
-                                    color = Color.Black
-                                )
-                                Text(
-                                    text = "If scanning doesn't work, you can also select an image from your gallery using the gallery button.",
-                                    fontSize = 12.sp,
-                                    color = Color.Gray
-                                )
+                                Box(
+                                    modifier = Modifier
+                                        .size(24.dp)
+                                        .background(
+                                            color = ColorPrimary,
+                                            shape = RoundedCornerShape(12.dp)
+                                        ),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        text = "${index + 1}",
+                                        color = Color.White,
+                                        fontSize = 12.sp
+                                    )
+                                }
+                                Column {
+                                    Text(
+                                        text = stringResource(titleRes),
+                                        fontSize = 14.sp,
+                                        color = Color.Black
+                                    )
+                                    Text(
+                                        text = stringResource(descRes),
+                                        fontSize = 12.sp,
+                                        color = Color.Gray
+                                    )
+                                }
                             }
                         }
 
@@ -629,36 +579,34 @@ fun CodeScannerView(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .background(
-                                    color = Color(0xFFE3F2FD),
+                                    color = ColorSecondary.copy(alpha = 0.2f),
                                     shape = RoundedCornerShape(12.dp)
                                 )
                                 .padding(16.dp)
                         ) {
                             Column {
                                 Text(
-                                    text = "💡 Tips for Better Scanning:",
+                                    text = stringResource(R.string.scan_tips_title),
                                     fontSize = 14.sp,
-                                    color = Color(0xFF1976D2)
+                                    color = ColorPrimary
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = "• Clean the camera lens\n• Avoid reflective surfaces\n• Use zoom slider if needed\n• Ensure code is not damaged",
+                                    text = stringResource(R.string.scan_tips_bullets),
                                     fontSize = 12.sp,
-                                    color = Color(0xFF1976D2)
+                                    color = ColorPrimary
                                 )
                             }
                         }
                     }
                 },
                 confirmButton = {
-                    Text(
-                        text = "Got it!",
-                        color = Color(0xFF2196F3),
-                        modifier = Modifier.clickable(
-                            remember { MutableInteractionSource() },
-                            LocalIndication.current
-                        ) { showHelpDialog = false }
-                    )
+                    (TextButton(onClick = { showHelpDialog = false }) {
+                        Text(
+                            text = stringResource(R.string.got_it),
+                            color = ColorPrimary
+                        )
+                    })
                 }
             )
         }

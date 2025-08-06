@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,11 +15,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -36,12 +33,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
+import com.ovais.quickcode.core.ui.theme.ColorPrimary
+import com.ovais.quickcode.core.ui.theme.ColorTertiary
 import com.ovais.quickcode.utils.components.AppSwitch
-import com.ovais.quickcode.utils.components.BackIcon
+import com.ovais.quickcode.utils.components.BodyText
 import com.ovais.quickcode.utils.components.ColorPickerDialog
-import com.ovais.quickcode.utils.components.HeadingText
+import com.ovais.quickcode.utils.components.IconCircle
 import com.ovais.quickcode.utils.components.RadioSelectionDialog
 import com.ovais.quickcode.utils.components.SubtitleText
+import com.ovais.quickcode.utils.components.TopBar
 import com.ovais.quickcode.utils.openPlayStore
 import com.ovais.quickcode.utils.openURL
 import com.ovais.quickcode.utils.restartApp
@@ -68,6 +68,7 @@ fun SettingsView(
     val snackbarHostState = SnackbarHostState()
     val context = LocalContext.current
     val appConfig by viewModel.appConfig.collectAsStateWithLifecycle()
+    val locale by viewModel.locale.collectAsStateWithLifecycle()
 
     LaunchedEffect(uiState.error) {
         uiState.error?.let { error ->
@@ -106,14 +107,10 @@ fun SettingsView(
             .padding(horizontal = 12.dp, vertical = 8.dp)
             .verticalScroll(scrollState)
     ) {
-        Row {
-            BackIcon(onBack)
-            HeadingText(
-                stringResource(R.string.settings),
-                paddingValues = PaddingValues(vertical = 8.dp)
-            )
-        }
-
+        TopBar(
+            R.string.settings,
+            onBack
+        )
         Spacer(modifier = Modifier.height(4.dp))
 
         if (uiState.isLoading) {
@@ -122,8 +119,8 @@ fun SettingsView(
 
             SettingsSection(title = stringResource(R.string.customization)) {
                 SettingRowItem(
-                    label = "QR Color",
-                    description = "Default QR Code Color"
+                    label = stringResource(R.string.content_color),
+                    description = stringResource(R.string.content_color_description)
                 ) {
                     RoundedColoredCircle(
                         color = uiState.settings.foregroundColor,
@@ -132,8 +129,8 @@ fun SettingsView(
                 }
 
                 SettingRowItem(
-                    label = "QR Background",
-                    description = "Default QR Code Background"
+                    label = stringResource(R.string.content_background_color),
+                    description = stringResource(R.string.content_background_color_description)
                 ) {
                     RoundedColoredCircle(
                         color = uiState.settings.backgroundColor,
@@ -142,12 +139,13 @@ fun SettingsView(
                 }
 
                 SettingRowItem(
-                    label = "Export Format",
-                    description = "QR Export Format"
+                    label = stringResource(R.string.code_export_format),
+                    description = stringResource(R.string.code_export_format_description)
                 ) {
                     val interactionSource = remember { MutableInteractionSource() }
-                    Text(
+                    BodyText(
                         uiState.settings.qrFormat,
+                        color = ColorTertiary,
                         modifier = Modifier.clickable(
                             interactionSource = interactionSource,
                             indication = null
@@ -164,10 +162,10 @@ fun SettingsView(
             Spacer(modifier = Modifier.height(12.dp))
 
             // --- User Feedback & Behavior ---
-            SettingsSection(title = "User Feedback & Behavior") {
+            SettingsSection(title = stringResource(R.string.user_feedback_and_behaviour)) {
                 SettingRowItem(
-                    label = "Vibration on Scan",
-                    description = "Vibrate when scanned code",
+                    label = stringResource(R.string.vibrate_on_scan),
+                    description = stringResource(R.string.vibrate_on_scan_description),
                     trailingAttribute = {
                         AppSwitch(
                             checked = uiState.settings.canVibrateOnScan,
@@ -177,8 +175,8 @@ fun SettingsView(
                 )
 
                 SettingRowItem(
-                    label = "Sound on Scan",
-                    description = "Play beep sound when scanned",
+                    label = stringResource(R.string.sound_on_scan),
+                    description = stringResource(R.string.sound_on_scan_description),
                     trailingAttribute = {
                         AppSwitch(
                             checked = uiState.settings.canBeepOnScan,
@@ -188,8 +186,8 @@ fun SettingsView(
                 )
 
                 SettingRowItem(
-                    label = "Copy to clipboard",
-                    description = "Auto Copy Scan Result to Clipboard",
+                    label = stringResource(R.string.clipboard_setting),
+                    description = stringResource(R.string.clipboard_setting_description),
                     trailingAttribute = {
                         AppSwitch(
                             checked = uiState.settings.canAutoCopyOnScan,
@@ -199,8 +197,8 @@ fun SettingsView(
                 )
 
                 SettingRowItem(
-                    label = "Open URL",
-                    description = "Auto Open URLs After Scan",
+                    label = stringResource(R.string.web_url),
+                    description = stringResource(R.string.web_url_description),
                     trailingAttribute = {
                         AppSwitch(
                             checked = uiState.settings.canAutoOpenURLOnScan,
@@ -218,30 +216,33 @@ fun SettingsView(
             Spacer(modifier = Modifier.height(12.dp))
 
             // --- History & Storage ---
-            SettingsSection(title = "History & Storage") {
+            SettingsSection(title = stringResource(R.string.history_and_storage)) {
                 SettingRowItem(
-                    label = "Clear History",
-                    description = "Clear All Scan History"
+                    label = stringResource(R.string.clear_history),
+                    description = stringResource(R.string.clear_history_description)
                 ) {
-                    Button(
-                        onClick = {
-                            viewModel.showClearHistoryDialog()
-                        }
+                    IconCircle(
+                        iconRes = R.drawable.ic_delete,
+                        backgroundColor = ColorPrimary,
+                        size = 36.dp,
+                        iconSize = 20.dp
                     ) {
-                        Text("Clear")
+                        viewModel.showClearHistoryDialog()
                     }
                 }
 
                 SettingRowItem(
-                    label = "Export History",
-                    description = "Export history to phone"
+                    label = stringResource(R.string.export_history),
+                    description = stringResource(R.string.export_history_description)
                 ) {
-                    Button(
-                        onClick = {
-                            viewModel.showExportHistoryDialog()
-                        }
+                    IconCircle(
+                        iconRes = R.drawable.ic_right,
+                        backgroundColor = ColorPrimary,
+                        size = 36.dp,
+                        iconSize = 20.dp
                     ) {
-                        Text("Export")
+
+                        viewModel.showExportHistoryDialog()
                     }
                 }
                 HorizontalDivider(
@@ -254,14 +255,15 @@ fun SettingsView(
             Spacer(modifier = Modifier.height(12.dp))
 
             // --- Language & Regional ---
-            SettingsSection(title = "Language & Regional") {
+            SettingsSection(title = stringResource(R.string.language_and_regional)) {
                 SettingRowItem(
-                    label = "App Language",
-                    description = "App locale"
+                    label = stringResource(R.string.app_language),
+                    description = stringResource(R.string.app_language_description)
                 ) {
                     val interactionSource = remember { MutableInteractionSource() }
-                    Text(
+                    BodyText(
                         uiState.settings.locale,
+                        color = ColorTertiary,
                         modifier = Modifier.clickable(
                             interactionSource = interactionSource,
                             indication = null
@@ -273,10 +275,10 @@ fun SettingsView(
             Spacer(modifier = Modifier.height(12.dp))
 
             // --- Privacy & Permissions ---
-            SettingsSection(title = "Privacy & Permissions") {
+            SettingsSection(title = stringResource(R.string.privacy_and_permissions)) {
                 SettingRowItem(
-                    label = "Camera Status",
-                    description = "Camera Permission Status"
+                    label = stringResource(R.string.camera_status),
+                    description = stringResource(R.string.camera_status_description)
                 ) {
                     val icon =
                         if (uiState.settings.cameraPermissionGranted) R.drawable.ic_tick_green else R.drawable.ic_cross_red
@@ -288,8 +290,8 @@ fun SettingsView(
                 }
 
                 SettingRowItem(
-                    label = "Gallery Status",
-                    description = "Gallery Permission Status"
+                    label = stringResource(R.string.gallery_status),
+                    description = stringResource(R.string.gallery_status_description)
                 ) {
                     val icon =
                         if (uiState.settings.galleryPermissionGranted) R.drawable.ic_tick_green else R.drawable.ic_cross_red
@@ -301,22 +303,22 @@ fun SettingsView(
                 }
 
                 SettingRowItem(
-                    label = "Privacy Policy",
-                    description = "View privacy policy"
+                    label = stringResource(R.string.privacy_policy),
+                    description = stringResource(R.string.privacy_policy_description)
                 ) {
-
-                    Button(
-                        onClick = {
-                            viewModel.openPrivacyPolicy()
-                        }
+                    IconCircle(
+                        iconRes = R.drawable.ic_right,
+                        backgroundColor = ColorPrimary,
+                        size = 36.dp,
+                        iconSize = 20.dp
                     ) {
-                        Text("Rate")
+                        viewModel.openPrivacyPolicy()
                     }
                 }
 
                 SettingRowItem(
-                    label = "Send Anonymous Usage Data",
-                    description = "Send data for better stats",
+                    label = stringResource(R.string.label_send_anonymous_data),
+                    description = stringResource(R.string.desc_send_anonymous_data),
                     trailingAttribute = {
                         AppSwitch(
                             checked = uiState.settings.canSendAnonymousUsageData,
@@ -334,59 +336,63 @@ fun SettingsView(
             Spacer(modifier = Modifier.height(12.dp))
 
             // --- App Info & Support ---
-            SettingsSection(title = "App Info & Support") {
+            SettingsSection(title = stringResource(R.string.app_info_and_support)) {
                 SettingRowItem(
-                    label = "Version",
-                    description = "App Version and Build Info"
+                    label = stringResource(R.string.label_version),
+                    description = stringResource(R.string.desc_version)
                 ) {
-                    Text(
+                    BodyText(
                         stringResource(
                             R.string.app_version,
                             appConfig.appVersion,
                             appConfig.versionCode
-                        )
+                        ),
+                        color = ColorTertiary
                     )
                 }
 
                 SettingRowItem(
-                    label = "About the App",
-                    description = "Details about the app"
+                    label = stringResource(R.string.label_about_app),
+                    description = stringResource(R.string.desc_about_app)
                 ) {
-                    Button(
-                        onClick = {
-                            viewModel.openAboutLink()
-                        }
+                    IconCircle(
+                        iconRes = R.drawable.ic_right,
+                        backgroundColor = ColorPrimary,
+                        size = 36.dp,
+                        iconSize = 20.dp
                     ) {
-                        Text("View")
+                        viewModel.openAboutLink()
                     }
                 }
 
                 SettingRowItem(
-                    label = "Rate this App",
-                    description = "Rate app on Play Store"
+                    label = stringResource(R.string.label_rate_app),
+                    description = stringResource(R.string.desc_rate_app)
                 ) {
-                    Button(
-                        onClick = {
-                            context.openPlayStore()
-                        }
+                    IconCircle(
+                        iconRes = R.drawable.ic_right,
+                        backgroundColor = ColorPrimary,
+                        size = 36.dp,
+                        iconSize = 20.dp
                     ) {
-                        Text("Rate")
+                        context.openPlayStore()
                     }
                 }
 
                 SettingRowItem(
-                    label = "Share This App",
-                    description = "Share app to friends and family"
+                    label = stringResource(R.string.label_share_app),
+                    description = stringResource(R.string.desc_share_app)
                 ) {
-                    Button(
-                        onClick = {
-                            context.shareApp(
-                                title = R.string.share_title,
-                                description = R.string.share_description
-                            )
-                        }
+                    IconCircle(
+                        iconRes = R.drawable.ic_right,
+                        backgroundColor = ColorPrimary,
+                        size = 36.dp,
+                        iconSize = 20.dp
                     ) {
-                        Text("Rate")
+                        context.shareApp(
+                            title = R.string.share_title,
+                            description = R.string.share_description
+                        )
                     }
                 }
                 HorizontalDivider(
@@ -422,8 +428,11 @@ fun SettingsView(
 
     if (uiState.showExportFormatDialog) {
         RadioSelectionDialog(
-            title = "Select Export Format",
-            options = listOf("PNG", "JPG/JPEG"),
+            title = stringResource(R.string.dialog_title_select_export_format),
+            options = listOf(
+                stringResource(R.string.option_png),
+                stringResource(R.string.option_jpg)
+            ),
             selectedOption = uiState.settings.qrFormat,
             optionLabel = { it },
             onOptionSelected = { viewModel.updateQRFormat(it) },
@@ -434,20 +443,20 @@ fun SettingsView(
     if (uiState.showClearHistoryDialog) {
         AlertDialog(
             onDismissRequest = { viewModel.hideClearHistoryDialog() },
-            title = { Text(stringResource(R.string.delete_history_dialog_title)) },
-            text = { Text(stringResource(R.string.delete_history_dialog_message)) },
+            title = { BodyText(stringResource(R.string.delete_history_dialog_title)) },
+            text = { BodyText(stringResource(R.string.delete_history_dialog_message)) },
             confirmButton = {
                 TextButton(
                     onClick = {
                         viewModel.clearHistory()
                     }
                 ) {
-                    Text(stringResource(R.string.delete))
+                    BodyText(stringResource(R.string.delete))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { viewModel.hideClearHistoryDialog() }) {
-                    Text("Cancel")
+                    BodyText(stringResource(R.string.cancel))
                 }
             }
         )
@@ -455,9 +464,12 @@ fun SettingsView(
 
     if (uiState.showExportHistoryDialog) {
         RadioSelectionDialog(
-            title = "Export History",
-            options = listOf("CSV", "PDF"),
-            selectedOption = "CSV",
+            title = stringResource(R.string.dialog_title_export_history),
+            options = listOf(
+                stringResource(R.string.option_csv),
+                stringResource(R.string.option_pdf)
+            ),
+            selectedOption = stringResource(R.string.option_csv),
             optionLabel = { it },
             onOptionSelected = { viewModel.exportHistory(it) },
             onDismissRequest = { viewModel.hideExportHistoryDialog() }
@@ -466,8 +478,8 @@ fun SettingsView(
 
     if (uiState.showLanguageDialog) {
         RadioSelectionDialog(
-            title = "Select Language",
-            options = listOf("System", "English", "Urdu"),
+            title = stringResource(R.string.select_language),
+            options = locale,
             selectedOption = uiState.settings.locale,
             optionLabel = { it },
             onOptionSelected = { viewModel.updateLocale(it) },

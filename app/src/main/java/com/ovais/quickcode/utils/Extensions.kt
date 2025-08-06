@@ -6,11 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.net.Uri
-import android.os.Build
 import android.provider.Settings
+import android.util.Patterns
 import androidx.core.net.toUri
 import timber.log.Timber
-import java.util.Locale
 
 
 fun Context.openAppSettings() {
@@ -102,3 +101,6 @@ fun Context.shareIntent(uri: Uri) {
     chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     startActivity(chooser)
 }
+
+val String.isURL: Boolean
+    get() = Patterns.WEB_URL.matcher(this.trim()).matches()

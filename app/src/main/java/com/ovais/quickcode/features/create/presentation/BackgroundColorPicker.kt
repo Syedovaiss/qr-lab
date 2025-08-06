@@ -22,9 +22,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ovais.quickcode.R
+import com.ovais.quickcode.core.ui.theme.ButtonDisabled
 import com.ovais.quickcode.core.ui.theme.colorsForColorPicker
+import com.ovais.quickcode.utils.components.BodyText
 import com.ovais.quickcode.utils.components.ColorPickerDialog
 import com.ovais.quickcode.utils.components.SubtitleText
 
@@ -39,6 +43,13 @@ fun BackgroundColorPicker(
         SubtitleText(
             stringResource(R.string.select_background_color),
             paddingValues = PaddingValues(16.dp)
+        )
+        BodyText(
+            text = stringResource(R.string.default_color_description),
+            paddingValues = PaddingValues(horizontal = 16.dp),
+            color = Color.Gray,
+            fontWeight = FontWeight.Normal,
+            fontSize = 13.sp
         )
         selectedColor?.let { color ->
             val colorInteractionSource = remember { MutableInteractionSource() }

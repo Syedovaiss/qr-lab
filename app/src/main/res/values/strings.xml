@@ -72,4 +72,89 @@
     <string name="failed_to_save_image">Failed to save image. Please try again.</string>
     <string name="invalid_barcode">Invalid or corrupted barcode image</string>
     <string name="go_back">Go Back</string>
+    <string name="content_color">Content Color</string>
+    <string name="content_color_description">Default color for barcodes or QR Codes</string>
+    <string name="content_background_color">Content Background</string>
+    <string name="content_background_color_description">Default background color for barcodes or QR Codes</string>
+    <string name="code_export_format">Export Format</string>
+    <string name="code_export_format_description">Default export format i.e. PNG/JPEG</string>
+    <string name="user_feedback_and_behaviour">User Feedback &amp; Behaviour</string>
+    <string name="vibrate_on_scan">Vibrate on Scan</string>
+    <string name="vibrate_on_scan_description">Vibrate when barcode/qr code scanned</string>
+    <string name="sound_on_scan">Sound on Scan</string>
+    <string name="sound_on_scan_description">Play sound when barcode/qr code scanned</string>
+    <string name="clipboard_setting">Copy to clipboard </string>
+    <string name="clipboard_setting_description">Auto Copy Scan Result to Clipboard</string>
+    <string name="web_url">Open web urls</string>
+    <string name="web_url_description">Auto Open URLs After Scan</string>
+    <string name="history_and_storage">History &amp; Storage</string>
+    <string name="clear_history">Clear History</string>
+    <string name="clear_history_description">Clear all scan history</string>
+    <string name="export_history">Export History</string>
+    <string name="export_history_description">Export all history to phone</string>
+    <string name="language_and_regional">Language &amp; Regional</string>
+    <string name="app_language">App Language</string>
+    <string name="app_language_description">Select language for app</string>
+    <string name="privacy_and_permissions">Privacy &amp; Permissions</string>
+    <string name="camera_status">Camera Status</string>
+    <string name="camera_status_description">Permission required to access and select images from your gallery.</string>
+    <string name="gallery_status">Gallery Status</string>
+    <string name="gallery_status_description">Permission required to access photos from your device.</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_policy_description">Learn how your data is collected and used.</string>
+    <string name="label_send_anonymous_data">Send Anonymous Usage Data</string>
+    <string name="desc_send_anonymous_data">Help improve the app by sharing anonymous usage statistics.</string>
+    <string name="app_info_and_support">App Info &amp; Support</string>
+    <string name="label_version">Version</string>
+    <string name="desc_version">Displays the current app version and build number.</string>
+    <string name="label_about_app">About the App</string>
+    <string name="desc_about_app">Learn more about the app, its purpose, and features.</string>
+    <string name="label_rate_app">Rate this App</string>
+    <string name="desc_rate_app">Share your feedback by rating us on the Play Store.</string>
+    <string name="label_share_app">Share This App</string>
+    <string name="desc_share_app">Invite your friends and family to try the app.</string>
+    <string name="dialog_title_select_export_format">Select Export Format</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">Export History</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="select_language">Select Language</string>
+    <string name="default_color_description">If no color is selected, default colors will be applied. You can change this later from Settings.</string>
+    <string name="create">Create</string>
+    <string name="on_boarding_title_1">All Your Codes. One Powerful App.</string>
+    <string name="on_boarding_title_2">Scan Fast. Design Better.</string>
+    <string name="on_boarding_title_3">Works Offline. Built Around You.</string>
+    <string name="on_boarding_description_1">Create and scan QR &amp; barcodes — with full offline access and a personal history log.</string>
+    <string name="on_boarding_description_2">Instantly scan any code, or generate your own with custom styles.</string>
+    <string name="on_boarding_description_3">Quick Code saves everything offline and adapts to your preferences.</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <string name="scan_help_title">How to Scan QR Codes &amp; Barcodes</string>
+
+    <!-- Step Titles -->
+    <string name="scan_step_1_title">Position the Code</string>
+    <string name="scan_step_2_title">Ensure Good Lighting</string>
+    <string name="scan_step_3_title">Hold Steady</string>
+    <string name="scan_step_4_title">Alternative: Gallery</string>
+
+    <!-- Step Descriptions -->
+    <string name="scan_step_1_desc">Place the QR code or barcode within the scanning area (the rounded rectangle with corner indicators).</string>
+    <string name="scan_step_2_desc">Make sure the code is well-lit. Use the torch button if needed for better visibility.</string>
+    <string name="scan_step_3_desc">Keep your device steady and wait for the code to be automatically detected and scanned.</string>
+    <string name="scan_step_4_desc">If scanning doesn\'t work, you can also select an image from your gallery using the gallery button.</string>
+
+    <!-- Tips Section -->
+    <string name="scan_tips_title">💡 Tips for Better Scanning:</string>
+    <string name="scan_tips_bullets">• Clean the camera lens\n• Avoid reflective surfaces\n• Use zoom slider if needed\n• Ensure code is not damaged</string>
+
+    <!-- Button -->
+    <string name="got_it">Got it!</string>
+    <string name="close">Close</string>
+    <string name="copy">Copy</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="clipboard_label">Result</string>
+    <string name="scan_successful">Scan Successful!</string>
+    <string name="default_channel_id">123001</string>
 </resources>
