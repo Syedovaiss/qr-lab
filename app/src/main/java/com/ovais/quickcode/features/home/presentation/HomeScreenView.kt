@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
+import com.ovais.quickcode.core.ui.theme.ColorTertiary
 import com.ovais.quickcode.core.ui.theme.HomeCardOne
 import com.ovais.quickcode.core.ui.theme.appBackground
 import com.ovais.quickcode.features.home.data.CardItemType
@@ -176,7 +177,7 @@ fun HomeScreen(
         )
         SubtitleText(
             text = stringResource(R.string.terms_and_conditions),
-            textColor = Color.Gray,
+            textColor = ColorTertiary,
             textAlign = TextAlign.Center,
             fontSize = 16.sp,
             paddingValues = PaddingValues(

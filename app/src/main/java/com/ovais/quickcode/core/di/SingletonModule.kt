@@ -15,8 +15,6 @@ import com.ovais.quickcode.locale.DefaultLocaleProvider
 import com.ovais.quickcode.locale.LocaleProvider
 import com.ovais.quickcode.logger.AppLogger
 import com.ovais.quickcode.logger.DefaultAppLogger
-import com.ovais.quickcode.notification.DefaultQuickCodeNotificationManager
-import com.ovais.quickcode.notification.QuickCodeNotificationManager
 import com.ovais.quickcode.storage.DefaultQuickCodeConfigurationManager
 import com.ovais.quickcode.storage.DefaultQuickCodePreferenceManager
 import com.ovais.quickcode.storage.QuickCodeConfigurationManager
@@ -89,7 +87,6 @@ val singletonModule = module {
         )
     } bind AppAnalyticsManager::class
     single { DefaultQuickCodePreferenceManager(get(named(DEFAULT))) } bind QuickCodePreferenceManager::class
-    single { DefaultQuickCodeNotificationManager(get()) } bind QuickCodeNotificationManager::class
     single { DefaultQuickCodeConfigurationManager(get()) } bind QuickCodeConfigurationManager::class
     single { DefaultAppStorageManager(get(), get()) } bind AppStorageManager::class
     single { DefaultInitialProvider() } bind InitialProvider::class

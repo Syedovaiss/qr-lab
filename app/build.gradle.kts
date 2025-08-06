@@ -125,11 +125,11 @@ dependencies {
     // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.cloud.messaging)
     implementation(libs.firebase.config)
     implementation(libs.firebase.storage)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.crashlytics.ndk)
-    implementation(libs.onesignal)
     implementation(libs.datastore.preferences)
 
 
