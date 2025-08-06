@@ -1,5 +1,6 @@
 package com.ovais.quickcode.barcode_manger
 
+import android.annotation.SuppressLint
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -13,7 +14,6 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
 import android.graphics.Rect
 import android.graphics.RectF
-import android.graphics.Typeface
 import android.graphics.YuvImage
 import android.net.Uri
 import android.util.TypedValue
@@ -273,13 +273,17 @@ class DefaultBarcodeManager(
         withContext(dispatcherDefault) {
             try {
                 val bitmap = imageProxyToBitmap(imageProxy)
-                val rotatedBitmap = rotateBitmap(bitmap, imageProxy.imageInfo.rotationDegrees)
-                val decodedText = decodeWithZxing(rotatedBitmap)
-                imageProxy.close()
-                decodedText?.let {
-                    ScanResult.Success(decodedText)
+                bitmap?.let {
+                    val rotatedBitmap = rotateBitmap(bitmap, imageProxy.imageInfo.rotationDegrees)
+                    val decodedText = decodeWithZxing(rotatedBitmap)
+                    imageProxy.close()
+                    decodedText?.let {
+                        ScanResult.Success(decodedText)
+                    } ?: run {
+                        ScanResult.Failure("No QR or barcode found")
+                    }
                 } ?: run {
-                    ScanResult.Failure("No QR or barcode found")
+                    ScanResult.Failure("Bitmap is null!")
                 }
             } catch (e: Exception) {
                 imageProxy.close()
@@ -333,23 +337,40 @@ class DefaultBarcodeManager(
         }
     }
 
-    private fun imageProxyToBitmap(imageProxy: ImageProxy): Bitmap {
-        val planeProxy = imageProxy.planes[0]
-        val buffer = planeProxy.buffer
-        val bytes = ByteArray(buffer.remaining())
-        buffer.get(bytes)
+    @SuppressLint("UnsafeOptInUsageError")
+    private fun imageProxyToBitmap(imageProxy: ImageProxy): Bitmap? {
+        val image = imageProxy.image ?: return null
 
-        val yuvImage = YuvImage(
-            bytes,
-            ImageFormat.NV21,
-            imageProxy.width,
-            imageProxy.height,
-            null
-        )
+        if (image.format != ImageFormat.YUV_420_888 || image.planes.size < 3) {
+            logger.logException("Image Convert:Unsupported format or corrupted planes")
+            return null
+        }
+
+        val yBuffer = image.planes[0].buffer
+        val uBuffer = image.planes[1].buffer
+        val vBuffer = image.planes[2].buffer
+
+        val ySize = yBuffer.remaining()
+        val uSize = uBuffer.remaining()
+        val vSize = vBuffer.remaining()
+
+        val nv21 = ByteArray(ySize + uSize + vSize)
+
+        yBuffer.get(nv21, 0, ySize)
+        vBuffer.get(nv21, ySize, vSize)
+        uBuffer.get(nv21, ySize + vSize, uSize)
+
+        val yuvImage = YuvImage(nv21, ImageFormat.NV21, imageProxy.width, imageProxy.height, null)
         val out = ByteArrayOutputStream()
-        yuvImage.compressToJpeg(Rect(0, 0, imageProxy.width, imageProxy.height), 100, out)
-        val yuvBytes = out.toByteArray()
-        return BitmapFactory.decodeByteArray(yuvBytes, 0, yuvBytes.size)
+        val success =
+            yuvImage.compressToJpeg(Rect(0, 0, imageProxy.width, imageProxy.height), 100, out)
+
+        return if (success) {
+            val jpegBytes = out.toByteArray()
+            BitmapFactory.decodeByteArray(jpegBytes, 0, jpegBytes.size)
+        } else {
+            null
+        }
     }
 
     private fun rotateBitmap(bitmap: Bitmap, rotationDegrees: Int): Bitmap {
