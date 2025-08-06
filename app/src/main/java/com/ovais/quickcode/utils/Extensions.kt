@@ -103,4 +103,4 @@ fun Context.shareIntent(uri: Uri) {
 }
 
 val String.isURL: Boolean
-    get() = Patterns.WEB_URL.matcher(this).matches()
+    get() = Patterns.WEB_URL.matcher(this.trim()).matches()

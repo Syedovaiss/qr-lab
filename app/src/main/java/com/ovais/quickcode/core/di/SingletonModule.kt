@@ -7,6 +7,8 @@ import com.ovais.quickcode.auth.AuthManager
 import com.ovais.quickcode.auth.DefaultAuthManager
 import com.ovais.quickcode.features.code_details.domain.DefaultImageFormatUseCase
 import com.ovais.quickcode.features.code_details.domain.ImageFormatUseCase
+import com.ovais.quickcode.features.splash.domain.DefaultUpdateLocaleUseCase
+import com.ovais.quickcode.features.splash.domain.UpdateLocaleUseCase
 import com.ovais.quickcode.locale.AppLocaleManager
 import com.ovais.quickcode.locale.DefaultAppLocaleManager
 import com.ovais.quickcode.locale.DefaultLocaleProvider
@@ -23,13 +25,13 @@ import com.ovais.quickcode.storage.db.AppStorageManager
 import com.ovais.quickcode.storage.db.ConfigurationDao
 import com.ovais.quickcode.storage.db.DefaultAppStorageManager
 import com.ovais.quickcode.utils.DefaultInitialProvider
-import com.ovais.quickcode.utils.local_config.DefaultLocalConfigurationManager
 import com.ovais.quickcode.utils.InitialProvider
 import com.ovais.quickcode.utils.clipboard.ClipboardManager
 import com.ovais.quickcode.utils.clipboard.DefaultClipboardManager
-import com.ovais.quickcode.utils.local_config.LocalConfigurationManager
 import com.ovais.quickcode.utils.file.DefaultFileManager
 import com.ovais.quickcode.utils.file.FileManager
+import com.ovais.quickcode.utils.local_config.DefaultLocalConfigurationManager
+import com.ovais.quickcode.utils.local_config.LocalConfigurationManager
 import com.ovais.quickcode.utils.permissions.DefaultPermissionManager
 import com.ovais.quickcode.utils.permissions.PermissionManager
 import com.ovais.quickcode.utils.sound.AppSoundManager
@@ -98,4 +100,7 @@ val singletonModule = module {
 
     // Database DAO
     single { get<AppStorageManager>().instance.configDao() } bind ConfigurationDao::class
+    single {
+        DefaultUpdateLocaleUseCase(get(), get(), get(named(BACKGROUND)))
+    } bind UpdateLocaleUseCase::class
 }

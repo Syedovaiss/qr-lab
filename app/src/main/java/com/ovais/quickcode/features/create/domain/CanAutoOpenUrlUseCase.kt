@@ -13,7 +13,7 @@ class DefaultCanAutoOpenUrlUseCase(
 ) : CanAutoOpenUrlUseCase {
     override suspend fun invoke(): Boolean {
         return withContext(dispatcherIO) {
-            configurationDao.getConfigurationSync()?.canAutoOpenURLOnScan.orFalse
+            configurationDao.canAutoOpenUrl().orFalse
         }
     }
 }

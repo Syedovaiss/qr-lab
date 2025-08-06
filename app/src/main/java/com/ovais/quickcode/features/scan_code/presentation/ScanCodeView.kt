@@ -94,7 +94,7 @@ fun ScanQRView(
             arePermissionsDenied = true
         }
     }
-    var showDialog by remember { mutableStateOf(true) }
+    var showDialog by remember { mutableStateOf(false) }
     val canAutoCopyToClipboard by viewModel.canAutoCopyToClipboard.collectAsStateWithLifecycle()
     val canAutoOpenURL by viewModel.canAutoOpenURL.collectAsStateWithLifecycle()
     var canShowCopiedSnackBar by remember { mutableStateOf(false) }
@@ -115,6 +115,7 @@ fun ScanQRView(
             }
         }
     }
+
     if (showDialog) {
         val label = stringResource(R.string.clipboard_label)
         ScanResultDialog(
@@ -122,9 +123,13 @@ fun ScanQRView(
             copy = {
                 viewModel.copyToClipboard(label, scanResult.orEmpty)
             },
-            onDismiss = { showDialog = false }
+            onDismiss = {
+                viewModel.clearScannedResults()
+                showDialog = false
+            }
         )
         if (canAutoCopyToClipboard) {
+            canShowCopiedSnackBar = true
             viewModel.copyToClipboard(label, scanResult.orEmpty)
         }
         if (canAutoOpenURL && scanResult.orEmpty.isURL) {

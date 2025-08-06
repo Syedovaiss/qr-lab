@@ -9,10 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -20,11 +18,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ovais.quickcode.R
+import com.ovais.quickcode.core.ui.theme.ColorSecondary
+import com.ovais.quickcode.core.ui.theme.ColorTertiary
 import com.ovais.quickcode.utils.components.BodyText
 import com.ovais.quickcode.utils.components.ComposableLottieAnimation
 import com.ovais.quickcode.utils.components.SubtitleText
@@ -44,7 +45,7 @@ fun ScanResultDialog(
                 Text(stringResource(R.string.close))
             }
         },
-        containerColor = MaterialTheme.colorScheme.surface,
+        containerColor = Color.White,
         shape = RoundedCornerShape(16.dp),
         modifier = modifier,
         text = {
@@ -74,10 +75,10 @@ fun ScanResultDialog(
                 BodyText(
                     text = resultText,
                     textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.primary,
+                    color = ColorTertiary,
                     modifier = Modifier
                         .clip(RoundedCornerShape(8.dp))
-                        .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.05f))
+                        .background(ColorSecondary.copy(alpha = 0.2f))
                         .padding(horizontal = 12.dp, vertical = 8.dp)
                 )
 
@@ -89,7 +90,10 @@ fun ScanResultDialog(
                         copy()
                     }
                 ) {
-                    Icon(painter = painterResource(R.drawable.ic_copy), contentDescription = null)
+                    Icon(
+                        painter = painterResource(R.drawable.ic_copy_primary),
+                        contentDescription = null
+                    )
                     Spacer(modifier = Modifier.width(8.dp))
                     BodyText(stringResource(R.string.copy))
                 }

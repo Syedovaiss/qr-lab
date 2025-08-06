@@ -72,4 +72,6 @@ interface ConfigurationDao {
 
     @Query("SELECT default_anonymous_usage_state FROM local_configuration ORDER BY id LIMIT 1")
     suspend fun canAddAnalytics(): String?
+    @Query("SELECT can_auto_open_url_on_scan FROM local_configuration ORDER BY id LIMIT 1")
+    suspend fun canAutoOpenUrl(): Boolean?
 }

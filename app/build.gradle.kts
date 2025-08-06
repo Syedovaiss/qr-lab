@@ -113,8 +113,6 @@ dependencies {
     implementation(libs.zxing.android.embedded)
     // Timber
     implementation(libs.timber)
-    // Leaks
-    debugImplementation(libs.leakcanary.android)
 
     //Camera
     implementation(libs.androidx.camera.core)

@@ -150,4 +150,8 @@ class ScanViewModel(
     fun copyToClipboard(label: String, content: String) {
         clipboardManager.copy(label, content)
     }
+
+    fun clearScannedResults() {
+        _scanResult.value = null
+    }
 }
