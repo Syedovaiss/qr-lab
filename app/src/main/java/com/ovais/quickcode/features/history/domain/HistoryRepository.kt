@@ -3,7 +3,6 @@ package com.ovais.quickcode.features.history.domain
 import com.ovais.quickcode.features.create.data.CodeFormats
 import com.ovais.quickcode.features.create.data.CodeType
 import com.ovais.quickcode.features.history.data.CreatedCodeEntity
-import com.ovais.quickcode.features.history.data.FilterType
 import com.ovais.quickcode.features.history.data.HistoryFilter
 import com.ovais.quickcode.features.history.data.HistoryItem
 import com.ovais.quickcode.features.history.data.HistoryRepository
@@ -20,24 +19,18 @@ import timber.log.Timber
 
 
 class DefaultHistoryRepository(
-    private val historyDao: HistoryDao,
-    private val dateTimeManager: DateTimeManager
+    private val historyDao: HistoryDao
 ) : HistoryRepository {
 
-    override fun getCreatedCodes(filter: HistoryFilter): Flow<List<HistoryItem>> {
-        return when {
-            filter.searchQuery.isNotEmpty() -> historyDao.searchCreatedCodes(filter.searchQuery)
-            filter.filterType != FilterType.ALL -> historyDao.getCreatedCodesByType(filter.filterType.name)
-            filter.sortOrder == SortOrder.OLDEST_FIRST -> historyDao.getCreatedCodesAscending()
-            else -> historyDao.getCreatedCodesDescending()
-        }.map { entities ->
+    override fun getCreatedCodes(): Flow<List<HistoryItem>> {
+        return historyDao.getCreatedCodesDescending().map { entities ->
             entities.map { entity ->
                 HistoryItem(
                     id = entity.id,
                     content = entity.content,
                     codeType = entity.codeType,
                     format = entity.format,
-                    timestamp = getFormatedDateTimeString(entity.createdAt),
+                    timestamp = entity.createdAt,
                     foregroundColor = entity.foregroundColor,
                     backgroundColor = entity.backgroundColor,
                     width = entity.width,
@@ -48,28 +41,19 @@ class DefaultHistoryRepository(
         }
     }
 
-    override fun getScannedCodes(filter: HistoryFilter): Flow<List<HistoryItem>> {
-        return when {
-            filter.searchQuery.isNotEmpty() -> historyDao.searchScannedCodes(filter.searchQuery)
-
-            filter.sortOrder == SortOrder.OLDEST_FIRST -> historyDao.getScannedCodesAscending()
-            else -> historyDao.getScannedCodesDescending()
-        }.map { entities ->
+    override fun getScannedCodes(): Flow<List<HistoryItem>> {
+        return historyDao.getScannedCodesDescending().map { entities ->
             entities.map { entity ->
                 HistoryItem(
                     id = entity.id,
                     content = entity.content,
-                    timestamp = getFormatedDateTimeString(entity.scannedAt),
+                    timestamp = entity.scannedAt,
                     codeType = CodeType.Phone,
                     format = CodeFormats.QRCode,
                     logo = entity.bitmap
                 )
             }
         }
-    }
-
-    private fun getFormatedDateTimeString(date: String): String {
-        return dateTimeManager.parse(date)?.toString() ?: dateTimeManager.now
     }
 
     override suspend fun saveCreatedCode(

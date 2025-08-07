@@ -138,7 +138,7 @@ val factoryModule = module {
         DefaultCanAutoOpenUrlUseCase(get(), get(named(BACKGROUND)))
     } bind CanAutoOpenUrlUseCase::class
 
-    factory { DefaultHistoryRepository(get(),get()) } bind HistoryRepository::class
+    factory { DefaultHistoryRepository(get()) } bind HistoryRepository::class
     factory { DefaultGetCreatedCodesUseCase(get()) } bind GetCreatedCodesUseCase::class
     factory { DefaultGetScannedCodesUseCase(get()) } bind GetScannedCodesUseCase::class
     factory { DefaultSaveCreatedCodeUseCase(get()) } bind SaveCreatedCodeUseCase::class

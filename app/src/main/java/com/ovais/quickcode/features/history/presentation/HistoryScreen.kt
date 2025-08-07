@@ -57,21 +57,9 @@ fun HistoryScreen(
             context.openURL(it)
         }
     }
-
     LaunchedEffect(Unit) {
-        viewModel.actions.collectLatest { action ->
-            when (action) {
-                is HistoryAction.ShareItem -> {
-                    val uri = action.item.content.joinToString().toUri()
-                    context.shareIntent(uri)
-                }
-
-                is HistoryAction.OpenUrl -> {
-                    context.openURL(action.url.joinToString())
-                }
-
-                else -> Unit
-            }
+        viewModel.shareItem.collectLatest {
+            context.shareIntent(it)
         }
     }
 
@@ -85,7 +73,6 @@ fun HistoryScreen(
             onBack = onBack
         )
 
-        // Tabs
         HistoryTabs(
             options = listOf("Created", "Scanned"),
             selectedIndex = state.currentTab,
@@ -94,7 +81,7 @@ fun HistoryScreen(
                 viewModel.onAction(HistoryAction.SwitchTab(tab))
             }
         )
-        // Content
+
         when {
             state.isLoading -> {
                 HistoryLoadingView()

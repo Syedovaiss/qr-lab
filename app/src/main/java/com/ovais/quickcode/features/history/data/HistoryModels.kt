@@ -22,14 +22,8 @@ data class HistoryItem(
     val logo: Bitmap? = null
 ) {
     val displayContent: String
-        get() = content.joinToString {
-            "${
-                it.key.replaceFirstChar {
-                    if (it.isLowerCase()) it.titlecase(
-                        Locale.getDefault()
-                    ) else it.toString()
-                }
-            }:${it.value}\n"
+        get() = content.joinToString(separator = "\n") { kv ->
+            "${kv.key.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }}: ${kv.value}"
         }
 }
 

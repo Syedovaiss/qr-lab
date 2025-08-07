@@ -1,5 +1,7 @@
 package com.ovais.quickcode.features.history.presentation
 
+import android.net.Uri
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ovais.quickcode.features.history.data.HistoryAction
@@ -14,11 +16,11 @@ import com.ovais.quickcode.features.history.domain.HistoryType
 import com.ovais.quickcode.utils.EMPTY_STRING
 import com.ovais.quickcode.utils.KeyValue
 import com.ovais.quickcode.utils.clipboard.ClipboardManager
+import com.ovais.quickcode.utils.file.FileManager
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
@@ -37,7 +39,8 @@ class HistoryViewModel(
     private val getCreatedCodesUseCase: GetCreatedCodesUseCase,
     private val getScannedCodesUseCase: GetScannedCodesUseCase,
     private val deleteCodeUseCase: DeleteCodeUseCase,
-    private val clipboardManager: ClipboardManager
+    private val clipboardManager: ClipboardManager,
+    private val fileManager: FileManager
 ) : ViewModel() {
 
     private companion object {
@@ -48,12 +51,13 @@ class HistoryViewModel(
     private val _state = MutableStateFlow(HistoryState())
     val state: StateFlow<HistoryState> = _state.asStateFlow()
 
-    private val _actions = MutableSharedFlow<HistoryAction>()
-    val actions: SharedFlow<HistoryAction> = _actions.asSharedFlow()
-
     private val _openURL by lazy { MutableSharedFlow<String>() }
     val openURL: SharedFlow<String>
         get() = _openURL
+
+    private val _shareItem by lazy { MutableSharedFlow<Uri>() }
+    val shareItem: SharedFlow<Uri>
+        get() = _shareItem
 
     init {
         fetchData()
@@ -61,7 +65,7 @@ class HistoryViewModel(
 
     private fun fetchScannedCodes() {
         viewModelScope.launch {
-            getScannedCodesUseCase(state.value.filter).collectLatest { items ->
+            getScannedCodesUseCase().collectLatest { items ->
                 _state.update {
                     it.copy(
                         scannedCodes = items
@@ -78,7 +82,7 @@ class HistoryViewModel(
 
     private fun fetchCreatedCodes() {
         viewModelScope.launch {
-            getCreatedCodesUseCase(state.value.filter).collectLatest { items ->
+            getCreatedCodesUseCase().collectLatest { items ->
                 _state.update {
                     it.copy(
                         createdCodes = items
@@ -99,7 +103,7 @@ class HistoryViewModel(
             }
 
             is HistoryAction.ShareItem -> {
-                _actions.tryEmit(action)
+                shareContent(action.item)
             }
 
             is HistoryAction.CopyToClipboard -> {
@@ -113,6 +117,18 @@ class HistoryViewModel(
             is HistoryAction.SwitchTab -> {
                 switchTab(action.tab)
             }
+        }
+    }
+
+    private fun shareContent(item: HistoryItem) {
+        viewModelScope.launch {
+            val uri = item.logo?.let {
+                fileManager.getContentUri(it)
+            } ?: run {
+                item.displayContent.toUri()
+            }
+
+            _shareItem.emit(uri)
         }
     }
 
