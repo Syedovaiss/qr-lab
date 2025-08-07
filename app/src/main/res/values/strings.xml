@@ -157,4 +157,5 @@
     <string name="clipboard_label">Result</string>
     <string name="scan_successful">Scan Successful!</string>
     <string name="default_channel_id">123001</string>
+    <string name="empty_history">No created codes yet.Create your first QR code or barcode!</string>
 </resources>

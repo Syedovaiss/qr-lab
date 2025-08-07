@@ -1,10 +1,8 @@
 package com.ovais.quickcode.features.history.data
 
-import kotlinx.coroutines.flow.Flow
-
 interface HistoryRepository {
-    fun getCreatedCodes(): Flow<List<HistoryItem>>
-    fun getScannedCodes(): Flow<List<HistoryItem>>
+    fun getCreatedCodes(): List<HistoryItem>
+    fun getScannedCodes(): List<HistoryItem>
     suspend fun saveCreatedCode(
         param: SaveCreatedCodeParam
     ): SaveHistoryResult

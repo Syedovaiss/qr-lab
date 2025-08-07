@@ -139,8 +139,18 @@ val factoryModule = module {
     } bind CanAutoOpenUrlUseCase::class
 
     factory { DefaultHistoryRepository(get()) } bind HistoryRepository::class
-    factory { DefaultGetCreatedCodesUseCase(get()) } bind GetCreatedCodesUseCase::class
-    factory { DefaultGetScannedCodesUseCase(get()) } bind GetScannedCodesUseCase::class
+    factory {
+        DefaultGetCreatedCodesUseCase(
+            get(),
+            get(named(BACKGROUND))
+        )
+    } bind GetCreatedCodesUseCase::class
+    factory {
+        DefaultGetScannedCodesUseCase(
+            get(),
+            get(named(BACKGROUND))
+        )
+    } bind GetScannedCodesUseCase::class
     factory { DefaultSaveCreatedCodeUseCase(get()) } bind SaveCreatedCodeUseCase::class
     factory { DefaultSaveScannedCodeUseCase(get()) } bind SaveScannedCodeUseCase::class
     factory { DefaultDeleteCreatedCodeUseCase(get()) } bind DeleteCodeUseCase::class

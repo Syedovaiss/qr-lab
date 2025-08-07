@@ -3,18 +3,13 @@ package com.ovais.quickcode.features.history.domain
 import com.ovais.quickcode.features.create.data.CodeFormats
 import com.ovais.quickcode.features.create.data.CodeType
 import com.ovais.quickcode.features.history.data.CreatedCodeEntity
-import com.ovais.quickcode.features.history.data.HistoryFilter
 import com.ovais.quickcode.features.history.data.HistoryItem
 import com.ovais.quickcode.features.history.data.HistoryRepository
 import com.ovais.quickcode.features.history.data.SaveCreatedCodeParam
 import com.ovais.quickcode.features.history.data.SaveHistoryResult
 import com.ovais.quickcode.features.history.data.SaveScannedCodeParam
 import com.ovais.quickcode.features.history.data.ScannedCodeEntity
-import com.ovais.quickcode.features.history.data.SortOrder
 import com.ovais.quickcode.storage.db.HistoryDao
-import com.ovais.quickcode.utils.DateTimeManager
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import timber.log.Timber
 
 
@@ -22,37 +17,33 @@ class DefaultHistoryRepository(
     private val historyDao: HistoryDao
 ) : HistoryRepository {
 
-    override fun getCreatedCodes(): Flow<List<HistoryItem>> {
-        return historyDao.getCreatedCodesDescending().map { entities ->
-            entities.map { entity ->
-                HistoryItem(
-                    id = entity.id,
-                    content = entity.content,
-                    codeType = entity.codeType,
-                    format = entity.format,
-                    timestamp = entity.createdAt,
-                    foregroundColor = entity.foregroundColor,
-                    backgroundColor = entity.backgroundColor,
-                    width = entity.width,
-                    height = entity.height,
-                    logo = entity.logo
-                )
-            }
+    override fun getCreatedCodes(): List<HistoryItem> {
+        return historyDao.getCreatedCodesDescending().map { entity ->
+            HistoryItem(
+                id = entity.id,
+                content = entity.content,
+                codeType = entity.codeType,
+                format = entity.format,
+                timestamp = entity.createdAt,
+                foregroundColor = entity.foregroundColor,
+                backgroundColor = entity.backgroundColor,
+                width = entity.width,
+                height = entity.height,
+                logo = entity.logo
+            )
         }
     }
 
-    override fun getScannedCodes(): Flow<List<HistoryItem>> {
-        return historyDao.getScannedCodesDescending().map { entities ->
-            entities.map { entity ->
-                HistoryItem(
-                    id = entity.id,
-                    content = entity.content,
-                    timestamp = entity.scannedAt,
-                    codeType = CodeType.Phone,
-                    format = CodeFormats.QRCode,
-                    logo = entity.bitmap
-                )
-            }
+    override fun getScannedCodes(): List<HistoryItem> {
+        return historyDao.getScannedCodesDescending().map { entity ->
+            HistoryItem(
+                id = entity.id,
+                content = entity.content,
+                timestamp = entity.scannedAt,
+                codeType = CodeType.Phone,
+                format = CodeFormats.QRCode,
+                logo = entity.bitmap
+            )
         }
     }
 

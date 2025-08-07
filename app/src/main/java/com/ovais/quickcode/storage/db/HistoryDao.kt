@@ -29,7 +29,7 @@ interface HistoryDao {
     fun getCreatedCodesAscending(): Flow<List<CreatedCodeEntity>>
 
     @Query("SELECT * FROM code_created ORDER BY createdAt DESC")
-    fun getCreatedCodesDescending(): Flow<List<CreatedCodeEntity>>
+    fun getCreatedCodesDescending(): List<CreatedCodeEntity>
 
     @Delete
     suspend fun deleteCreatedCode(createdCode: CreatedCodeEntity)
@@ -54,7 +54,7 @@ interface HistoryDao {
     fun getScannedCodesAscending(): Flow<List<ScannedCodeEntity>>
 
     @Query("SELECT * FROM code_scanned ORDER BY scannedAt DESC")
-    fun getScannedCodesDescending(): Flow<List<ScannedCodeEntity>>
+    fun getScannedCodesDescending(): List<ScannedCodeEntity>
 
     @Delete
     suspend fun deleteScannedCode(scannedCode: ScannedCodeEntity)

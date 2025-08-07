@@ -22,7 +22,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -59,18 +58,16 @@ class HistoryViewModel(
     val shareItem: SharedFlow<Uri>
         get() = _shareItem
 
-    init {
+    fun initialize() {
         fetchData()
     }
-
     private fun fetchScannedCodes() {
         viewModelScope.launch {
-            getScannedCodesUseCase().collectLatest { items ->
-                _state.update {
-                    it.copy(
-                        scannedCodes = items
-                    )
-                }
+            val items = getScannedCodesUseCase()
+            _state.update {
+                it.copy(
+                    scannedCodes = items
+                )
             }
         }
     }
@@ -82,12 +79,10 @@ class HistoryViewModel(
 
     private fun fetchCreatedCodes() {
         viewModelScope.launch {
-            getCreatedCodesUseCase().collectLatest { items ->
-                _state.update {
-                    it.copy(
-                        createdCodes = items
-                    )
-                }
+            _state.update {
+                it.copy(
+                    createdCodes = getCreatedCodesUseCase()
+                )
             }
         }
     }
@@ -180,8 +175,12 @@ class HistoryViewModel(
 
     private fun switchTab(tab: HistoryTab) {
         val tabIndex = if (tab == HistoryTab.CREATED) 0 else 1
+        if (tab == HistoryTab.CREATED) {
+            fetchCreatedCodes()
+        } else {
+            fetchScannedCodes()
+        }
         _state.update { it.copy(currentTab = tabIndex) }
-        fetchData()
     }
 
     fun clearError() {
