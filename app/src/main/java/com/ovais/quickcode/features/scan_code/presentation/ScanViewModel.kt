@@ -23,12 +23,10 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ScanViewModel(
     private val permissionManager: PermissionManager,
     private val scanCodeUseCase: ScanCodeUseCase,
-    private val dispatcherMain: CoroutineDispatcher,
     private val canBeepAndVibrateOnScanUseCase: CanVibrateAndBeepUseCase,
     private val soundManager: AppSoundManager,
     private val canAutoOpenUrlUseCase: CanAutoOpenUrlUseCase,
@@ -118,9 +116,7 @@ class ScanViewModel(
         viewModelScope.launch {
             when (val result = scanCodeUseCase(param)) {
                 is ScanResult.Success -> {
-                    withContext(dispatcherMain) {
-                        onCodeScanned(result.content)
-                    }
+                    onCodeScanned(result.content)
                 }
 
                 is ScanResult.Failure -> Unit

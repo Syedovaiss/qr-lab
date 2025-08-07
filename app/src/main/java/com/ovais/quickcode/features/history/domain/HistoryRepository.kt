@@ -1,0 +1,133 @@
+package com.ovais.quickcode.features.history.domain
+
+import com.ovais.quickcode.features.create.data.CodeFormats
+import com.ovais.quickcode.features.create.data.CodeType
+import com.ovais.quickcode.features.history.data.CreatedCodeEntity
+import com.ovais.quickcode.features.history.data.FilterType
+import com.ovais.quickcode.features.history.data.HistoryFilter
+import com.ovais.quickcode.features.history.data.HistoryItem
+import com.ovais.quickcode.features.history.data.HistoryRepository
+import com.ovais.quickcode.features.history.data.SaveCreatedCodeParam
+import com.ovais.quickcode.features.history.data.SaveHistoryResult
+import com.ovais.quickcode.features.history.data.SaveScannedCodeParam
+import com.ovais.quickcode.features.history.data.ScannedCodeEntity
+import com.ovais.quickcode.features.history.data.SortOrder
+import com.ovais.quickcode.storage.db.HistoryDao
+import com.ovais.quickcode.utils.DateTimeManager
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import timber.log.Timber
+
+
+class DefaultHistoryRepository(
+    private val historyDao: HistoryDao,
+    private val dateTimeManager: DateTimeManager
+) : HistoryRepository {
+
+    override fun getCreatedCodes(filter: HistoryFilter): Flow<List<HistoryItem>> {
+        return when {
+            filter.searchQuery.isNotEmpty() -> historyDao.searchCreatedCodes(filter.searchQuery)
+            filter.filterType != FilterType.ALL -> historyDao.getCreatedCodesByType(filter.filterType.name)
+            filter.sortOrder == SortOrder.OLDEST_FIRST -> historyDao.getCreatedCodesAscending()
+            else -> historyDao.getCreatedCodesDescending()
+        }.map { entities ->
+            entities.map { entity ->
+                HistoryItem(
+                    id = entity.id,
+                    content = entity.content,
+                    codeType = entity.codeType,
+                    format = entity.format,
+                    timestamp = getFormatedDateTimeString(entity.createdAt),
+                    foregroundColor = entity.foregroundColor,
+                    backgroundColor = entity.backgroundColor,
+                    width = entity.width,
+                    height = entity.height,
+                    logo = entity.logo
+                )
+            }
+        }
+    }
+
+    override fun getScannedCodes(filter: HistoryFilter): Flow<List<HistoryItem>> {
+        return when {
+            filter.searchQuery.isNotEmpty() -> historyDao.searchScannedCodes(filter.searchQuery)
+
+            filter.sortOrder == SortOrder.OLDEST_FIRST -> historyDao.getScannedCodesAscending()
+            else -> historyDao.getScannedCodesDescending()
+        }.map { entities ->
+            entities.map { entity ->
+                HistoryItem(
+                    id = entity.id,
+                    content = entity.content,
+                    timestamp = getFormatedDateTimeString(entity.scannedAt),
+                    codeType = CodeType.Phone,
+                    format = CodeFormats.QRCode,
+                    logo = entity.bitmap
+                )
+            }
+        }
+    }
+
+    private fun getFormatedDateTimeString(date: String): String {
+        return dateTimeManager.parse(date)?.toString() ?: dateTimeManager.now
+    }
+
+    override suspend fun saveCreatedCode(
+        param: SaveCreatedCodeParam
+    ): SaveHistoryResult {
+        return try {
+            val entity = CreatedCodeEntity(
+                content = param.content,
+                codeType = param.codeType,
+                format = param.format,
+                foregroundColor = param.foregroundColor,
+                backgroundColor = param.backgroundColor,
+                width = param.width,
+                height = param.height,
+                logo = param.logo,
+                createdAt = param.createdAt
+            )
+            val result = historyDao.insertCreatedCode(entity)
+            if (result == -1L) {
+                SaveHistoryResult.Failure("Unable to save code right now!")
+            } else {
+                SaveHistoryResult.Saved
+            }
+        } catch (e: Exception) {
+            Timber.e(e)
+            SaveHistoryResult.Failure(e.message.toString())
+        }
+    }
+
+    override suspend fun saveScannedCode(
+        param: SaveScannedCodeParam
+    ): SaveHistoryResult {
+        val entity = ScannedCodeEntity(
+            content = param.content,
+            bitmap = param.bitmap,
+            scannedAt = param.scannedAt
+        )
+        val result = historyDao.insertScannedCode(entity)
+        return if (result == -1L) {
+            SaveHistoryResult.Failure("Unable to save code right now!")
+        } else {
+            SaveHistoryResult.Saved
+        }
+    }
+
+    override suspend fun deleteCreatedCode(id: Long) {
+        historyDao.deleteCreatedCodeById(id)
+    }
+
+    override suspend fun deleteScannedCode(id: Long) {
+        historyDao.deleteScannedCodeById(id)
+    }
+
+    override suspend fun getCreatedCodesCount(): Int {
+        return historyDao.getCreatedCodesCount()
+    }
+
+    override suspend fun getScannedCodesCount(): Int {
+        return historyDao.getScannedCodesCount()
+    }
+}

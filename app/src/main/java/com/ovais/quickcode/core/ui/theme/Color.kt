@@ -63,3 +63,5 @@ val colorsForColorPicker = listOf(
 
 val ButtonDisabled = Color(0xFFD3DDE4)
 val ErrorColor = Color(0xFFA10326)
+val SelectedTabColor = Color(0xFF7150f1)
+val UnSelectedTabColor = Color(0xFFf1f5ff)

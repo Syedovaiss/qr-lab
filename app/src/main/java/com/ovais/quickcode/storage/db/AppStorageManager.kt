@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.ovais.quickcode.BuildConfig
 import com.ovais.quickcode.logger.AppLogger
 import com.ovais.quickcode.storage.data.LocalConfiguration
@@ -42,10 +43,16 @@ class DefaultAppStorageManager(
 }
 
 @Database(
-    entities = [LocalConfiguration::class],
-    version = 1,
+    entities = [
+        LocalConfiguration::class,
+        com.ovais.quickcode.features.history.data.CreatedCodeEntity::class,
+        com.ovais.quickcode.features.history.data.ScannedCodeEntity::class
+    ],
+    version = 3,
     exportSchema = true
 )
+@TypeConverters(Converters::class)
 abstract class QuickCodeDatabase : RoomDatabase() {
     abstract fun configDao(): ConfigurationDao
+    abstract fun historyDao(): HistoryDao
 }

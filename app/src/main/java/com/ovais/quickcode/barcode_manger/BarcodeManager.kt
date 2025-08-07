@@ -278,7 +278,7 @@ class DefaultBarcodeManager(
                     val decodedText = decodeWithZxing(rotatedBitmap)
                     imageProxy.close()
                     decodedText?.let {
-                        ScanResult.Success(decodedText)
+                        ScanResult.Success(decodedText, rotatedBitmap)
                     } ?: run {
                         ScanResult.Failure("No QR or barcode found")
                     }
@@ -313,7 +313,7 @@ class DefaultBarcodeManager(
 
                 reader.setHints(hints)
                 val result = reader.decode(binaryBitmap)
-                ScanResult.Success(result.text)
+                ScanResult.Success(result.text, bitmap)
             } catch (e: Exception) {
                 Timber.e(e)
                 ScanResult.Failure(e.message.toString())

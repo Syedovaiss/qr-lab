@@ -22,6 +22,9 @@ import com.ovais.quickcode.storage.QuickCodePreferenceManager
 import com.ovais.quickcode.storage.db.AppStorageManager
 import com.ovais.quickcode.storage.db.ConfigurationDao
 import com.ovais.quickcode.storage.db.DefaultAppStorageManager
+import com.ovais.quickcode.storage.db.HistoryDao
+import com.ovais.quickcode.utils.DateTimeManager
+import com.ovais.quickcode.utils.DefaultDateTimeManager
 import com.ovais.quickcode.utils.DefaultInitialProvider
 import com.ovais.quickcode.utils.InitialProvider
 import com.ovais.quickcode.utils.clipboard.ClipboardManager
@@ -97,7 +100,11 @@ val singletonModule = module {
 
     // Database DAO
     single { get<AppStorageManager>().instance.configDao() } bind ConfigurationDao::class
+    single { get<AppStorageManager>().instance.historyDao() } bind HistoryDao::class
     single {
         DefaultUpdateLocaleUseCase(get(), get(), get(named(BACKGROUND)))
     } bind UpdateLocaleUseCase::class
+    single {
+        DefaultDateTimeManager()
+    } bind DateTimeManager::class
 }

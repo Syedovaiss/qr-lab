@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.ovais.quickcode.analytics.AppAnalyticsManager
 import com.ovais.quickcode.features.code_details.domain.ImageFormatUseCase
 import com.ovais.quickcode.features.code_details.domain.SaveImageResult
+import com.ovais.quickcode.features.code_details.domain.SaveScannedCodeUseCase
+import com.ovais.quickcode.features.history.data.SaveScannedCodeParam
 import com.ovais.quickcode.utils.AnalyticsConstant.DATA
 import com.ovais.quickcode.utils.AnalyticsConstant.ERROR
 import com.ovais.quickcode.utils.AnalyticsConstant.ERROR_REASON
@@ -14,6 +16,8 @@ import com.ovais.quickcode.utils.AnalyticsConstant.IMAGE_SAVED
 import com.ovais.quickcode.utils.AnalyticsConstant.IMAGE_SHARED
 import com.ovais.quickcode.utils.AnalyticsConstant.SAVE_IMAGE
 import com.ovais.quickcode.utils.AnalyticsConstant.SHARE_IMAGE
+import com.ovais.quickcode.utils.DateTimeManager
+import com.ovais.quickcode.utils.KeyValue
 import com.ovais.quickcode.utils.usecase.ContentResult
 import com.ovais.quickcode.utils.usecase.GetContentUriUseCase
 import com.ovais.quickcode.utils.usecase.SaveImageUseCase
@@ -28,7 +32,9 @@ class BarcodeDetailsViewModel(
     private val saveImageUseCase: SaveImageUseCase,
     private val imageFormatUseCase: ImageFormatUseCase,
     private val getContentUriUseCase: GetContentUriUseCase,
-    private val analyticsManager: AppAnalyticsManager
+    private val analyticsManager: AppAnalyticsManager,
+    private val saveScannedCodeUseCase: SaveScannedCodeUseCase,
+    private val dateTimeManager: DateTimeManager
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<BarcodeUiState>(BarcodeUiState.Idle)
@@ -36,6 +42,25 @@ class BarcodeDetailsViewModel(
     private val _canStartSharing by lazy { MutableSharedFlow<Pair<Boolean, Uri>>() }
     val canStartSharing: SharedFlow<Pair<Boolean, Uri>>
         get() = _canStartSharing.asSharedFlow()
+
+
+    fun saveScannedCode(data: Pair<Bitmap?, MutableMap<String, String>>) {
+        viewModelScope.launch {
+            val content = data.second.map {
+                KeyValue(
+                    key = it.key,
+                    value = it.value
+                )
+            }
+            saveScannedCodeUseCase(
+                param = SaveScannedCodeParam(
+                    content = content,
+                    bitmap = data.first,
+                    scannedAt = dateTimeManager.now
+                )
+            )
+        }
+    }
 
     fun saveImageToGallery(bitmap: Bitmap?, uri: Uri) {
         if (bitmap == null || bitmap.isRecycled) {
@@ -103,6 +128,7 @@ class BarcodeDetailsViewModel(
             }
         }
     }
+
     fun updateStateToIdle() {
         _uiState.value = BarcodeUiState.Idle
     }
