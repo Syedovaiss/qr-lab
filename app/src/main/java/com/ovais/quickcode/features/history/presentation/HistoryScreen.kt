@@ -52,7 +52,12 @@ fun HistoryScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
-    // Collect actions
+    LaunchedEffect(Unit) {
+        viewModel.openURL.collectLatest {
+            context.openURL(it)
+        }
+    }
+
     LaunchedEffect(Unit) {
         viewModel.actions.collectLatest { action ->
             when (action) {

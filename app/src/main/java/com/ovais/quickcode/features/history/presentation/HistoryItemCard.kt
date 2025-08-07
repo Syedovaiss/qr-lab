@@ -118,53 +118,59 @@ fun HistoryItemCard(
                         contentDescription = "Options"
                     )
                 }
-            }
-            DropdownMenu(
-                expanded = showMenu,
-                onDismissRequest = { showMenu = false }
-            ) {
-                DropdownMenuItem(
-                    text = { BodyText(stringResource(R.string.copy)) },
-                    leadingIcon = {
-                        Icon(Icons.Outlined.Home, contentDescription = null)
-                    },
-                    onClick = {
-                        onCopy()
-                        showMenu = false
-                    }
-                )
-                DropdownMenuItem(
-                    text = { BodyText(stringResource(R.string.share)) },
-                    leadingIcon = {
-                        Icon(Icons.Default.Share, contentDescription = null)
-                    },
-                    onClick = {
-                        onShare()
-                        showMenu = false
-                    }
-                )
-                if (item.codeType is CodeType.Website) {
+
+                DropdownMenu(
+                    expanded = showMenu,
+                    onDismissRequest = { showMenu = false },
+                    modifier = Modifier.background(Color.White)
+                ) {
                     DropdownMenuItem(
-                        text = { BodyText(stringResource(R.string.web_url)) },
+                        text = { BodyText(stringResource(R.string.copy)) },
                         leadingIcon = {
-                            Icon(Icons.Outlined.Share, contentDescription = null)
+                            Icon(Icons.Outlined.Home, contentDescription = null)
                         },
                         onClick = {
-                            onOpenUrl()
+                            onCopy()
                             showMenu = false
-                        }
+                        },
+                        modifier = Modifier.background(Color.White)
+                    )
+                    DropdownMenuItem(
+                        text = { BodyText(stringResource(R.string.share)) },
+                        leadingIcon = {
+                            Icon(Icons.Default.Share, contentDescription = null)
+                        },
+                        onClick = {
+                            onShare()
+                            showMenu = false
+                        },
+                        modifier = Modifier.background(Color.White)
+                    )
+                    if (item.codeType is CodeType.Website) {
+                        DropdownMenuItem(
+                            text = { BodyText(stringResource(R.string.web_url)) },
+                            leadingIcon = {
+                                Icon(Icons.Outlined.Share, contentDescription = null)
+                            },
+                            onClick = {
+                                onOpenUrl()
+                                showMenu = false
+                            },
+                            modifier = Modifier.background(Color.White)
+                        )
+                    }
+                    DropdownMenuItem(
+                        text = { BodyText(stringResource(R.string.delete)) },
+                        leadingIcon = {
+                            Icon(Icons.Default.Delete, contentDescription = null)
+                        },
+                        onClick = {
+                            onDelete()
+                            showMenu = false
+                        },
+                        modifier = Modifier.background(Color.White)
                     )
                 }
-                DropdownMenuItem(
-                    text = { BodyText(stringResource(R.string.delete)) },
-                    leadingIcon = {
-                        Icon(Icons.Default.Delete, contentDescription = null)
-                    },
-                    onClick = {
-                        onDelete()
-                        showMenu = false
-                    }
-                )
             }
         }
     }
