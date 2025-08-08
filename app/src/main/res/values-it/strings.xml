@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">Quick Code</string>
+    <string name="default_name">Ospite</string>
+    <string name="trademark">© %s Syed Ovais Akhtar. Tutti i diritti riservati.</string>
+    <string name="app_version">Versione %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">export_channel</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">Benvenuto in\nQuick Code</string>
+    <string name="create_qr">Crea</string>
+    <string name="scan_qr">Scansiona</string>
+    <string name="settings">Impostazioni</string>
+    <string name="history">Cronologia</string>
+    <string name="create_new">Crea nuovo codice</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">Bitcoin</string>
+    <string name="calendar">Evento calendario</string>
+    <string name="contact">Contatto</string>
+    <string name="discord">Discord</string>
+    <string name="email">Email</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Ricerca Google</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="location">Posizione</string>
+    <string name="paypal">PayPal</string>
+    <string name="phone">Chiamata</string>
+    <string name="skype">Skype</string>
+    <string name="sms">SMS</string>
+    <string name="snapchat">Snapchat</string>
+    <string name="text">Testo</string>
+    <string name="threads">Threads</string>
+    <string name="twitch">Twitch</string>
+    <string name="website">Sito web</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="youtube">YouTube</string>
+    <string name="zoom">Zoom</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">Piattaforma</string>
+    <string name="code_format">Formato codice</string>
+    <string name="select_code_format">Scegli un formato codice</string>
+    <string name="enter_details">Inserisci i dettagli per %s</string>
+    <string name="select_background_color">Scegli colore di sfondo</string>
+    <string name="select_foreground_color">Scegli colore del contenuto</string>
+    <string name="select_color">Scegli colore</string>
+    <string name="upload_logo">Aggiungi logo</string>
+    <string name="image">Immagine</string>
+    <string name="size">Dimensione</string>
+    <string name="width">Larghezza</string>
+    <string name="height">Altezza</string>
+    <string name="customization">Personalizzazione</string>
+    <string name="content_color">Colore contenuto</string>
+    <string name="content_color_description">Il colore predefinito applicato ai codici a barre e QR generati.</string>
+    <string name="content_background_color">Colore sfondo</string>
+    <string name="content_background_color_description">Lo sfondo predefinito per i codici a barre e QR generati.</string>
+    <string name="default_color_description">Se non scegli un colore, verranno applicati i colori predefiniti. Puoi modificarlo in qualsiasi momento nelle impostazioni.</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">Autorizzazioni richieste</string>
+    <string name="permission_denied_message">
+        Quick Code necessita delle autorizzazioni per fotocamera, archiviazione e notifiche per funzionare correttamente.
+        Sono utilizzate per scansionare e salvare codici e per inviare avvisi importanti.
+        Se in passato le hai negate, abilita le autorizzazioni nelle impostazioni dell’app.
+    </string>
+    <string name="grant">Concedi accesso</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">Formato di esportazione</string>
+    <string name="code_export_format_description">Formato di esportazione predefinito (PNG/JPEG).</string>
+    <string name="dialog_title_select_export_format">Scegli formato di esportazione</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">Esporta cronologia</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">Salva codice a barre</string>
+    <string name="save_barcode_message">Seleziona una posizione per salvare l’immagine del codice a barre.</string>
+    <string name="save">Salva</string>
+    <string name="save_image">Salva immagine</string>
+    <string name="download">Scarica</string>
+    <string name="success">Successo</string>
+    <string name="image_saved_successfully">Immagine salvata correttamente.</string>
+    <string name="error">Errore</string>
+    <string name="failed_to_save_image">Impossibile salvare l’immagine. Riprova.</string>
+    <string name="export_text">Esporta</string>
+    <string name="export_title">Esportazione completata</string>
+    <string name="export_message">I seguenti file sono stati esportati: %s</string>
+    <string name="export_failed">Esportazione non riuscita</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">Dettagli codice a barre</string>
+    <string name="generated_barcode">Codice a barre generato</string>
+    <string name="barcode_image">Immagine codice a barre</string>
+    <string name="content_details">Dettagli contenuto</string>
+    <string name="invalid_barcode">L’immagine non è un codice a barre valido o leggibile.</string>
+    <string name="scan_successful">Scansione riuscita</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">Come scansionare QR e codici a barre</string>
+    <string name="scan_step_1_title">Posiziona il codice</string>
+    <string name="scan_step_1_desc">Allinea il codice QR o a barre all’interno della cornice di scansione sullo schermo.</string>
+    <string name="scan_step_2_title">Assicurati di avere una buona illuminazione</string>
+    <string name="scan_step_2_desc">Assicurati che il codice sia ben illuminato. Usa la torcia se necessario.</string>
+    <string name="scan_step_3_title">Mantieni la posizione</string>
+    <string name="scan_step_3_desc">Tieni fermo il dispositivo finché il codice non viene rilevato automaticamente.</string>
+    <string name="scan_step_4_title">Oppure seleziona dalla galleria</string>
+    <string name="scan_step_4_desc">Se la scansione non riesce, scegli un’immagine dalla galleria.</string>
+    <string name="scan_tips_title">💡 Suggerimenti per la scansione</string>
+    <string name="scan_tips_bullets">• Pulisci la lente della fotocamera\n• Evita riflessi o bagliori\n• Usa lo zoom se necessario\n• Assicurati che il codice non sia danneggiato</string>
+    <string name="got_it">Ho capito</string>
+
+    <!-- History -->
+    <string name="empty_history">Nessun codice ancora. Crea il tuo primo QR o codice a barre per iniziare!</string>
+    <string name="delete_history_dialog_title">Cancella cronologia</string>
+    <string name="delete_history_dialog_message">Sei sicuro di voler eliminare tutta la cronologia salvata?</string>
+    <string name="delete">Elimina</string>
+    <string name="clear_history">Pulisci cronologia</string>
+    <string name="clear_history_description">Rimuovi tutta la cronologia di scansioni e creazioni.</string>
+    <string name="cleared_all_history">Cronologia eliminata correttamente.</string>
+    <string name="clearing_history">Eliminazione cronologia…</string>
+    <string name="export_history">Esporta cronologia</string>
+    <string name="export_history_description">Salva tutta la cronologia sul dispositivo.</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">Feedback e comportamento</string>
+    <string name="vibrate_on_scan">Vibrazione alla scansione</string>
+    <string name="vibrate_on_scan_description">Vibra quando un codice viene scansionato correttamente.</string>
+    <string name="sound_on_scan">Suono alla scansione</string>
+    <string name="sound_on_scan_description">Riproduci un suono quando un codice viene scansionato correttamente.</string>
+    <string name="clipboard_setting">Copia negli appunti</string>
+    <string name="clipboard_setting_description">Copia automaticamente i risultati della scansione negli appunti.</string>
+    <string name="web_url">Apri URL web</string>
+    <string name="web_url_description">Apri automaticamente gli URL scansionati nel browser.</string>
+    <string name="history_and_storage">Cronologia e archiviazione</string>
+    <string name="language_and_regional">Lingua e regione</string>
+    <string name="app_language">Lingua dell’app</string>
+    <string name="app_language_description">Seleziona la lingua di visualizzazione di Quick Code.</string>
+    <string name="select_language">Scegli lingua</string>
+    <string name="privacy_and_permissions">Privacy e autorizzazioni</string>
+    <string name="camera_status">Accesso fotocamera</string>
+    <string name="camera_status_description">Necessario per scansionare codici e selezionare immagini dalla galleria.</string>
+    <string name="gallery_status">Accesso galleria</string>
+    <string name="gallery_status_description">Necessario per selezionare immagini salvate sul dispositivo.</string>
+    <string name="privacy_policy">Informativa sulla privacy</string>
+    <string name="privacy_policy_description">Scopri come raccogliamo, archiviamo e utilizziamo i tuoi dati.</string>
+    <string name="label_send_anonymous_data">Invia dati di utilizzo anonimi</string>
+    <string name="desc_send_anonymous_data">Aiutaci a migliorare Quick Code condividendo statistiche anonime di utilizzo.</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">Informazioni e supporto</string>
+    <string name="label_version">Versione</string>
+    <string name="desc_version">Mostra la versione e il numero di build attuali dell’app.</string>
+    <string name="label_about_app">Informazioni su Quick Code</string>
+    <string name="desc_about_app">Scopri le funzionalità, lo scopo e i vantaggi dell’app.</string>
+    <string name="label_rate_app">Valuta Quick Code</string>
+    <string name="desc_rate_app">Condividi la tua esperienza valutandoci sul Play Store.</string>
+    <string name="label_share_app">Condividi Quick Code</string>
+    <string name="desc_share_app">Invita amici e familiari a provare Quick Code.</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">Tutti i tuoi codici in un’unica app</string>
+    <string name="on_boarding_title_2">Scansione veloce. Design intelligente.</string>
+    <string name="on_boarding_title_3">Offline. Personale. Potente.</string>
+    <string name="on_boarding_description_1">Crea e scansiona codici QR o a barre in qualsiasi momento, con accesso offline e cronologia completa.</string>
+    <string name="on_boarding_description_2">Scansiona all’istante o progetta i tuoi codici con stili personalizzati.</string>
+    <string name="on_boarding_description_3">Quick Code salva il tuo lavoro offline e si adatta alle tue preferenze.</string>
+    <string name="skip">Salta</string>
+    <string name="next">Avanti</string>
+    <string name="get_started">Inizia</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">Torna indietro</string>
+    <string name="close">Chiudi</string>
+    <string name="copy">Copia</string>
+    <string name="copied_to_clipboard">Copiato negli appunti</string>
+    <string name="clipboard_label">Risultato</string>
+    <string name="share">Condividi</string>
+    <string name="share_title">Dai un’occhiata a Quick Code</string>
+    <string name="share_description">Sto usando questo fantastico generatore e lettore di codici QR — provalo anche tu!</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Annulla</string>
+    <string name="create">Crea</string>
+    <string name="terms_and_conditions">Termini e condizioni</string>
+</resources>

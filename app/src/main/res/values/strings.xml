@@ -1,18 +1,28 @@
 <resources>
+    <!-- App Info -->
     <string name="app_name">Quick Code</string>
-    <string name="home_screen_title">Welcome \nto Quick Code</string>
+    <string name="default_name">Guest</string>
+    <string name="trademark">© %s Syed Ovais Akhtar. All rights reserved.</string>
+    <string name="app_version">Version %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">export_channel</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">Welcome to\nQuick Code</string>
     <string name="create_qr">Create</string>
     <string name="scan_qr">Scan</string>
     <string name="settings">Settings</string>
     <string name="history">History</string>
-    <string name="text">Text</string>
+    <string name="create_new">Create New Code</string>
+
+    <!-- QR / Barcode Types -->
     <string name="bitcoin">Bitcoin</string>
-    <string name="calendar">Calendar</string>
+    <string name="calendar">Calendar Event</string>
     <string name="contact">Contact</string>
     <string name="discord">Discord</string>
     <string name="email">Email</string>
     <string name="facebook">Facebook</string>
-    <string name="google">Search</string>
+    <string name="google">Google Search</string>
     <string name="instagram">Instagram</string>
     <string name="linkedin">LinkedIn</string>
     <string name="location">Location</string>
@@ -21,149 +31,160 @@
     <string name="skype">Skype</string>
     <string name="sms">SMS</string>
     <string name="snapchat">Snapchat</string>
+    <string name="text">Text</string>
     <string name="threads">Threads</string>
     <string name="twitch">Twitch</string>
     <string name="website">Website</string>
-    <string name="whatsapp">Whatsapp</string>
-    <string name="wifi">Wifi</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="wifi">Wi-Fi</string>
     <string name="youtube">YouTube</string>
     <string name="zoom">Zoom</string>
-    <string name="create_new">Create New</string>
-    <string name="code_format">Code Format</string>
-    <string name="select_code_format">Select Code Format</string>
+
+    <!-- Form & Customization -->
     <string name="platform">Platform</string>
+    <string name="code_format">Code Format</string>
+    <string name="select_code_format">Choose a Code Format</string>
     <string name="enter_details">Enter details for %s</string>
-    <string name="select_background_color">Select Background Color</string>
-    <string name="select_foreground_color">Select Foreground Color</string>
-    <string name="select_color">Select Color</string>
-    <string name="permission_denied_title">Permissions Needed</string>
-    <string name="permission_denied_message">This QR app requires Camera, Storage, and Notification permissions to function properly. Please grant these permissions to scan and save QR codes, and receive important alerts. If you’ve previously denied them, go to App Settings to enable them manually.</string>
-    <string name="grant">Grant</string>
-    <string name="upload_logo">Upload Logo</string>
+    <string name="select_background_color">Choose Background Color</string>
+    <string name="select_foreground_color">Choose Foreground Color</string>
+    <string name="select_color">Choose Color</string>
+    <string name="upload_logo">Add Logo</string>
     <string name="image">Image</string>
     <string name="size">Size</string>
     <string name="width">Width</string>
     <string name="height">Height</string>
-    <string name="customization">Customizations</string>
-    <string name="delete_history_dialog_title">Delete History</string>
-    <string name="delete_history_dialog_message">Are you sure want to delete all history?</string>
-    <string name="delete">Delete</string>
-    <string name="default_name">Guest User</string>
-    <string name="trademark">© %s Syed Ovais Akhtar. All rights reserved.</string>
-    <string name="terms_and_conditions">Terms &amp; Conditions</string>
-    <string name="zoom_level">%.1fx</string>
-    <string name="app_version">v%s(%s)</string>
-    <string name="share_title">Check out this QR Code App!</string>
-    <string name="share_description">Hey! Try out this awesome QR Code Generator &amp; Scanner app</string>
-    <string name="barcode_details">Barcode Details</string>
-    <string name="generated_barcode">Generated Barcode</string>
-    <string name="barcode_image">Barcode Image</string>
-    <string name="save_image">Save Image</string>
-    <string name="share">Share</string>
-    <string name="content_details">Content Details</string>
-    <string name="save_barcode">Save Barcode</string>
-    <string name="save_barcode_message">Choose where to save your barcode image</string>
-    <string name="save">Save</string>
-    <string name="cancel">Cancel</string>
-    <string name="success">Success</string>
-    <string name="image_saved_successfully">Image saved successfully!</string>
-    <string name="ok">OK</string>
-    <string name="error">Error</string>
-    <string name="failed_to_save_image">Failed to save image. Please try again.</string>
-    <string name="invalid_barcode">Invalid or corrupted barcode image</string>
-    <string name="go_back">Go Back</string>
+    <string name="customization">Customization</string>
     <string name="content_color">Content Color</string>
-    <string name="content_color_description">Default color for barcodes or QR Codes</string>
-    <string name="content_background_color">Content Background</string>
-    <string name="content_background_color_description">Default background color for barcodes or QR Codes</string>
+    <string name="content_color_description">The default color applied to generated barcodes and QR codes.</string>
+    <string name="content_background_color">Background Color</string>
+    <string name="content_background_color_description">The default background for generated barcodes and QR codes.</string>
+    <string name="default_color_description">If no color is chosen, default colors will be applied. You can change this anytime in Settings.</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">Permissions Required</string>
+    <string name="permission_denied_message">
+        Quick Code needs Camera, Storage, and Notification permissions to work properly.
+        These are used to scan and save codes, and to send important alerts.
+        If you’ve previously denied them, please enable them in App Settings.
+    </string>
+    <string name="grant">Grant Access</string>
+
+    <!-- Export / Save -->
     <string name="code_export_format">Export Format</string>
-    <string name="code_export_format_description">Default export format i.e. PNG/JPEG</string>
-    <string name="user_feedback_and_behaviour">User Feedback &amp; Behaviour</string>
-    <string name="vibrate_on_scan">Vibrate on Scan</string>
-    <string name="vibrate_on_scan_description">Vibrate when barcode/qr code scanned</string>
-    <string name="sound_on_scan">Sound on Scan</string>
-    <string name="sound_on_scan_description">Play sound when barcode/qr code scanned</string>
-    <string name="clipboard_setting">Copy to clipboard </string>
-    <string name="clipboard_setting_description">Auto Copy Scan Result to Clipboard</string>
-    <string name="web_url">Open web urls</string>
-    <string name="web_url_description">Auto Open URLs After Scan</string>
-    <string name="history_and_storage">History &amp; Storage</string>
-    <string name="clear_history">Clear History</string>
-    <string name="clear_history_description">Clear all scan history</string>
-    <string name="export_history">Export History</string>
-    <string name="export_history_description">Export all history to phone</string>
-    <string name="language_and_regional">Language &amp; Regional</string>
-    <string name="app_language">App Language</string>
-    <string name="app_language_description">Select language for app</string>
-    <string name="privacy_and_permissions">Privacy &amp; Permissions</string>
-    <string name="camera_status">Camera Status</string>
-    <string name="camera_status_description">Permission required to access and select images from your gallery.</string>
-    <string name="gallery_status">Gallery Status</string>
-    <string name="gallery_status_description">Permission required to access photos from your device.</string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="privacy_policy_description">Learn how your data is collected and used.</string>
-    <string name="label_send_anonymous_data">Send Anonymous Usage Data</string>
-    <string name="desc_send_anonymous_data">Help improve the app by sharing anonymous usage statistics.</string>
-    <string name="app_info_and_support">App Info &amp; Support</string>
-    <string name="label_version">Version</string>
-    <string name="desc_version">Displays the current app version and build number.</string>
-    <string name="label_about_app">About the App</string>
-    <string name="desc_about_app">Learn more about the app, its purpose, and features.</string>
-    <string name="label_rate_app">Rate this App</string>
-    <string name="desc_rate_app">Share your feedback by rating us on the Play Store.</string>
-    <string name="label_share_app">Share This App</string>
-    <string name="desc_share_app">Invite your friends and family to try the app.</string>
-    <string name="dialog_title_select_export_format">Select Export Format</string>
+    <string name="code_export_format_description">Default export format (PNG/JPEG).</string>
+    <string name="dialog_title_select_export_format">Choose Export Format</string>
     <string name="option_png">PNG</string>
     <string name="option_jpg">JPG/JPEG</string>
     <string name="dialog_title_export_history">Export History</string>
     <string name="option_csv">CSV</string>
     <string name="option_pdf">PDF</string>
-    <string name="select_language">Select Language</string>
-    <string name="default_color_description">If no color is selected, default colors will be applied. You can change this later from Settings.</string>
-    <string name="create">Create</string>
-    <string name="on_boarding_title_1">All Your Codes. One Powerful App.</string>
-    <string name="on_boarding_title_2">Scan Fast. Design Better.</string>
-    <string name="on_boarding_title_3">Works Offline. Built Around You.</string>
-    <string name="on_boarding_description_1">Create and scan QR &amp; barcodes — with full offline access and a personal history log.</string>
-    <string name="on_boarding_description_2">Instantly scan any code, or generate your own with custom styles.</string>
-    <string name="on_boarding_description_3">Quick Code saves everything offline and adapts to your preferences.</string>
+    <string name="save_barcode">Save Barcode</string>
+    <string name="save_barcode_message">Select a location to save your barcode image.</string>
+    <string name="save">Save</string>
+    <string name="save_image">Save Image</string>
+    <string name="download">Download</string>
+    <string name="success">Success</string>
+    <string name="image_saved_successfully">Image saved successfully.</string>
+    <string name="error">Error</string>
+    <string name="failed_to_save_image">Couldn’t save image. Please try again.</string>
+    <string name="export_text">Export</string>
+    <string name="export_title">Export Complete</string>
+    <string name="export_message">The following file(s) were exported: %s</string>
+    <string name="export_failed">Export Failed</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">Barcode Details</string>
+    <string name="generated_barcode">Generated Barcode</string>
+    <string name="barcode_image">Barcode Image</string>
+    <string name="content_details">Content Details</string>
+    <string name="invalid_barcode">The image is not a valid or readable barcode.</string>
+    <string name="scan_successful">Scan Successful</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">How to Scan QR &amp; Barcodes</string>
+    <string name="scan_step_1_title">Position the Code</string>
+    <string name="scan_step_1_desc">Align the QR code or barcode within the scan frame on screen.</string>
+    <string name="scan_step_2_title">Ensure Good Lighting</string>
+    <string name="scan_step_2_desc">Make sure the code is well-lit. Use the flashlight if needed.</string>
+    <string name="scan_step_3_title">Hold Steady</string>
+    <string name="scan_step_3_desc">Keep your device steady until the code is detected automatically.</string>
+    <string name="scan_step_4_title">Or Select from Gallery</string>
+    <string name="scan_step_4_desc">If scanning fails, choose an image from your gallery instead.</string>
+    <string name="scan_tips_title">💡 Scanning Tips</string>
+    <string name="scan_tips_bullets">• Clean your camera lens\n• Avoid glare or reflections\n• Use zoom if needed\n• Ensure the code isn’t damaged</string>
+    <string name="got_it">Got it</string>
+
+    <!-- History -->
+    <string name="empty_history">No codes yet. Create your first QR or barcode to get started!</string>
+    <string name="delete_history_dialog_title">Clear History</string>
+    <string name="delete_history_dialog_message">Are you sure you want to delete all saved history?</string>
+    <string name="delete">Delete</string>
+    <string name="clear_history">Clear History</string>
+    <string name="clear_history_description">Remove all scan and creation history.</string>
+    <string name="cleared_all_history">History cleared successfully.</string>
+    <string name="clearing_history">Clearing history…</string>
+    <string name="export_history">Export History</string>
+    <string name="export_history_description">Save all history to your device.</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">Feedback &amp; Behavior</string>
+    <string name="vibrate_on_scan">Vibrate on Scan</string>
+    <string name="vibrate_on_scan_description">Vibrate when a code is successfully scanned.</string>
+    <string name="sound_on_scan">Sound on Scan</string>
+    <string name="sound_on_scan_description">Play a sound when a code is successfully scanned.</string>
+    <string name="clipboard_setting">Copy to Clipboard</string>
+    <string name="clipboard_setting_description">Automatically copy scan results to your clipboard.</string>
+    <string name="web_url">Open Web URLs</string>
+    <string name="web_url_description">Automatically open scanned URLs in a browser.</string>
+    <string name="history_and_storage">History &amp; Storage</string>
+    <string name="language_and_regional">Language &amp; Region</string>
+    <string name="app_language">App Language</string>
+    <string name="app_language_description">Select the display language for Quick Code.</string>
+    <string name="select_language">Choose Language</string>
+    <string name="privacy_and_permissions">Privacy &amp; Permissions</string>
+    <string name="camera_status">Camera Access</string>
+    <string name="camera_status_description">Required to scan codes and pick images from your gallery.</string>
+    <string name="gallery_status">Gallery Access</string>
+    <string name="gallery_status_description">Required to select images stored on your device.</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_policy_description">Learn how we collect, store, and use your data.</string>
+    <string name="label_send_anonymous_data">Send Anonymous Usage Data</string>
+    <string name="desc_send_anonymous_data">Help us improve Quick Code by sharing anonymous usage stats.</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">App Info &amp; Support</string>
+    <string name="label_version">Version</string>
+    <string name="desc_version">Shows the current app version and build number.</string>
+    <string name="label_about_app">About Quick Code</string>
+    <string name="desc_about_app">Discover the app’s features, purpose, and benefits.</string>
+    <string name="label_rate_app">Rate Quick Code</string>
+    <string name="desc_rate_app">Share your experience by rating us on the Play Store.</string>
+    <string name="label_share_app">Share Quick Code</string>
+    <string name="desc_share_app">Invite friends and family to try Quick Code.</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">All Your Codes in One App</string>
+    <string name="on_boarding_title_2">Fast Scanning. Smart Design.</string>
+    <string name="on_boarding_title_3">Offline. Personal. Powerful.</string>
+    <string name="on_boarding_description_1">Create and scan QR or barcodes anytime, with offline access and full history.</string>
+    <string name="on_boarding_description_2">Scan instantly or design your own codes with custom styles.</string>
+    <string name="on_boarding_description_3">Quick Code saves your work offline and adapts to your preferences.</string>
     <string name="skip">Skip</string>
     <string name="next">Next</string>
     <string name="get_started">Get Started</string>
-    <string name="scan_help_title">How to Scan QR Codes &amp; Barcodes</string>
 
-    <!-- Step Titles -->
-    <string name="scan_step_1_title">Position the Code</string>
-    <string name="scan_step_2_title">Ensure Good Lighting</string>
-    <string name="scan_step_3_title">Hold Steady</string>
-    <string name="scan_step_4_title">Alternative: Gallery</string>
-
-    <!-- Step Descriptions -->
-    <string name="scan_step_1_desc">Place the QR code or barcode within the scanning area (the rounded rectangle with corner indicators).</string>
-    <string name="scan_step_2_desc">Make sure the code is well-lit. Use the torch button if needed for better visibility.</string>
-    <string name="scan_step_3_desc">Keep your device steady and wait for the code to be automatically detected and scanned.</string>
-    <string name="scan_step_4_desc">If scanning doesn\'t work, you can also select an image from your gallery using the gallery button.</string>
-
-    <!-- Tips Section -->
-    <string name="scan_tips_title">💡 Tips for Better Scanning:</string>
-    <string name="scan_tips_bullets">• Clean the camera lens\n• Avoid reflective surfaces\n• Use zoom slider if needed\n• Ensure code is not damaged</string>
-
-    <!-- Button -->
-    <string name="got_it">Got it!</string>
+    <!-- Common Actions -->
+    <string name="go_back">Go Back</string>
     <string name="close">Close</string>
     <string name="copy">Copy</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="clipboard_label">Result</string>
-    <string name="scan_successful">Scan Successful!</string>
-    <string name="default_channel_id">123001</string>
-    <string name="empty_history">No created codes yet.Create your first QR code or barcode!</string>
-    <string name="download">Download</string>
-    <string name="cleared_all_history">All history cleared!</string>
-    <string name="clearing_history">Clearing History</string>
-    <string name="export_channel_id">export_channel</string>
-    <string name="export_text">Export</string>
-    <string name="export_title">Export Successful</string>
-    <string name="export_message">The following file(s) have been exported: %s</string>
-    <string name="export_failed">Export Failed!</string>
+    <string name="share">Share</string>
+    <string name="share_title">Check out Quick Code</string>
+    <string name="share_description">I’m using this amazing QR code generator &amp; scanner — give it a try!</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="create">Create</string>
+    <string name="terms_and_conditions">Terms &amp; Conditions</string>
 </resources>
