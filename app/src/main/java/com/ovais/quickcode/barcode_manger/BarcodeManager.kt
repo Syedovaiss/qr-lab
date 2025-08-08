@@ -1,11 +1,14 @@
 package com.ovais.quickcode.barcode_manger
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
 import android.graphics.ImageFormat
 import android.graphics.Matrix
 import android.graphics.Paint
@@ -21,21 +24,22 @@ import androidx.camera.core.ImageProxy
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.scale
 import androidx.core.graphics.set
+import androidx.exifinterface.media.ExifInterface
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.BinaryBitmap
 import com.google.zxing.DecodeHintType
 import com.google.zxing.EncodeHintType
 import com.google.zxing.MultiFormatReader
 import com.google.zxing.MultiFormatWriter
+import com.google.zxing.NotFoundException
 import com.google.zxing.RGBLuminanceSource
 import com.google.zxing.common.BitMatrix
+import com.google.zxing.common.GlobalHistogramBinarizer
 import com.google.zxing.common.HybridBinarizer
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.ovais.quickcode.features.scan_code.data.ScanResult
 import com.ovais.quickcode.logger.AppLogger
-import com.ovais.quickcode.utils.file.FileManager
-import com.ovais.quickcode.utils.orZero
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -81,7 +85,7 @@ interface BarcodeManager {
 class DefaultBarcodeManager(
     private val dispatcherDefault: CoroutineDispatcher,
     private val logger: AppLogger,
-    private val fileManager: FileManager
+    private val context: Context
 ) : BarcodeManager {
 
     private companion object Companion {
@@ -125,8 +129,8 @@ class DefaultBarcodeManager(
     ): BitMatrix {
         val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java).apply {
             put(EncodeHintType.CHARACTER_SET, UTF_8)
-            put(EncodeHintType.MARGIN, 1)
-            put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H)
+            put(EncodeHintType.MARGIN, 2)
+            put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H) // Changed to Medium for better compatibility
         }
 
         return MultiFormatWriter().encode(
@@ -275,7 +279,24 @@ class DefaultBarcodeManager(
                 val bitmap = imageProxyToBitmap(imageProxy)
                 bitmap?.let {
                     val rotatedBitmap = rotateBitmap(bitmap, imageProxy.imageInfo.rotationDegrees)
-                    val decodedText = decodeWithZxing(rotatedBitmap)
+                    
+                    // Try multiple approaches for better scanning
+                    var decodedText = decodeWithZxing(rotatedBitmap)
+
+                    // If first attempt fails, try with different binarizer
+                    if (decodedText == null) {
+                        decodedText = decodeWithZxingAlternative(rotatedBitmap)
+                    }
+                    
+                    // If still fails, try with enhanced image
+                    if (decodedText == null) {
+                        val enhancedBitmap = enhanceImageForScanning(rotatedBitmap)
+                        decodedText = decodeWithZxing(enhancedBitmap)
+                        if (decodedText == null) {
+                            decodedText = decodeWithZxingAlternative(enhancedBitmap)
+                        }
+                    }
+                    
                     imageProxy.close()
                     decodedText?.let {
                         ScanResult.Success(decodedText, rotatedBitmap)
@@ -295,33 +316,106 @@ class DefaultBarcodeManager(
     override suspend fun scanCode(uri: Uri): ScanResult {
         return withContext(dispatcherDefault) {
             try {
-                val bitmap = fileManager.uriToBitmap(uri)
-                val width = bitmap?.width
-                val height = bitmap?.height
-                val pixels = IntArray(width.orZero * height.orZero)
-                bitmap?.getPixels(pixels, 0, width.orZero, 0, 0, width.orZero, height.orZero)
+                context.contentResolver.openInputStream(uri)?.use { inputStream ->
+                    // Decode the image file to a binary bitmap for Zxing
+                    val bufferedBitmap = BitmapFactory.decodeStream(inputStream)
+                        ?.let { fixExifOrientation(it, uri) }
+                        ?.let { resizeBitmap(it) }
 
-                val source = RGBLuminanceSource(width.orZero, height.orZero, pixels)
-                val binaryBitmap = BinaryBitmap(HybridBinarizer(source))
+                    if (bufferedBitmap == null) {
+                        return@withContext ScanResult.Failure("Unable to load image")
+                    }
 
-                val reader = MultiFormatReader()
+                    val intArray = IntArray(bufferedBitmap.width * bufferedBitmap.height)
+                    bufferedBitmap.getPixels(
+                        intArray, 0, bufferedBitmap.width,
+                        0, 0, bufferedBitmap.width, bufferedBitmap.height
+                    )
 
-                val hints = mapOf(
-                    DecodeHintType.POSSIBLE_FORMATS to BarcodeFormat.entries,
-                    DecodeHintType.TRY_HARDER to true
-                )
-
-                reader.setHints(hints)
-                val result = reader.decode(binaryBitmap)
-                ScanResult.Success(result.text, bitmap)
+                    val source = RGBLuminanceSource(
+                        bufferedBitmap.width, bufferedBitmap.height, intArray
+                    )
+                    
+                    // Try with HybridBinarizer first
+                    var binaryBitmap = BinaryBitmap(HybridBinarizer(source))
+                    val result = try {
+                        val reader = MultiFormatReader().apply {
+                            setHints(
+                                mapOf(
+                                    DecodeHintType.TRY_HARDER to true,
+                                    DecodeHintType.POSSIBLE_FORMATS to BarcodeFormat.entries,
+                                    DecodeHintType.CHARACTER_SET to "UTF-8"
+                                )
+                            )
+                        }
+                        reader.decodeWithState(binaryBitmap)
+                    } catch (e: Exception) {
+                        Timber.e(e)
+                        // If first attempt fails, try with GlobalHistogramBinarizer
+                        binaryBitmap = BinaryBitmap(GlobalHistogramBinarizer(source))
+                        val reader = MultiFormatReader().apply {
+                            setHints(
+                                mapOf(
+                                    DecodeHintType.TRY_HARDER to true,
+                                    DecodeHintType.POSSIBLE_FORMATS to BarcodeFormat.entries,
+                                    DecodeHintType.CHARACTER_SET to "UTF-8"
+                                )
+                            )
+                        }
+                        reader.decodeWithState(binaryBitmap)
+                    }
+                    
+                    ScanResult.Success(result.text, bufferedBitmap)
+                } ?: ScanResult.Failure("Failed to open image stream")
+            } catch (e: NotFoundException) {
+                Timber.e(e)
+                ScanResult.Failure("No QR code found in image")
             } catch (e: Exception) {
                 Timber.e(e)
-                ScanResult.Failure(e.message.toString())
+                ScanResult.Failure(e.message ?: "Unknown error")
             }
         }
     }
 
+    private fun fixExifOrientation(bitmap: Bitmap, uri: Uri): Bitmap {
+        context
+        val inputStream = context.contentResolver.openInputStream(uri) ?: return bitmap
+        val exif = ExifInterface(inputStream)
+        val rotationDegrees = when (exif.getAttributeInt(
+            ExifInterface.TAG_ORIENTATION,
+            ExifInterface.ORIENTATION_NORMAL
+        )) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> 90
+            ExifInterface.ORIENTATION_ROTATE_180 -> 180
+            ExifInterface.ORIENTATION_ROTATE_270 -> 270
+            else -> 0
+        }
+        inputStream.close()
+
+        return if (rotationDegrees != 0) {
+            val matrix = Matrix().apply { postRotate(rotationDegrees.toFloat()) }
+            Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+        } else bitmap
+    }
+
+    private fun resizeBitmap(bitmap: Bitmap): Bitmap {
+        val width = bitmap.width
+        val height = bitmap.height
+        val ratio = width.toFloat() / height.toFloat()
+
+        return if (width > height) {
+            val scaledWidth = 1024
+            val scaledHeight = (1024 / ratio).toInt()
+            bitmap.scale(scaledWidth, scaledHeight)
+        } else {
+            val scaledHeight = 1024
+            val scaledWidth = (1024 * ratio).toInt()
+            bitmap.scale(scaledWidth, scaledHeight)
+        }
+    }
+
     private fun decodeWithZxing(bitmap: Bitmap): String? {
+        logInfo("Attempting to decode bitmap: ${bitmap.width}x${bitmap.height}")
         val intArray = IntArray(bitmap.width * bitmap.height)
         bitmap.getPixels(intArray, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
@@ -329,10 +423,49 @@ class DefaultBarcodeManager(
         val binaryBitmap = BinaryBitmap(HybridBinarizer(source))
 
         return try {
-            val result = MultiFormatReader().decode(binaryBitmap)
+            val reader = MultiFormatReader().apply {
+                setHints(
+                    mapOf(
+                        DecodeHintType.TRY_HARDER to true,
+                        DecodeHintType.POSSIBLE_FORMATS to BarcodeFormat.entries,
+                        DecodeHintType.CHARACTER_SET to "UTF-8"
+                    )
+                )
+            }
+            val result = reader.decodeWithState(binaryBitmap)
+            logInfo("Successfully decoded: ${result.text}")
             result.text
         } catch (e: Exception) {
-            Timber.e(e)
+            logException("Failed to decode with HybridBinarizer: ${e.message}")
+            null
+        }
+    }
+
+    private fun decodeWithZxingAlternative(bitmap: Bitmap): String? {
+        logInfo("Attempting alternative decode with GlobalHistogramBinarizer")
+        val intArray = IntArray(bitmap.width * bitmap.height)
+        bitmap.getPixels(intArray, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+
+        val source = RGBLuminanceSource(bitmap.width, bitmap.height, intArray)
+        
+        // Try with GlobalHistogramBinarizer as alternative
+        val binaryBitmap = BinaryBitmap(GlobalHistogramBinarizer(source))
+
+        return try {
+            val reader = MultiFormatReader().apply {
+                setHints(
+                    mapOf(
+                        DecodeHintType.TRY_HARDER to true,
+                        DecodeHintType.POSSIBLE_FORMATS to BarcodeFormat.entries,
+                        DecodeHintType.CHARACTER_SET to "UTF-8"
+                    )
+                )
+            }
+            val result = reader.decodeWithState(binaryBitmap)
+            logInfo("Successfully decoded with GlobalHistogramBinarizer: ${result.text}")
+            result.text
+        } catch (e: Exception) {
+            logException("Failed to decode with GlobalHistogramBinarizer: ${e.message}")
             null
         }
     }
@@ -367,8 +500,11 @@ class DefaultBarcodeManager(
 
         return if (success) {
             val jpegBytes = out.toByteArray()
-            BitmapFactory.decodeByteArray(jpegBytes, 0, jpegBytes.size)
+            val bitmap = BitmapFactory.decodeByteArray(jpegBytes, 0, jpegBytes.size)
+            logInfo("Image converted successfully: ${bitmap?.width}x${bitmap?.height}")
+            bitmap
         } else {
+            logException("Failed to compress YUV image to JPEG")
             null
         }
     }
@@ -377,6 +513,24 @@ class DefaultBarcodeManager(
         val matrix = Matrix()
         matrix.postRotate(rotationDegrees.toFloat())
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+    }
+
+    private fun enhanceImageForScanning(bitmap: Bitmap): Bitmap {
+        // Create a copy with better contrast and brightness
+        val enhancedBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
+        val canvas = Canvas(enhancedBitmap)
+        
+        // Apply color matrix for better contrast
+        val colorMatrix = ColorMatrix().apply {
+            setSaturation(1.2f) // Increase saturation slightly
+        }
+        
+        val paint = Paint().apply {
+            colorFilter = ColorMatrixColorFilter(colorMatrix)
+        }
+        
+        canvas.drawBitmap(bitmap, 0f, 0f, paint)
+        return enhancedBitmap
     }
 
     private fun logInfo(content: String) {

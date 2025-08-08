@@ -15,7 +15,6 @@ import com.ovais.quickcode.features.scan_code.data.ScanResult
 import com.ovais.quickcode.features.scan_code.domain.CanVibrateAndBeepUseCase
 import com.ovais.quickcode.features.scan_code.domain.ScanCodeUseCase
 import com.ovais.quickcode.utils.DateTimeManager
-import com.ovais.quickcode.utils.KeyValue
 import com.ovais.quickcode.utils.clipboard.ClipboardManager
 import com.ovais.quickcode.utils.permissions.PermissionManager
 import com.ovais.quickcode.utils.sound.AppSoundManager
@@ -97,6 +96,7 @@ class ScanViewModel(
             imageProxy.close()
             return
         }
+        isScanning = true
         try {
             scanCode(
                 param = ScanCodeParam(
