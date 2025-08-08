@@ -6,6 +6,9 @@ import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import com.ovais.quickcode.notification.NotificationManager
 import com.ovais.quickcode.storage.db.HistoryDao
+import com.ovais.quickcode.utils.WorkConstants.ERROR_KEY
+import com.ovais.quickcode.utils.WorkConstants.EXPORT_MESSAGE
+import com.ovais.quickcode.utils.WorkConstants.MESSAGE_KEY
 import com.ovais.quickcode.utils.file.FileExportHelper
 
 class ExportCSVWorker(
@@ -19,9 +22,6 @@ class ExportCSVWorker(
     private companion object Companion {
         private const val SCANNED_FILENAME = "quick_code_scanned"
         private const val CREATED_FILENAME = "quick_code_created"
-        private const val EXPORT_MESSAGE = "Export Completed!"
-        private const val ERROR_KEY = "Error"
-        private const val MESSAGE_KEY = "Message"
     }
 
     override suspend fun doWork(): Result {
@@ -31,7 +31,12 @@ class ExportCSVWorker(
 
             fileExportHelper.exportScannedToCsv(scannedList, SCANNED_FILENAME)
             fileExportHelper.exportCreatedToCsv(createdList, CREATED_FILENAME)
-            notificationManager.showExportNotification(listOf("$SCANNED_FILENAME.csv", "$CREATED_FILENAME.csv"))
+            notificationManager.showExportNotification(
+                listOf(
+                    "$SCANNED_FILENAME.csv",
+                    "$CREATED_FILENAME.csv"
+                )
+            )
             Result.success(
                 workDataOf(MESSAGE_KEY to EXPORT_MESSAGE)
             )

@@ -165,4 +165,5 @@
     <string name="export_text">Export</string>
     <string name="export_title">Export Successful</string>
     <string name="export_message">The following file(s) have been exported: %s</string>
+    <string name="export_failed">Export Failed!</string>
 </resources>

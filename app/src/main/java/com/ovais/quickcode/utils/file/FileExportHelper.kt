@@ -23,7 +23,7 @@ interface FileExportHelper {
         createdData: List<CreatedCodeEntity>,
         scannedData: List<ScannedCodeEntity>,
         fileName: String
-    ): File?
+    ): Boolean
 
     suspend fun exportCreatedToCsv(
         data: List<CreatedCodeEntity>,
@@ -66,7 +66,7 @@ class DefaultFileExportHelper(
         createdData: List<CreatedCodeEntity>,
         scannedData: List<ScannedCodeEntity>,
         fileName: String
-    ): File? {
+    ): Boolean {
         val pdfDocument = PdfDocument()
         val paint = android.graphics.Paint()
         val titlePaint = android.graphics.Paint().apply {
@@ -135,7 +135,7 @@ class DefaultFileExportHelper(
 
         saveToDownloads("$fileName.pdf", "application/pdf", byteStream.toByteArray())
 
-        return null // No direct File returned because we use MediaStore
+        return true
     }
 
     private fun saveToDownloads(fileName: String, mimeType: String, data: ByteArray) {
