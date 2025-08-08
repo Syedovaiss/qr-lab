@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import com.ovais.quickcode.features.history.data.CreatedCodeEntity
 import com.ovais.quickcode.features.history.data.ScannedCodeEntity
 
@@ -32,4 +33,17 @@ interface HistoryDao {
 
     @Query("DELETE FROM code_scanned WHERE id = :id")
     suspend fun deleteScannedCodeById(id: Long)
+
+    @Query("DELETE FROM code_created")
+    suspend fun clearAllCreatedCodes(): Int
+
+    @Query("DELETE FROM code_scanned")
+    suspend fun clearAllScannedCodes(): Int
+
+    @Transaction
+    suspend fun clearAllHistory(): Int {
+        val deletedCreated = clearAllCreatedCodes()
+        val deletedScanned = clearAllScannedCodes()
+        return deletedCreated + deletedScanned
+    }
 }

@@ -1,6 +1,7 @@
 package com.ovais.quickcode.core.di
 
 import androidx.credentials.CredentialManager
+import androidx.work.WorkManager
 import com.ovais.quickcode.analytics.AppAnalyticsManager
 import com.ovais.quickcode.analytics.DefaultAppAnalyticsManager
 import com.ovais.quickcode.auth.AuthManager
@@ -29,7 +30,9 @@ import com.ovais.quickcode.utils.DefaultInitialProvider
 import com.ovais.quickcode.utils.InitialProvider
 import com.ovais.quickcode.utils.clipboard.ClipboardManager
 import com.ovais.quickcode.utils.clipboard.DefaultClipboardManager
+import com.ovais.quickcode.utils.file.DefaultFileExportHelper
 import com.ovais.quickcode.utils.file.DefaultFileManager
+import com.ovais.quickcode.utils.file.FileExportHelper
 import com.ovais.quickcode.utils.file.FileManager
 import com.ovais.quickcode.utils.local_config.DefaultLocalConfigurationManager
 import com.ovais.quickcode.utils.local_config.LocalConfigurationManager
@@ -45,7 +48,11 @@ import com.ovais.quickcode.utils.usecase.GetContentUriUseCase
 import com.ovais.quickcode.utils.usecase.GetTermsAndConditionsUseCase
 import com.ovais.quickcode.utils.usecase.LocalConfigurationUseCase
 import com.ovais.quickcode.utils.usecase.SaveImageUseCase
+import com.ovais.quickcode.worker.factory.AppWorkerFactory
+import com.ovais.quickcode.notification.NotificationManager
+import com.ovais.quickcode.notification.DefaultNotificationManager
 import kotlinx.coroutines.CoroutineDispatcher
+import timber.log.Timber
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.qualifier.named
 import org.koin.dsl.bind
@@ -107,4 +114,13 @@ val singletonModule = module {
     single {
         DefaultDateTimeManager()
     } bind DateTimeManager::class
+
+    single { DefaultFileExportHelper(get()) } bind FileExportHelper::class
+    single { DefaultNotificationManager(get()) } bind NotificationManager::class
+    single { AppWorkerFactory(get(), get(), get()) }
+    single { 
+        val factory = get<AppWorkerFactory>()
+        Timber.d("Creating WorkManager instance with custom factory")
+        WorkManager.getInstance(get())
+    }
 }

@@ -37,6 +37,7 @@ koinComposeViewmodel = "4.0.3"
 koinTest = "3.5.3"
 koinTestJunit4 = "3.5.3"
 timber = "5.0.1"
+workRuntimeKtx = "2.10.3"
 zxingAndroidEmbedded = "4.3.0"
 datastore = "1.1.7"
 sqlcipherAndroid = "4.9.0"
@@ -54,6 +55,7 @@ androidx-core-testing = { module = "androidx.arch.core:core-testing", version.re
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentials" }
 androidx-credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version = "23.0.0" }
 firebase-cloud-messaging = { group = "com.google.firebase", name = "firebase-messaging", version = "25.0.0" }

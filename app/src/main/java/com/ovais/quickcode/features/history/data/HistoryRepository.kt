@@ -13,4 +13,5 @@ interface HistoryRepository {
 
     suspend fun deleteCreatedCode(id: Long)
     suspend fun deleteScannedCode(id: Long)
+    suspend fun clearHistory(): Int
 }

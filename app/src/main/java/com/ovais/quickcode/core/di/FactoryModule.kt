@@ -48,9 +48,13 @@ import com.ovais.quickcode.features.scan_code.domain.DefaultCanVibrateAndBeepUse
 import com.ovais.quickcode.features.scan_code.domain.DefaultScanCodeUseCase
 import com.ovais.quickcode.features.scan_code.domain.DefaultScanRepository
 import com.ovais.quickcode.features.scan_code.domain.ScanCodeUseCase
+import com.ovais.quickcode.features.settings.domain.ClearHistoryUseCase
+import com.ovais.quickcode.features.settings.domain.DefaultClearHistoryUseCase
 import com.ovais.quickcode.features.settings.domain.DefaultGetLocaleUseCase
+import com.ovais.quickcode.features.settings.domain.DefaultGetWorkRequestUseCase
 import com.ovais.quickcode.features.settings.domain.DefaultUpdateSettingUseCase
 import com.ovais.quickcode.features.settings.domain.GetLocaleUseCase
+import com.ovais.quickcode.features.settings.domain.GetWorkRequestUseCase
 import com.ovais.quickcode.features.settings.domain.UpdateSettingUseCase
 import com.ovais.quickcode.utils.usecase.DefaultGetAboutUsUseCase
 import com.ovais.quickcode.utils.usecase.DefaultGetPrivacyPolicyUseCase
@@ -154,4 +158,14 @@ val factoryModule = module {
     factory { DefaultSaveCreatedCodeUseCase(get()) } bind SaveCreatedCodeUseCase::class
     factory { DefaultSaveScannedCodeUseCase(get()) } bind SaveScannedCodeUseCase::class
     factory { DefaultDeleteCreatedCodeUseCase(get()) } bind DeleteCodeUseCase::class
+    factory {
+        DefaultClearHistoryUseCase(
+            get(),
+            get(named(BACKGROUND))
+        )
+    } bind ClearHistoryUseCase::class
+
+    factory {
+        DefaultGetWorkRequestUseCase()
+    } bind GetWorkRequestUseCase::class
 }

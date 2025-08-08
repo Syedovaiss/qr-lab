@@ -144,6 +144,7 @@ dependencies {
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation(libs.lottie.compose)
+    implementation(libs.androidx.work.runtime.ktx)
     // Testing Dependencies
     testImplementation(libs.ktor.client.mock)
     testImplementation(libs.mockito.core)

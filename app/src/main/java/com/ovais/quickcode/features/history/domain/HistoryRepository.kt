@@ -94,4 +94,9 @@ class DefaultHistoryRepository(
     override suspend fun deleteScannedCode(id: Long) {
         historyDao.deleteScannedCodeById(id)
     }
+
+    override suspend fun clearHistory(): Int {
+        return historyDao.clearAllHistory()
+    }
+
 }
