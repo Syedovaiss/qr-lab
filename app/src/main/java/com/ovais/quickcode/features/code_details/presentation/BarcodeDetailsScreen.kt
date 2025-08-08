@@ -68,9 +68,6 @@ fun BarcodeDetailsScreen(
     val context = LocalContext.current
     val (bitmap, contentMap) = data
 
-    LaunchedEffect(Unit) {
-        viewModel.saveScannedCode(data)
-    }
     if (bitmap == null || bitmap.isRecycled) {
         BarcodeErrorView(onError = {
             viewModel.logEvent(

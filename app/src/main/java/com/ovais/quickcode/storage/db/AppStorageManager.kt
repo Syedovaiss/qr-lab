@@ -6,6 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.ovais.quickcode.BuildConfig
+import com.ovais.quickcode.features.history.data.CreatedCodeEntity
+import com.ovais.quickcode.features.history.data.ScannedCodeEntity
 import com.ovais.quickcode.logger.AppLogger
 import com.ovais.quickcode.storage.data.LocalConfiguration
 import net.zetetic.database.sqlcipher.SupportOpenHelperFactory
@@ -45,10 +47,10 @@ class DefaultAppStorageManager(
 @Database(
     entities = [
         LocalConfiguration::class,
-        com.ovais.quickcode.features.history.data.CreatedCodeEntity::class,
-        com.ovais.quickcode.features.history.data.ScannedCodeEntity::class
+        CreatedCodeEntity::class,
+        ScannedCodeEntity::class
     ],
-    version = 3,
+    version = 2,
     exportSchema = true
 )
 @TypeConverters(Converters::class)

@@ -9,7 +9,7 @@ import com.ovais.quickcode.utils.KeyValue
 data class ScannedCodeEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val content: List<KeyValue>,
+    val content: String,
     val bitmap: Bitmap?,
     val scannedAt: String
 ) 

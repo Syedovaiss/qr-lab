@@ -1,5 +1,7 @@
 package com.ovais.quickcode.features.history.presentation
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ovais.quickcode.R
@@ -113,6 +116,13 @@ private fun HistoryContent(
     state: HistoryState,
     onAction: (HistoryAction) -> Unit
 ) {
+    val saveLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("image/png")
+    ) { uri ->
+        uri?.let {
+            onAction(HistoryAction.DownloadImage(uri))
+        }
+    }
     val items = if (state.currentTab == 0) state.createdCodes else state.scannedCodes
 
     if (items.isEmpty()) {
@@ -127,6 +137,7 @@ private fun HistoryContent(
                 items = items,
                 key = { it.id }
             ) { item ->
+                val label = stringResource(R.string.clipboard_label)
                 HistoryItemCard(
                     item = item,
                     onDelete = {
@@ -138,10 +149,14 @@ private fun HistoryContent(
                         onAction(HistoryAction.ShareItem(item))
                     },
                     onCopy = {
-                        onAction(HistoryAction.CopyToClipboard(item.content))
+                        onAction(HistoryAction.CopyToClipboard(label, item.content))
                     },
                     onOpenUrl = {
                         onAction(HistoryAction.OpenUrl(item.content))
+                    },
+                    onSaveImage = {
+                        onAction(HistoryAction.UpdateDownloadedImage(it))
+                        saveLauncher.launch("code_${System.currentTimeMillis()}.png")
                     }
                 )
             }

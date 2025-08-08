@@ -1,11 +1,12 @@
 package com.ovais.quickcode.features.history.presentation
 
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ovais.quickcode.features.code_details.domain.ImageFormatUseCase
 import com.ovais.quickcode.features.history.data.HistoryAction
-import com.ovais.quickcode.features.history.data.HistoryFilter
 import com.ovais.quickcode.features.history.data.HistoryItem
 import com.ovais.quickcode.features.history.data.HistoryTab
 import com.ovais.quickcode.features.history.domain.DeleteCodeParam
@@ -17,6 +18,7 @@ import com.ovais.quickcode.utils.EMPTY_STRING
 import com.ovais.quickcode.utils.KeyValue
 import com.ovais.quickcode.utils.clipboard.ClipboardManager
 import com.ovais.quickcode.utils.file.FileManager
+import com.ovais.quickcode.utils.usecase.SaveImageUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -29,7 +31,6 @@ data class HistoryState(
     val currentTab: Int = 0,
     val createdCodes: List<HistoryItem> = emptyList(),
     val scannedCodes: List<HistoryItem> = emptyList(),
-    val filter: HistoryFilter = HistoryFilter(),
     val isLoading: Boolean = false,
     val error: String? = null
 )
@@ -39,12 +40,14 @@ class HistoryViewModel(
     private val getScannedCodesUseCase: GetScannedCodesUseCase,
     private val deleteCodeUseCase: DeleteCodeUseCase,
     private val clipboardManager: ClipboardManager,
-    private val fileManager: FileManager
+    private val fileManager: FileManager,
+    private val imageFormatUseCase: ImageFormatUseCase,
+    private val saveImageUseCase: SaveImageUseCase
 ) : ViewModel() {
+    private var downloadImage: Bitmap? = null
 
     private companion object {
         private const val URL = "url"
-        private const val COPIED = "Copied!"
     }
 
     private val _state = MutableStateFlow(HistoryState())
@@ -61,6 +64,7 @@ class HistoryViewModel(
     fun initialize() {
         fetchData()
     }
+
     private fun fetchScannedCodes() {
         viewModelScope.launch {
             val items = getScannedCodesUseCase()
@@ -102,7 +106,7 @@ class HistoryViewModel(
             }
 
             is HistoryAction.CopyToClipboard -> {
-                copyToClipboard(action.content)
+                copyToClipboard(action.label, action.content)
             }
 
             is HistoryAction.OpenUrl -> {
@@ -111,6 +115,23 @@ class HistoryViewModel(
 
             is HistoryAction.SwitchTab -> {
                 switchTab(action.tab)
+            }
+
+            is HistoryAction.UpdateDownloadedImage -> {
+                downloadImage = action.bitmap
+            }
+
+            is HistoryAction.DownloadImage -> {
+                downloadImage(downloadImage, action.uri)
+            }
+        }
+    }
+
+    fun downloadImage(bitmap: Bitmap?, uri: Uri) {
+        viewModelScope.launch {
+            bitmap?.let {
+                val imageFormat = imageFormatUseCase()
+                saveImageUseCase(Triple(bitmap, uri, imageFormat))
             }
         }
     }
@@ -159,11 +180,11 @@ class HistoryViewModel(
         }
     }
 
-    private fun copyToClipboard(content: List<KeyValue>) {
+    private fun copyToClipboard(label: String, content: List<KeyValue>) {
         viewModelScope.launch {
             val item = content.joinToString { it.value }
             try {
-                clipboardManager.copy(COPIED, item)
+                clipboardManager.copy(label, item)
             } catch (e: Exception) {
                 _state.update {
                     it.copy(error = e.message ?: "Failed to copy to clipboard")

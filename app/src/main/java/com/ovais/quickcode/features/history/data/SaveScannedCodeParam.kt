@@ -1,10 +1,9 @@
 package com.ovais.quickcode.features.history.data
 
 import android.graphics.Bitmap
-import com.ovais.quickcode.utils.KeyValue
 
 data class SaveScannedCodeParam(
-    val content: List<KeyValue>,
+    val content: String,
     val bitmap: Bitmap?,
     val scannedAt: String
 )

@@ -7,3 +7,8 @@ data class KeyValue(
     val key: String,
     val value: String
 )
+
+private const val KEY = "Content"
+
+val String.toKeyValue: KeyValue
+    get() = KeyValue(KEY, this)

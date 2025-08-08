@@ -1,5 +1,6 @@
 package com.ovais.quickcode.features.history.presentation
 
+import android.graphics.Bitmap
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -42,13 +43,15 @@ import com.ovais.quickcode.core.ui.theme.SelectedTabColor
 import com.ovais.quickcode.features.create.data.CodeType
 import com.ovais.quickcode.features.history.data.HistoryItem
 import com.ovais.quickcode.utils.components.BodyText
+
 @Composable
 fun HistoryItemCard(
     item: HistoryItem,
     onDelete: () -> Unit,
     onShare: () -> Unit,
     onCopy: () -> Unit,
-    onOpenUrl: () -> Unit
+    onOpenUrl: () -> Unit,
+    onSaveImage: (Bitmap?) -> Unit
 ) {
     var showMenu by remember { mutableStateOf(false) }
 
@@ -172,6 +175,20 @@ fun HistoryItemCard(
                             }
                         )
                     }
+                    DropdownMenuItem(
+                        text = { BodyText(stringResource(R.string.download)) },
+                        leadingIcon = {
+                            Image(
+                                painter = painterResource(R.drawable.ic_save),
+                                contentDescription = null,
+                                modifier = Modifier.size(20.dp)
+                            )
+                        },
+                        onClick = {
+                            onSaveImage(item.logo)
+                            showMenu = false
+                        }
+                    )
 
                     DropdownMenuItem(
                         text = { BodyText(stringResource(R.string.delete)) },

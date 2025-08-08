@@ -1,7 +1,5 @@
 package com.ovais.quickcode.features.history.domain
 
-import com.ovais.quickcode.features.create.data.CodeFormats
-import com.ovais.quickcode.features.create.data.CodeType
 import com.ovais.quickcode.features.history.data.CreatedCodeEntity
 import com.ovais.quickcode.features.history.data.HistoryItem
 import com.ovais.quickcode.features.history.data.HistoryRepository
@@ -10,6 +8,7 @@ import com.ovais.quickcode.features.history.data.SaveHistoryResult
 import com.ovais.quickcode.features.history.data.SaveScannedCodeParam
 import com.ovais.quickcode.features.history.data.ScannedCodeEntity
 import com.ovais.quickcode.storage.db.HistoryDao
+import com.ovais.quickcode.utils.toKeyValue
 import timber.log.Timber
 
 
@@ -18,7 +17,7 @@ class DefaultHistoryRepository(
 ) : HistoryRepository {
 
     override fun getCreatedCodes(): List<HistoryItem> {
-        return historyDao.getCreatedCodesDescending().map { entity ->
+        return historyDao.getAllCreatedCodeByDescOrder().map { entity ->
             HistoryItem(
                 id = entity.id,
                 content = entity.content,
@@ -29,7 +28,7 @@ class DefaultHistoryRepository(
                 backgroundColor = entity.backgroundColor,
                 width = entity.width,
                 height = entity.height,
-                logo = entity.logo
+                logo = entity.image
             )
         }
     }
@@ -38,10 +37,8 @@ class DefaultHistoryRepository(
         return historyDao.getScannedCodesDescending().map { entity ->
             HistoryItem(
                 id = entity.id,
-                content = entity.content,
+                content = listOf(entity.content.toKeyValue),
                 timestamp = entity.scannedAt,
-                codeType = CodeType.Phone,
-                format = CodeFormats.QRCode,
                 logo = entity.bitmap
             )
         }
@@ -59,7 +56,7 @@ class DefaultHistoryRepository(
                 backgroundColor = param.backgroundColor,
                 width = param.width,
                 height = param.height,
-                logo = param.logo,
+                image = param.logo,
                 createdAt = param.createdAt
             )
             val result = historyDao.insertCreatedCode(entity)
@@ -96,13 +93,5 @@ class DefaultHistoryRepository(
 
     override suspend fun deleteScannedCode(id: Long) {
         historyDao.deleteScannedCodeById(id)
-    }
-
-    override suspend fun getCreatedCodesCount(): Int {
-        return historyDao.getCreatedCodesCount()
-    }
-
-    override suspend fun getScannedCodesCount(): Int {
-        return historyDao.getScannedCodesCount()
     }
 }

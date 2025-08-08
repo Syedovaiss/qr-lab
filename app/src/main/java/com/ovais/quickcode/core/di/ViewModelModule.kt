@@ -53,6 +53,8 @@ val viewModelModule = module {
             get(),
             get(),
             get(),
+            get(),
+            get()
         )
     }
     viewModel {
@@ -69,8 +71,6 @@ val viewModelModule = module {
             get(),
             get(),
             get(),
-            get(),
-            get(),
             get()
         )
     }
@@ -82,6 +82,8 @@ val viewModelModule = module {
     }
     viewModel {
         HistoryViewModel(
+            get(),
+            get(),
             get(),
             get(),
             get(),
