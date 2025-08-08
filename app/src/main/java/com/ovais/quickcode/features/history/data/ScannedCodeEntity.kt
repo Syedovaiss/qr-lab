@@ -1,0 +1,14 @@
+package com.ovais.quickcode.features.history.data
+
+import android.graphics.Bitmap
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "code_scanned")
+data class ScannedCodeEntity(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    val content: String,
+    val bitmap: Bitmap?,
+    val scannedAt: String
+) 

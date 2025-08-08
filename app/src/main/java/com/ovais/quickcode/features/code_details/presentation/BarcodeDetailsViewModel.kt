@@ -103,6 +103,7 @@ class BarcodeDetailsViewModel(
             }
         }
     }
+
     fun updateStateToIdle() {
         _uiState.value = BarcodeUiState.Idle
     }

@@ -2,6 +2,7 @@ package com.ovais.quickcode.features.create.presentation
 
 import android.graphics.Bitmap
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ovais.quickcode.analytics.AppAnalyticsManager
@@ -17,6 +18,8 @@ import com.ovais.quickcode.features.create.domain.CodeFormatUseCase
 import com.ovais.quickcode.features.create.domain.CodeTypeUseCase
 import com.ovais.quickcode.features.create.domain.CodeValidationUseCase
 import com.ovais.quickcode.features.create.domain.CreateCodeUseCase
+import com.ovais.quickcode.features.create.domain.SaveCreatedCodeUseCase
+import com.ovais.quickcode.features.history.data.SaveCreatedCodeParam
 import com.ovais.quickcode.utils.AnalyticsConstant.CODE_CREATED
 import com.ovais.quickcode.utils.AnalyticsConstant.CODE_CREATED_FAILURE
 import com.ovais.quickcode.utils.AnalyticsConstant.CODE_CREATED_MESSAGE
@@ -33,6 +36,8 @@ import com.ovais.quickcode.utils.AnalyticsConstant.IS_LOGO_SELECTED
 import com.ovais.quickcode.utils.AnalyticsConstant.SELECTED_CODE_FORMAT
 import com.ovais.quickcode.utils.AnalyticsConstant.WIDTH_UPDATE
 import com.ovais.quickcode.utils.AnalyticsConstant.WIDTH_UPDATE_MESSAGE
+import com.ovais.quickcode.utils.DateTimeManager
+import com.ovais.quickcode.utils.KeyValue
 import com.ovais.quickcode.utils.ValidationResult
 import com.ovais.quickcode.utils.file.FileManager
 import com.ovais.quickcode.utils.orZero
@@ -57,7 +62,9 @@ class CreateCodeViewModel(
     private val permissionManager: PermissionManager,
     private val fileManager: FileManager,
     private val colorCodeUseCase: CodeDefaultColorUseCase,
-    private val analyticsManager: AppAnalyticsManager
+    private val analyticsManager: AppAnalyticsManager,
+    private val saveCreatedCodeUseCase: SaveCreatedCodeUseCase,
+    private val dateTimeManager: DateTimeManager
 ) : ViewModel() {
 
     private val _defaultColors by lazy {
@@ -208,6 +215,13 @@ class CreateCodeViewModel(
                         CODE_CREATED_MESSAGE
                     )
                     _code.emit(result.code)
+                    saveToHistory(
+                        selectedValues,
+                        selectedType ?: CodeFormats.Code128,
+                        type,
+                        colors,
+                        result.code
+                    )
                 }
 
                 is CodeResult.Failure -> {
@@ -250,6 +264,44 @@ class CreateCodeViewModel(
                 type
             )
         )
+    }
+
+    private fun saveToHistory(
+        selectedValues: MutableMap<String, String>,
+        selectedType: CodeFormats?,
+        type: CodeType,
+        colors: Pair<BackgroundColor, ForegroundColor>,
+        createdCode: Bitmap?
+    ) {
+        viewModelScope.launch {
+            try {
+                val content = selectedValues.map {
+                    KeyValue(
+                        key = it.key,
+                        value = it.value
+                    )
+                }
+                saveCreatedCodeUseCase(
+                    param = SaveCreatedCodeParam(
+                        content = content,
+                        codeType = type,
+                        format = selectedType ?: CodeFormats.Code128,
+                        foregroundColor = colors.second.toArgb().toString(),
+                        backgroundColor = colors.first.toArgb().toString(),
+                        width = codeSize.value.width,
+                        height = codeSize.value.height,
+                        logo = createdCode,
+                        createdAt = dateTimeManager.now
+                    )
+                )
+            } catch (e: Exception) {
+                analyticsManager.logEvent(
+                    "HISTORY_SAVE_ERROR",
+                    "Failed to save created code to history",
+                    hashMapOf("error" to e.message.toString())
+                )
+            }
+        }
     }
 
 }

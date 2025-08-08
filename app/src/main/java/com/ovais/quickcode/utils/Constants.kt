@@ -277,3 +277,12 @@ object AnalyticsConstant {
     const val WIDTH_UPDATE_MESSAGE = "Width updated"
     const val HEIGHT_UPDATE_MESSAGE = " Height updated"
 }
+
+object WorkConstants {
+
+    const val EXPORT_MESSAGE = "Export Completed!"
+    const val ERROR_KEY = "Error"
+    const val MESSAGE_KEY = "Message"
+    const val CSV_WORKER_TAG = "CSV_WORKER_TAG"
+    const val PDF_WORKER_TAG = "PDF_WORKER_TAG"
+}

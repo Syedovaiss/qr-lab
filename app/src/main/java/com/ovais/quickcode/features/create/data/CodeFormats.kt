@@ -79,6 +79,10 @@ sealed interface CodeFormats {
             EAN8, EAN13, ITF, MaxiCode, PDF417, QRCode,
             RSS14, RSSExpanded, UPCA, UPCE, UPCEANExtension
         )
+
+        fun fromTitle(title: String): CodeFormats? {
+            return formats.find { it.title.equals(title, ignoreCase = true) }
+        }
     }
 }
 

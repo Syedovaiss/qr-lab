@@ -461,7 +461,7 @@ fun <T> RadioSelectionDialog(
     AlertDialog(
         onDismissRequest = onDismissRequest,
         title = {
-            SubtitleText(text = title,modifier = Modifier.fillMaxWidth())
+            SubtitleText(text = title, modifier = Modifier.fillMaxWidth())
         },
         text = {
             Column {

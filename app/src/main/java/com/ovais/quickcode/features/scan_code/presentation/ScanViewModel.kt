@@ -1,20 +1,23 @@
 package com.ovais.quickcode.features.scan_code.presentation
 
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.camera.core.ImageProxy
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ovais.quickcode.features.code_details.domain.SaveScannedCodeUseCase
 import com.ovais.quickcode.features.create.domain.CanAutoOpenUrlUseCase
 import com.ovais.quickcode.features.create.domain.CanCopyToClipboardUseCase
+import com.ovais.quickcode.features.history.data.SaveScannedCodeParam
 import com.ovais.quickcode.features.scan_code.data.ScanCodeParam
 import com.ovais.quickcode.features.scan_code.data.ScanCodeParamType
 import com.ovais.quickcode.features.scan_code.data.ScanResult
 import com.ovais.quickcode.features.scan_code.domain.CanVibrateAndBeepUseCase
 import com.ovais.quickcode.features.scan_code.domain.ScanCodeUseCase
+import com.ovais.quickcode.utils.DateTimeManager
 import com.ovais.quickcode.utils.clipboard.ClipboardManager
 import com.ovais.quickcode.utils.permissions.PermissionManager
 import com.ovais.quickcode.utils.sound.AppSoundManager
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -23,17 +26,17 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ScanViewModel(
     private val permissionManager: PermissionManager,
     private val scanCodeUseCase: ScanCodeUseCase,
-    private val dispatcherMain: CoroutineDispatcher,
     private val canBeepAndVibrateOnScanUseCase: CanVibrateAndBeepUseCase,
     private val soundManager: AppSoundManager,
     private val canAutoOpenUrlUseCase: CanAutoOpenUrlUseCase,
     private val canCopyToClipboardUseCase: CanCopyToClipboardUseCase,
-    private val clipboardManager: ClipboardManager
+    private val clipboardManager: ClipboardManager,
+    private val saveScannedCodeUseCase: SaveScannedCodeUseCase,
+    private val dateTimeManager: DateTimeManager
 ) : ViewModel() {
 
     private val _scanResult by lazy { MutableStateFlow<String?>(null) }
@@ -93,6 +96,7 @@ class ScanViewModel(
             imageProxy.close()
             return
         }
+        isScanning = true
         try {
             scanCode(
                 param = ScanCodeParam(
@@ -118,9 +122,7 @@ class ScanViewModel(
         viewModelScope.launch {
             when (val result = scanCodeUseCase(param)) {
                 is ScanResult.Success -> {
-                    withContext(dispatcherMain) {
-                        onCodeScanned(result.content)
-                    }
+                    onCodeScanned(result)
                 }
 
                 is ScanResult.Failure -> Unit
@@ -128,7 +130,7 @@ class ScanViewModel(
         }
     }
 
-    private suspend fun onCodeScanned(content: String) {
+    private suspend fun onCodeScanned(result: ScanResult.Success) {
         val (canBeep, canVibrate) = canBeepAndVibrateOnScanUseCase()
         when {
             canBeep && canVibrate -> {
@@ -144,7 +146,8 @@ class ScanViewModel(
                 soundManager.startVibrating()
             }
         }
-        _scanResult.update { content }
+        saveScannedCode(result.bitmap, result.content)
+        _scanResult.update { result.content }
     }
 
     fun copyToClipboard(label: String, content: String) {
@@ -153,5 +156,17 @@ class ScanViewModel(
 
     fun clearScannedResults() {
         _scanResult.value = null
+    }
+
+    private fun saveScannedCode(image: Bitmap?, content: String) {
+        viewModelScope.launch {
+            saveScannedCodeUseCase(
+                param = SaveScannedCodeParam(
+                    content = content,
+                    bitmap = image,
+                    scannedAt = dateTimeManager.now
+                )
+            )
+        }
     }
 }

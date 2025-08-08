@@ -11,7 +11,7 @@ class DefaultScanCodeUseCase(
     private val repository: ScanRepository
 ) : ScanCodeUseCase {
     override suspend fun invoke(param: ScanCodeParam): ScanResult {
-        delay(500)
+        delay(300)
         return repository.scan(param)
     }
 }

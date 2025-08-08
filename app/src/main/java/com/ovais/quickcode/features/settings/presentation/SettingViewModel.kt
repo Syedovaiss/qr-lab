@@ -3,7 +3,11 @@ package com.ovais.quickcode.features.settings.presentation
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.work.WorkManager
+import com.ovais.quickcode.features.settings.domain.ClearHistoryResult
+import com.ovais.quickcode.features.settings.domain.ClearHistoryUseCase
 import com.ovais.quickcode.features.settings.domain.GetLocaleUseCase
+import com.ovais.quickcode.features.settings.domain.GetWorkRequestUseCase
 import com.ovais.quickcode.features.settings.domain.UpdateSettingUseCase
 import com.ovais.quickcode.utils.local_config.LocalConfiguration
 import com.ovais.quickcode.utils.usecase.GetAboutUsUseCase
@@ -13,15 +17,20 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class SettingViewModel(
     private val updateSettingUseCase: UpdateSettingUseCase,
     private val privacyPolicyUseCase: GetPrivacyPolicyUseCase,
     private val localConfigurationUseCase: LocalConfigurationUseCase,
     private val getAboutUse: GetAboutUsUseCase,
-    private val getLocaleUseCase: GetLocaleUseCase
+    private val getLocaleUseCase: GetLocaleUseCase,
+    private val clearHistoryUseCase: ClearHistoryUseCase,
+    private val workManager: WorkManager,
+    private val getWorkRequestUseCase: GetWorkRequestUseCase
 ) : ViewModel() {
 
     private val _locale by lazy {
@@ -48,6 +57,10 @@ class SettingViewModel(
     private val _canRestartApp by lazy { MutableSharedFlow<Boolean>() }
     val canRestartApp: SharedFlow<Boolean>
         get() = _canRestartApp
+
+    private val _isHistoryCleared by lazy { MutableSharedFlow<Boolean>() }
+    val isHistoryCleared: SharedFlow<Boolean>
+        get() = _isHistoryCleared.asSharedFlow()
 
     init {
         initializeDefaultSettings()
@@ -201,11 +214,21 @@ class SettingViewModel(
     }
 
     fun clearHistory() {
-
+        viewModelScope.launch {
+            val isCleared = when (val result = clearHistoryUseCase()) {
+                is ClearHistoryResult.Cleared -> true
+                is ClearHistoryResult.Failure -> {
+                    Timber.e(result.message)
+                    false
+                }
+            }
+            _isHistoryCleared.emit(isCleared)
+        }
     }
 
     fun exportHistory(format: String) {
-
+        val request = getWorkRequestUseCase(format)
+        workManager.enqueue(request)
     }
 
     fun showColorPicker(colorType: ColorType) {

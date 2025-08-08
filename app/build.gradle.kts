@@ -89,6 +89,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.exifinterface)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
@@ -143,6 +144,7 @@ dependencies {
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation(libs.lottie.compose)
+    implementation(libs.androidx.work.runtime.ktx)
     // Testing Dependencies
     testImplementation(libs.ktor.client.mock)
     testImplementation(libs.mockito.core)

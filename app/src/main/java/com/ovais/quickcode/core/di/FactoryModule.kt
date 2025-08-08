@@ -4,6 +4,8 @@ import com.ovais.quickcode.barcode_manger.BarcodeManager
 import com.ovais.quickcode.barcode_manger.DefaultBarcodeManager
 import com.ovais.quickcode.core.app.domain.DefaultStartDestinationUseCase
 import com.ovais.quickcode.core.app.domain.StartDestinationUseCase
+import com.ovais.quickcode.features.code_details.domain.DefaultSaveScannedCodeUseCase
+import com.ovais.quickcode.features.code_details.domain.SaveScannedCodeUseCase
 import com.ovais.quickcode.features.create.data.CreateCodeRepository
 import com.ovais.quickcode.features.create.domain.CanAutoOpenUrlUseCase
 import com.ovais.quickcode.features.create.domain.CanCopyToClipboardUseCase
@@ -20,6 +22,16 @@ import com.ovais.quickcode.features.create.domain.DefaultCodeTypeUseCase
 import com.ovais.quickcode.features.create.domain.DefaultCodeValidationUseCase
 import com.ovais.quickcode.features.create.domain.DefaultCreateCodeRepository
 import com.ovais.quickcode.features.create.domain.DefaultCreateCodeUseCase
+import com.ovais.quickcode.features.create.domain.DefaultSaveCreatedCodeUseCase
+import com.ovais.quickcode.features.create.domain.SaveCreatedCodeUseCase
+import com.ovais.quickcode.features.history.data.HistoryRepository
+import com.ovais.quickcode.features.history.domain.DefaultDeleteCreatedCodeUseCase
+import com.ovais.quickcode.features.history.domain.DefaultGetCreatedCodesUseCase
+import com.ovais.quickcode.features.history.domain.DefaultGetScannedCodesUseCase
+import com.ovais.quickcode.features.history.domain.DefaultHistoryRepository
+import com.ovais.quickcode.features.history.domain.DeleteCodeUseCase
+import com.ovais.quickcode.features.history.domain.GetCreatedCodesUseCase
+import com.ovais.quickcode.features.history.domain.GetScannedCodesUseCase
 import com.ovais.quickcode.features.home.domain.CanLoginUseCase
 import com.ovais.quickcode.features.home.domain.CardItemsUseCase
 import com.ovais.quickcode.features.home.domain.DefaultCanLoginUseCase
@@ -36,9 +48,13 @@ import com.ovais.quickcode.features.scan_code.domain.DefaultCanVibrateAndBeepUse
 import com.ovais.quickcode.features.scan_code.domain.DefaultScanCodeUseCase
 import com.ovais.quickcode.features.scan_code.domain.DefaultScanRepository
 import com.ovais.quickcode.features.scan_code.domain.ScanCodeUseCase
+import com.ovais.quickcode.features.settings.domain.ClearHistoryUseCase
+import com.ovais.quickcode.features.settings.domain.DefaultClearHistoryUseCase
 import com.ovais.quickcode.features.settings.domain.DefaultGetLocaleUseCase
+import com.ovais.quickcode.features.settings.domain.DefaultGetWorkRequestUseCase
 import com.ovais.quickcode.features.settings.domain.DefaultUpdateSettingUseCase
 import com.ovais.quickcode.features.settings.domain.GetLocaleUseCase
+import com.ovais.quickcode.features.settings.domain.GetWorkRequestUseCase
 import com.ovais.quickcode.features.settings.domain.UpdateSettingUseCase
 import com.ovais.quickcode.utils.usecase.DefaultGetAboutUsUseCase
 import com.ovais.quickcode.utils.usecase.DefaultGetPrivacyPolicyUseCase
@@ -125,4 +141,31 @@ val factoryModule = module {
     factory {
         DefaultCanAutoOpenUrlUseCase(get(), get(named(BACKGROUND)))
     } bind CanAutoOpenUrlUseCase::class
+
+    factory { DefaultHistoryRepository(get()) } bind HistoryRepository::class
+    factory {
+        DefaultGetCreatedCodesUseCase(
+            get(),
+            get(named(BACKGROUND))
+        )
+    } bind GetCreatedCodesUseCase::class
+    factory {
+        DefaultGetScannedCodesUseCase(
+            get(),
+            get(named(BACKGROUND))
+        )
+    } bind GetScannedCodesUseCase::class
+    factory { DefaultSaveCreatedCodeUseCase(get()) } bind SaveCreatedCodeUseCase::class
+    factory { DefaultSaveScannedCodeUseCase(get()) } bind SaveScannedCodeUseCase::class
+    factory { DefaultDeleteCreatedCodeUseCase(get()) } bind DeleteCodeUseCase::class
+    factory {
+        DefaultClearHistoryUseCase(
+            get(),
+            get(named(BACKGROUND))
+        )
+    } bind ClearHistoryUseCase::class
+
+    factory {
+        DefaultGetWorkRequestUseCase()
+    } bind GetWorkRequestUseCase::class
 }

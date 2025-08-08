@@ -69,7 +69,20 @@ fun SettingsView(
     val context = LocalContext.current
     val appConfig by viewModel.appConfig.collectAsStateWithLifecycle()
     val locale by viewModel.locale.collectAsStateWithLifecycle()
+    val clearedMessage = stringResource(R.string.cleared_all_history)
+    val clearingMessage = stringResource(R.string.clearing_history)
 
+    LaunchedEffect(Unit) {
+        viewModel.isHistoryCleared.collectLatest { isCleared ->
+            if (isCleared) {
+                viewModel.hideClearHistoryDialog()
+                snackbarHostState.showSnackbar(clearedMessage)
+            } else {
+                viewModel.hideClearHistoryDialog()
+                snackbarHostState.showSnackbar(clearingMessage)
+            }
+        }
+    }
     LaunchedEffect(uiState.error) {
         uiState.error?.let { error ->
             snackbarHostState.showSnackbar(error)

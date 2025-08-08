@@ -157,4 +157,13 @@
     <string name="clipboard_label">Result</string>
     <string name="scan_successful">Scan Successful!</string>
     <string name="default_channel_id">123001</string>
+    <string name="empty_history">No created codes yet.Create your first QR code or barcode!</string>
+    <string name="download">Download</string>
+    <string name="cleared_all_history">All history cleared!</string>
+    <string name="clearing_history">Clearing History</string>
+    <string name="export_channel_id">export_channel</string>
+    <string name="export_text">Export</string>
+    <string name="export_title">Export Successful</string>
+    <string name="export_message">The following file(s) have been exported: %s</string>
+    <string name="export_failed">Export Failed!</string>
 </resources>
