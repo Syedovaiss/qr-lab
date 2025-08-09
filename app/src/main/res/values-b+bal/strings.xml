@@ -207,4 +207,8 @@
     <string name="enter_valid_phone">براہ کرم ایک درست فون نمبر درج کریں</string>
     <string name="enter_valid_latitude">براہ کرم ایک درست عرض بلد درج کریں</string>
     <string name="enter_valid_longitude">براہ کرم ایک درست طول بلد درج کریں</string>
+    <string name="close_account">اکاؤنٹ ببند ڪن</string>
+    <string name="close_account_description">اپنو اکاؤنٹ ہمیشہ لئے ببند ڪن اور ہمة ڈیٹا مٹاون.</string>
+    <string name="logout">لاگ آؤٹ</string>
+    <string name="logout_description">ای سار دستگاه انت بی اس اکاؤنٹ لاگ آؤٹ کن.</string>
 </resources>

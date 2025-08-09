@@ -131,7 +131,7 @@ fun SettingsView(
         } else {
 
             SettingsSection(title = stringResource(R.string.customization)) {
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.content_color),
                     description = stringResource(R.string.content_color_description)
                 ) {
@@ -141,7 +141,7 @@ fun SettingsView(
                     )
                 }
 
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.content_background_color),
                     description = stringResource(R.string.content_background_color_description)
                 ) {
@@ -151,7 +151,7 @@ fun SettingsView(
                     )
                 }
 
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.code_export_format),
                     description = stringResource(R.string.code_export_format_description)
                 ) {
@@ -176,7 +176,7 @@ fun SettingsView(
 
             // --- User Feedback & Behavior ---
             SettingsSection(title = stringResource(R.string.user_feedback_and_behaviour)) {
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.vibrate_on_scan),
                     description = stringResource(R.string.vibrate_on_scan_description),
                     trailingAttribute = {
@@ -187,7 +187,7 @@ fun SettingsView(
                     }
                 )
 
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.sound_on_scan),
                     description = stringResource(R.string.sound_on_scan_description),
                     trailingAttribute = {
@@ -198,7 +198,7 @@ fun SettingsView(
                     }
                 )
 
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.clipboard_setting),
                     description = stringResource(R.string.clipboard_setting_description),
                     trailingAttribute = {
@@ -209,7 +209,7 @@ fun SettingsView(
                     }
                 )
 
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.web_url),
                     description = stringResource(R.string.web_url_description),
                     trailingAttribute = {
@@ -230,7 +230,7 @@ fun SettingsView(
 
             // --- History & Storage ---
             SettingsSection(title = stringResource(R.string.history_and_storage)) {
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.clear_history),
                     description = stringResource(R.string.clear_history_description)
                 ) {
@@ -244,7 +244,7 @@ fun SettingsView(
                     }
                 }
 
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.export_history),
                     description = stringResource(R.string.export_history_description)
                 ) {
@@ -269,7 +269,7 @@ fun SettingsView(
 
             // --- Language & Regional ---
             SettingsSection(title = stringResource(R.string.language_and_regional)) {
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.app_language),
                     description = stringResource(R.string.app_language_description)
                 ) {
@@ -289,7 +289,7 @@ fun SettingsView(
 
             // --- Privacy & Permissions ---
             SettingsSection(title = stringResource(R.string.privacy_and_permissions)) {
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.camera_status),
                     description = stringResource(R.string.camera_status_description)
                 ) {
@@ -302,7 +302,7 @@ fun SettingsView(
                     )
                 }
 
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.gallery_status),
                     description = stringResource(R.string.gallery_status_description)
                 ) {
@@ -315,7 +315,7 @@ fun SettingsView(
                     )
                 }
 
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.privacy_policy),
                     description = stringResource(R.string.privacy_policy_description)
                 ) {
@@ -329,7 +329,7 @@ fun SettingsView(
                     }
                 }
 
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.label_send_anonymous_data),
                     description = stringResource(R.string.desc_send_anonymous_data),
                     trailingAttribute = {
@@ -350,7 +350,7 @@ fun SettingsView(
 
             // --- App Info & Support ---
             SettingsSection(title = stringResource(R.string.app_info_and_support)) {
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.label_version),
                     description = stringResource(R.string.desc_version)
                 ) {
@@ -364,7 +364,7 @@ fun SettingsView(
                     )
                 }
 
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.label_about_app),
                     description = stringResource(R.string.desc_about_app)
                 ) {
@@ -378,7 +378,7 @@ fun SettingsView(
                     }
                 }
 
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.label_rate_app),
                     description = stringResource(R.string.desc_rate_app)
                 ) {
@@ -392,7 +392,7 @@ fun SettingsView(
                     }
                 }
 
-                SettingRowItem(
+                RowItem(
                     label = stringResource(R.string.label_share_app),
                     description = stringResource(R.string.desc_share_app)
                 ) {

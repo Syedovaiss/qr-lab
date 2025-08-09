@@ -207,4 +207,8 @@
     <string name="enter_valid_phone">Por favor, insira um número de telefone válido</string>
     <string name="enter_valid_latitude">Por favor, insira uma latitude válida</string>
     <string name="enter_valid_longitude">Por favor, insira uma longitude válida</string>
+    <string name="close_account">Encerrar conta</string>
+    <string name="close_account_description">Encerra permanentemente sua conta e apaga todos os dados.</string>
+    <string name="logout">Sair</string>
+    <string name="logout_description">Saia desta conta neste dispositivo.</string>
 </resources>

@@ -206,4 +206,8 @@
     <string name="enter_valid_phone">অনুগ্রহ করে একটি বৈধ ফোন নম্বর প্রদান করুন</string>
     <string name="enter_valid_latitude">অনুগ্রহ করে একটি বৈধ অক্ষাংশ প্রদান করুন</string>
     <string name="enter_valid_longitude">অনুগ্রহ করে একটি বৈধ দ্রাঘিমাংশ প্রদান করুন</string>
+    <string name="close_account">অ্যাকাউন্ট বন্ধ করুন</string>
+    <string name="close_account_description">আপনার অ্যাকাউন্ট স্থায়ীভাবে বন্ধ করুন এবং সমস্ত ডেটা মুছে ফেলুন।</string>
+    <string name="logout">লগ আউট</string>
+    <string name="logout_description">এই ডিভাইসে এই অ্যাকাউন্ট থেকে লগ আউট করুন।</string>
 </resources>

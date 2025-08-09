@@ -207,4 +207,8 @@
     <string name="enter_valid_phone">कृपया वैध फोन नंबर प्रविष्ट करा</string>
     <string name="enter_valid_latitude">कृपया वैध अक्षांश प्रविष्ट करा</string>
     <string name="enter_valid_longitude">कृपया वैध रेखांश प्रविष्ट करा</string>
+    <string name="close_account">खाता बंद करा</string>
+    <string name="close_account_description">आपला खाते कायमचे बंद करा आणि सर्व डेटा हटवा.</string>
+    <string name="logout">बाहेर पडा</string>
+    <string name="logout_description">या उपकरणावर या खात्यातून बाहेर पडा.</string>
 </resources>

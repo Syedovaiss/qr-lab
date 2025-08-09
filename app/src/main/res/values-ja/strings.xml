@@ -207,4 +207,8 @@
     <string name="enter_valid_phone">有効な電話番号を入力してください</string>
     <string name="enter_valid_latitude">有効な緯度を入力してください</string>
     <string name="enter_valid_longitude">有効な経度を入力してください</string>
+    <string name="close_account">アカウントを閉鎖</string>
+    <string name="close_account_description">アカウントを完全に閉鎖し、すべてのデータを消去します。</string>
+    <string name="logout">ログアウト</string>
+    <string name="logout_description">このデバイスからこのアカウントをログアウトします。</string>
 </resources>

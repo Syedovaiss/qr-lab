@@ -206,5 +206,9 @@
     <string name="enter_valid_latitude">Lütfen geçerli bir enlem girin</string>
     <string name="enter_valid_longitude">Lütfen geçerli bir boylam girin</string>
     <string name="terms_and_conditions">Şartlar &amp; Koşullar</string>
+    <string name="close_account">Hesabı Kapat</string>
+    <string name="close_account_description">Hesabınızı kalıcı olarak kapatın ve tüm verileri silin.</string>
+    <string name="logout">Oturumu Kapat</string>
+    <string name="logout_description">Bu cihazda bu hesaptan çıkış yapın.</string>
 </resources>
 

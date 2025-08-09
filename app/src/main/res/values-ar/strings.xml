@@ -206,4 +206,8 @@
     <string name="enter_valid_phone">يرجى إدخال رقم هاتف صحيح</string>
     <string name="enter_valid_latitude">يرجى إدخال خط عرض صحيح</string>
     <string name="enter_valid_longitude">يرجى إدخال خط طول صحيح</string>
+    <string name="close_account">إغلاق الحساب</string>
+    <string name="close_account_description">إغلاق حسابك نهائيًا وحذف جميع البيانات.</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="logout_description">تسجيل الخروج من هذا الحساب على هذا الجهاز.</string>
 </resources>

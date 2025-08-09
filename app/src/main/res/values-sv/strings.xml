@@ -207,4 +207,8 @@
     <string name="enter_valid_phone">Vänligen ange ett giltigt telefonnummer</string>
     <string name="enter_valid_latitude">Vänligen ange giltig latitud</string>
     <string name="enter_valid_longitude">Vänligen ange giltig longitud</string>
+    <string name="close_account">Stäng konto</string>
+    <string name="close_account_description">Stäng ditt konto permanent och radera all data.</string>
+    <string name="logout">Logga ut</string>
+    <string name="logout_description">Logga ut från detta konto på den här enheten.</string>
 </resources>

@@ -208,4 +208,8 @@
     <string name="enter_valid_phone">مھرباني ڪري صحيح فون نمبر داخل ڪريو</string>
     <string name="enter_valid_latitude">مھرباني ڪري صحيح ويڪر داخل ڪريو</string>
     <string name="enter_valid_longitude">مھرباني ڪري صحيح ڊگھائي داخل ڪريو</string>
+    <string name="close_account">اڪائونٽ بند ڪريو</string>
+    <string name="close_account_description">پنهنجو اڪائونٽ مستقل طور بند ڪريو ۽ سموري ڊيٽا ختم ڪريو.</string>
+    <string name="logout">لاگ آئوٽ</string>
+    <string name="logout_description">هن ڊيوائس تي هن اڪائونٽ مان لاگ آئوٽ ٿيو.</string>
 </resources>

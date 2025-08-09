@@ -207,4 +207,8 @@
     <string name="enter_valid_phone">Harap masukkan nomor telepon yang valid</string>
     <string name="enter_valid_latitude">Harap masukkan lintang yang valid</string>
     <string name="enter_valid_longitude">Harap masukkan bujur yang valid</string>
+    <string name="close_account">Tutup Akun</string>
+    <string name="close_account_description">Tutup akun Anda secara permanen dan hapus semua data.</string>
+    <string name="logout">Keluar</string>
+    <string name="logout_description">Keluar dari akun ini di perangkat ini.</string>
 </resources>

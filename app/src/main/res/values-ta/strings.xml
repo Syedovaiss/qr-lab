@@ -206,4 +206,8 @@
     <string name="enter_valid_phone">தயவுசெய்து செல்லுபடியான தொலைபேசி எண்ணை உள்ளிடவும்</string>
     <string name="enter_valid_latitude">தயவுசெய்து செல்லுபடியான அகலம் உள்ளிடவும்</string>
     <string name="enter_valid_longitude">தயவுசெய்து செல்லுபடியான நீளத்தை உள்ளிடவும்</string>
+    <string name="close_account">கணக்கை மூடு</string>
+    <string name="close_account_description">உங்கள் கணக்கை நிரந்தரமாக மூடுங்கள் மற்றும் அனைத்து தரவையும் அழியுங்கள்.</string>
+    <string name="logout">வெளியேறு</string>
+    <string name="logout_description">இந்த சாதனத்தில் இருந்து இந்தக் கணக்கில் இருந்து வெளியிடவும்.</string>
 </resources>
