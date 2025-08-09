@@ -97,6 +97,7 @@ import com.ovais.quickcode.R
 import com.ovais.quickcode.core.ui.font.Poppins
 import com.ovais.quickcode.core.ui.theme.ButtonDisabled
 import com.ovais.quickcode.core.ui.theme.ColorPrimary
+import com.ovais.quickcode.core.ui.theme.ColorSecondary
 import com.ovais.quickcode.core.ui.theme.InitialsBgColors
 import com.ovais.quickcode.core.ui.theme.colorsForColorPicker
 import com.ovais.quickcode.utils.EMPTY_STRING
@@ -206,7 +207,8 @@ fun <T> CustomDropdown(
 
         ExposedDropdownMenu(
             expanded = expanded,
-            onDismissRequest = { expanded = false }
+            onDismissRequest = { expanded = false },
+            modifier = Modifier.background(Color.White)
         ) {
             items.forEach { item ->
                 DropdownMenuItem(
@@ -329,7 +331,7 @@ fun ImagePicker(
         val boxModifier = Modifier
             .weight(1f)
             .padding(horizontal = 8.dp)
-            .background(Color(0xFFF5F5F5), RoundedCornerShape(12.dp))
+            .background(ColorSecondary.copy(alpha = 0.1f), RoundedCornerShape(12.dp))
             .padding(24.dp)
 
         Row(

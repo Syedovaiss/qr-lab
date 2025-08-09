@@ -30,6 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ovais.quickcode.R
 import com.ovais.quickcode.core.ui.theme.HomeCardOne
 import com.ovais.quickcode.utils.components.SubtitleText
@@ -83,7 +84,8 @@ fun HomeScreenCard(
             // Text below the circle
             SubtitleText(
                 text = text,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                fontSize = 18.sp
             )
         }
     }

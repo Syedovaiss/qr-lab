@@ -3,6 +3,7 @@ package com.ovais.quickcode.features.create.presentation
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -26,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ovais.quickcode.R
+import com.ovais.quickcode.core.ui.theme.ColorSecondary
 import com.ovais.quickcode.core.ui.theme.colorsForColorPicker
 import com.ovais.quickcode.utils.components.BodyText
 import com.ovais.quickcode.utils.components.ColorPickerDialog
@@ -60,6 +62,11 @@ fun ForegroundColorPicker(
                     .padding(16.dp)
                     .clip(RoundedCornerShape(12.dp))
                     .background(color)
+                    .border(
+                        width = 3.dp,
+                        color = ColorSecondary.copy(alpha = 0.2f),
+                        shape = RoundedCornerShape(12.dp)
+                    )
                     .clickable(
                         interactionSource = colorInteractionSource,
                         indication = LocalIndication.current

@@ -39,12 +39,14 @@ class ExportPDFWorker(
                     workDataOf(MESSAGE_KEY to EXPORT_MESSAGE)
                 )
             } else {
+                notificationManager.showExportError("Failed to export file")
                 Result.failure(
                     workDataOf(ERROR_KEY to "Failed to export file")
                 )
             }
         } catch (e: Exception) {
             e.printStackTrace()
+            notificationManager.showExportError(e.localizedMessage)
             Result.failure(
                 workDataOf(ERROR_KEY to e.localizedMessage)
             )

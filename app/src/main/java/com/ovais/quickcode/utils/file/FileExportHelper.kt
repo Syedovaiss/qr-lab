@@ -40,9 +40,9 @@ class DefaultFileExportHelper(
         fileName: String
     ) {
         val csvContent = buildString {
-            append("ID,Content,ScannedAt\n")
+            append("Content,ScannedAt\n")
             data.forEach {
-                append("${it.id},${it.content},${it.scannedAt}\n")
+                append("${it.content},${it.scannedAt}\n")
             }
         }
         saveToDownloads("$fileName.csv", "text/csv", csvContent.toByteArray())
@@ -53,10 +53,10 @@ class DefaultFileExportHelper(
         fileName: String
     ) {
         val csvContent = buildString {
-            append("ID,Content,CodeType,Format,CreatedAt\n")
+            append("Content,CodeType,Format,CreatedAt\n")
             data.forEach {
                 val contentStr = it.content.joinToString { kv -> "${kv.key}:${kv.value}" }
-                append("${it.id},$contentStr,${it.codeType},${it.format},${it.createdAt}\n")
+                append("$$contentStr,${it.codeType},${it.format},${it.createdAt}\n")
             }
         }
         saveToDownloads("$fileName.csv", "text/csv", csvContent.toByteArray())
@@ -77,8 +77,14 @@ class DefaultFileExportHelper(
         var pageNumber = 1
         var yPosition = 50
 
-        val pageInfo = PdfDocument.PageInfo.Builder(595, 842, pageNumber).create()
-        var page = pdfDocument.startPage(pageInfo)
+        fun startNewPage(): PdfDocument.Page {
+            val pageInfo = PdfDocument.PageInfo.Builder(595, 842, pageNumber).create()
+            val page = pdfDocument.startPage(pageInfo)
+            yPosition = 50
+            return page
+        }
+
+        var page = startNewPage()
         var canvas = page.canvas
 
         // Title
@@ -88,43 +94,94 @@ class DefaultFileExportHelper(
         // Scanned Codes
         canvas.drawText("Scanned Codes:", 40f, yPosition.toFloat(), titlePaint)
         yPosition += 20
-        scannedData.forEach {
-            if (yPosition > 800) {
+        scannedData.forEach { scanned ->
+            if (yPosition > 700) {  // reserve space for images
                 pdfDocument.finishPage(page)
                 pageNumber++
-                yPosition = 50
-                val newPageInfo = PdfDocument.PageInfo.Builder(595, 842, pageNumber).create()
-                page = pdfDocument.startPage(newPageInfo)
+                page = startNewPage()
                 canvas = page.canvas
             }
+
+            // Draw content and timestamp (without ID)
             canvas.drawText(
-                "ID: ${it.id} | Content: ${it.content} | Date: ${it.scannedAt}",
+                "Content: ${scanned.content} | Scanned At: ${scanned.scannedAt}",
                 40f,
                 yPosition.toFloat(),
                 paint
             )
             yPosition += 20
+
+            // Draw bitmap if available
+            scanned.bitmap?.let { bmp ->
+                val maxWidth = 200f
+                val aspectRatio = bmp.height.toFloat() / bmp.width
+                val bmpHeight = maxWidth * aspectRatio
+                if (yPosition + bmpHeight > 800) {
+                    pdfDocument.finishPage(page)
+                    pageNumber++
+                    page = startNewPage()
+                    canvas = page.canvas
+                }
+                canvas.drawBitmap(
+                    bmp,
+                    null,
+                    android.graphics.RectF(
+                        40f,
+                        yPosition.toFloat(),
+                        40f + maxWidth,
+                        yPosition + bmpHeight
+                    ),
+                    paint
+                )
+                yPosition += bmpHeight.toInt() + 20
+            }
         }
 
         yPosition += 30
         canvas.drawText("Created Codes:", 40f, yPosition.toFloat(), titlePaint)
         yPosition += 20
-        createdData.forEach {
-            if (yPosition > 800) {
+        createdData.forEach { created ->
+            if (yPosition > 700) {
                 pdfDocument.finishPage(page)
                 pageNumber++
-                yPosition = 50
-                val newPageInfo = PdfDocument.PageInfo.Builder(595, 842, pageNumber).create()
-                page = pdfDocument.startPage(newPageInfo)
+                page = startNewPage()
                 canvas = page.canvas
             }
+
+            // Summarize key-values and show type + createdAt timestamp (no ID)
+            val contentSummary = created.content.joinToString(", ") { "${it.key}: ${it.value}" }
             canvas.drawText(
-                "ID: ${it.id} | Type: ${it.codeType} | Created: ${it.createdAt}",
+                "Type: ${created.codeType} | Created At: ${created.createdAt} | $contentSummary",
                 40f,
                 yPosition.toFloat(),
                 paint
             )
             yPosition += 20
+
+            // Draw bitmap if available
+            created.image?.let { bmp ->
+                val maxWidth = 200f
+                val aspectRatio = bmp.height.toFloat() / bmp.width
+                val bmpHeight = maxWidth * aspectRatio
+                if (yPosition + bmpHeight > 800) {
+                    pdfDocument.finishPage(page)
+                    pageNumber++
+                    page = startNewPage()
+                    canvas = page.canvas
+                }
+                canvas.drawBitmap(
+                    bmp,
+                    null,
+                    android.graphics.RectF(
+                        40f,
+                        yPosition.toFloat(),
+                        40f + maxWidth,
+                        yPosition + bmpHeight
+                    ),
+                    paint
+                )
+                yPosition += bmpHeight.toInt() + 20
+            }
         }
 
         pdfDocument.finishPage(page)

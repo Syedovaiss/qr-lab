@@ -42,6 +42,7 @@ class ExportCSVWorker(
             )
         } catch (e: Exception) {
             e.printStackTrace()
+            notificationManager.showExportError(e.localizedMessage)
             Result.failure(
                 workDataOf(ERROR_KEY to e.localizedMessage)
             )

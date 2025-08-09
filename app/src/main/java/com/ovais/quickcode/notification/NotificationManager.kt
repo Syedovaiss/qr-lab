@@ -10,6 +10,7 @@ import com.ovais.quickcode.R
 interface NotificationManager {
     fun showNotification(title: String?, body: String?)
     fun showExportNotification(fileName: List<String>)
+    fun showExportError(error: String?)
 }
 
 class DefaultNotificationManager(
@@ -56,6 +57,28 @@ class DefaultNotificationManager(
         val notification = NotificationCompat.Builder(context, channelId)
             .setContentTitle(context.getString(R.string.export_title))
             .setContentText(context.getString(R.string.export_message, fileName.joinToString()))
+            .setSmallIcon(android.R.drawable.stat_sys_download_done)
+            .build()
+
+        notificationManager.notify(1, notification)
+    }
+
+    override fun showExportError(error: String?) {
+        val channelId = context.getString(R.string.export_channel_id)
+        val notificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as android.app.NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationManager.createNotificationChannel(
+                NotificationChannel(
+                    channelId,
+                    context.getString(R.string.export_text),
+                    android.app.NotificationManager.IMPORTANCE_DEFAULT
+                )
+            )
+        }
+        val notification = NotificationCompat.Builder(context, channelId)
+            .setContentTitle(context.getString(R.string.error))
+            .setContentText(error)
             .setSmallIcon(android.R.drawable.stat_sys_download_done)
             .build()
 
