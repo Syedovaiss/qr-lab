@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">퀵 코드</string>
+    <string name="default_name">게스트</string>
+    <string name="trademark">© %s 시드 오바이스 악타르. 모든 권리 보유.</string>
+    <string name="app_version">버전 %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">export_channel</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">퀵 코드에\n오신 것을 환영합니다</string>
+    <string name="create_qr">생성</string>
+    <string name="scan_qr">스캔</string>
+    <string name="settings">설정</string>
+    <string name="history">기록</string>
+    <string name="create_new">새 코드 생성</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">비트코인</string>
+    <string name="calendar">캘린더 이벤트</string>
+    <string name="contact">연락처</string>
+    <string name="discord">디스코드</string>
+    <string name="email">이메일</string>
+    <string name="facebook">페이스북</string>
+    <string name="google">구글 검색</string>
+    <string name="instagram">인스타그램</string>
+    <string name="linkedin">링크드인</string>
+    <string name="location">위치</string>
+    <string name="paypal">페이팔</string>
+    <string name="phone">전화</string>
+    <string name="skype">스카이프</string>
+    <string name="sms">SMS</string>
+    <string name="snapchat">스냅챗</string>
+    <string name="text">텍스트</string>
+    <string name="threads">쓰레드</string>
+    <string name="twitch">트위치</string>
+    <string name="website">웹사이트</string>
+    <string name="whatsapp">왓츠앱</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="youtube">유튜브</string>
+    <string name="zoom">줌</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">플랫폼</string>
+    <string name="code_format">코드 형식</string>
+    <string name="select_code_format">코드 형식 선택</string>
+    <string name="enter_details">%s의 세부 정보를 입력하세요</string>
+    <string name="select_background_color">배경 색상 선택</string>
+    <string name="select_foreground_color">전경 색상 선택</string>
+    <string name="select_color">색상 선택</string>
+    <string name="upload_logo">로고 추가</string>
+    <string name="image">이미지</string>
+    <string name="size">크기</string>
+    <string name="width">너비</string>
+    <string name="height">높이</string>
+    <string name="customization">맞춤 설정</string>
+    <string name="content_color">콘텐츠 색상</string>
+    <string name="content_color_description">생성된 바코드와 QR 코드에 적용되는 기본 색상입니다.</string>
+    <string name="content_background_color">배경 색상</string>
+    <string name="content_background_color_description">생성된 바코드와 QR 코드의 기본 배경입니다.</string>
+    <string name="default_color_description">색상을 선택하지 않으면 기본 색상이 적용됩니다. 설정에서 언제든 변경할 수 있습니다.</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">권한 필요</string>
+    <string name="permission_denied_message">
+        퀵 코드는 원활한 작동을 위해 카메라, 저장소, 알림 권한이 필요합니다.
+        이 권한은 코드 스캔, 저장, 중요 알림 전송에 사용됩니다.
+        이전에 거부한 경우, 앱 설정에서 권한을 활성화하세요.
+    </string>
+    <string name="grant">접근 허용</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">내보내기 형식</string>
+    <string name="code_export_format_description">기본 내보내기 형식 (PNG/JPEG).</string>
+    <string name="dialog_title_select_export_format">내보내기 형식 선택</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">기록 내보내기</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">바코드 저장</string>
+    <string name="save_barcode_message">바코드 이미지를 저장할 위치를 선택하세요.</string>
+    <string name="save">저장</string>
+    <string name="save_image">이미지 저장</string>
+    <string name="download">다운로드</string>
+    <string name="success">성공</string>
+    <string name="image_saved_successfully">이미지가 성공적으로 저장되었습니다.</string>
+    <string name="error">오류</string>
+    <string name="failed_to_save_image">이미지를 저장하지 못했습니다. 다시 시도하세요.</string>
+    <string name="export_text">내보내기</string>
+    <string name="export_title">내보내기 완료</string>
+    <string name="export_message">다음 파일이 내보내졌습니다: %s</string>
+    <string name="export_failed">내보내기 실패</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">바코드 세부 정보</string>
+    <string name="generated_barcode">생성된 바코드</string>
+    <string name="barcode_image">바코드 이미지</string>
+    <string name="content_details">콘텐츠 세부 정보</string>
+    <string name="invalid_barcode">유효하지 않거나 읽을 수 없는 바코드입니다.</string>
+    <string name="scan_successful">스캔 성공</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">QR &amp; 바코드 스캔 방법</string>
+    <string name="scan_step_1_title">코드 위치 맞추기</string>
+    <string name="scan_step_1_desc">QR 코드 또는 바코드를 화면의 스캔 프레임 안에 맞추세요.</string>
+    <string name="scan_step_2_title">조명 확보</string>
+    <string name="scan_step_2_desc">코드가 잘 보이도록 조명을 확보하세요. 필요 시 플래시를 사용하세요.</string>
+    <string name="scan_step_3_title">기기 고정</string>
+    <string name="scan_step_3_desc">코드가 자동으로 인식될 때까지 기기를 고정하세요.</string>
+    <string name="scan_step_4_title">갤러리에서 선택</string>
+    <string name="scan_step_4_desc">스캔이 실패하면 갤러리에서 이미지를 선택하세요.</string>
+    <string name="scan_tips_title">💡 스캔 팁</string>
+    <string name="scan_tips_bullets">• 카메라 렌즈 청소\n• 눈부심이나 반사 방지\n• 필요 시 확대 사용\n• 코드가 손상되지 않았는지 확인</string>
+    <string name="got_it">확인</string>
+
+    <!-- History -->
+    <string name="empty_history">아직 코드가 없습니다. 첫 QR 코드나 바코드를 생성해 보세요!</string>
+    <string name="delete_history_dialog_title">기록 삭제</string>
+    <string name="delete_history_dialog_message">저장된 모든 기록을 삭제하시겠습니까?</string>
+    <string name="delete">삭제</string>
+    <string name="clear_history">기록 지우기</string>
+    <string name="clear_history_description">스캔 및 생성 기록을 모두 삭제합니다.</string>
+    <string name="cleared_all_history">기록이 성공적으로 삭제되었습니다.</string>
+    <string name="clearing_history">기록 삭제 중…</string>
+    <string name="export_history">기록 내보내기</string>
+    <string name="export_history_description">모든 기록을 기기에 저장합니다.</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">피드백 &amp; 동작</string>
+    <string name="vibrate_on_scan">스캔 시 진동</string>
+    <string name="vibrate_on_scan_description">코드가 성공적으로 스캔되면 진동합니다.</string>
+    <string name="sound_on_scan">스캔 시 소리</string>
+    <string name="sound_on_scan_description">코드가 성공적으로 스캔되면 소리를 재생합니다.</string>
+    <string name="clipboard_setting">클립보드에 복사</string>
+    <string name="clipboard_setting_description">스캔 결과를 자동으로 클립보드에 복사합니다.</string>
+    <string name="web_url">웹 URL 열기</string>
+    <string name="web_url_description">스캔된 URL을 자동으로 브라우저에서 엽니다.</string>
+    <string name="history_and_storage">기록 &amp; 저장소</string>
+    <string name="language_and_regional">언어 &amp; 지역</string>
+    <string name="app_language">앱 언어</string>
+    <string name="app_language_description">퀵 코드의 표시 언어를 선택하세요.</string>
+    <string name="select_language">언어 선택</string>
+    <string name="privacy_and_permissions">개인정보 &amp; 권한</string>
+    <string name="camera_status">카메라 접근</string>
+    <string name="camera_status_description">코드 스캔 및 갤러리 이미지 선택에 필요합니다.</string>
+    <string name="gallery_status">갤러리 접근</string>
+    <string name="gallery_status_description">기기에 저장된 이미지를 선택하는 데 필요합니다.</string>
+    <string name="privacy_policy">개인정보 처리방침</string>
+    <string name="privacy_policy_description">데이터 수집, 저장, 사용 방법을 확인하세요.</string>
+    <string name="label_send_anonymous_data">익명 사용 데이터 전송</string>
+    <string name="desc_send_anonymous_data">익명 사용 통계를 공유하여 퀵 코드 개선에 도움을 주세요.</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">앱 정보 &amp; 지원</string>
+    <string name="label_version">버전</string>
+    <string name="desc_version">현재 앱 버전과 빌드 번호를 표시합니다.</string>
+    <string name="label_about_app">퀵 코드 소개</string>
+    <string name="desc_about_app">앱의 기능, 목적, 장점을 확인하세요.</string>
+    <string name="label_rate_app">퀵 코드 평가</string>
+    <string name="desc_rate_app">플레이 스토어에서 후기를 남겨주세요.</string>
+    <string name="label_share_app">퀵 코드 공유</string>
+    <string name="desc_share_app">친구와 가족에게 퀵 코드를 추천하세요.</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">모든 코드를 한 앱에</string>
+    <string name="on_boarding_title_2">빠른 스캔, 스마트 디자인</string>
+    <string name="on_boarding_title_3">오프라인, 개인화, 강력함</string>
+    <string name="on_boarding_description_1">오프라인에서도 QR 코드와 바코드를 생성 및 스캔하고, 기록을 확인하세요.</string>
+    <string name="on_boarding_description_2">즉시 스캔하거나 원하는 스타일로 코드를 디자인하세요.</string>
+    <string name="on_boarding_description_3">퀵 코드는 오프라인 저장과 맞춤 설정을 지원합니다.</string>
+    <string name="skip">건너뛰기</string>
+    <string name="next">다음</string>
+    <string name="get_started">시작하기</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">뒤로 가기</string>
+    <string name="close">닫기</string>
+    <string name="copy">복사</string>
+    <string name="copied_to_clipboard">클립보드에 복사되었습니다</string>
+    <string name="clipboard_label">결과</string>
+    <string name="share">공유</string>
+    <string name="share_title">퀵 코드 확인하기</string>
+    <string name="share_description">QR 코드 생성기 &amp; 스캐너 앱 퀵 코드를 사용해 보세요!</string>
+    <string name="ok">확인</string>
+    <string name="cancel">취소</string>
+    <string name="create">생성</string>
+    <string name="terms_and_conditions">이용 약관</string>
+
+    <string name="select_code_type">코드 유형 선택</string>
+    <string name="enter_your_text">텍스트를 입력하세요</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">사용자 이름</string>
+    <string name="phone_number">전화번호</string>
+    <string name="your_message">메시지...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">여기에서 검색</string>
+    <string name="latitude">위도</string>
+    <string name="longitude">경도</string>
+    <string name="crypto_hint">유효한 암호화폐 주소를 입력하세요</string>
+    <string name="meeting_url">회의 URL...</string>
+    <string name="enter_valid_value">유효한 값을 입력하세요</string>
+    <string name="enter_valid_url">유효한 URL을 입력하세요</string>
+    <string name="enter_valid_email">유효한 이메일 주소를 입력하세요</string>
+    <string name="enter_valid_phone">유효한 전화번호를 입력하세요</string>
+    <string name="enter_valid_latitude">유효한 위도를 입력하세요</string>
+    <string name="enter_valid_longitude">유효한 경도를 입력하세요</string>
+</resources>

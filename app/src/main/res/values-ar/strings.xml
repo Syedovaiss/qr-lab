@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">كويك كود</string>
+    <string name="default_name">ضيف</string>
+    <string name="trademark">© ‎%s سيد أويس أختر. جميع الحقوق محفوظة.</string>
+    <string name="app_version">الإصدار ‎%s‏ (‏%s‏)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">export_channel</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">مرحبًا بك في\nكويك كود</string>
+    <string name="create_qr">إنشاء</string>
+    <string name="scan_qr">مسح</string>
+    <string name="settings">الإعدادات</string>
+    <string name="history">السجل</string>
+    <string name="create_new">إنشاء رمز جديد</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">بيتكوين</string>
+    <string name="calendar">حدث تقويم</string>
+    <string name="contact">جهة اتصال</string>
+    <string name="discord">ديسكورد</string>
+    <string name="email">بريد إلكتروني</string>
+    <string name="facebook">فيسبوك</string>
+    <string name="google">بحث جوجل</string>
+    <string name="instagram">إنستغرام</string>
+    <string name="linkedin">لينكدإن</string>
+    <string name="location">الموقع</string>
+    <string name="paypal">باي بال</string>
+    <string name="phone">مكالمة هاتفية</string>
+    <string name="skype">سكايب</string>
+    <string name="sms">رسالة نصية</string>
+    <string name="snapchat">سناب شات</string>
+    <string name="text">نص</string>
+    <string name="threads">ثريدز</string>
+    <string name="twitch">تويتش</string>
+    <string name="website">موقع إلكتروني</string>
+    <string name="whatsapp">واتساب</string>
+    <string name="wifi">واي فاي</string>
+    <string name="youtube">يوتيوب</string>
+    <string name="zoom">زووم</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">المنصة</string>
+    <string name="code_format">صيغة الرمز</string>
+    <string name="select_code_format">اختر صيغة الرمز</string>
+    <string name="enter_details">أدخل التفاصيل لـ ‎%s</string>
+    <string name="select_background_color">اختر لون الخلفية</string>
+    <string name="select_foreground_color">اختر لون المقدمة</string>
+    <string name="select_color">اختر اللون</string>
+    <string name="upload_logo">إضافة شعار</string>
+    <string name="image">صورة</string>
+    <string name="size">الحجم</string>
+    <string name="width">العرض</string>
+    <string name="height">الارتفاع</string>
+    <string name="customization">التخصيص</string>
+    <string name="content_color">لون المحتوى</string>
+    <string name="content_color_description">اللون الافتراضي المطبق على الرموز الشريطية ورموز QR التي يتم إنشاؤها.</string>
+    <string name="content_background_color">لون الخلفية</string>
+    <string name="content_background_color_description">الخلفية الافتراضية للرموز الشريطية ورموز QR التي يتم إنشاؤها.</string>
+    <string name="default_color_description">إذا لم يتم اختيار لون، سيتم تطبيق الألوان الافتراضية. يمكنك تغييرها في أي وقت من الإعدادات.</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">الأذونات مطلوبة</string>
+    <string name="permission_denied_message">
+        يحتاج كويك كود إلى أذونات الكاميرا والتخزين والإشعارات للعمل بشكل صحيح.
+        تُستخدم هذه الأذونات لمسح الرموز وحفظها وإرسال التنبيهات المهمة.
+        إذا كنت قد رفضتها سابقًا، يرجى تفعيلها من إعدادات التطبيق.
+    </string>
+    <string name="grant">منح الوصول</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">صيغة التصدير</string>
+    <string name="code_export_format_description">صيغة التصدير الافتراضية (PNG/JPEG).</string>
+    <string name="dialog_title_select_export_format">اختر صيغة التصدير</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">تصدير السجل</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">حفظ الرمز</string>
+    <string name="save_barcode_message">اختر موقعًا لحفظ صورة الرمز.</string>
+    <string name="save">حفظ</string>
+    <string name="save_image">حفظ الصورة</string>
+    <string name="download">تنزيل</string>
+    <string name="success">نجاح</string>
+    <string name="image_saved_successfully">تم حفظ الصورة بنجاح.</string>
+    <string name="error">خطأ</string>
+    <string name="failed_to_save_image">تعذر حفظ الصورة. يرجى المحاولة مرة أخرى.</string>
+    <string name="export_text">تصدير</string>
+    <string name="export_title">تم التصدير بنجاح</string>
+    <string name="export_message">تم تصدير الملف/الملفات التالية: ‎%s</string>
+    <string name="export_failed">فشل التصدير</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">تفاصيل الرمز</string>
+    <string name="generated_barcode">الرمز الذي تم إنشاؤه</string>
+    <string name="barcode_image">صورة الرمز</string>
+    <string name="content_details">تفاصيل المحتوى</string>
+    <string name="invalid_barcode">الصورة ليست رمزًا صالحًا أو قابلاً للقراءة.</string>
+    <string name="scan_successful">تم المسح بنجاح</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">كيفية مسح رموز QR والرموز الشريطية</string>
+    <string name="scan_step_1_title">ضع الرمز في الإطار</string>
+    <string name="scan_step_1_desc">قم بمحاذاة رمز QR أو الرمز الشريطي داخل إطار المسح على الشاشة.</string>
+    <string name="scan_step_2_title">تأكد من وجود إضاءة جيدة</string>
+    <string name="scan_step_2_desc">تأكد من أن الرمز مضاء جيدًا. استخدم الفلاش إذا لزم الأمر.</string>
+    <string name="scan_step_3_title">أمسك الجهاز بثبات</string>
+    <string name="scan_step_3_desc">أبقِ جهازك ثابتًا حتى يتم اكتشاف الرمز تلقائيًا.</string>
+    <string name="scan_step_4_title">أو اختر من المعرض</string>
+    <string name="scan_step_4_desc">إذا فشل المسح، اختر صورة من معرض الصور بدلاً من ذلك.</string>
+    <string name="scan_tips_title">💡 نصائح المسح</string>
+    <string name="scan_tips_bullets">• نظف عدسة الكاميرا\n• تجنب الوهج أو الانعكاسات\n• استخدم التكبير إذا لزم الأمر\n• تأكد من أن الرمز غير تالف</string>
+    <string name="got_it">فهمت</string>
+
+    <!-- History -->
+    <string name="empty_history">لا توجد رموز بعد. أنشئ أول رمز QR أو رمز شريطي للبدء!</string>
+    <string name="delete_history_dialog_title">مسح السجل</string>
+    <string name="delete_history_dialog_message">هل أنت متأكد أنك تريد حذف جميع السجلات المحفوظة؟</string>
+    <string name="delete">حذف</string>
+    <string name="clear_history">مسح السجل</string>
+    <string name="clear_history_description">إزالة جميع سجلات المسح والإنشاء.</string>
+    <string name="cleared_all_history">تم مسح السجل بنجاح.</string>
+    <string name="clearing_history">جارٍ مسح السجل…</string>
+    <string name="export_history">تصدير السجل</string>
+    <string name="export_history_description">حفظ جميع السجلات على جهازك.</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">التغذية الراجعة والسلوك</string>
+    <string name="vibrate_on_scan">اهتزاز عند المسح</string>
+    <string name="vibrate_on_scan_description">يهتز الجهاز عند مسح الرمز بنجاح.</string>
+    <string name="sound_on_scan">صوت عند المسح</string>
+    <string name="sound_on_scan_description">تشغيل صوت عند مسح الرمز بنجاح.</string>
+    <string name="clipboard_setting">نسخ إلى الحافظة</string>
+    <string name="clipboard_setting_description">نسخ نتائج المسح تلقائيًا إلى الحافظة.</string>
+    <string name="web_url">فتح الروابط</string>
+    <string name="web_url_description">فتح الروابط الممسوحة تلقائيًا في المتصفح.</string>
+    <string name="history_and_storage">السجل والتخزين</string>
+    <string name="language_and_regional">اللغة والمنطقة</string>
+    <string name="app_language">لغة التطبيق</string>
+    <string name="app_language_description">اختر لغة العرض لتطبيق كويك كود.</string>
+    <string name="select_language">اختر اللغة</string>
+    <string name="privacy_and_permissions">الخصوصية والأذونات</string>
+    <string name="camera_status">وصول الكاميرا</string>
+    <string name="camera_status_description">مطلوب لمسح الرموز واختيار الصور من المعرض.</string>
+    <string name="gallery_status">وصول المعرض</string>
+    <string name="gallery_status_description">مطلوب لاختيار الصور المخزنة على جهازك.</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="privacy_policy_description">تعرف على كيفية جمع بياناتك وتخزينها واستخدامها.</string>
+    <string name="label_send_anonymous_data">إرسال بيانات مجهولة</string>
+    <string name="desc_send_anonymous_data">ساعدنا في تحسين كويك كود من خلال مشاركة إحصائيات استخدام مجهولة.</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">معلومات ودعم التطبيق</string>
+    <string name="label_version">الإصدار</string>
+    <string name="desc_version">يعرض الإصدار الحالي للتطبيق ورقم البناء.</string>
+    <string name="label_about_app">حول كويك كود</string>
+    <string name="desc_about_app">اكتشف ميزات التطبيق وغرضه وفوائده.</string>
+    <string name="label_rate_app">قيّم كويك كود</string>
+    <string name="desc_rate_app">شارك تجربتك من خلال تقييمنا على متجر Play.</string>
+    <string name="label_share_app">شارك كويك كود</string>
+    <string name="desc_share_app">ادعُ الأصدقاء والعائلة لتجربة كويك كود.</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">كل رموزك في تطبيق واحد</string>
+    <string name="on_boarding_title_2">مسح سريع. تصميم ذكي.</string>
+    <string name="on_boarding_title_3">دون إنترنت. شخصي. قوي.</string>
+    <string name="on_boarding_description_1">أنشئ وامسح رموز QR أو الرموز الشريطية في أي وقت، مع الوصول دون إنترنت وسجل كامل.</string>
+    <string name="on_boarding_description_2">امسح فورًا أو صمّم رموزك الخاصة بأنماط مخصصة.</string>
+    <string name="on_boarding_description_3">يحفظ كويك كود عملك دون اتصال ويتكيف مع تفضيلاتك.</string>
+    <string name="skip">تخطي</string>
+    <string name="next">التالي</string>
+    <string name="get_started">ابدأ الآن</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">عودة</string>
+    <string name="close">إغلاق</string>
+    <string name="copy">نسخ</string>
+    <string name="copied_to_clipboard">تم النسخ إلى الحافظة</string>
+    <string name="clipboard_label">النتيجة</string>
+    <string name="share">مشاركة</string>
+    <string name="share_title">جرّب كويك كود</string>
+    <string name="share_description">أستخدم هذا التطبيق الرائع لإنشاء ومسح رموز QR — أنصحك بتجربته!</string>
+    <string name="ok">موافق</string>
+    <string name="cancel">إلغاء</string>
+    <string name="create">إنشاء</string>
+    <string name="terms_and_conditions">الشروط والأحكام</string>
+
+    <string name="select_code_type">اختر نوع الرمز</string>
+    <string name="enter_your_text">يرجى إدخال النص الخاص بك</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">اسم المستخدم</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="your_message">رسالتك...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">ابحث هنا</string>
+    <string name="latitude">خط العرض</string>
+    <string name="longitude">خط الطول</string>
+    <string name="crypto_hint">يرجى إدخال عنوان العملات المشفرة الصحيح</string>
+    <string name="meeting_url">رابط الاجتماع...</string>
+    <string name="enter_valid_value">يرجى إدخال قيمة صحيحة</string>
+    <string name="enter_valid_url">يرجى إدخال رابط صحيح</string>
+    <string name="enter_valid_email">يرجى إدخال بريد إلكتروني صحيح</string>
+    <string name="enter_valid_phone">يرجى إدخال رقم هاتف صحيح</string>
+    <string name="enter_valid_latitude">يرجى إدخال خط عرض صحيح</string>
+    <string name="enter_valid_longitude">يرجى إدخال خط طول صحيح</string>
+</resources>

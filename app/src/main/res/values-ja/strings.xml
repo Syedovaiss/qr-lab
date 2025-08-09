@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">クイックコード</string>
+    <string name="default_name">ゲスト</string>
+    <string name="trademark">© %s Syed Ovais Akhtar. 無断複写・転載を禁じます。</string>
+    <string name="app_version">バージョン %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">export_channel</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">クイックコードへようこそ</string>
+    <string name="create_qr">作成</string>
+    <string name="scan_qr">スキャン</string>
+    <string name="settings">設定</string>
+    <string name="history">履歴</string>
+    <string name="create_new">新しいコードを作成</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">ビットコイン</string>
+    <string name="calendar">カレンダーイベント</string>
+    <string name="contact">連絡先</string>
+    <string name="discord">ディスコード</string>
+    <string name="email">メール</string>
+    <string name="facebook">フェイスブック</string>
+    <string name="google">Google検索</string>
+    <string name="instagram">インスタグラム</string>
+    <string name="linkedin">リンクトイン</string>
+    <string name="location">位置情報</string>
+    <string name="paypal">ペイパル</string>
+    <string name="phone">電話</string>
+    <string name="skype">スカイプ</string>
+    <string name="sms">SMS</string>
+    <string name="snapchat">スナップチャット</string>
+    <string name="text">テキスト</string>
+    <string name="threads">スレッズ</string>
+    <string name="twitch">ツイッチ</string>
+    <string name="website">ウェブサイト</string>
+    <string name="whatsapp">ワッツアップ</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="youtube">ユーチューブ</string>
+    <string name="zoom">ズーム</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">プラットフォーム</string>
+    <string name="code_format">コード形式</string>
+    <string name="select_code_format">コード形式を選択</string>
+    <string name="enter_details">%s の詳細を入力</string>
+    <string name="select_background_color">背景色を選択</string>
+    <string name="select_foreground_color">前景色を選択</string>
+    <string name="select_color">色を選択</string>
+    <string name="upload_logo">ロゴを追加</string>
+    <string name="image">画像</string>
+    <string name="size">サイズ</string>
+    <string name="width">幅</string>
+    <string name="height">高さ</string>
+    <string name="customization">カスタマイズ</string>
+    <string name="content_color">コンテンツの色</string>
+    <string name="content_color_description">生成されたバーコードやQRコードに適用されるデフォルトの色です。</string>
+    <string name="content_background_color">背景色</string>
+    <string name="content_background_color_description">生成されたバーコードやQRコードのデフォルト背景色です。</string>
+    <string name="default_color_description">色が選択されていない場合、デフォルト色が適用されます。設定からいつでも変更できます。</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">権限が必要です</string>
+    <string name="permission_denied_message">
+        クイックコードは、カメラ、ストレージ、通知の権限が必要です。
+        これらはコードのスキャンや保存、重要な通知送信に使用されます。
+        以前に拒否した場合は、アプリの設定で有効にしてください。
+    </string>
+    <string name="grant">アクセスを許可</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">エクスポート形式</string>
+    <string name="code_export_format_description">デフォルトのエクスポート形式（PNG/JPEG）です。</string>
+    <string name="dialog_title_select_export_format">エクスポート形式を選択</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">履歴をエクスポート</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">バーコードを保存</string>
+    <string name="save_barcode_message">バーコード画像を保存する場所を選択してください。</string>
+    <string name="save">保存</string>
+    <string name="save_image">画像を保存</string>
+    <string name="download">ダウンロード</string>
+    <string name="success">成功</string>
+    <string name="image_saved_successfully">画像を正常に保存しました。</string>
+    <string name="error">エラー</string>
+    <string name="failed_to_save_image">画像を保存できませんでした。再試行してください。</string>
+    <string name="export_text">エクスポート</string>
+    <string name="export_title">エクスポート完了</string>
+    <string name="export_message">次のファイルがエクスポートされました: %s</string>
+    <string name="export_failed">エクスポートに失敗しました</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">バーコードの詳細</string>
+    <string name="generated_barcode">生成されたバーコード</string>
+    <string name="barcode_image">バーコード画像</string>
+    <string name="content_details">コンテンツの詳細</string>
+    <string name="invalid_barcode">この画像は有効または読み取り可能なバーコードではありません。</string>
+    <string name="scan_successful">スキャン成功</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">QRコード &amp; バーコードのスキャン方法</string>
+    <string name="scan_step_1_title">コードを配置</string>
+    <string name="scan_step_1_desc">QRコードまたはバーコードを画面上のスキャン枠に合わせます。</string>
+    <string name="scan_step_2_title">明るさを確保</string>
+    <string name="scan_step_2_desc">コードが十分に明るくなるようにしてください。必要に応じてライトを使用します。</string>
+    <string name="scan_step_3_title">手を安定させる</string>
+    <string name="scan_step_3_desc">コードが自動検出されるまでデバイスを安定させます。</string>
+    <string name="scan_step_4_title">またはギャラリーから選択</string>
+    <string name="scan_step_4_desc">スキャンに失敗した場合は、ギャラリーから画像を選択してください。</string>
+    <string name="scan_tips_title">💡 スキャンのヒント</string>
+    <string name="scan_tips_bullets">• カメラレンズをきれいにする\n• 反射やまぶしさを避ける\n• 必要に応じてズームを使用\n• コードが損傷していないことを確認</string>
+    <string name="got_it">了解</string>
+
+    <!-- History -->
+    <string name="empty_history">まだコードはありません。最初のQRコードやバーコードを作成してみましょう！</string>
+    <string name="delete_history_dialog_title">履歴を消去</string>
+    <string name="delete_history_dialog_message">保存された履歴をすべて削除してもよろしいですか？</string>
+    <string name="delete">削除</string>
+    <string name="clear_history">履歴をクリア</string>
+    <string name="clear_history_description">すべてのスキャン履歴と作成履歴を削除します。</string>
+    <string name="cleared_all_history">履歴を正常に消去しました。</string>
+    <string name="clearing_history">履歴を消去中…</string>
+    <string name="export_history">履歴をエクスポート</string>
+    <string name="export_history_description">履歴をデバイスに保存します。</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">フィードバックと動作</string>
+    <string name="vibrate_on_scan">スキャン時にバイブレーション</string>
+    <string name="vibrate_on_scan_description">コードが正常にスキャンされたときにバイブレーションします。</string>
+    <string name="sound_on_scan">スキャン時に音を再生</string>
+    <string name="sound_on_scan_description">コードが正常にスキャンされたときに音を再生します。</string>
+    <string name="clipboard_setting">クリップボードにコピー</string>
+    <string name="clipboard_setting_description">スキャン結果を自動的にクリップボードにコピーします。</string>
+    <string name="web_url">Web URLを開く</string>
+    <string name="web_url_description">スキャンされたURLを自動的にブラウザで開きます。</string>
+    <string name="history_and_storage">履歴とストレージ</string>
+    <string name="language_and_regional">言語と地域</string>
+    <string name="app_language">アプリの言語</string>
+    <string name="app_language_description">クイックコードの表示言語を選択します。</string>
+    <string name="select_language">言語を選択</string>
+    <string name="privacy_and_permissions">プライバシーと権限</string>
+    <string name="camera_status">カメラアクセス</string>
+    <string name="camera_status_description">コードのスキャンやギャラリーからの画像選択に必要です。</string>
+    <string name="gallery_status">ギャラリーアクセス</string>
+    <string name="gallery_status_description">デバイスに保存されている画像を選択するために必要です。</string>
+    <string name="privacy_policy">プライバシーポリシー</string>
+    <string name="privacy_policy_description">データの収集・保存・使用方法について確認します。</string>
+    <string name="label_send_anonymous_data">匿名利用データを送信</string>
+    <string name="desc_send_anonymous_data">匿名の利用状況統計を共有してクイックコードの改善にご協力ください。</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">アプリ情報とサポート</string>
+    <string name="label_version">バージョン</string>
+    <string name="desc_version">現在のアプリのバージョンとビルド番号を表示します。</string>
+    <string name="label_about_app">クイックコードについて</string>
+    <string name="desc_about_app">アプリの機能、目的、利点について紹介します。</string>
+    <string name="label_rate_app">クイックコードを評価</string>
+    <string name="desc_rate_app">Google Playで評価を投稿してご意見をお聞かせください。</string>
+    <string name="label_share_app">クイックコードを共有</string>
+    <string name="desc_share_app">友人や家族をクイックコードに招待しましょう。</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">すべてのコードを1つのアプリで管理</string>
+    <string name="on_boarding_title_2">高速スキャン。スマートデザイン。</string>
+    <string name="on_boarding_title_3">オフライン。パーソナル。パワフル。</string>
+    <string name="on_boarding_description_1">オフラインアクセスと完全な履歴機能で、いつでもQRコードやバーコードを作成・スキャン。</string>
+    <string name="on_boarding_description_2">即座にスキャンしたり、カスタムスタイルでコードをデザイン可能。</string>
+    <string name="on_boarding_description_3">クイックコードはオフラインで作業を保存し、あなたの好みに合わせて動作します。</string>
+    <string name="skip">スキップ</string>
+    <string name="next">次へ</string>
+    <string name="get_started">始める</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">戻る</string>
+    <string name="close">閉じる</string>
+    <string name="copy">コピー</string>
+    <string name="copied_to_clipboard">クリップボードにコピーしました</string>
+    <string name="clipboard_label">結果</string>
+    <string name="share">共有</string>
+    <string name="share_title">クイックコードをチェック</string>
+    <string name="share_description">素晴らしいQRコード生成・スキャンアプリを使っています — ぜひ試してみてください！</string>
+    <string name="ok">OK</string>
+    <string name="cancel">キャンセル</string>
+    <string name="create">作成</string>
+    <string name="terms_and_conditions">利用規約</string>
+
+    <string name="select_code_type">コードタイプを選択してください</string>
+    <string name="enter_your_text">テキストを入力してください</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">ユーザー名</string>
+    <string name="phone_number">電話番号</string>
+    <string name="your_message">メッセージ...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">ここで検索</string>
+    <string name="latitude">緯度</string>
+    <string name="longitude">経度</string>
+    <string name="crypto_hint">有効な暗号通貨アドレスを入力してください</string>
+    <string name="meeting_url">ミーティングURL...</string>
+    <string name="enter_valid_value">有効な値を入力してください</string>
+    <string name="enter_valid_url">有効なURLを入力してください</string>
+    <string name="enter_valid_email">有効なメールアドレスを入力してください</string>
+    <string name="enter_valid_phone">有効な電話番号を入力してください</string>
+    <string name="enter_valid_latitude">有効な緯度を入力してください</string>
+    <string name="enter_valid_longitude">有効な経度を入力してください</string>
+</resources>

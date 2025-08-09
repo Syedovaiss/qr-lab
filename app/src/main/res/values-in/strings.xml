@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Info Aplikasi -->
+    <string name="app_name">Quick Code</string>
+    <string name="default_name">Tamu</string>
+    <string name="trademark">© %s Syed Ovais Akhtar. Semua hak dilindungi.</string>
+    <string name="app_version">Versi %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">export_channel</string>
+
+    <!-- Layar Beranda -->
+    <string name="home_screen_title">Selamat Datang di\nQuick Code</string>
+    <string name="create_qr">Buat</string>
+    <string name="scan_qr">Pindai</string>
+    <string name="settings">Pengaturan</string>
+    <string name="history">Riwayat</string>
+    <string name="create_new">Buat Kode Baru</string>
+
+    <!-- Jenis QR / Barcode -->
+    <string name="bitcoin">Bitcoin</string>
+    <string name="calendar">Acara Kalender</string>
+    <string name="contact">Kontak</string>
+    <string name="discord">Discord</string>
+    <string name="email">Email</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Pencarian Google</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="location">Lokasi</string>
+    <string name="paypal">PayPal</string>
+    <string name="phone">Panggilan Telepon</string>
+    <string name="skype">Skype</string>
+    <string name="sms">SMS</string>
+    <string name="snapchat">Snapchat</string>
+    <string name="text">Teks</string>
+    <string name="threads">Threads</string>
+    <string name="twitch">Twitch</string>
+    <string name="website">Situs Web</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="youtube">YouTube</string>
+    <string name="zoom">Zoom</string>
+
+    <!-- Formulir & Kustomisasi -->
+    <string name="platform">Platform</string>
+    <string name="code_format">Format Kode</string>
+    <string name="select_code_format">Pilih Format Kode</string>
+    <string name="enter_details">Masukkan detail untuk %s</string>
+    <string name="select_background_color">Pilih Warna Latar</string>
+    <string name="select_foreground_color">Pilih Warna Depan</string>
+    <string name="select_color">Pilih Warna</string>
+    <string name="upload_logo">Tambahkan Logo</string>
+    <string name="image">Gambar</string>
+    <string name="size">Ukuran</string>
+    <string name="width">Lebar</string>
+    <string name="height">Tinggi</string>
+    <string name="customization">Kustomisasi</string>
+    <string name="content_color">Warna Konten</string>
+    <string name="content_color_description">Warna default untuk barcode dan QR code yang dibuat.</string>
+    <string name="content_background_color">Warna Latar</string>
+    <string name="content_background_color_description">Latar default untuk barcode dan QR code yang dibuat.</string>
+    <string name="default_color_description">Jika tidak memilih warna, warna default akan digunakan. Anda dapat mengubahnya kapan saja di Pengaturan.</string>
+
+    <!-- Izin -->
+    <string name="permission_denied_title">Izin Diperlukan</string>
+    <string name="permission_denied_message">
+        Quick Code memerlukan izin Kamera, Penyimpanan, dan Notifikasi untuk berfungsi dengan baik.
+        Izin ini digunakan untuk memindai dan menyimpan kode, serta mengirimkan peringatan penting.
+        Jika sebelumnya Anda menolak izin ini, aktifkan kembali di Pengaturan Aplikasi.
+    </string>
+    <string name="grant">Beri Akses</string>
+
+    <!-- Ekspor / Simpan -->
+    <string name="code_export_format">Format Ekspor</string>
+    <string name="code_export_format_description">Format ekspor default (PNG/JPEG).</string>
+    <string name="dialog_title_select_export_format">Pilih Format Ekspor</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">Ekspor Riwayat</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">Simpan Barcode</string>
+    <string name="save_barcode_message">Pilih lokasi untuk menyimpan gambar barcode Anda.</string>
+    <string name="save">Simpan</string>
+    <string name="save_image">Simpan Gambar</string>
+    <string name="download">Unduh</string>
+    <string name="success">Berhasil</string>
+    <string name="image_saved_successfully">Gambar berhasil disimpan.</string>
+    <string name="error">Kesalahan</string>
+    <string name="failed_to_save_image">Gagal menyimpan gambar. Silakan coba lagi.</string>
+    <string name="export_text">Ekspor</string>
+    <string name="export_title">Ekspor Selesai</string>
+    <string name="export_message">File berikut telah diekspor: %s</string>
+    <string name="export_failed">Ekspor Gagal</string>
+
+    <!-- Barcode / Pindai -->
+    <string name="barcode_details">Detail Barcode</string>
+    <string name="generated_barcode">Barcode yang Dibuat</string>
+    <string name="barcode_image">Gambar Barcode</string>
+    <string name="content_details">Detail Konten</string>
+    <string name="invalid_barcode">Gambar tidak valid atau barcode tidak dapat dibaca.</string>
+    <string name="scan_successful">Pindai Berhasil</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Bantuan Pindai -->
+    <string name="scan_help_title">Cara Memindai QR &amp; Barcode</string>
+    <string name="scan_step_1_title">Posisikan Kode</string>
+    <string name="scan_step_1_desc">Arahkan QR code atau barcode ke dalam bingkai pindai di layar.</string>
+    <string name="scan_step_2_title">Pastikan Pencahayaan Baik</string>
+    <string name="scan_step_2_desc">Pastikan kode mendapat pencahayaan cukup. Gunakan senter jika perlu.</string>
+    <string name="scan_step_3_title">Tahan Stabil</string>
+    <string name="scan_step_3_desc">Tahan perangkat dengan stabil sampai kode terdeteksi otomatis.</string>
+    <string name="scan_step_4_title">Atau Pilih dari Galeri</string>
+    <string name="scan_step_4_desc">Jika gagal memindai, pilih gambar dari galeri Anda.</string>
+    <string name="scan_tips_title">💡 Tips Pindai</string>
+    <string name="scan_tips_bullets">• Bersihkan lensa kamera\n• Hindari silau atau pantulan\n• Gunakan zoom jika perlu\n• Pastikan kode tidak rusak</string>
+    <string name="got_it">Mengerti</string>
+
+    <!-- Riwayat -->
+    <string name="empty_history">Belum ada kode. Buat QR atau barcode pertama Anda untuk memulai!</string>
+    <string name="delete_history_dialog_title">Hapus Riwayat</string>
+    <string name="delete_history_dialog_message">Apakah Anda yakin ingin menghapus semua riwayat tersimpan?</string>
+    <string name="delete">Hapus</string>
+    <string name="clear_history">Bersihkan Riwayat</string>
+    <string name="clear_history_description">Hapus semua riwayat pindai dan pembuatan kode.</string>
+    <string name="cleared_all_history">Riwayat berhasil dihapus.</string>
+    <string name="clearing_history">Menghapus riwayat…</string>
+    <string name="export_history">Ekspor Riwayat</string>
+    <string name="export_history_description">Simpan seluruh riwayat ke perangkat Anda.</string>
+
+    <!-- Pengaturan Pengguna -->
+    <string name="user_feedback_and_behaviour">Umpan Balik &amp; Perilaku</string>
+    <string name="vibrate_on_scan">Getar saat Pindai</string>
+    <string name="vibrate_on_scan_description">Getar ketika kode berhasil dipindai.</string>
+    <string name="sound_on_scan">Suara saat Pindai</string>
+    <string name="sound_on_scan_description">Putar suara ketika kode berhasil dipindai.</string>
+    <string name="clipboard_setting">Salin ke Papan Klip</string>
+    <string name="clipboard_setting_description">Otomatis menyalin hasil pindai ke papan klip.</string>
+    <string name="web_url">Buka URL Web</string>
+    <string name="web_url_description">Otomatis membuka URL hasil pindai di browser.</string>
+    <string name="history_and_storage">Riwayat &amp; Penyimpanan</string>
+    <string name="language_and_regional">Bahasa &amp; Wilayah</string>
+    <string name="app_language">Bahasa Aplikasi</string>
+    <string name="app_language_description">Pilih bahasa tampilan untuk Quick Code.</string>
+    <string name="select_language">Pilih Bahasa</string>
+    <string name="privacy_and_permissions">Privasi &amp; Izin</string>
+    <string name="camera_status">Akses Kamera</string>
+    <string name="camera_status_description">Diperlukan untuk memindai kode dan memilih gambar dari galeri.</string>
+    <string name="gallery_status">Akses Galeri</string>
+    <string name="gallery_status_description">Diperlukan untuk memilih gambar yang tersimpan di perangkat Anda.</string>
+    <string name="privacy_policy">Kebijakan Privasi</string>
+    <string name="privacy_policy_description">Pelajari cara kami mengumpulkan, menyimpan, dan menggunakan data Anda.</string>
+    <string name="label_send_anonymous_data">Kirim Data Penggunaan Anonim</string>
+    <string name="desc_send_anonymous_data">Bantu kami meningkatkan Quick Code dengan berbagi statistik penggunaan anonim.</string>
+
+    <!-- Info & Dukungan -->
+    <string name="app_info_and_support">Info &amp; Dukungan Aplikasi</string>
+    <string name="label_version">Versi</string>
+    <string name="desc_version">Menampilkan versi aplikasi dan nomor build saat ini.</string>
+    <string name="label_about_app">Tentang Quick Code</string>
+    <string name="desc_about_app">Jelajahi fitur, tujuan, dan manfaat aplikasi ini.</string>
+    <string name="label_rate_app">Beri Rating Quick Code</string>
+    <string name="desc_rate_app">Bagikan pengalaman Anda dengan memberi rating di Play Store.</string>
+    <string name="label_share_app">Bagikan Quick Code</string>
+    <string name="desc_share_app">Ajak teman dan keluarga mencoba Quick Code.</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">Semua Kode Anda dalam Satu Aplikasi</string>
+    <string name="on_boarding_title_2">Pindai Cepat. Desain Cerdas.</string>
+    <string name="on_boarding_title_3">Offline. Pribadi. Kuat.</string>
+    <string name="on_boarding_description_1">Buat dan pindai QR atau barcode kapan saja, dengan akses offline dan riwayat lengkap.</string>
+    <string name="on_boarding_description_2">Pindai seketika atau desain kode Anda sendiri dengan gaya kustom.</string>
+    <string name="on_boarding_description_3">Quick Code menyimpan pekerjaan Anda secara offline dan menyesuaikan dengan preferensi Anda.</string>
+    <string name="skip">Lewati</string>
+    <string name="next">Berikutnya</string>
+    <string name="get_started">Mulai</string>
+
+    <!-- Aksi Umum -->
+    <string name="go_back">Kembali</string>
+    <string name="close">Tutup</string>
+    <string name="copy">Salin</string>
+    <string name="copied_to_clipboard">Disalin ke papan klip</string>
+    <string name="clipboard_label">Hasil</string>
+    <string name="share">Bagikan</string>
+    <string name="share_title">Lihat Quick Code</string>
+    <string name="share_description">Saya menggunakan aplikasi pembuat &amp; pemindai QR code yang luar biasa ini — coba deh!</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Batal</string>
+    <string name="create">Buat</string>
+    <string name="terms_and_conditions">Syarat &amp; Ketentuan</string>
+
+    <string name="select_code_type">Pilih Jenis Kode</string>
+    <string name="enter_your_text">Masukkan teks Anda</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">nama pengguna</string>
+    <string name="phone_number">Nomor telepon</string>
+    <string name="your_message">Pesan Anda...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">Cari di sini</string>
+    <string name="latitude">Lintang</string>
+    <string name="longitude">Bujur</string>
+    <string name="crypto_hint">Harap isi alamat kripto yang valid</string>
+    <string name="meeting_url">URL Pertemuan...</string>
+    <string name="enter_valid_value">Harap masukkan nilai yang valid</string>
+    <string name="enter_valid_url">Harap masukkan URL yang valid</string>
+    <string name="enter_valid_email">Harap masukkan email yang valid</string>
+    <string name="enter_valid_phone">Harap masukkan nomor telepon yang valid</string>
+    <string name="enter_valid_latitude">Harap masukkan lintang yang valid</string>
+    <string name="enter_valid_longitude">Harap masukkan bujur yang valid</string>
+</resources>

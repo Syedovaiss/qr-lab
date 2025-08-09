@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">快码</string>
+    <string name="default_name">访客</string>
+    <string name="trademark">© %s Syed Ovais Akhtar。保留所有权利。</string>
+    <string name="app_version">版本 %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">export_channel</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">欢迎使用\n快码</string>
+    <string name="create_qr">创建</string>
+    <string name="scan_qr">扫描</string>
+    <string name="settings">设置</string>
+    <string name="history">历史记录</string>
+    <string name="create_new">创建新代码</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">比特币</string>
+    <string name="calendar">日历事件</string>
+    <string name="contact">联系人</string>
+    <string name="discord">Discord</string>
+    <string name="email">电子邮件</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">谷歌搜索</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">领英</string>
+    <string name="location">位置</string>
+    <string name="paypal">PayPal</string>
+    <string name="phone">电话</string>
+    <string name="skype">Skype</string>
+    <string name="sms">短信</string>
+    <string name="snapchat">Snapchat</string>
+    <string name="text">文本</string>
+    <string name="threads">Threads</string>
+    <string name="twitch">Twitch</string>
+    <string name="website">网站</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="youtube">YouTube</string>
+    <string name="zoom">Zoom</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">平台</string>
+    <string name="code_format">代码格式</string>
+    <string name="select_code_format">选择代码格式</string>
+    <string name="enter_details">输入 %s 的详细信息</string>
+    <string name="select_background_color">选择背景颜色</string>
+    <string name="select_foreground_color">选择前景颜色</string>
+    <string name="select_color">选择颜色</string>
+    <string name="upload_logo">添加徽标</string>
+    <string name="image">图片</string>
+    <string name="size">大小</string>
+    <string name="width">宽度</string>
+    <string name="height">高度</string>
+    <string name="customization">自定义</string>
+    <string name="content_color">内容颜色</string>
+    <string name="content_color_description">应用于生成条形码和二维码的默认颜色。</string>
+    <string name="content_background_color">背景颜色</string>
+    <string name="content_background_color_description">生成条形码和二维码的默认背景。</string>
+    <string name="default_color_description">如果未选择颜色，将应用默认颜色。您可随时在设置中更改。</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">需要权限</string>
+    <string name="permission_denied_message">
+        快码需要摄像头、存储和通知权限才能正常工作。
+        这些权限用于扫描和保存代码，以及发送重要通知。
+        如果您之前拒绝过，请在应用设置中启用。
+    </string>
+    <string name="grant">授予权限</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">导出格式</string>
+    <string name="code_export_format_description">默认导出格式 (PNG/JPEG)。</string>
+    <string name="dialog_title_select_export_format">选择导出格式</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">导出历史</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">保存条码</string>
+    <string name="save_barcode_message">选择保存条码图片的位置。</string>
+    <string name="save">保存</string>
+    <string name="save_image">保存图片</string>
+    <string name="download">下载</string>
+    <string name="success">成功</string>
+    <string name="image_saved_successfully">图片保存成功。</string>
+    <string name="error">错误</string>
+    <string name="failed_to_save_image">无法保存图片，请重试。</string>
+    <string name="export_text">导出</string>
+    <string name="export_title">导出完成</string>
+    <string name="export_message">以下文件已导出：%s</string>
+    <string name="export_failed">导出失败</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">条码详情</string>
+    <string name="generated_barcode">生成的条码</string>
+    <string name="barcode_image">条码图片</string>
+    <string name="content_details">内容详情</string>
+    <string name="invalid_barcode">该图片不是有效或可读取的条码。</string>
+    <string name="scan_successful">扫描成功</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">如何扫描二维码和条码</string>
+    <string name="scan_step_1_title">定位代码</string>
+    <string name="scan_step_1_desc">将二维码或条码对齐到屏幕上的扫描框内。</string>
+    <string name="scan_step_2_title">确保光线充足</string>
+    <string name="scan_step_2_desc">确保代码光线充足，必要时使用手电筒。</string>
+    <string name="scan_step_3_title">保持稳定</string>
+    <string name="scan_step_3_desc">保持设备稳定，直到自动检测到代码。</string>
+    <string name="scan_step_4_title">或从图库选择</string>
+    <string name="scan_step_4_desc">如果扫描失败，请从图库选择图片。</string>
+    <string name="scan_tips_title">💡 扫描技巧</string>
+    <string name="scan_tips_bullets">• 清洁相机镜头\n• 避免眩光或反射\n• 必要时使用缩放\n• 确保代码未损坏</string>
+    <string name="got_it">明白了</string>
+
+    <!-- History -->
+    <string name="empty_history">暂无代码。创建您的第一个二维码或条码开始使用！</string>
+    <string name="delete_history_dialog_title">清除历史</string>
+    <string name="delete_history_dialog_message">您确定要删除所有保存的历史记录吗？</string>
+    <string name="delete">删除</string>
+    <string name="clear_history">清除历史</string>
+    <string name="clear_history_description">删除所有扫描和创建的历史记录。</string>
+    <string name="cleared_all_history">历史记录已成功清除。</string>
+    <string name="clearing_history">正在清除历史…</string>
+    <string name="export_history">导出历史</string>
+    <string name="export_history_description">将所有历史保存到您的设备。</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">反馈与行为</string>
+    <string name="vibrate_on_scan">扫描时振动</string>
+    <string name="vibrate_on_scan_description">当代码成功扫描时振动。</string>
+    <string name="sound_on_scan">扫描时提示音</string>
+    <string name="sound_on_scan_description">当代码成功扫描时播放提示音。</string>
+    <string name="clipboard_setting">复制到剪贴板</string>
+    <string name="clipboard_setting_description">自动将扫描结果复制到剪贴板。</string>
+    <string name="web_url">打开网页链接</string>
+    <string name="web_url_description">自动在浏览器中打开扫描的链接。</string>
+    <string name="history_and_storage">历史与存储</string>
+    <string name="language_and_regional">语言与地区</string>
+    <string name="app_language">应用语言</string>
+    <string name="app_language_description">选择快码的显示语言。</string>
+    <string name="select_language">选择语言</string>
+    <string name="privacy_and_permissions">隐私与权限</string>
+    <string name="camera_status">相机访问</string>
+    <string name="camera_status_description">扫描代码和从图库选择图片所需。</string>
+    <string name="gallery_status">图库访问</string>
+    <string name="gallery_status_description">选择存储在设备上的图片所需。</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="privacy_policy_description">了解我们如何收集、存储和使用您的数据。</string>
+    <string name="label_send_anonymous_data">发送匿名使用数据</string>
+    <string name="desc_send_anonymous_data">通过分享匿名使用数据帮助我们改进快码。</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">应用信息与支持</string>
+    <string name="label_version">版本</string>
+    <string name="desc_version">显示当前应用版本和构建号。</string>
+    <string name="label_about_app">关于快码</string>
+    <string name="desc_about_app">了解应用的功能、用途和优势。</string>
+    <string name="label_rate_app">评价快码</string>
+    <string name="desc_rate_app">在应用商店评分并分享您的体验。</string>
+    <string name="label_share_app">分享快码</string>
+    <string name="desc_share_app">邀请朋友和家人尝试快码。</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">所有代码尽在一款应用</string>
+    <string name="on_boarding_title_2">快速扫描。智能设计。</string>
+    <string name="on_boarding_title_3">离线。个性化。强大。</string>
+    <string name="on_boarding_description_1">随时创建和扫描二维码或条码，支持离线访问和完整历史记录。</string>
+    <string name="on_boarding_description_2">即时扫描或使用自定义样式设计您的代码。</string>
+    <string name="on_boarding_description_3">快码会离线保存您的工作并根据您的偏好进行调整。</string>
+    <string name="skip">跳过</string>
+    <string name="next">下一步</string>
+    <string name="get_started">开始使用</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">返回</string>
+    <string name="close">关闭</string>
+    <string name="copy">复制</string>
+    <string name="copied_to_clipboard">已复制到剪贴板</string>
+    <string name="clipboard_label">结果</string>
+    <string name="share">分享</string>
+    <string name="share_title">快来看看快码</string>
+    <string name="share_description">我正在使用这款超棒的二维码生成和扫描工具——快来试试吧！</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="create">创建</string>
+    <string name="terms_and_conditions">条款与条件</string>
+
+    <string name="select_code_type">选择代码类型</string>
+    <string name="enter_your_text">请输入您的文本</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">用户名</string>
+    <string name="phone_number">电话号码</string>
+    <string name="your_message">您的消息...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">在此搜索</string>
+    <string name="latitude">纬度</string>
+    <string name="longitude">经度</string>
+    <string name="crypto_hint">请输入有效的加密货币地址</string>
+    <string name="meeting_url">会议链接...</string>
+    <string name="enter_valid_value">请输入有效的值</string>
+    <string name="enter_valid_url">请输入有效的网址</string>
+    <string name="enter_valid_email">请输入有效的电子邮箱</string>
+    <string name="enter_valid_phone">请输入有效的电话号码</string>
+    <string name="enter_valid_latitude">请输入有效的纬度</string>
+    <string name="enter_valid_longitude">请输入有效的经度</string>
+</resources>

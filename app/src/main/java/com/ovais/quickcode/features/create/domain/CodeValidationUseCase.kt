@@ -1,18 +1,14 @@
 package com.ovais.quickcode.features.create.domain
 
+import com.ovais.quickcode.R
 import com.ovais.quickcode.features.create.data.CodeType
 import com.ovais.quickcode.features.create.data.CodeValidationParams
 import com.ovais.quickcode.utils.EMAIL
-import com.ovais.quickcode.utils.INVALID_EMAIL
-import com.ovais.quickcode.utils.INVALID_LAT
-import com.ovais.quickcode.utils.INVALID_LNG
-import com.ovais.quickcode.utils.INVALID_PHONE
-import com.ovais.quickcode.utils.INVALID_TEXT
-import com.ovais.quickcode.utils.INVALID_URL
 import com.ovais.quickcode.utils.LATITUDE
 import com.ovais.quickcode.utils.LONGITUDE
 import com.ovais.quickcode.utils.NUMBER
 import com.ovais.quickcode.utils.PHONE
+import com.ovais.quickcode.utils.StringResourceProvider
 import com.ovais.quickcode.utils.TEXT
 import com.ovais.quickcode.utils.URL
 import com.ovais.quickcode.utils.ValidationResult
@@ -21,7 +17,9 @@ import com.ovais.quickcode.utils.usecase.ParameterizedUseCase
 interface CodeValidationUseCase :
     ParameterizedUseCase<CodeValidationParams, ValidationResult>
 
-class DefaultCodeValidationUseCase : CodeValidationUseCase {
+class DefaultCodeValidationUseCase(
+    private val stringResourceProvider: StringResourceProvider
+) : CodeValidationUseCase {
 
     override fun invoke(param: CodeValidationParams): ValidationResult = when (param.type) {
         is CodeType.Text,
@@ -47,7 +45,7 @@ class DefaultCodeValidationUseCase : CodeValidationUseCase {
             val email = param.selectedContentMap[EMAIL]
             val emailResult = validateEmail(email)
             if (emailResult is ValidationResult.InValid) {
-                ValidationResult.InValid(INVALID_EMAIL)
+                ValidationResult.InValid(stringResourceProvider.get(R.string.enter_valid_email))
             } else ValidationResult.Valid
         }
 
@@ -64,8 +62,8 @@ class DefaultCodeValidationUseCase : CodeValidationUseCase {
             val latResult = validateText(latitude)
             val lngResult = validateText(longitude)
             when {
-                latResult is ValidationResult.InValid -> ValidationResult.InValid(INVALID_LAT)
-                lngResult is ValidationResult.InValid -> ValidationResult.InValid(INVALID_LNG)
+                latResult is ValidationResult.InValid -> ValidationResult.InValid(stringResourceProvider.get(R.string.enter_valid_latitude))
+                lngResult is ValidationResult.InValid -> ValidationResult.InValid(stringResourceProvider.get(R.string.enter_valid_longitude))
                 else -> ValidationResult.Valid
             }
         }
@@ -82,14 +80,14 @@ class DefaultCodeValidationUseCase : CodeValidationUseCase {
 
     private fun validateText(input: String?): ValidationResult {
         if (input.isNullOrBlank()) {
-            return ValidationResult.InValid(INVALID_TEXT)
+            return ValidationResult.InValid(stringResourceProvider.get(R.string.enter_valid_value))
         }
         return ValidationResult.Valid
     }
 
     private fun validateURL(input: String?): ValidationResult {
         return if (input.isNullOrBlank() || isValidUrl(input).not()) {
-            ValidationResult.InValid(INVALID_URL)
+            ValidationResult.InValid(stringResourceProvider.get(R.string.enter_valid_url))
         } else {
             ValidationResult.Valid
         }
@@ -112,7 +110,7 @@ class DefaultCodeValidationUseCase : CodeValidationUseCase {
 
     private fun validateEmail(input: String?): ValidationResult {
         return if (input.isNullOrBlank() || isValidEmail(input).not()) {
-            ValidationResult.InValid(INVALID_EMAIL)
+            ValidationResult.InValid(stringResourceProvider.get(R.string.enter_valid_email))
         } else {
             ValidationResult.Valid
         }
@@ -120,7 +118,7 @@ class DefaultCodeValidationUseCase : CodeValidationUseCase {
 
     private fun validatePhone(phone: String?): ValidationResult {
         return if (phone.isNullOrBlank()) {
-            ValidationResult.InValid(INVALID_PHONE)
+            ValidationResult.InValid(stringResourceProvider.get(R.string.enter_valid_phone))
         } else ValidationResult.Valid
     }
 

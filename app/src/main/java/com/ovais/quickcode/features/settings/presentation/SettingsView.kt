@@ -428,6 +428,7 @@ fun SettingsView(
     // Dialogs
     if (uiState.showColorPicker) {
         ColorPickerDialog(
+            title = stringResource(R.string.select_color),
             onColorSelected = { color ->
                 when (uiState.selectedColorType) {
                     ColorType.FOREGROUND -> viewModel.updateForegroundColor(color)
@@ -448,6 +449,8 @@ fun SettingsView(
             ),
             selectedOption = uiState.settings.qrFormat,
             optionLabel = { it },
+            positiveButtonText = stringResource(R.string.ok),
+            negativeButtonText = stringResource(R.string.cancel),
             onOptionSelected = { viewModel.updateQRFormat(it) },
             onDismissRequest = { viewModel.hideExportFormatDialog() }
         )
@@ -484,6 +487,8 @@ fun SettingsView(
             ),
             selectedOption = stringResource(R.string.option_csv),
             optionLabel = { it },
+            positiveButtonText = stringResource(R.string.ok),
+            negativeButtonText = stringResource(R.string.cancel),
             onOptionSelected = { viewModel.exportHistory(it) },
             onDismissRequest = { viewModel.hideExportHistoryDialog() }
         )
@@ -495,6 +500,8 @@ fun SettingsView(
             options = locale,
             selectedOption = uiState.settings.locale,
             optionLabel = { it },
+            positiveButtonText = stringResource(R.string.ok),
+            negativeButtonText = stringResource(R.string.cancel),
             onOptionSelected = { viewModel.updateLocale(it) },
             onDismissRequest = { viewModel.hideLanguageDialog() }
         )

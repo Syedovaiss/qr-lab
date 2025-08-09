@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">Quick Code</string>
+    <string name="default_name">Misafir</string>
+    <string name="trademark">© %s Syed Ovais Akhtar. Tüm hakları saklıdır.</string>
+    <string name="app_version">Sürüm %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">export_channel</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">Quick Code\'anHoş Geldiniz</string>
+    <string name="create_qr">Oluştur</string>
+    <string name="scan_qr">Tara</string>
+    <string name="settings">Ayarlar</string>
+    <string name="history">Geçmiş</string>
+    <string name="create_new">Yeni Kod Oluştur</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">Bitcoin</string>
+    <string name="calendar">Takvim Etkinliği</string>
+    <string name="contact">Kişi</string>
+    <string name="discord">Discord</string>
+    <string name="email">E-posta</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google Arama</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="location">Konum</string>
+    <string name="paypal">PayPal</string>
+    <string name="phone">Telefon Görüşmesi</string>
+    <string name="skype">Skype</string>
+    <string name="sms">SMS</string>
+    <string name="snapchat">Snapchat</string>
+    <string name="text">Metin</string>
+    <string name="threads">Threads</string>
+    <string name="twitch">Twitch</string>
+    <string name="website">Web Sitesi</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="youtube">YouTube</string>
+    <string name="zoom">Zoom</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">Platform</string>
+    <string name="code_format">Kod Formatı</string>
+    <string name="select_code_format">Bir Kod Formatı Seçin</string>
+    <string name="enter_details">%s için ayrıntıları girin</string>
+    <string name="select_background_color">Arka Plan Rengini Seçin</string>
+    <string name="select_foreground_color">Ön Plan Rengini Seçin</string>
+    <string name="select_color">Renk Seçin</string>
+    <string name="upload_logo">Logo Ekle</string>
+    <string name="image">Görsel</string>
+    <string name="size">Boyut</string>
+    <string name="width">Genişlik</string>
+    <string name="height">Yükseklik</string>
+    <string name="customization">Kişiselleştirme</string>
+    <string name="content_color">İçerik Rengi</string>
+    <string name="content_color_description">Oluşturulan barkod ve QR kodlara uygulanan varsayılan renk.</string>
+    <string name="content_background_color">Arka Plan Rengi</string>
+    <string name="content_background_color_description">Oluşturulan barkod ve QR kodlar için varsayılan arka plan.</string>
+    <string name="default_color_description">Renk seçilmezse varsayılan renkler uygulanır. İstediğiniz zaman Ayarlar’dan değiştirebilirsiniz.</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">İzinler Gerekli</string>
+    <string name="permission_denied_message">
+        Quick Code’un düzgün çalışması için Kamera, Depolama ve Bildirim izinlerine ihtiyacı vardır.
+        Bu izinler kod taramak, kaydetmek ve önemli bildirimler göndermek için kullanılır.
+        Daha önce reddettiyseniz, lütfen Uygulama Ayarları’ndan etkinleştirin.
+    </string>
+    <string name="grant">Erişim Ver</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">Dışa Aktarma Formatı</string>
+    <string name="code_export_format_description">Varsayılan dışa aktarma formatı (PNG/JPEG).</string>
+    <string name="dialog_title_select_export_format">Dışa Aktarma Formatını Seçin</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">Geçmişi Dışa Aktar</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">Barkodu Kaydet</string>
+    <string name="save_barcode_message">Barkod görselini kaydetmek için bir konum seçin.</string>
+    <string name="save">Kaydet</string>
+    <string name="save_image">Görseli Kaydet</string>
+    <string name="download">İndir</string>
+    <string name="success">Başarılı</string>
+    <string name="image_saved_successfully">Görsel başarıyla kaydedildi.</string>
+    <string name="error">Hata</string>
+    <string name="failed_to_save_image">Görsel kaydedilemedi. Lütfen tekrar deneyin.</string>
+    <string name="export_text">Dışa Aktar</string>
+    <string name="export_title">Dışa Aktarma Tamamlandı</string>
+    <string name="export_message">Şu dosya(lar) dışa aktarıldı: %s</string>
+    <string name="export_failed">Dışa Aktarma Başarısız</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">Barkod Ayrıntıları</string>
+    <string name="generated_barcode">Oluşturulan Barkod</string>
+    <string name="barcode_image">Barkod Görseli</string>
+    <string name="content_details">İçerik Ayrıntıları</string>
+    <string name="invalid_barcode">Görsel geçerli veya okunabilir bir barkod değil.</string>
+    <string name="scan_successful">Tarama Başarılı</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">QR &amp; Barkod Nasıl Taranır</string>
+    <string name="scan_step_1_title">Kodu Konumlandırın</string>
+    <string name="scan_step_1_desc">QR kodu veya barkodu ekrandaki tarama çerçevesine hizalayın.</string>
+    <string name="scan_step_2_title">Işığı İyileştirin</string>
+    <string name="scan_step_2_desc">Kodun iyi aydınlatıldığından emin olun. Gerekirse flaşı kullanın.</string>
+    <string name="scan_step_3_title">Sabit Tutun</string>
+    <string name="scan_step_3_desc">Kod algılanana kadar cihazınızı sabit tutun.</string>
+    <string name="scan_step_4_title">Veya Galeriden Seçin</string>
+    <string name="scan_step_4_desc">Tarama başarısız olursa, galerinizden bir görsel seçin.</string>
+    <string name="scan_tips_title">💡 Tarama İpuçları</string>
+    <string name="scan_tips_bullets">• Kamera lensinizi temizleyin\n• Parlama veya yansımadan kaçının\n• Gerekirse yakınlaştırma yapın\n• Kodun hasarsız olduğundan emin olun</string>
+    <string name="got_it">Tamam</string>
+
+    <!-- History -->
+    <string name="empty_history">Henüz kod yok. İlk QR veya barkodunuzu oluşturarak başlayın!</string>
+    <string name="delete_history_dialog_title">Geçmişi Temizle</string>
+    <string name="delete_history_dialog_message">Tüm kayıtlı geçmişi silmek istediğinizden emin misiniz?</string>
+    <string name="delete">Sil</string>
+    <string name="clear_history">Geçmişi Temizle</string>
+    <string name="clear_history_description">Tüm tarama ve oluşturma geçmişini kaldırın.</string>
+    <string name="cleared_all_history">Geçmiş başarıyla temizlendi.</string>
+    <string name="clearing_history">Geçmiş temizleniyor…</string>
+    <string name="export_history">Geçmişi Dışa Aktar</string>
+    <string name="export_history_description">Tüm geçmişi cihazınıza kaydedin.</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">Geri Bildirim &amp; Davranış</string>
+    <string name="vibrate_on_scan">Taramada Titret</string>
+    <string name="vibrate_on_scan_description">Kod başarıyla tarandığında titreşim verir.</string>
+    <string name="sound_on_scan">Taramada Ses</string>
+    <string name="sound_on_scan_description">Kod başarıyla tarandığında ses çalar.</string>
+    <string name="clipboard_setting">Panoya Kopyala</string>
+    <string name="clipboard_setting_description">Tarama sonuçlarını otomatik olarak panoya kopyalar.</string>
+    <string name="web_url">Web URL’lerini Aç</string>
+    <string name="web_url_description">Taranan URL’leri tarayıcıda otomatik olarak açar.</string>
+    <string name="history_and_storage">Geçmiş &amp; Depolama</string>
+    <string name="language_and_regional">Dil &amp; Bölge</string>
+    <string name="app_language">Uygulama Dili</string>
+    <string name="app_language_description">Quick Code’un görüntüleme dilini seçin.</string>
+    <string name="select_language">Dil Seçin</string>
+    <string name="privacy_and_permissions">Gizlilik &amp; İzinler</string>
+    <string name="camera_status">Kamera Erişimi</string>
+    <string name="camera_status_description">Kod taramak ve galeriden görsel seçmek için gereklidir.</string>
+    <string name="gallery_status">Galeri Erişimi</string>
+    <string name="gallery_status_description">Cihazınızdaki görselleri seçmek için gereklidir.</string>
+    <string name="privacy_policy">Gizlilik Politikası</string>
+    <string name="privacy_policy_description">Verilerinizi nasıl topladığımız, sakladığımız ve kullandığımız hakkında bilgi edinin.</string>
+    <string name="label_send_anonymous_data">Anonim Kullanım Verilerini Gönder</string>
+    <string name="desc_send_anonymous_data">Anonim kullanım istatistiklerini paylaşarak Quick Code’un gelişmesine yardımcı olun.</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">Uygulama Bilgisi &amp; Destek</string>
+    <string name="label_version">Sürüm</string>
+    <string name="desc_version">Geçerli uygulama sürümünü ve yapı numarasını gösterir.</string>
+    <string name="label_about_app">Quick Code Hakkında</string>
+    <string name="desc_about_app">Uygulamanın özelliklerini, amacını ve faydalarını keşfedin.</string>
+    <string name="label_rate_app">Quick Code’u Değerlendirin</string>
+    <string name="desc_rate_app">Deneyiminizi Play Store’da oylayarak paylaşın.</string>
+    <string name="label_share_app">Quick Code’u Paylaş</string>
+    <string name="desc_share_app">Arkadaşlarınızı ve ailenizi Quick Code’u denemeye davet edin.</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">Tüm Kodlarınız Tek Uygulamada</string>
+    <string name="on_boarding_title_2">Hızlı Tarama. Akıllı Tasarım.</string>
+    <string name="on_boarding_title_3">Çevrimdışı. Kişisel. Güçlü.</string>
+    <string name="on_boarding_description_1">QR veya barkodları dilediğiniz zaman oluşturun ve tarayın; çevrimdışı erişim ve tam geçmiş ile.</string>
+    <string name="on_boarding_description_2">Anında tarayın veya kendi kodlarınızı özel stillerle tasarlayın.</string>
+    <string name="on_boarding_description_3">Quick Code çalışmalarınızı çevrimdışı kaydeder ve tercihlerinizle uyum sağlar.</string>
+    <string name="skip">Atla</string>
+    <string name="next">İleri</string>
+    <string name="get_started">Başlayın</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">Geri Dön</string>
+    <string name="close">Kapat</string>
+    <string name="copy">Kopyala</string>
+    <string name="copied_to_clipboard">Panoya kopyalandı</string>
+    <string name="clipboard_label">Sonuç</string>
+    <string name="share">Paylaş</string>
+    <string name="share_title">Quick Code’u Deneyin</string>
+    <string name="share_description">Bu harika QR kod oluşturucu ve tarayıcıyı kullanıyorum — mutlaka deneyin!</string>
+    <string name="ok">Tamam</string>
+    <string name="cancel">İptal</string>
+    <string name="create">Oluştur</string>
+    <string name="select_code_type">Kod Türü Seçin</string>
+    <string name="enter_your_text">Lütfen metninizi girin</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">kullanıcı adı</string>
+    <string name="phone_number">Telefon numarası</string>
+    <string name="your_message">Mesajınız...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">Burada ara</string>
+    <string name="latitude">Enlem</string>
+    <string name="longitude">Boylam</string>
+    <string name="crypto_hint">Lütfen geçerli kripto adresini girin</string>
+    <string name="meeting_url">Toplantı URL’si...</string>
+    <string name="enter_valid_value">Lütfen geçerli bir değer girin</string>
+    <string name="enter_valid_url">Lütfen geçerli bir URL girin</string>
+    <string name="enter_valid_email">Lütfen geçerli bir e-posta girin</string>
+    <string name="enter_valid_phone">Lütfen geçerli bir telefon numarası girin</string>
+    <string name="enter_valid_latitude">Lütfen geçerli bir enlem girin</string>
+    <string name="enter_valid_longitude">Lütfen geçerli bir boylam girin</string>
+    <string name="terms_and_conditions">Şartlar &amp; Koşullar</string>
+</resources>
+

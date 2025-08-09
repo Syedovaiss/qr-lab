@@ -118,7 +118,11 @@ fun CreateQRView(
             stringResource(R.string.code_format),
             paddingValues = PaddingValues(16.dp)
         )
-        CodeFormatDropDown(codeFormats, selectedType ?: CodeFormats.Code128) {
+        CodeFormatDropDown(
+            codeFormats,
+            selectedType ?: CodeFormats.Code128,
+            label = R.string.select_code_type
+        ) {
             selectedType = it
             viewModel.onCodeSelection(it)
         }

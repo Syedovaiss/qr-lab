@@ -6,21 +6,11 @@ import com.ovais.quickcode.features.create.data.CodeType
 import com.ovais.quickcode.features.create.data.FieldMetaData
 import com.ovais.quickcode.utils.BODY
 import com.ovais.quickcode.utils.EMAIL
-import com.ovais.quickcode.utils.HINT_CRYPTO
-import com.ovais.quickcode.utils.HINT_EMAIL
-import com.ovais.quickcode.utils.HINT_ENTER_TEXT
-import com.ovais.quickcode.utils.HINT_LATITUDE
-import com.ovais.quickcode.utils.HINT_LONGITUDE
-import com.ovais.quickcode.utils.HINT_MEETING_URL
-import com.ovais.quickcode.utils.HINT_MESSAGE
-import com.ovais.quickcode.utils.HINT_PHONE_WITH_COUNTRY
-import com.ovais.quickcode.utils.HINT_SEARCH
-import com.ovais.quickcode.utils.HINT_URL
-import com.ovais.quickcode.utils.HINT_USERNAME
 import com.ovais.quickcode.utils.LATITUDE
 import com.ovais.quickcode.utils.LONGITUDE
 import com.ovais.quickcode.utils.NUMBER
 import com.ovais.quickcode.utils.PHONE
+import com.ovais.quickcode.utils.StringResourceProvider
 import com.ovais.quickcode.utils.TEXT
 import com.ovais.quickcode.utils.URL
 import com.ovais.quickcode.utils.inputs.InputType
@@ -28,7 +18,9 @@ import com.ovais.quickcode.utils.usecase.UseCase
 
 interface CodeTypeUseCase : UseCase<List<CodeItem>>
 
-class DefaultCodeTypeUseCase : CodeTypeUseCase {
+class DefaultCodeTypeUseCase(
+    private val stringResourceProvider: StringResourceProvider
+) : CodeTypeUseCase {
     override fun invoke(): List<CodeItem> {
         return mutableListOf(
             CodeItem(
@@ -38,7 +30,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = TEXT,
-                        hint = HINT_ENTER_TEXT,
+                        hint = stringResourceProvider.get(R.string.enter_your_text),
                         inputType = InputType.Text
                     )
                 )
@@ -50,7 +42,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = URL,
-                        hint = HINT_URL,
+                        hint = stringResourceProvider.get(R.string.sample_url),
                         inputType = InputType.Url
                     )
                 )
@@ -63,7 +55,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = TEXT,
-                        hint = HINT_USERNAME,
+                        hint = stringResourceProvider.get(R.string.hint_username),
                         inputType = InputType.Text
                     )
                 )
@@ -75,7 +67,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = TEXT,
-                        hint = HINT_USERNAME,
+                        hint = stringResourceProvider.get(R.string.hint_username),
                         inputType = InputType.Text
                     )
                 )
@@ -87,12 +79,12 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = NUMBER,
-                        hint = HINT_PHONE_WITH_COUNTRY,
+                        hint = stringResourceProvider.get(R.string.phone_number),
                         inputType = InputType.Number
                     ),
                     FieldMetaData(
                         name = TEXT,
-                        hint = HINT_MESSAGE,
+                        hint = stringResourceProvider.get(R.string.your_message),
                         inputType = InputType.Text
                     )
                 )
@@ -104,7 +96,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = TEXT,
-                        hint = HINT_USERNAME,
+                        hint = stringResourceProvider.get(R.string.hint_username),
                         inputType = InputType.Text
                     )
                 )
@@ -116,12 +108,12 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = EMAIL,
-                        hint = HINT_EMAIL,
+                        hint = stringResourceProvider.get(R.string.sample_email),
                         inputType = InputType.Email
                     ),
                     FieldMetaData(
                         name = BODY,
-                        hint = "Message body...",
+                        hint = stringResourceProvider.get(R.string.your_message),
                         inputType = InputType.Text
                     ),
                 )
@@ -133,7 +125,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = TEXT,
-                        hint = HINT_SEARCH,
+                        hint = stringResourceProvider.get(R.string.search_here),
                         inputType = InputType.Text
                     )
                 )
@@ -145,7 +137,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = TEXT,
-                        hint = HINT_USERNAME,
+                        hint = stringResourceProvider.get(R.string.hint_username),
                         inputType = InputType.Text
                     )
                 )
@@ -157,7 +149,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = TEXT,
-                        hint = HINT_USERNAME,
+                        hint = stringResourceProvider.get(R.string.hint_username),
                         inputType = InputType.Text
                     )
                 )
@@ -169,12 +161,12 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = PHONE,
-                        hint = HINT_PHONE_WITH_COUNTRY,
+                        hint = stringResourceProvider.get(R.string.phone_number),
                         inputType = InputType.Number
                     ),
                     FieldMetaData(
                         name = TEXT,
-                        hint = "Message Body",
+                        hint = stringResourceProvider.get(R.string.your_message),
                         inputType = InputType.Text
                     ),
                 )
@@ -186,7 +178,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = NUMBER,
-                        hint = HINT_PHONE_WITH_COUNTRY,
+                        hint = stringResourceProvider.get(R.string.phone_number),
                         inputType = InputType.Phone
                     )
                 )
@@ -198,7 +190,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = TEXT,
-                        hint = HINT_USERNAME,
+                        hint = stringResourceProvider.get(R.string.hint_username),
                         inputType = InputType.Text
                     )
                 )
@@ -210,12 +202,12 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = LATITUDE,
-                        hint = HINT_LATITUDE,
+                        hint = stringResourceProvider.get(R.string.latitude),
                         inputType = InputType.Location
                     ),
                     FieldMetaData(
                         name = LONGITUDE,
-                        hint = HINT_LONGITUDE,
+                        hint = stringResourceProvider.get(R.string.longitude),
                         inputType = InputType.Location
                     )
                 )
@@ -227,7 +219,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = TEXT,
-                        hint = HINT_USERNAME,
+                        hint = stringResourceProvider.get(R.string.hint_username),
                         inputType = InputType.Text
                     )
                 )
@@ -239,7 +231,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = TEXT,
-                        hint = HINT_CRYPTO,
+                        hint = stringResourceProvider.get(R.string.crypto_hint),
                         inputType = InputType.Text
                     )
                 )
@@ -251,7 +243,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = TEXT,
-                        hint = HINT_MEETING_URL,
+                        hint = stringResourceProvider.get(R.string.meeting_url),
                         inputType = InputType.Text
                     )
                 )
@@ -263,7 +255,7 @@ class DefaultCodeTypeUseCase : CodeTypeUseCase {
                 listOf(
                     FieldMetaData(
                         name = TEXT,
-                        hint = HINT_USERNAME,
+                        hint = stringResourceProvider.get(R.string.hint_username),
                         inputType = InputType.Text
                     )
                 )

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!-- App Info -->
+    <string name="app_name">ڪويڪ ڪوڊ</string>
+    <string name="default_name">مهمان</string>
+    <string name="trademark">© %s سيد اويس اختر. سڀ حق محفوظ آهن.</string>
+    <string name="app_version">ورزن %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">برآمد_چينل</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">خوش آمديد\nڪويڪ ڪوڊ</string>
+    <string name="create_qr">تيار ڪريو</string>
+    <string name="scan_qr">سکین ڪريو</string>
+    <string name="settings">ترتيبات</string>
+    <string name="history">تاريخ</string>
+    <string name="create_new">نئون ڪوڊ ٺاهيو</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">بِٽ ڪائن</string>
+    <string name="calendar">ڪئلينڊر واقعو</string>
+    <string name="contact">رابطو</string>
+    <string name="discord">ڊسڪارڊ</string>
+    <string name="email">اي ميل</string>
+    <string name="facebook">فيس بڪ</string>
+    <string name="google">گوگل سرچ</string>
+    <string name="instagram">انسٽاگرام</string>
+    <string name="linkedin">لنڪڊ ان</string>
+    <string name="location">جڳھ</string>
+    <string name="paypal">پي پال</string>
+    <string name="phone">فون ڪال</string>
+    <string name="skype">اسڪائپ</string>
+    <string name="sms">ايس ايم ايس</string>
+    <string name="snapchat">سنيپ چيٽ</string>
+    <string name="text">متن</string>
+    <string name="threads">ٿريڊز</string>
+    <string name="twitch">ٽويچ</string>
+    <string name="website">ويب سائيٽ</string>
+    <string name="whatsapp">واٽس ايپ</string>
+    <string name="wifi">وائي فائي</string>
+    <string name="youtube">يوٽيوب</string>
+    <string name="zoom">زوم</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">پليٽ فارم</string>
+    <string name="code_format">ڪوڊ جو فارميٽ</string>
+    <string name="select_code_format">ڪوڊ جو فارميٽ چونڊيو</string>
+    <string name="enter_details">%s جا تفصيل داخل ڪريو</string>
+    <string name="select_background_color">پس منظر جو رنگ چونڊيو</string>
+    <string name="select_foreground_color">سامهون وارو رنگ چونڊيو</string>
+    <string name="select_color">رنگ چونڊيو</string>
+    <string name="upload_logo">لوگو شامل ڪريو</string>
+    <string name="image">تصوير</string>
+    <string name="size">سائيز</string>
+    <string name="width">ويڪر</string>
+    <string name="height">اوچائي</string>
+    <string name="customization">حسب ضرورت</string>
+    <string name="content_color">مواد جو رنگ</string>
+    <string name="content_color_description">جنريٽ ٿيل بارڪوڊ ۽ QR ڪوڊ تي لاڳو ٿيندڙ ڊي فالٽ رنگ.</string>
+    <string name="content_background_color">پس منظر جو رنگ</string>
+    <string name="content_background_color_description">جنريٽ ٿيل بارڪوڊ ۽ QR ڪوڊ لاءِ ڊي فالٽ پس منظر.</string>
+    <string name="default_color_description">جيڪڏهن ڪو رنگ چونڊيو نه ويو، ته ڊي فالٽ رنگ لاڳو ڪيا ويندا. توهان ڪنهن به وقت ترتيبات ۾ ان کي تبديل ڪري سگهو ٿا.</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">اجازتون گهربل آهن</string>
+    <string name="permission_denied_message">
+        ڪويڪ ڪوڊ کي ڪم ڪرڻ لاءِ ڪئميرا، اسٽوريج، ۽ نوٽيفڪيشن جون اجازت گهرجن.
+        اهي ڪوڊ اسڪين ڪرڻ، محفوظ ڪرڻ، ۽ اهم اطلاع موڪلڻ لاءِ استعمال ٿين ٿيون.
+        جيڪڏهن توهان اڳ ۾ انهن کي رد ڪيو آهي، مهرباني ڪري ايپ جي ترتيبات ۾ ان کي فعال ڪريو.
+    </string>
+    <string name="grant">اجازت ڏيو</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">برآمد جو فارميٽ</string>
+    <string name="code_export_format_description">ڊي فالٽ برآمد جو فارميٽ (PNG/JPEG).</string>
+    <string name="dialog_title_select_export_format">برآمد جو فارميٽ چونڊيو</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">تاريخ برآمد ڪريو</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">بارڪوڊ محفوظ ڪريو</string>
+    <string name="save_barcode_message">پنهنجي بارڪوڊ تصوير محفوظ ڪرڻ لاءِ جڳهه چونڊيو.</string>
+    <string name="save">محفوظ ڪريو</string>
+    <string name="save_image">تصوير محفوظ ڪريو</string>
+    <string name="download">ڊائونلوڊ</string>
+    <string name="success">ڪاميابي</string>
+    <string name="image_saved_successfully">تصوير ڪاميابي سان محفوظ ٿي وئي.</string>
+    <string name="error">غلطي</string>
+    <string name="failed_to_save_image">تصوير محفوظ ڪرڻ ۾ ناڪامي. مهرباني ڪري ٻيهر ڪوشش ڪريو.</string>
+    <string name="export_text">برآمد ڪريو</string>
+    <string name="export_title">برآمد مڪمل ٿي وئي</string>
+    <string name="export_message">هيٺين فائل(ن) کي برآمد ڪيو ويو: %s</string>
+    <string name="export_failed">برآمد ناڪام</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">بارڪوڊ جا تفصيل</string>
+    <string name="generated_barcode">تيار ڪيل بارڪوڊ</string>
+    <string name="barcode_image">بارڪوڊ تصوير</string>
+    <string name="content_details">مواد جا تفصيل</string>
+    <string name="invalid_barcode">تصوير صحيح يا پڙهڻ لائق بارڪوڊ ناهي.</string>
+    <string name="scan_successful">اسڪين ڪامياب</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">QR ۽ بارڪوڊ ڪيئن اسڪين ڪجي</string>
+    <string name="scan_step_1_title">ڪوڊ کي درست رکو</string>
+    <string name="scan_step_1_desc">QR ڪوڊ يا بارڪوڊ کي اسڪين فريم جي اندر ترتيب ڏيو.</string>
+    <string name="scan_step_2_title">سٺو روشني يقيني بڻايو</string>
+    <string name="scan_step_2_desc">ڪوڊ چڱي طرح روشن هجي. ضرورت هجي ته فليش لائيٽ استعمال ڪريو.</string>
+    <string name="scan_step_3_title">سڪيپ رکو</string>
+    <string name="scan_step_3_desc">اپنا ڊوائيس ايترو سڪيپ رکو جيستائين ڪوڊ پاڻمرادو پڙهي وڃي.</string>
+    <string name="scan_step_4_title">يا گيلري مان چونڊيو</string>
+    <string name="scan_step_4_desc">جيڪڏهن اسڪين ناڪام ٿئي، ته پنهنجي گيلري مان تصوير چونڊيو.</string>
+    <string name="scan_tips_title">💡 اسڪيننگ جون صلاحون</string>
+    <string name="scan_tips_bullets">• پنهنجو ڪئميرا لينس صاف رکو\n• چمڪ يا عڪاس کان پاسو ڪريو\n• ضرورت هجي ته زوم استعمال ڪريو\n• يقيني بڻايو ته ڪوڊ خراب نه ٿيو هجي</string>
+    <string name="got_it">سمجهي ويو</string>
+
+    <!-- History -->
+    <string name="empty_history">ڪو ڪوڊ ناهي. پهريون QR يا بارڪوڊ ٺاهي شروع ڪريو!</string>
+    <string name="delete_history_dialog_title">تاريخ صاف ڪريو</string>
+    <string name="delete_history_dialog_message">ڇا توهان واقعي سموري محفوظ ٿيل تاريخ کي ختم ڪرڻ چاهيو ٿا؟</string>
+    <string name="delete">ختم ڪريو</string>
+    <string name="clear_history">تاريخ صاف ڪريو</string>
+    <string name="clear_history_description">سموري اسڪين ۽ ٺهيل تاريخ هٽايو.</string>
+    <string name="cleared_all_history">تاريخ ڪاميابي سان صاف ٿي وئي.</string>
+    <string name="clearing_history">تاريخ صاف ٿي رهي آهي…</string>
+    <string name="export_history">تاريخ برآمد ڪريو</string>
+    <string name="export_history_description">سموري تاريخ پنهنجي ڊوائيس تي محفوظ ڪريو.</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">راءِ ۽ رويو</string>
+    <string name="vibrate_on_scan">اسڪين تي وائبريشن</string>
+    <string name="vibrate_on_scan_description">جڏهن ڪوڊ ڪاميابي سان اسڪين ٿئي، وائبريٽ ٿئي.</string>
+    <string name="sound_on_scan">اسڪين تي آواز</string>
+    <string name="sound_on_scan_description">جڏهن ڪوڊ ڪاميابي سان اسڪين ٿئي، آواز وڄي.</string>
+    <string name="clipboard_setting">ڪلپ بورڊ تي ڪاپي ڪريو</string>
+    <string name="clipboard_setting_description">اسڪين جا نتيجا پاڻمرادو ڪلپ بورڊ تي ڪاپي ڪريو.</string>
+    <string name="web_url">ويب URL کوليو</string>
+    <string name="web_url_description">اسڪين ڪيل URL پاڻمرادو برائوزر ۾ کوليو.</string>
+    <string name="history_and_storage">تاريخ ۽ اسٽوريج</string>
+    <string name="language_and_regional">ٻولي ۽ علائقو</string>
+    <string name="app_language">ايپ جي ٻولي</string>
+    <string name="app_language_description">ڪويڪ ڪوڊ لاءِ ڏيکاريل ٻولي چونڊيو.</string>
+    <string name="select_language">ٻولي چونڊيو</string>
+    <string name="privacy_and_permissions">رازداري ۽ اجازت</string>
+    <string name="camera_status">ڪئميرا تائين رسائي</string>
+    <string name="camera_status_description">ڪوڊ اسڪين ڪرڻ ۽ تصوير چونڊڻ لاءِ ضروري آهي.</string>
+    <string name="gallery_status">گيلي تائين رسائي</string>
+    <string name="gallery_status_description">پنهنجي ڊوائيس تي موجود تصويرن کي چونڊڻ لاءِ ضروري آهي.</string>
+    <string name="privacy_policy">رازداري پاليسي</string>
+    <string name="privacy_policy_description">اسان ڪيئن توهان جا ڊيٽا گڏ، محفوظ ۽ استعمال ڪندا آهيون، ڄاڻو.</string>
+    <string name="label_send_anonymous_data">گمنام استعمال جا ڊيٽا موڪليو</string>
+    <string name="desc_send_anonymous_data">ڪويڪ ڪوڊ بهتر بڻائڻ ۾ مدد ڪريو گمنام استعمال جي انگن اکرن سان.</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">ايپ ڄاڻ ۽ مدد</string>
+    <string name="label_version">ورزن</string>
+    <string name="desc_version">موجوده ايپ ورزن ۽ بلڊ نمبر ڏيکاري ٿو.</string>
+    <string name="label_about_app">ڪويڪ ڪوڊ بابت</string>
+    <string name="desc_about_app">ايپ جون خاصيتون، مقصد ۽ فائدن کي ڄاڻو.</string>
+    <string name="label_rate_app">ڪويڪ ڪوڊ جي درجابندي ڪريو</string>
+    <string name="desc_rate_app">پنهنجو تجربو شيئر ڪريو ۽ پلي اسٽور تي اسان کي ريٽ ڪريو.</string>
+    <string name="label_share_app">ڪويڪ ڪوڊ شيئر ڪريو</string>
+    <string name="desc_share_app">دوستن ۽ ڪٽنب کي دعوت ڏيو ڪويڪ ڪوڊ آزمائڻ لاءِ.</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">پنهنجا سڀ ڪوڊ هڪ ايپ ۾</string>
+    <string name="on_boarding_title_2">تيز اسڪيننگ. سمارٽ ڊزائين.</string>
+    <string name="on_boarding_title_3">آف لائن. ذاتي. طاقتور.</string>
+    <string name="on_boarding_description_1">ڪڏهن به QR يا بارڪوڊ ٺاهي ۽ اسڪين ڪريو، آف لائن رسائي ۽ مڪمل تاريخ سان.</string>
+    <string name="on_boarding_description_2">فوري اسڪين ڪريو يا پنهنجي ڪوڊز حسب ضرورت ڊزائين ڪريو.</string>
+    <string name="on_boarding_description_3">ڪويڪ ڪوڊ توهان جو ڪم آف لائن محفوظ ڪري ٿو ۽ ترجيحن مطابق ترتيب ڏئي ٿو.</string>
+    <string name="skip">اسڪپ ڪريو</string>
+    <string name="next">اڳيون</string>
+    <string name="get_started">شروع ڪريو</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">واپس وڃو</string>
+    <string name="close">بند ڪريو</string>
+    <string name="copy">ڪاپي ڪريو</string>
+    <string name="copied_to_clipboard">ڪلپ بورڊ تي ڪاپي ٿي وئي</string>
+    <string name="clipboard_label">نتيجو</string>
+    <string name="share">شيئر ڪريو</string>
+    <string name="share_title">ڪويڪ ڪوڊ ڏسو</string>
+    <string name="share_description">مان هي بهترين QR ڪوڊ جنريٽر ۽ اسڪينر استعمال ڪري رهيو آهيان — اوهان به آزمائي ڏسو!</string>
+    <string name="ok">ٺيڪ آهي</string>
+    <string name="cancel">منسوخ ڪريو</string>
+    <string name="create">تيار ڪريو</string>
+    <string name="terms_and_conditions">شرائط ۽ ضابطا</string>
+
+    <string name="select_code_type">ڪوڊ جو قسم چونڊيو</string>
+    <string name="enter_your_text">پنھنجو متن داخل ڪريو</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">صارف جو نالو</string>
+    <string name="phone_number">فون نمبر</string>
+    <string name="your_message">توھانجو پيغام...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">هتي ڳولا ڪريو</string>
+    <string name="latitude">ويڪر</string>
+    <string name="longitude">ڊگھائي</string>
+    <string name="crypto_hint">مھرباني ڪري ڪرپٽو پتو ڀريو</string>
+    <string name="meeting_url">ميٽنگ URL...</string>
+    <string name="enter_valid_value">مھرباني ڪري صحيح قدر داخل ڪريو</string>
+    <string name="enter_valid_url">مھرباني ڪري صحيح URL داخل ڪريو</string>
+    <string name="enter_valid_email">مھرباني ڪري صحيح اي ميل داخل ڪريو</string>
+    <string name="enter_valid_phone">مھرباني ڪري صحيح فون نمبر داخل ڪريو</string>
+    <string name="enter_valid_latitude">مھرباني ڪري صحيح ويڪر داخل ڪريو</string>
+    <string name="enter_valid_longitude">مھرباني ڪري صحيح ڊگھائي داخل ڪريو</string>
+</resources>

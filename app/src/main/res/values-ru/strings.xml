@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">Quick Code</string>
+    <string name="default_name">Гость</string>
+    <string name="trademark">© %s Syed Ovais Akhtar. Все права защищены.</string>
+    <string name="app_version">Версия %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">export_channel</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">Добро пожаловать в\nQuick Code</string>
+    <string name="create_qr">Создать</string>
+    <string name="scan_qr">Сканировать</string>
+    <string name="settings">Настройки</string>
+    <string name="history">История</string>
+    <string name="create_new">Создать новый код</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">Bitcoin</string>
+    <string name="calendar">Событие календаря</string>
+    <string name="contact">Контакт</string>
+    <string name="discord">Discord</string>
+    <string name="email">Эл. почта</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Поиск в Google</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="location">Местоположение</string>
+    <string name="paypal">PayPal</string>
+    <string name="phone">Телефонный звонок</string>
+    <string name="skype">Skype</string>
+    <string name="sms">SMS</string>
+    <string name="snapchat">Snapchat</string>
+    <string name="text">Текст</string>
+    <string name="threads">Threads</string>
+    <string name="twitch">Twitch</string>
+    <string name="website">Веб-сайт</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="youtube">YouTube</string>
+    <string name="zoom">Zoom</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">Платформа</string>
+    <string name="code_format">Формат кода</string>
+    <string name="select_code_format">Выберите формат кода</string>
+    <string name="enter_details">Введите данные для %s</string>
+    <string name="select_background_color">Выберите цвет фона</string>
+    <string name="select_foreground_color">Выберите цвет содержимого</string>
+    <string name="select_color">Выберите цвет</string>
+    <string name="upload_logo">Добавить логотип</string>
+    <string name="image">Изображение</string>
+    <string name="size">Размер</string>
+    <string name="width">Ширина</string>
+    <string name="height">Высота</string>
+    <string name="customization">Настройка</string>
+    <string name="content_color">Цвет содержимого</string>
+    <string name="content_color_description">Цвет по умолчанию для созданных штрихкодов и QR-кодов.</string>
+    <string name="content_background_color">Цвет фона</string>
+    <string name="content_background_color_description">Фон по умолчанию для созданных штрихкодов и QR-кодов.</string>
+    <string name="default_color_description">Если цвет не выбран, будет применён цвет по умолчанию. Это можно изменить в настройках.</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">Требуются разрешения</string>
+    <string name="permission_denied_message">
+        Quick Code требует доступ к камере, хранилищу и уведомлениям для корректной работы.
+        Они используются для сканирования и сохранения кодов, а также отправки важных уведомлений.
+        Если вы ранее отклонили разрешения, включите их в настройках приложения.
+    </string>
+    <string name="grant">Предоставить доступ</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">Формат экспорта</string>
+    <string name="code_export_format_description">Формат экспорта по умолчанию (PNG/JPEG).</string>
+    <string name="dialog_title_select_export_format">Выберите формат экспорта</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">Экспорт истории</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">Сохранить штрихкод</string>
+    <string name="save_barcode_message">Выберите место для сохранения изображения штрихкода.</string>
+    <string name="save">Сохранить</string>
+    <string name="save_image">Сохранить изображение</string>
+    <string name="download">Загрузить</string>
+    <string name="success">Успешно</string>
+    <string name="image_saved_successfully">Изображение успешно сохранено.</string>
+    <string name="error">Ошибка</string>
+    <string name="failed_to_save_image">Не удалось сохранить изображение. Попробуйте ещё раз.</string>
+    <string name="export_text">Экспорт</string>
+    <string name="export_title">Экспорт завершён</string>
+    <string name="export_message">Были экспортированы следующие файлы: %s</string>
+    <string name="export_failed">Ошибка экспорта</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">Детали штрихкода</string>
+    <string name="generated_barcode">Созданный штрихкод</string>
+    <string name="barcode_image">Изображение штрихкода</string>
+    <string name="content_details">Содержимое</string>
+    <string name="invalid_barcode">Изображение не является корректным или читаемым штрихкодом.</string>
+    <string name="scan_successful">Сканирование успешно</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">Как сканировать QR и штрихкоды</string>
+    <string name="scan_step_1_title">Разместите код</string>
+    <string name="scan_step_1_desc">Поместите QR-код или штрихкод в рамку на экране.</string>
+    <string name="scan_step_2_title">Обеспечьте хорошее освещение</string>
+    <string name="scan_step_2_desc">Убедитесь, что код хорошо освещён. При необходимости используйте фонарик.</string>
+    <string name="scan_step_3_title">Держите устройство неподвижно</string>
+    <string name="scan_step_3_desc">Не двигайте устройство, пока код не будет обнаружен автоматически.</string>
+    <string name="scan_step_4_title">Или выберите из галереи</string>
+    <string name="scan_step_4_desc">Если сканирование не удалось, выберите изображение из галереи.</string>
+    <string name="scan_tips_title">💡 Советы по сканированию</string>
+    <string name="scan_tips_bullets">• Протрите объектив камеры\n• Избегайте бликов и отражений\n• Используйте зум при необходимости\n• Убедитесь, что код не повреждён</string>
+    <string name="got_it">Понятно</string>
+
+    <!-- History -->
+    <string name="empty_history">Кодов пока нет. Создайте первый QR-код или штрихкод, чтобы начать!</string>
+    <string name="delete_history_dialog_title">Очистить историю</string>
+    <string name="delete_history_dialog_message">Вы уверены, что хотите удалить всю историю?</string>
+    <string name="delete">Удалить</string>
+    <string name="clear_history">Очистить историю</string>
+    <string name="clear_history_description">Удалить всю историю сканирования и создания.</string>
+    <string name="cleared_all_history">История успешно очищена.</string>
+    <string name="clearing_history">Очистка истории…</string>
+    <string name="export_history">Экспорт истории</string>
+    <string name="export_history_description">Сохранить всю историю на устройство.</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">Обратная связь и поведение</string>
+    <string name="vibrate_on_scan">Вибрация при сканировании</string>
+    <string name="vibrate_on_scan_description">Вибрация при успешном сканировании кода.</string>
+    <string name="sound_on_scan">Звук при сканировании</string>
+    <string name="sound_on_scan_description">Воспроизводить звук при успешном сканировании кода.</string>
+    <string name="clipboard_setting">Копировать в буфер обмена</string>
+    <string name="clipboard_setting_description">Автоматически копировать результаты сканирования в буфер обмена.</string>
+    <string name="web_url">Открывать веб-ссылки</string>
+    <string name="web_url_description">Автоматически открывать отсканированные ссылки в браузере.</string>
+    <string name="history_and_storage">История и хранилище</string>
+    <string name="language_and_regional">Язык и регион</string>
+    <string name="app_language">Язык приложения</string>
+    <string name="app_language_description">Выберите язык отображения для Quick Code.</string>
+    <string name="select_language">Выберите язык</string>
+    <string name="privacy_and_permissions">Конфиденциальность и разрешения</string>
+    <string name="camera_status">Доступ к камере</string>
+    <string name="camera_status_description">Необходим для сканирования кодов и выбора изображений из галереи.</string>
+    <string name="gallery_status">Доступ к галерее</string>
+    <string name="gallery_status_description">Необходим для выбора изображений, сохранённых на устройстве.</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="privacy_policy_description">Узнайте, как мы собираем, храним и используем ваши данные.</string>
+    <string name="label_send_anonymous_data">Отправлять анонимные данные</string>
+    <string name="desc_send_anonymous_data">Помогите улучшить Quick Code, отправляя анонимную статистику использования.</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">Информация и поддержка</string>
+    <string name="label_version">Версия</string>
+    <string name="desc_version">Показывает текущую версию приложения и номер сборки.</string>
+    <string name="label_about_app">О приложении Quick Code</string>
+    <string name="desc_about_app">Узнайте о функциях, назначении и преимуществах приложения.</string>
+    <string name="label_rate_app">Оценить Quick Code</string>
+    <string name="desc_rate_app">Поделитесь своим опытом, оценив нас в Google Play.</string>
+    <string name="label_share_app">Поделиться Quick Code</string>
+    <string name="desc_share_app">Пригласите друзей и семью попробовать Quick Code.</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">Все ваши коды в одном приложении</string>
+    <string name="on_boarding_title_2">Быстрое сканирование. Умный дизайн.</string>
+    <string name="on_boarding_title_3">Оффлайн. Персонально. Мощно.</string>
+    <string name="on_boarding_description_1">Создавайте и сканируйте QR- и штрихкоды в любое время с оффлайн-доступом и полной историей.</string>
+    <string name="on_boarding_description_2">Сканируйте мгновенно или создавайте собственные коды с индивидуальным дизайном.</string>
+    <string name="on_boarding_description_3">Quick Code сохраняет ваши данные оффлайн и подстраивается под ваши предпочтения.</string>
+    <string name="skip">Пропустить</string>
+    <string name="next">Далее</string>
+    <string name="get_started">Начать</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">Назад</string>
+    <string name="close">Закрыть</string>
+    <string name="copy">Копировать</string>
+    <string name="copied_to_clipboard">Скопировано в буфер обмена</string>
+    <string name="clipboard_label">Результат</string>
+    <string name="share">Поделиться</string>
+    <string name="share_title">Попробуйте Quick Code</string>
+    <string name="share_description">Я использую этот отличный генератор и сканер QR-кодов — попробуйте и вы!</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Отмена</string>
+    <string name="create">Создать</string>
+    <string name="terms_and_conditions">Условия использования</string>
+    <string name="select_code_type">Выберите тип кода</string>
+    <string name="enter_your_text">Пожалуйста, введите текст</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">Имя пользователя</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="your_message">Ваше сообщение...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">Поиск здесь</string>
+    <string name="latitude">Широта</string>
+    <string name="longitude">Долгота</string>
+    <string name="crypto_hint">Пожалуйста, введите действительный крипто-адрес</string>
+    <string name="meeting_url">URL встречи...</string>
+    <string name="enter_valid_value">Пожалуйста, введите корректное значение</string>
+    <string name="enter_valid_url">Пожалуйста, введите корректный URL</string>
+    <string name="enter_valid_email">Пожалуйста, введите корректный email</string>
+    <string name="enter_valid_phone">Пожалуйста, введите корректный номер телефона</string>
+    <string name="enter_valid_latitude">Пожалуйста, введите корректную широту</string>
+    <string name="enter_valid_longitude">Пожалуйста, введите корректную долготу</string>
+</resources>
