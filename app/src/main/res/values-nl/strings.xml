@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">Quick Code</string>
+    <string name="default_name">Gast</string>
+    <string name="trademark">© %s Syed Ovais Akhtar. Alle rechten voorbehouden.</string>
+    <string name="app_version">Versie %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">export_kanaal</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">Welkom bij\nQuick Code</string>
+    <string name="create_qr">Aanmaken</string>
+    <string name="scan_qr">Scannen</string>
+    <string name="settings">Instellingen</string>
+    <string name="history">Geschiedenis</string>
+    <string name="create_new">Nieuwe Code Aanmaken</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">Bitcoin</string>
+    <string name="calendar">Agenda-item</string>
+    <string name="contact">Contact</string>
+    <string name="discord">Discord</string>
+    <string name="email">E-mail</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google Zoeken</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="location">Locatie</string>
+    <string name="paypal">PayPal</string>
+    <string name="phone">Telefoongesprek</string>
+    <string name="skype">Skype</string>
+    <string name="sms">SMS</string>
+    <string name="snapchat">Snapchat</string>
+    <string name="text">Tekst</string>
+    <string name="threads">Threads</string>
+    <string name="twitch">Twitch</string>
+    <string name="website">Website</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="youtube">YouTube</string>
+    <string name="zoom">Zoom</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">Platform</string>
+    <string name="code_format">Codeformaat</string>
+    <string name="select_code_format">Kies een codeformaat</string>
+    <string name="enter_details">Voer details in voor %s</string>
+    <string name="select_background_color">Kies achtergrondkleur</string>
+    <string name="select_foreground_color">Kies voorgrondkleur</string>
+    <string name="select_color">Kies kleur</string>
+    <string name="upload_logo">Logo toevoegen</string>
+    <string name="image">Afbeelding</string>
+    <string name="size">Grootte</string>
+    <string name="width">Breedte</string>
+    <string name="height">Hoogte</string>
+    <string name="customization">Aanpassing</string>
+    <string name="content_color">Kleur van inhoud</string>
+    <string name="content_color_description">De standaardkleur toegepast op gegenereerde barcodes en QR-codes.</string>
+    <string name="content_background_color">Achtergrondkleur</string>
+    <string name="content_background_color_description">De standaardachtergrond voor gegenereerde barcodes en QR-codes.</string>
+    <string name="default_color_description">Als er geen kleur gekozen is, worden standaardkleuren toegepast. Je kunt dit altijd aanpassen in Instellingen.</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">Toestemmingen vereist</string>
+    <string name="permission_denied_message">
+        Quick Code heeft Camera-, Opslag- en Meldingsmachtigingen nodig om goed te werken.
+        Deze worden gebruikt om codes te scannen en op te slaan, en om belangrijke meldingen te versturen.
+        Als je deze eerder hebt geweigerd, schakel ze dan in via App-instellingen.
+    </string>
+    <string name="grant">Toegang verlenen</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">Exportformaat</string>
+    <string name="code_export_format_description">Standaard exportformaat (PNG/JPEG).</string>
+    <string name="dialog_title_select_export_format">Kies exportformaat</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">Geschiedenis exporteren</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">Barcode opslaan</string>
+    <string name="save_barcode_message">Selecteer een locatie om je barcode-afbeelding op te slaan.</string>
+    <string name="save">Opslaan</string>
+    <string name="save_image">Afbeelding opslaan</string>
+    <string name="download">Downloaden</string>
+    <string name="success">Succes</string>
+    <string name="image_saved_successfully">Afbeelding succesvol opgeslagen.</string>
+    <string name="error">Fout</string>
+    <string name="failed_to_save_image">Afbeelding kon niet worden opgeslagen. Probeer het opnieuw.</string>
+    <string name="export_text">Exporteren</string>
+    <string name="export_title">Export voltooid</string>
+    <string name="export_message">De volgende bestand(en) zijn geëxporteerd: %s</string>
+    <string name="export_failed">Export mislukt</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">Barcode-details</string>
+    <string name="generated_barcode">Gegenereerde barcode</string>
+    <string name="barcode_image">Barcode-afbeelding</string>
+    <string name="content_details">Inhoudsgegevens</string>
+    <string name="invalid_barcode">De afbeelding is geen geldige of leesbare barcode.</string>
+    <string name="scan_successful">Scannen geslaagd</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">Hoe QR- en barcodes te scannen</string>
+    <string name="scan_step_1_title">Positioneer de code</string>
+    <string name="scan_step_1_desc">Lijn de QR-code of barcode uit binnen het scanframe op het scherm.</string>
+    <string name="scan_step_2_title">Zorg voor goede verlichting</string>
+    <string name="scan_step_2_desc">Zorg dat de code goed verlicht is. Gebruik indien nodig de zaklamp.</string>
+    <string name="scan_step_3_title">Houd stil</string>
+    <string name="scan_step_3_desc">Houd je apparaat stil totdat de code automatisch wordt gedetecteerd.</string>
+    <string name="scan_step_4_title">Of selecteer uit galerij</string>
+    <string name="scan_step_4_desc">Als scannen niet lukt, kies dan een afbeelding uit je galerij.</string>
+    <string name="scan_tips_title">💡 Scan tips</string>
+    <string name="scan_tips_bullets">• Maak je cameralens schoon\n• Vermijd schittering of reflecties\n• Gebruik zoom indien nodig\n• Zorg dat de code niet beschadigd is</string>
+    <string name="got_it">Begrepen</string>
+
+    <!-- History -->
+    <string name="empty_history">Nog geen codes. Maak je eerste QR- of barcode aan om te beginnen!</string>
+    <string name="delete_history_dialog_title">Geschiedenis wissen</string>
+    <string name="delete_history_dialog_message">Weet je zeker dat je alle opgeslagen geschiedenis wilt verwijderen?</string>
+    <string name="delete">Verwijderen</string>
+    <string name="clear_history">Geschiedenis wissen</string>
+    <string name="clear_history_description">Verwijder alle scan- en aanmaakgeschiedenis.</string>
+    <string name="cleared_all_history">Geschiedenis succesvol gewist.</string>
+    <string name="clearing_history">Geschiedenis wordt gewist…</string>
+    <string name="export_history">Geschiedenis exporteren</string>
+    <string name="export_history_description">Sla alle geschiedenis op op je apparaat.</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">Feedback &amp; Gedrag</string>
+    <string name="vibrate_on_scan">Trillen bij scannen</string>
+    <string name="vibrate_on_scan_description">Trilt wanneer een code succesvol is gescand.</string>
+    <string name="sound_on_scan">Geluid bij scannen</string>
+    <string name="sound_on_scan_description">Speel een geluid af wanneer een code succesvol is gescand.</string>
+    <string name="clipboard_setting">Kopieer naar klembord</string>
+    <string name="clipboard_setting_description">Kopieer scanresultaten automatisch naar je klembord.</string>
+    <string name="web_url">Open web-URL’s</string>
+    <string name="web_url_description">Open gescande URL’s automatisch in een browser.</string>
+    <string name="history_and_storage">Geschiedenis &amp; opslag</string>
+    <string name="language_and_regional">Taal &amp; regio</string>
+    <string name="app_language">App-taal</string>
+    <string name="app_language_description">Selecteer de weergavetaal voor Quick Code.</string>
+    <string name="select_language">Kies taal</string>
+    <string name="privacy_and_permissions">Privacy &amp; toestemmingen</string>
+    <string name="camera_status">Camera toegang</string>
+    <string name="camera_status_description">Vereist om codes te scannen en afbeeldingen uit je galerij te kiezen.</string>
+    <string name="gallery_status">Galerij toegang</string>
+    <string name="gallery_status_description">Vereist om afbeeldingen op je apparaat te selecteren.</string>
+    <string name="privacy_policy">Privacybeleid</string>
+    <string name="privacy_policy_description">Lees hoe we je gegevens verzamelen, opslaan en gebruiken.</string>
+    <string name="label_send_anonymous_data">Anonieme gebruiksgegevens verzenden</string>
+    <string name="desc_send_anonymous_data">Help Quick Code te verbeteren door anonieme gebruiksstatistieken te delen.</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">App-info &amp; ondersteuning</string>
+    <string name="label_version">Versie</string>
+    <string name="desc_version">Toont de huidige app-versie en buildnummer.</string>
+    <string name="label_about_app">Over Quick Code</string>
+    <string name="desc_about_app">Ontdek de functies, het doel en de voordelen van de app.</string>
+    <string name="label_rate_app">Beoordeel Quick Code</string>
+    <string name="desc_rate_app">Deel je ervaring door ons te beoordelen in de Play Store.</string>
+    <string name="label_share_app">Deel Quick Code</string>
+    <string name="desc_share_app">Nodig vrienden en familie uit om Quick Code te proberen.</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">Al je codes in één app</string>
+    <string name="on_boarding_title_2">Snelle scans. Slim ontwerp.</string>
+    <string name="on_boarding_title_3">Offline. Persoonlijk. Krachtig.</string>
+    <string name="on_boarding_description_1">Maak en scan QR- of barcodes altijd en overal, met offline toegang en volledige geschiedenis.</string>
+    <string name="on_boarding_description_2">Scan direct of ontwerp je eigen codes met aangepaste stijlen.</string>
+    <string name="on_boarding_description_3">Quick Code slaat je werk offline op en past zich aan jouw voorkeuren aan.</string>
+    <string name="skip">Overslaan</string>
+    <string name="next">Volgende</string>
+    <string name="get_started">Aan de slag</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">Ga terug</string>
+    <string name="close">Sluiten</string>
+    <string name="copy">Kopiëren</string>
+    <string name="copied_to_clipboard">Gekopieerd naar klembord</string>
+    <string name="clipboard_label">Resultaat</string>
+    <string name="share">Delen</string>
+    <string name="share_title">Bekijk Quick Code</string>
+    <string name="share_description">Ik gebruik deze geweldige QR-code generator &amp; scanner — probeer het ook!</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Annuleren</string>
+    <string name="create">Aanmaken</string>
+    <string name="terms_and_conditions">Voorwaarden</string>
+
+    <string name="select_code_type">Selecteer code type</string>
+    <string name="enter_your_text">Voer uw tekst in</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">gebruikersnaam</string>
+    <string name="phone_number">Telefoonnummer</string>
+    <string name="your_message">Uw bericht...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">Zoek hier</string>
+    <string name="latitude">Breedtegraad</string>
+    <string name="longitude">Lengtegraad</string>
+    <string name="crypto_hint">Vul het crypto-adres in</string>
+    <string name="meeting_url">Vergader URL...</string>
+    <string name="enter_valid_value">Voer een geldige waarde in</string>
+    <string name="enter_valid_url">Voer een geldige URL in</string>
+    <string name="enter_valid_email">Voer een geldig e-mailadres in</string>
+    <string name="enter_valid_phone">Voer een geldig telefoonnummer in</string>
+    <string name="enter_valid_latitude">Voer een geldige breedtegraad in</string>
+    <string name="enter_valid_longitude">Voer een geldige lengtegraad in</string>
+</resources>

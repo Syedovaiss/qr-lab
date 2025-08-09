@@ -188,4 +188,23 @@
     <string name="cancel">रद्द करें</string>
     <string name="create">बनाएँ</string>
     <string name="terms_and_conditions">नियम और शर्तें</string>
+
+    <string name="select_code_type">कोड प्रकार चुनें</string>
+    <string name="enter_your_text">कृपया अपना टेक्स्ट दर्ज करें</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">उपयोगकर्ता नाम</string>
+    <string name="phone_number">फ़ोन नंबर</string>
+    <string name="your_message">आपका संदेश...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">यहाँ खोजें</string>
+    <string name="latitude">अक्षांश</string>
+    <string name="longitude">देशांतर</string>
+    <string name="crypto_hint">कृपया मान्य क्रिप्टो पता दर्ज करें</string>
+    <string name="meeting_url">मिटिंग URL...</string>
+    <string name="enter_valid_value">कृपया एक मान्य मान दर्ज करें</string>
+    <string name="enter_valid_url">कृपया एक मान्य URL दर्ज करें</string>
+    <string name="enter_valid_email">कृपया एक मान्य ईमेल दर्ज करें</string>
+    <string name="enter_valid_phone">कृपया एक मान्य फोन नंबर दर्ज करें</string>
+    <string name="enter_valid_latitude">कृपया एक मान्य अक्षांश दर्ज करें</string>
+    <string name="enter_valid_longitude">कृपया एक मान्य देशांतर दर्ज करें</string>
 </resources>

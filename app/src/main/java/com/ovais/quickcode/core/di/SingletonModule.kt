@@ -8,14 +8,14 @@ import com.ovais.quickcode.auth.AuthManager
 import com.ovais.quickcode.auth.DefaultAuthManager
 import com.ovais.quickcode.features.code_details.domain.DefaultImageFormatUseCase
 import com.ovais.quickcode.features.code_details.domain.ImageFormatUseCase
-import com.ovais.quickcode.features.splash.domain.DefaultUpdateLocaleUseCase
-import com.ovais.quickcode.features.splash.domain.UpdateLocaleUseCase
 import com.ovais.quickcode.locale.AppLocaleManager
 import com.ovais.quickcode.locale.DefaultAppLocaleManager
 import com.ovais.quickcode.locale.DefaultLocaleProvider
 import com.ovais.quickcode.locale.LocaleProvider
 import com.ovais.quickcode.logger.AppLogger
 import com.ovais.quickcode.logger.DefaultAppLogger
+import com.ovais.quickcode.notification.DefaultNotificationManager
+import com.ovais.quickcode.notification.NotificationManager
 import com.ovais.quickcode.storage.DefaultQuickCodeConfigurationManager
 import com.ovais.quickcode.storage.DefaultQuickCodePreferenceManager
 import com.ovais.quickcode.storage.QuickCodeConfigurationManager
@@ -27,7 +27,9 @@ import com.ovais.quickcode.storage.db.HistoryDao
 import com.ovais.quickcode.utils.DateTimeManager
 import com.ovais.quickcode.utils.DefaultDateTimeManager
 import com.ovais.quickcode.utils.DefaultInitialProvider
+import com.ovais.quickcode.utils.DefaultStringResourceProvider
 import com.ovais.quickcode.utils.InitialProvider
+import com.ovais.quickcode.utils.StringResourceProvider
 import com.ovais.quickcode.utils.clipboard.ClipboardManager
 import com.ovais.quickcode.utils.clipboard.DefaultClipboardManager
 import com.ovais.quickcode.utils.file.DefaultFileExportHelper
@@ -49,10 +51,7 @@ import com.ovais.quickcode.utils.usecase.GetTermsAndConditionsUseCase
 import com.ovais.quickcode.utils.usecase.LocalConfigurationUseCase
 import com.ovais.quickcode.utils.usecase.SaveImageUseCase
 import com.ovais.quickcode.worker.factory.AppWorkerFactory
-import com.ovais.quickcode.notification.NotificationManager
-import com.ovais.quickcode.notification.DefaultNotificationManager
 import kotlinx.coroutines.CoroutineDispatcher
-import timber.log.Timber
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.qualifier.named
 import org.koin.dsl.bind
@@ -109,18 +108,16 @@ val singletonModule = module {
     single { get<AppStorageManager>().instance.configDao() } bind ConfigurationDao::class
     single { get<AppStorageManager>().instance.historyDao() } bind HistoryDao::class
     single {
-        DefaultUpdateLocaleUseCase(get(), get(), get(named(BACKGROUND)))
-    } bind UpdateLocaleUseCase::class
-    single {
         DefaultDateTimeManager()
     } bind DateTimeManager::class
 
     single { DefaultFileExportHelper(get()) } bind FileExportHelper::class
     single { DefaultNotificationManager(get()) } bind NotificationManager::class
     single { AppWorkerFactory(get(), get(), get()) }
-    single { 
-        val factory = get<AppWorkerFactory>()
-        Timber.d("Creating WorkManager instance with custom factory")
+    single {
         WorkManager.getInstance(get())
     }
+    single {
+        DefaultStringResourceProvider(get())
+    } bind StringResourceProvider::class
 }

@@ -7,6 +7,7 @@ import com.ovais.quickcode.features.home.data.UserInfo
 import com.ovais.quickcode.storage.QuickCodePreferenceManager
 import com.ovais.quickcode.utils.GOOGLE_PHOTO_BASE_URL
 import com.ovais.quickcode.utils.InitialProvider
+import com.ovais.quickcode.utils.StringResourceProvider
 import com.ovais.quickcode.utils.orEmpty
 import com.ovais.quickcode.utils.orFalse
 
@@ -15,7 +16,8 @@ interface GetUserInfoUseCase : SuspendUseCase<UserInfo>
 class DefaultGetUserInfoUseCase(
     private val context: Context,
     private val preferenceManager: QuickCodePreferenceManager,
-    private val initialProvider: InitialProvider
+    private val initialProvider: InitialProvider,
+    private val stringResourceProvider: StringResourceProvider
 ) : GetUserInfoUseCase {
     private companion object {
         private const val IS_LOGGED_IN = "is_logged_in"
@@ -27,7 +29,7 @@ class DefaultGetUserInfoUseCase(
     override suspend fun invoke(): UserInfo {
         val isLoggedIn = preferenceManager.read(context, IS_LOGGED_IN, Boolean::class.java).orFalse
         return if (isLoggedIn.not()) {
-            val name = context.getString(R.string.default_name)
+            val name = stringResourceProvider.get(R.string.default_name)
             UserInfo(
                 name = name,
                 initials = initialProvider(name)

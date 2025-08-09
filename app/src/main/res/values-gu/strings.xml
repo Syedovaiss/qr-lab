@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">ક્વિક કોડ</string>
+    <string name="default_name">મહેમાન</string>
+    <string name="trademark">© %s સય્યદ ઓવૈસ અખ્તાર. તમામ અધિકારો સુરક્ષિત.</string>
+    <string name="app_version">સંસ્કરણ %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">export_channel</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">ક્વિક કોડમાં\nસ્વાગત છે</string>
+    <string name="create_qr">બનાવો</string>
+    <string name="scan_qr">સ્કેન કરો</string>
+    <string name="settings">સેટિંગ્સ</string>
+    <string name="history">ઇતિહાસ</string>
+    <string name="create_new">નવો કોડ બનાવો</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">બિટકોઇન</string>
+    <string name="calendar">કૅલેન્ડર ઇવેન્ટ</string>
+    <string name="contact">સંપર્ક</string>
+    <string name="discord">ડિસ્કોર્ડ</string>
+    <string name="email">ઈમેઈલ</string>
+    <string name="facebook">ફેસબુક</string>
+    <string name="google">ગૂગલ સર્ચ</string>
+    <string name="instagram">ઇન્સ્ટાગ્રામ</string>
+    <string name="linkedin">લિન્કડઇન</string>
+    <string name="location">સ્થાન</string>
+    <string name="paypal">પેપાલ</string>
+    <string name="phone">ફોન કોલ</string>
+    <string name="skype">સ્કાઇપ</string>
+    <string name="sms">એસએમએસ</string>
+    <string name="snapchat">સ્નેપચેટ</string>
+    <string name="text">ટેક્સ્ટ</string>
+    <string name="threads">થ્રેડ્સ</string>
+    <string name="twitch">ટ્વિચ</string>
+    <string name="website">વેબસાઇટ</string>
+    <string name="whatsapp">વોટ્સએપ</string>
+    <string name="wifi">વાઇ-ફાઇ</string>
+    <string name="youtube">યૂટ્યુબ</string>
+    <string name="zoom">ઝૂમ</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">પ્લેટફોર્મ</string>
+    <string name="code_format">કોડ ફોર્મેટ</string>
+    <string name="select_code_format">કોડ ફોર્મેટ પસંદ કરો</string>
+    <string name="enter_details">%s માટે વિગતો દાખલ કરો</string>
+    <string name="select_background_color">પાછળનું રંગ પસંદ કરો</string>
+    <string name="select_foreground_color">આગળનું રંગ પસંદ કરો</string>
+    <string name="select_color">રંગ પસંદ કરો</string>
+    <string name="upload_logo">લોગો ઉમેરો</string>
+    <string name="image">છબી</string>
+    <string name="size">આકાર</string>
+    <string name="width">ચોળાઈ</string>
+    <string name="height">ઊંચાઈ</string>
+    <string name="customization">કસ્ટમાઇઝેશન</string>
+    <string name="content_color">વિષયવસ્તુ રંગ</string>
+    <string name="content_color_description">ઉત્પાદિત બારકોડ અને QR કોડ પર લાગુ થતો ડિફૉલ્ટ રંગ.</string>
+    <string name="content_background_color">પાછળનું રંગ</string>
+    <string name="content_background_color_description">ઉત્પાદિત બારકોડ અને QR કોડ માટેનું ડિફૉલ્ટ પાછળનું રંગ.</string>
+    <string name="default_color_description">જો કોઈ રંગ પસંદ ન કરાયો હોય, તો ડિફૉલ્ટ રંગ લાગુ પડશે. તમે આ સેટિંગ્સમાં ક્યારે પણ બદલી શકો છો.</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">અનુમતિઓ જરૂરી</string>
+    <string name="permission_denied_message">
+        ક્વિક કોડ સારી રીતે કાર્ય કરવા માટે કેમેરા, સ્ટોરેજ અને નોટિફિકેશન અનુમતિઓની જરૂર છે.
+        આ કોડને સ્કેન અને સાચવવા માટે અને મહત્વપૂર્ણ સૂચનાઓ મોકલવા માટે વપરાય છે.
+        જો તમે અગાઉ મંજૂરી ન આપી હોય, તો કૃપા કરીને એપ્લિકેશન સેટિંગ્સમાં તેમને સક્ષમ કરો.
+    </string>
+    <string name="grant">અનુમતિ આપો</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">નિકાસ ફોર્મેટ</string>
+    <string name="code_export_format_description">ડિફૉલ્ટ નિકાસ ફોર્મેટ (PNG/JPEG).</string>
+    <string name="dialog_title_select_export_format">નિકાસ ફોર્મેટ પસંદ કરો</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">ઇતિહાસ નિકાસ કરો</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">બારકોડ સાચવો</string>
+    <string name="save_barcode_message">તમારા બારકોડ છબી સાચવવા માટે સ્થાન પસંદ કરો.</string>
+    <string name="save">સાચવો</string>
+    <string name="save_image">છબી સાચવો</string>
+    <string name="download">ડાઉનલોડ</string>
+    <string name="success">સફળતા</string>
+    <string name="image_saved_successfully">છબી સફળતાપૂર્વક સાચવાઈ.</string>
+    <string name="error">દોષ</string>
+    <string name="failed_to_save_image">છબી સાચવી શકાઈ નથી. કૃપા કરીને ફરી પ્રયાસ કરો.</string>
+    <string name="export_text">નિકાસ કરો</string>
+    <string name="export_title">નિકાસ પૂર્ણ</string>
+    <string name="export_message">નીચેના ફાઈલ(ઓ) નિકાસ થયા છે: %s</string>
+    <string name="export_failed">નિકાસ નિષ્ફળ</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">બારકોડ વિગતો</string>
+    <string name="generated_barcode">તૈયાર કરાયેલ બારકોડ</string>
+    <string name="barcode_image">બારકોડ છબી</string>
+    <string name="content_details">વિષયવસ્તુ વિગતો</string>
+    <string name="invalid_barcode">છબી માન્ય અથવા વાંચવા યોગ્ય બારકોડ નથી.</string>
+    <string name="scan_successful">સ્કેન સફળ</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">QR અને બારકોડ્સ કેવી રીતે સ્કેન કરવી</string>
+    <string name="scan_step_1_title">કોડની સ્થિતિ નિર્ધારિત કરો</string>
+    <string name="scan_step_1_desc">સ્ક્રીન પર સ્કેન ફ્રેમમાં QR કોડ અથવા બારકોડને ગોઠવો.</string>
+    <string name="scan_step_2_title">સારું પ્રકાશ নিশ্চিত કરો</string>
+    <string name="scan_step_2_desc">કોડ સારી રીતે પ્રકાશિત છે તેની ખાતરી કરો. જરૂર પડે તો ફ્લૅશલાઇટ વાપરો.</string>
+    <string name="scan_step_3_title">સ્થિર રાખો</string>
+    <string name="scan_step_3_desc">કોડ આપમેળે શોધાઈ જાય ત્યાં સુધી તમારા ઉપકરણને સ્થિર રાખો.</string>
+    <string name="scan_step_4_title">કેવા તો ગૅલેરીમાંથી પસંદ કરો</string>
+    <string name="scan_step_4_desc">જો સ્કેન નિષ્ફળ જાય, તો તમારી ગૅલેરીમાંથી છબી પસંદ કરો.</string>
+    <string name="scan_tips_title">💡 સ્કેનિંગ ટીપ્સ</string>
+    <string name="scan_tips_bullets">• તમારા કેમેરાનું લેન્સ સાફ રાખો\n• ચમકદાર પ્રતિબિંબ અથવા પ્રકાશ ટાળો\n• જરૂરી હોય તો ઝૂમ કરો\n• કોડ તૂટેલો નથી તેની ખાતરી કરો</string>
+    <string name="got_it">સમજી ગયું</string>
+
+    <!-- History -->
+    <string name="empty_history">હજી સુધી કોઈ કોડ નથી. શરૂ કરવા માટે તમારો પ્રથમ QR અથવા બારકોડ બનાવો!</string>
+    <string name="delete_history_dialog_title">ઇતિહાસ સાફ કરો</string>
+    <string name="delete_history_dialog_message">શું તમે સાચવેલી બધી ઇતિહાસ કાઢી નાખવા માંગો છો?</string>
+    <string name="delete">કાઢી નાખો</string>
+    <string name="clear_history">ઇતિહાસ સાફ કરો</string>
+    <string name="clear_history_description">બધા સ્કેન અને બનાવટ ઇતિહાસને દૂર કરો.</string>
+    <string name="cleared_all_history">ઇતિહાસ સફળતાપૂર્વક સાફ કરવામાં આવ્યો છે.</string>
+    <string name="clearing_history">ઇતિહાસ સાફ કરી રહ્યું છે…</string>
+    <string name="export_history">ઇતિહાસ નિકાસ કરો</string>
+    <string name="export_history_description">તમારા ઉપકરણ પર તમામ ઇતિહાસ સાચવો.</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">પ્રતિસાદ અને વર્તન</string>
+    <string name="vibrate_on_scan">સ્કેન પર વાઈબ્રેટ</string>
+    <string name="vibrate_on_scan_description">કોડ સફળતાપૂર્વક સ્કેન થતાં વાઈબ્રેટ કરે.</string>
+    <string name="sound_on_scan">સ્કેન પર અવાજ</string>
+    <string name="sound_on_scan_description">કોડ સફળતાપૂર્વક સ્કેન થતાં અવાજ વગાડે.</string>
+    <string name="clipboard_setting">ક્લિપબોર્ડમાં નકલ કરો</string>
+    <string name="clipboard_setting_description">સ્કેન પરિણામોને આપમેળે ક્લિપબોર્ડ પર નકલ કરે.</string>
+    <string name="web_url">વેબ URL ખોલો</string>
+    <string name="web_url_description">સ્કેન કરેલા URL-ને આપમેળે બ્રાઉઝરમાં ખોલે.</string>
+    <string name="history_and_storage">ઇતિહાસ અને સ્ટોરેજ</string>
+    <string name="language_and_regional">ભાષા અને ક્ષેત્ર</string>
+    <string name="app_language">એપ ભાષા</string>
+    <string name="app_language_description">ક્વિક કોડ માટે ડિસ્પ્લે ભાષા પસંદ કરો.</string>
+    <string name="select_language">ભાષા પસંદ કરો</string>
+    <string name="privacy_and_permissions">પ્રાયવસી અને પરવાનગીઓ</string>
+    <string name="camera_status">કેમેરા ઍક્સેસ</string>
+    <string name="camera_status_description">કોડ્સ સ્કેન કરવા અને ગૅલેરીમાંથી છબીઓ લેવા જરૂરી.</string>
+    <string name="gallery_status">ગૅલેરી ઍક્સેસ</string>
+    <string name="gallery_status_description">તમારા ઉપકરણમાં સંગ્રહિત છબીઓ પસંદ કરવા જરૂરી.</string>
+    <string name="privacy_policy">પ્રાયવસી નીતિ</string>
+    <string name="privacy_policy_description">અમે તમારા ડેટાને કેવી રીતે એકત્રિત, સંગ્રહ અને ઉપયોગ કરીએ છીએ તે જાણો.</string>
+    <string name="label_send_anonymous_data">અનામક વપરાશ ડેટા મોકલો</string>
+    <string name="desc_send_anonymous_data">ક્વિક કોડને સુધારવામાં મદદ કરવા માટે અનામક વપરાશ આંકડા શેર કરો.</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">એપ માહિતી અને સપોર્ટ</string>
+    <string name="label_version">સંસ્કરણ</string>
+    <string name="desc_version">વર્તમાન એપ સંસ્કરણ અને બિલ્ડ નંબર દર્શાવે છે.</string>
+    <string name="label_about_app">ક્વિક કોડ વિશે</string>
+    <string name="desc_about_app">એપના ફીચર્સ, હેતુ અને ફાયદા શોધો.</string>
+    <string name="label_rate_app">ક્વિક કોડ રેટ કરો</string>
+    <string name="desc_rate_app">પ્લે સ્ટોર પર અમને રેટિંગ આપીને તમારો અનુભવ શેર કરો.</string>
+    <string name="label_share_app">ક્વિક કોડ શેર કરો</string>
+    <string name="desc_share_app">મિત્રો અને પરિવારમાં ક્વિક કોડ અજમાવવા માટે આમંત્રિત કરો.</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">તમારા બધા કોડ એક એપમાં</string>
+    <string name="on_boarding_title_2">ઝડપી સ્કેનિંગ. સ્માર્ટ ડિઝાઇન.</string>
+    <string name="on_boarding_title_3">ઓફલાઈન. વ્યક્તિગત. શક્તિશાળી.</string>
+    <string name="on_boarding_description_1">કોઈપણ સમયે QR અથવા બારકોડ બનાવો અને સ્કેન કરો, ઓફલાઈન ઍક્સેસ અને સંપૂર્ણ ઇતિહાસ સાથે.</string>
+    <string name="on_boarding_description_2">ફટાફટ સ્કેન કરો અથવા તમારી પોતાની કસ્ટમ ડિઝાઇન સાથે કોડ બનાવો.</string>
+    <string name="on_boarding_description_3">ક્વિક કોડ તમારું કામ ઓફલાઈન સાચવે છે અને તમારી પસંદગીઓ અનુસાર એડજસ્ટ થાય છે.</string>
+    <string name="skip">સ્કિપ કરો</string>
+    <string name="next">આગળ</string>
+    <string name="get_started">શરુઆત કરો</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">પાછા જાઓ</string>
+    <string name="close">બંધ કરો</string>
+    <string name="copy">નકલ કરો</string>
+    <string name="copied_to_clipboard">ક્લિપબોર્ડમાં નકલ થયું</string>
+    <string name="clipboard_label">પરિણામ</string>
+    <string name="share">શેર કરો</string>
+    <string name="share_title">ક્વિક કોડ તપાસો</string>
+    <string name="share_description">હું આ અદ્ભુત QR કોડ જનરેટર અને સ્કેનર ઉપયોગ કરી રહ્યો છું — તમારું પણ પ્રયાસ કરો!</string>
+    <string name="ok">ઓકે</string>
+    <string name="cancel">રદ કરો</string>
+    <string name="create">બનાવો</string>
+    <string name="terms_and_conditions">નિયમો અને શરતો</string>
+
+    <string name="select_code_type">કોડ પ્રકાર પસંદ કરો</string>
+    <string name="enter_your_text">તમારું લખાણ દાખલ કરો</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">વપરાશકર્તા નામ</string>
+    <string name="phone_number">ફોન નંબર</string>
+    <string name="your_message">તમારો સંદેશ...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">અહીં શોધો</string>
+    <string name="latitude">અક્ષાંશ</string>
+    <string name="longitude">રેખાંશ</string>
+    <string name="crypto_hint">કૃપા કરી ક્રિપ્ટો એડ્રેસ ભરો</string>
+    <string name="meeting_url">મીટિંગ URL...</string>
+    <string name="enter_valid_value">કૃપા કરીને માન્ય મૂલ્ય દાખલ કરો</string>
+    <string name="enter_valid_url">કૃપા કરીને માન્ય URL દાખલ કરો</string>
+    <string name="enter_valid_email">કૃપા કરીને માન્ય ઇમેલ દાખલ કરો</string>
+    <string name="enter_valid_phone">કૃપા કરીને માન્ય ફોન નંબર દાખલ કરો</string>
+    <string name="enter_valid_latitude">કૃપા કરીને માન્ય અક્ષાંશ દાખલ કરો</string>
+    <string name="enter_valid_longitude">કૃપા કરીને માન્ય રેખાંશ દાખલ કરો</string>
+</resources>

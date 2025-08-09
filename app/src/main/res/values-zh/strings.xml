@@ -188,4 +188,23 @@
     <string name="cancel">取消</string>
     <string name="create">创建</string>
     <string name="terms_and_conditions">条款与条件</string>
+
+    <string name="select_code_type">选择代码类型</string>
+    <string name="enter_your_text">请输入您的文本</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">用户名</string>
+    <string name="phone_number">电话号码</string>
+    <string name="your_message">您的消息...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">在此搜索</string>
+    <string name="latitude">纬度</string>
+    <string name="longitude">经度</string>
+    <string name="crypto_hint">请输入有效的加密货币地址</string>
+    <string name="meeting_url">会议链接...</string>
+    <string name="enter_valid_value">请输入有效的值</string>
+    <string name="enter_valid_url">请输入有效的网址</string>
+    <string name="enter_valid_email">请输入有效的电子邮箱</string>
+    <string name="enter_valid_phone">请输入有效的电话号码</string>
+    <string name="enter_valid_latitude">请输入有效的纬度</string>
+    <string name="enter_valid_longitude">请输入有效的经度</string>
 </resources>

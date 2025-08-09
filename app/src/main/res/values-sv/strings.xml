@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">Quick Code</string>
+    <string name="default_name">Gäst</string>
+    <string name="trademark">© %s Syed Ovais Akhtar. Alla rättigheter förbehållna.</string>
+    <string name="app_version">Version %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">export_kanal</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">Välkommen till\nQuick Code</string>
+    <string name="create_qr">Skapa</string>
+    <string name="scan_qr">Skanna</string>
+    <string name="settings">Inställningar</string>
+    <string name="history">Historik</string>
+    <string name="create_new">Skapa ny kod</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">Bitcoin</string>
+    <string name="calendar">Kalenderhändelse</string>
+    <string name="contact">Kontakt</string>
+    <string name="discord">Discord</string>
+    <string name="email">E-post</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google-sökning</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="location">Plats</string>
+    <string name="paypal">PayPal</string>
+    <string name="phone">Samtal</string>
+    <string name="skype">Skype</string>
+    <string name="sms">SMS</string>
+    <string name="snapchat">Snapchat</string>
+    <string name="text">Text</string>
+    <string name="threads">Threads</string>
+    <string name="twitch">Twitch</string>
+    <string name="website">Webbplats</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="youtube">YouTube</string>
+    <string name="zoom">Zoom</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">Plattform</string>
+    <string name="code_format">Kodformat</string>
+    <string name="select_code_format">Välj kodformat</string>
+    <string name="enter_details">Ange detaljer för %s</string>
+    <string name="select_background_color">Välj bakgrundsfärg</string>
+    <string name="select_foreground_color">Välj förgrundsfärg</string>
+    <string name="select_color">Välj färg</string>
+    <string name="upload_logo">Lägg till logotyp</string>
+    <string name="image">Bild</string>
+    <string name="size">Storlek</string>
+    <string name="width">Bredd</string>
+    <string name="height">Höjd</string>
+    <string name="customization">Anpassning</string>
+    <string name="content_color">Innehållsfärg</string>
+    <string name="content_color_description">Standardfärgen som används för genererade streckkoder och QR-koder.</string>
+    <string name="content_background_color">Bakgrundsfärg</string>
+    <string name="content_background_color_description">Standardbakgrund för genererade streckkoder och QR-koder.</string>
+    <string name="default_color_description">Om ingen färg väljs används standardfärger. Du kan ändra detta när som helst i inställningarna.</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">Behörigheter krävs</string>
+    <string name="permission_denied_message">
+        Quick Code behöver kameratillstånd, lagring och aviseringar för att fungera korrekt.
+        Dessa används för att skanna och spara koder samt skicka viktiga aviseringar.
+        Om du tidigare har nekat dem, aktivera dem i appinställningarna.
+    </string>
+    <string name="grant">Ge åtkomst</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">Exportformat</string>
+    <string name="code_export_format_description">Standard exportformat (PNG/JPEG).</string>
+    <string name="dialog_title_select_export_format">Välj exportformat</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">Exportera historik</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">Spara streckkod</string>
+    <string name="save_barcode_message">Välj en plats för att spara din streckkodsbild.</string>
+    <string name="save">Spara</string>
+    <string name="save_image">Spara bild</string>
+    <string name="download">Ladda ner</string>
+    <string name="success">Framgång</string>
+    <string name="image_saved_successfully">Bild sparad.</string>
+    <string name="error">Fel</string>
+    <string name="failed_to_save_image">Kunde inte spara bilden. Försök igen.</string>
+    <string name="export_text">Exportera</string>
+    <string name="export_title">Export klar</string>
+    <string name="export_message">Följande fil(er) exporterades: %s</string>
+    <string name="export_failed">Export misslyckades</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">Streckkoddetaljer</string>
+    <string name="generated_barcode">Genererad streckkod</string>
+    <string name="barcode_image">Streckkodsbild</string>
+    <string name="content_details">Innehållsdetaljer</string>
+    <string name="invalid_barcode">Bilden är inte en giltig eller läsbar streckkod.</string>
+    <string name="scan_successful">Skanning lyckades</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">Hur man skannar QR- och streckkoder</string>
+    <string name="scan_step_1_title">Positionera koden</string>
+    <string name="scan_step_1_desc">Justera QR-koden eller streckkoden inom skanningsramen på skärmen.</string>
+    <string name="scan_step_2_title">Säkerställ bra belysning</string>
+    <string name="scan_step_2_desc">Se till att koden är väl upplyst. Använd ficklampan vid behov.</string>
+    <string name="scan_step_3_title">Håll stilla</string>
+    <string name="scan_step_3_desc">Håll enheten stilla tills koden upptäcks automatiskt.</string>
+    <string name="scan_step_4_title">Eller välj från galleriet</string>
+    <string name="scan_step_4_desc">Om skanning misslyckas, välj en bild från ditt galleri istället.</string>
+    <string name="scan_tips_title">💡 Skanningstips</string>
+    <string name="scan_tips_bullets">• Rengör din kameralins\n• Undvik blänk eller reflektioner\n• Använd zoom vid behov\n• Se till att koden inte är skadad</string>
+    <string name="got_it">Förstått</string>
+
+    <!-- History -->
+    <string name="empty_history">Inga koder än. Skapa din första QR- eller streckkod för att komma igång!</string>
+    <string name="delete_history_dialog_title">Rensa historik</string>
+    <string name="delete_history_dialog_message">Är du säker på att du vill ta bort all sparad historik?</string>
+    <string name="delete">Ta bort</string>
+    <string name="clear_history">Rensa historik</string>
+    <string name="clear_history_description">Ta bort all skannings- och skapandehistorik.</string>
+    <string name="cleared_all_history">Historiken rensades framgångsrikt.</string>
+    <string name="clearing_history">Rensar historik…</string>
+    <string name="export_history">Exportera historik</string>
+    <string name="export_history_description">Spara all historik till din enhet.</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">Feedback &amp; Beteende</string>
+    <string name="vibrate_on_scan">Vibrera vid skanning</string>
+    <string name="vibrate_on_scan_description">Vibrera när en kod skannats framgångsrikt.</string>
+    <string name="sound_on_scan">Ljud vid skanning</string>
+    <string name="sound_on_scan_description">Spela upp ljud när en kod skannats framgångsrikt.</string>
+    <string name="clipboard_setting">Kopiera till Urklipp</string>
+    <string name="clipboard_setting_description">Kopiera automatiskt skanningsresultat till urklipp.</string>
+    <string name="web_url">Öppna webbadresser</string>
+    <string name="web_url_description">Öppna skannade URL:er automatiskt i en webbläsare.</string>
+    <string name="history_and_storage">Historik &amp; lagring</string>
+    <string name="language_and_regional">Språk &amp; region</string>
+    <string name="app_language">App-språk</string>
+    <string name="app_language_description">Välj visningsspråk för Quick Code.</string>
+    <string name="select_language">Välj språk</string>
+    <string name="privacy_and_permissions">Integritet &amp; behörigheter</string>
+    <string name="camera_status">Kameratillgång</string>
+    <string name="camera_status_description">Nödvändigt för att skanna koder och välja bilder från ditt galleri.</string>
+    <string name="gallery_status">Galleriåtkomst</string>
+    <string name="gallery_status_description">Nödvändigt för att välja bilder som lagras på din enhet.</string>
+    <string name="privacy_policy">Integritetspolicy</string>
+    <string name="privacy_policy_description">Lär dig hur vi samlar in, lagrar och använder dina uppgifter.</string>
+    <string name="label_send_anonymous_data">Skicka anonym användardata</string>
+    <string name="desc_send_anonymous_data">Hjälp oss förbättra Quick Code genom att dela anonym användningsstatistik.</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">App-info &amp; support</string>
+    <string name="label_version">Version</string>
+    <string name="desc_version">Visar aktuell appversion och byggnummer.</string>
+    <string name="label_about_app">Om Quick Code</string>
+    <string name="desc_about_app">Upptäck appens funktioner, syfte och fördelar.</string>
+    <string name="label_rate_app">Betygsätt Quick Code</string>
+    <string name="desc_rate_app">Dela din upplevelse genom att betygsätta oss på Play Store.</string>
+    <string name="label_share_app">Dela Quick Code</string>
+    <string name="desc_share_app">Bjud in vänner och familj att prova Quick Code.</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">Alla dina koder i en app</string>
+    <string name="on_boarding_title_2">Snabb skanning. Smart design.</string>
+    <string name="on_boarding_title_3">Offline. Personlig. Kraftfull.</string>
+    <string name="on_boarding_description_1">Skapa och skanna QR- eller streckkoder när som helst, med offlineåtkomst och full historik.</string>
+    <string name="on_boarding_description_2">Skanna direkt eller designa egna koder med anpassade stilar.</string>
+    <string name="on_boarding_description_3">Quick Code sparar ditt arbete offline och anpassar sig efter dina preferenser.</string>
+    <string name="skip">Hoppa över</string>
+    <string name="next">Nästa</string>
+    <string name="get_started">Kom igång</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">Gå tillbaka</string>
+    <string name="close">Stäng</string>
+    <string name="copy">Kopiera</string>
+    <string name="copied_to_clipboard">Kopierat till urklipp</string>
+    <string name="clipboard_label">Resultat</string>
+    <string name="share">Dela</string>
+    <string name="share_title">Kolla in Quick Code</string>
+    <string name="share_description">Jag använder denna fantastiska QR-kodsgenerator &amp; skanner – prova du också!</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Avbryt</string>
+    <string name="create">Skapa</string>
+    <string name="terms_and_conditions">Villkor</string>
+
+    <string name="select_code_type">Välj kodtyp</string>
+    <string name="enter_your_text">Ange din text</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">användarnamn</string>
+    <string name="phone_number">Telefonnummer</string>
+    <string name="your_message">Ditt meddelande...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">Sök här</string>
+    <string name="latitude">Latitud</string>
+    <string name="longitude">Longitud</string>
+    <string name="crypto_hint">Vänligen fyll i giltig kryptoadress</string>
+    <string name="meeting_url">Möteslänk...</string>
+    <string name="enter_valid_value">Vänligen ange ett giltigt värde</string>
+    <string name="enter_valid_url">Vänligen ange en giltig URL</string>
+    <string name="enter_valid_email">Vänligen ange en giltig e-post</string>
+    <string name="enter_valid_phone">Vänligen ange ett giltigt telefonnummer</string>
+    <string name="enter_valid_latitude">Vänligen ange giltig latitud</string>
+    <string name="enter_valid_longitude">Vänligen ange giltig longitud</string>
+</resources>

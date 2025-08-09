@@ -1,5 +1,6 @@
 package com.ovais.quickcode.core.app.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -14,11 +15,19 @@ import androidx.compose.ui.Modifier
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.ovais.quickcode.R
+import com.ovais.quickcode.core.di.BACKGROUND
 import com.ovais.quickcode.core.ui.theme.QuickCodeTheme
+import com.ovais.quickcode.features.splash.domain.DefaultUpdateLocaleUseCase
+import com.ovais.quickcode.locale.AppLocaleManager
 import com.ovais.quickcode.navigation.QuickCodeNavigation
+import com.ovais.quickcode.storage.db.ConfigurationDao
 import com.ovais.quickcode.utils.WorkConstants.CSV_WORKER_TAG
 import com.ovais.quickcode.utils.WorkConstants.ERROR_KEY
 import com.ovais.quickcode.utils.WorkConstants.PDF_WORKER_TAG
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.runBlocking
+import org.koin.android.ext.android.getKoin
+import org.koin.core.qualifier.named
 
 class QuickCodeActivity : ComponentActivity() {
 
@@ -39,6 +48,17 @@ class QuickCodeActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        val context = runBlocking {
+            DefaultUpdateLocaleUseCase(
+                appLocaleManager = getKoin().get<AppLocaleManager>(),
+                configurationDao = getKoin().get<ConfigurationDao>(),
+                dispatcherIO = getKoin().get<CoroutineDispatcher>(named(BACKGROUND)),
+            ).invoke()
+        }
+        super.attachBaseContext(context)
     }
 
     override fun onResume() {

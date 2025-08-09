@@ -188,4 +188,23 @@
     <string name="cancel">キャンセル</string>
     <string name="create">作成</string>
     <string name="terms_and_conditions">利用規約</string>
+
+    <string name="select_code_type">コードタイプを選択してください</string>
+    <string name="enter_your_text">テキストを入力してください</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">ユーザー名</string>
+    <string name="phone_number">電話番号</string>
+    <string name="your_message">メッセージ...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">ここで検索</string>
+    <string name="latitude">緯度</string>
+    <string name="longitude">経度</string>
+    <string name="crypto_hint">有効な暗号通貨アドレスを入力してください</string>
+    <string name="meeting_url">ミーティングURL...</string>
+    <string name="enter_valid_value">有効な値を入力してください</string>
+    <string name="enter_valid_url">有効なURLを入力してください</string>
+    <string name="enter_valid_email">有効なメールアドレスを入力してください</string>
+    <string name="enter_valid_phone">有効な電話番号を入力してください</string>
+    <string name="enter_valid_latitude">有効な緯度を入力してください</string>
+    <string name="enter_valid_longitude">有効な経度を入力してください</string>
 </resources>

@@ -12,35 +12,55 @@ class DefaultLocaleProvider : LocaleProvider {
         private const val SPANISH = "es"
         private const val FRENCH = "fr"
         private const val GERMAN = "de"
-        private const val PORTUGUESE_BRAZILIAN = "pt-BR"
+        private const val PORTUGUESE_BRAZILIAN = "pt"
         private const val RUSSIAN = "ru"
         private const val ARABIC = "ar"
-        private const val CHINESE_SIMPLIFIED = "zh-CN"
-        private const val CHINESE_TRADITIONAL = "zh-TW"
+        private const val CHINESE_SIMPLIFIED = "zh"
         private const val JAPANESE = "ja"
         private const val KOREAN = "ko"
         private const val HINDI = "hi"
         private const val INDONESIAN = "id"
         private const val TURKISH = "tr"
         private const val ITALIAN = "it"
+        private const val URDU = "ur"
+        private const val DUTCH = "nl"
+        private const val SWEDISH = "sv"
+        private const val BENGALI = "bn"
+        private const val TELUGU = "te"
+        private const val MARATHI = "mr"
+        private const val TAMIL = "ta"
+        private const val GUJARATI = "gu"
+        private const val SINDHI = "sd"
+        private const val PASHTO = "ps"
+        private const val BALOCHI = "bal"
     }
 
     val localeMap: Map<String, String> = hashMapOf(
+        "Arabic" to ARABIC,
+        "Balochi" to BALOCHI,
+        "Bengali" to BENGALI,
+        "Dutch (Netherlands, Belgium)" to DUTCH,
         "English" to ENGLISH,
-        "Spanish" to SPANISH,
         "French" to FRENCH,
         "German" to GERMAN,
-        "Portuguese (Brazilian)" to PORTUGUESE_BRAZILIAN,
-        "Russian" to RUSSIAN,
-        "Arabic" to ARABIC,
-        "Chinese (Simplified)" to CHINESE_SIMPLIFIED,
-        "Chinese (Traditional)" to CHINESE_TRADITIONAL,
-        "Japanese" to JAPANESE,
-        "Korean" to KOREAN,
+        "Gujarati" to GUJARATI,
         "Hindi" to HINDI,
         "Indonesian" to INDONESIAN,
+        "Italian" to ITALIAN,
+        "Japanese" to JAPANESE,
+        "Korean" to KOREAN,
+        "Marathi" to MARATHI,
+        "Pashto" to PASHTO,
+        "Portuguese (Brazilian)" to PORTUGUESE_BRAZILIAN,
+        "Sindhi" to SINDHI,
+        "Spanish" to SPANISH,
+        "Swedish" to SWEDISH,
+        "Tamil" to TAMIL,
+        "Telugu" to TELUGU,
         "Turkish" to TURKISH,
-        "Italian" to ITALIAN
+        "Urdu" to URDU,
+        "Russian" to RUSSIAN,
+        "Chinese (Simplified)" to CHINESE_SIMPLIFIED
     )
 
     override val availableLocales: Map<String, String>

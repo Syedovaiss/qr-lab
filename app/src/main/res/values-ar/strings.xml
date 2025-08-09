@@ -188,4 +188,23 @@
     <string name="cancel">إلغاء</string>
     <string name="create">إنشاء</string>
     <string name="terms_and_conditions">الشروط والأحكام</string>
+
+    <string name="select_code_type">اختر نوع الرمز</string>
+    <string name="enter_your_text">يرجى إدخال النص الخاص بك</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">اسم المستخدم</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="your_message">رسالتك...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">ابحث هنا</string>
+    <string name="latitude">خط العرض</string>
+    <string name="longitude">خط الطول</string>
+    <string name="crypto_hint">يرجى إدخال عنوان العملات المشفرة الصحيح</string>
+    <string name="meeting_url">رابط الاجتماع...</string>
+    <string name="enter_valid_value">يرجى إدخال قيمة صحيحة</string>
+    <string name="enter_valid_url">يرجى إدخال رابط صحيح</string>
+    <string name="enter_valid_email">يرجى إدخال بريد إلكتروني صحيح</string>
+    <string name="enter_valid_phone">يرجى إدخال رقم هاتف صحيح</string>
+    <string name="enter_valid_latitude">يرجى إدخال خط عرض صحيح</string>
+    <string name="enter_valid_longitude">يرجى إدخال خط طول صحيح</string>
 </resources>

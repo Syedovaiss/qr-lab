@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Quick Code</string>
+    <string name="default_name">Mehman</string>
+    <string name="trademark">© %s Syed Ovais Akhtar. Tamam haqooq mehfooz.</string>
+    <string name="app_version">Version %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">export_channel</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">Khush Amadid ba\nQuick Code</string>
+    <string name="create_qr">Bana</string>
+    <string name="scan_qr">Scan</string>
+    <string name="settings">Tanzeemat</string>
+    <string name="history">Tareekh</string>
+    <string name="create_new">Nawi Code Bana</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">Bitcoin</string>
+    <string name="calendar">Calendar Event</string>
+    <string name="contact">Rabita</string>
+    <string name="discord">Discord</string>
+    <string name="email">Email</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google Search</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="location">Jaga</string>
+    <string name="paypal">PayPal</string>
+    <string name="phone">Phone Call</string>
+    <string name="skype">Skype</string>
+    <string name="sms">SMS</string>
+    <string name="snapchat">Snapchat</string>
+    <string name="text">Matn</string>
+    <string name="threads">Threads</string>
+    <string name="twitch">Twitch</string>
+    <string name="website">Website</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="youtube">YouTube</string>
+    <string name="zoom">Zoom</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">Platform</string>
+    <string name="code_format">Code Format</string>
+    <string name="select_code_format">Code Format Pasand Kun</string>
+    <string name="enter_details">%s baray tafseelat wared kun</string>
+    <string name="select_background_color">Background Rang Pasand Kun</string>
+    <string name="select_foreground_color">Foreground Rang Pasand Kun</string>
+    <string name="select_color">Rang Pasand Kun</string>
+    <string name="upload_logo">Logo Izafa Kun</string>
+    <string name="image">Tasweer</string>
+    <string name="size">Andazah</string>
+    <string name="width">Chodai</string>
+    <string name="height">Balai</string>
+    <string name="customization">Tanzeem</string>
+    <string name="content_color">Mawad Rang</string>
+    <string name="content_color_description">Default rang jo barcode o QR code baray lagaya jata.</string>
+    <string name="content_background_color">Background Rang</string>
+    <string name="content_background_color_description">Barcode o QR code baray default background.</string>
+    <string name="default_color_description">Agar rang na pasand kun, default rang lagaya jata. Har waqt settings main badal sakun.</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">Ijazat Zaroori</string>
+    <string name="permission_denied_message">
+        Quick Code ko Camera, Storage aur Notification ijazat chahiye.
+        Yeh scan aur save karne aur important alerts bhejnay kay liye zaroori hain.
+        Agar aap nay pehlay mana kiya hai, to app settings main enable kun.
+    </string>
+    <string name="grant">Ijazat Do</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">Export Format</string>
+    <string name="code_export_format_description">Default export format (PNG/JPEG).</string>
+    <string name="dialog_title_select_export_format">Export Format Pasand Kun</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">Tareekh Export Kun</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">Barcode Save Kun</string>
+    <string name="save_barcode_message">Apnay barcode tasweer ko save karay kai jaga pasand kun.</string>
+    <string name="save">Save Kun</string>
+    <string name="save_image">Tasweer Save Kun</string>
+    <string name="download">Download Kun</string>
+    <string name="success">Kamyab</string>
+    <string name="image_saved_successfully">Tasweer kaamiyabi se save ho gaya.</string>
+    <string name="error">Ghalati</string>
+    <string name="failed_to_save_image">Tasweer save nahi hui, dubara koshish kun.</string>
+    <string name="export_text">Export Kun</string>
+    <string name="export_title">Export Mukammal</string>
+    <string name="export_message">Niche wali file(s) export hui hain: %s</string>
+    <string name="export_failed">Export Nakam</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">Barcode Tafseelaat</string>
+    <string name="generated_barcode">Tayaar Shuda Barcode</string>
+    <string name="barcode_image">Barcode Tasweer</string>
+    <string name="content_details">Mawad Tafseelaat</string>
+    <string name="invalid_barcode">Tasweer valid ya parhnay laayak barcode nahi hai.</string>
+    <string name="scan_successful">Scan Kamyab</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">QR o Barcodes ko Scan Karnay Ka Tarika</string>
+    <string name="scan_step_1_title">Code ki Position Sahi Kun</string>
+    <string name="scan_step_1_desc">QR ya barcode ko scan frame kay andar rakh.</string>
+    <string name="scan_step_2_title">Roshanai Ka Khaayal Kun</string>
+    <string name="scan_step_2_desc">Code achi roshnai main hona chahiye, zarurat par flashlight use kun.</string>
+    <string name="scan_step_3_title">Jamaat Rak</string>
+    <string name="scan_step_3_desc">Device ko theek tarah se pakar, jab tak code automatically detect na ho jaye.</string>
+    <string name="scan_step_4_title">Ya Gallery se Select Kun</string>
+    <string name="scan_step_4_desc">Agar scan na ho, to gallery se tasweer select kar.</string>
+    <string name="scan_tips_title">💡 Scanning Tips</string>
+    <string name="scan_tips_bullets">• Camera lens saaf rak\n• Chamkila roshni aur reflections se bacho\n• Zarurat par zoom use kun\n• Code ko nuqsan se mehfooz rak</string>
+    <string name="got_it">Samajh gaya</string>
+
+    <!-- History -->
+    <string name="empty_history">Abhi tak koi code nahi. Pehla QR ya barcode banao shuru karne ke liye!</string>
+    <string name="delete_history_dialog_title">Tareekh Saf Kun</string>
+    <string name="delete_history_dialog_message">Kya aap pakka tamam tareekh delete karna chahte hain?</string>
+    <string name="delete">Delete Kun</string>
+    <string name="clear_history">Tareekh Saf Kun</string>
+    <string name="clear_history_description">Tamam scan aur creation tareekh hatao.</string>
+    <string name="cleared_all_history">Tareekh kaamiyabi se saf ho gai.</string>
+    <string name="clearing_history">Tareekh saf kar rahe hain…</string>
+    <string name="export_history">Tareekh Export Kun</string>
+    <string name="export_history_description">Tamam tareekh apnay device par save kun.</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">Feedback aur Rawayya</string>
+    <string name="vibrate_on_scan">Scan par Harkat</string>
+    <string name="vibrate_on_scan_description">Jab code scan ho jaye to device vibrate karega.</string>
+    <string name="sound_on_scan">Scan par Awaz</string>
+    <string name="sound_on_scan_description">Jab code scan ho jaye to awaz bajayegi.</string>
+    <string name="clipboard_setting">Clipboard mein Copy Kun</string>
+    <string name="clipboard_setting_description">Scan results ko automatic clipboard mein copy kare.</string>
+    <string name="web_url">Web URLs Kholen</string>
+    <string name="web_url_description">Scan kiye gaye URLs ko browser mein automatic kholen.</string>
+    <string name="history_and_storage">Tareekh aur Storage</string>
+    <string name="language_and_regional">Zuban aur Ilaka</string>
+    <string name="app_language">App ki Zuban</string>
+    <string name="app_language_description">Quick Code ki display language pasand kun.</string>
+    <string name="select_language">Zuban Pasand Kun</string>
+    <string name="privacy_and_permissions">Privacy aur Ijazat</string>
+    <string name="camera_status">Camera ki Ijazat</string>
+    <string name="camera_status_description">Codes ko scan karne aur gallery se tasweer chunnay ke liye zaroori hai.</string>
+    <string name="gallery_status">Gallery ki Ijazat</string>
+    <string name="gallery_status_description">Device par mojood tasweer chunnay ke liye zaroori hai.</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_policy_description">Jaan\'ain ke hum aapka data kaisay use aur mehfooz rakhte hain.</string>
+    <string name="label_send_anonymous_data">Ghair Shanakhti Istemaal Data Bhijain</string>
+    <string name="desc_send_anonymous_data">Quick Code behtari ke liye anonymous usage stats share karain.</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">App Maloomat aur Support</string>
+    <string name="label_version">Version</string>
+    <string name="desc_version">App ki mojooda version aur build number dikhata hai.</string>
+    <string name="label_about_app">Quick Code ke Bare Mein</string>
+    <string name="desc_about_app">App ke features, maqsad, aur faide jaanain.</string>
+    <string name="label_rate_app">Quick Code ko Rate Kun</string>
+    <string name="desc_rate_app">Play Store par apna tajurba share karain.</string>
+    <string name="label_share_app">Quick Code Share Kun</string>
+    <string name="desc_share_app">Doston aur ghar walon ko invite karain ke Quick Code try karain.</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">Sab Code aik app main</string>
+    <string name="on_boarding_title_2">Tez Scan, Smart Design</string>
+    <string name="on_boarding_title_3">Offline, Personal, Powerful</string>
+    <string name="on_boarding_description_1">QR aur barcodes kabhi bhi banaen aur scan kun, offline access aur full history ke saath.</string>
+    <string name="on_boarding_description_2">Turant scan kun ya apni style main code design kun.</string>
+    <string name="on_boarding_description_3">Quick Code apka kaam offline save kun aur apki pasand ke mutabiq dhal jata hai.</string>
+    <string name="skip">Chor dein</string>
+    <string name="next">Agla</string>
+    <string name="get_started">Shuru Kun</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">Wapas Jao</string>
+    <string name="close">Band Kun</string>
+    <string name="copy">Copy Kun</string>
+    <string name="copied_to_clipboard">Clipboard mein copy hua</string>
+    <string name="clipboard_label">Natija</string>
+    <string name="share">Share Kun</string>
+    <string name="share_title">Quick Code dekho</string>
+    <string name="share_description">Main ye zabardast QR code generator aur scanner use kar raha hun — aap bhi try karo!</string>
+    <string name="ok">Theek hai</string>
+    <string name="cancel">Radd Kun</string>
+    <string name="create">Bana</string>
+    <string name="terms_and_conditions">Shartein aur Halat</string>
+
+    <string name="select_code_type">কোডের ধরন নির্বাচন করুন</string>
+    <string name="enter_your_text">আপনার লেখা লিখুন</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">ব্যবহারকারীর নাম</string>
+    <string name="phone_number">ফোন নম্বর</string>
+    <string name="your_message">আপনার বার্তা...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">এখানে অনুসন্ধান করুন</string>
+    <string name="latitude">অক্ষাংশ</string>
+    <string name="longitude">দ্রাঘিমাংশ</string>
+    <string name="crypto_hint">অনুগ্রহ করে ক্রিপ্টো ঠিকানা দিন</string>
+    <string name="meeting_url">মিটিং URL...</string>
+    <string name="enter_valid_value">অনুগ্রহ করে একটি বৈধ মান প্রদান করুন</string>
+    <string name="enter_valid_url">অনুগ্রহ করে একটি বৈধ URL প্রদান করুন</string>
+    <string name="enter_valid_email">অনুগ্রহ করে একটি বৈধ ইমেইল প্রদান করুন</string>
+    <string name="enter_valid_phone">অনুগ্রহ করে একটি বৈধ ফোন নম্বর প্রদান করুন</string>
+    <string name="enter_valid_latitude">অনুগ্রহ করে একটি বৈধ অক্ষাংশ প্রদান করুন</string>
+    <string name="enter_valid_longitude">অনুগ্রহ করে একটি বৈধ দ্রাঘিমাংশ প্রদান করুন</string>
+</resources>

@@ -188,4 +188,23 @@
     <string name="cancel">منسوخ کریں</string>
     <string name="create">بنائیں</string>
     <string name="terms_and_conditions">شرائط و ضوابط</string>
+
+    <string name="select_code_type">کوڈ کی قسم منتخب کریں</string>
+    <string name="enter_your_text">براہ کرم اپنا متن درج کریں</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">صارف نام</string>
+    <string name="phone_number">فون نمبر</string>
+    <string name="your_message">آپ کا پیغام۔۔۔</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">یہاں تلاش کریں</string>
+    <string name="latitude">عرض بلد</string>
+    <string name="longitude">طول بلد</string>
+    <string name="crypto_hint">براہ کرم کرپٹو ایڈریس درج کریں</string>
+    <string name="meeting_url">میٹنگ کا لنک۔۔۔</string>
+    <string name="enter_valid_value">براہ کرم درست قدر درج کریں</string>
+    <string name="enter_valid_url">براہ کرم درست یو آر ایل درج کریں</string>
+    <string name="enter_valid_email">براہ کرم درست ای میل درج کریں</string>
+    <string name="enter_valid_phone">براہ کرم درست فون نمبر درج کریں</string>
+    <string name="enter_valid_latitude">براہ کرم درست عرض بلد درج کریں</string>
+    <string name="enter_valid_longitude">براہ کرم درست طول بلد درج کریں</string>
 </resources>

@@ -188,4 +188,23 @@
     <string name="cancel">Cancelar</string>
     <string name="create">Criar</string>
     <string name="terms_and_conditions">Termos e Condições</string>
+
+    <string name="select_code_type">Selecione o tipo de código</string>
+    <string name="enter_your_text">Por favor, insira seu texto</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">Nome de usuário</string>
+    <string name="phone_number">Número de telefone</string>
+    <string name="your_message">Sua mensagem...</string>
+    <string name="sample_email">alguém@exemplo.com</string>
+    <string name="search_here">Pesquise aqui</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="crypto_hint">Por favor, insira um endereço de criptomoeda válido</string>
+    <string name="meeting_url">URL da reunião...</string>
+    <string name="enter_valid_value">Por favor, insira um valor válido</string>
+    <string name="enter_valid_url">Por favor, insira uma URL válida</string>
+    <string name="enter_valid_email">Por favor, insira um e-mail válido</string>
+    <string name="enter_valid_phone">Por favor, insira um número de telefone válido</string>
+    <string name="enter_valid_latitude">Por favor, insira uma latitude válida</string>
+    <string name="enter_valid_longitude">Por favor, insira uma longitude válida</string>
 </resources>

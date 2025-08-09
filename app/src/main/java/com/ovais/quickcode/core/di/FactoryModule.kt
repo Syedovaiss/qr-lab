@@ -78,6 +78,7 @@ val factoryModule = module {
         DefaultGetUserInfoUseCase(
             get(),
             get(),
+            get(),
             get()
         )
     } bind GetUserInfoUseCase::class
@@ -109,10 +110,10 @@ val factoryModule = module {
 
     //Use cases
     factory { DefaultCardItemsUseCase() } bind CardItemsUseCase::class
-    factory { DefaultCodeTypeUseCase() } bind CodeTypeUseCase::class
+    factory { DefaultCodeTypeUseCase(get()) } bind CodeTypeUseCase::class
     factory { DefaultCodeFormatUseCase() } bind CodeFormatUseCase::class
     factory { DefaultCreateCodeUseCase(get()) } bind CreateCodeUseCase::class
-    factory { DefaultCodeValidationUseCase() } bind CodeValidationUseCase::class
+    factory { DefaultCodeValidationUseCase(get()) } bind CodeValidationUseCase::class
     factory { DefaultScanCodeUseCase(get()) } bind ScanCodeUseCase::class
     factory { DefaultGetPrivacyPolicyUseCase(get()) } bind GetPrivacyPolicyUseCase::class
     factory { DefaultGetAboutUsUseCase(get()) } bind GetAboutUsUseCase::class

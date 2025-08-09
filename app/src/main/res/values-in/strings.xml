@@ -188,4 +188,23 @@
     <string name="cancel">Batal</string>
     <string name="create">Buat</string>
     <string name="terms_and_conditions">Syarat &amp; Ketentuan</string>
+
+    <string name="select_code_type">Pilih Jenis Kode</string>
+    <string name="enter_your_text">Masukkan teks Anda</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">nama pengguna</string>
+    <string name="phone_number">Nomor telepon</string>
+    <string name="your_message">Pesan Anda...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">Cari di sini</string>
+    <string name="latitude">Lintang</string>
+    <string name="longitude">Bujur</string>
+    <string name="crypto_hint">Harap isi alamat kripto yang valid</string>
+    <string name="meeting_url">URL Pertemuan...</string>
+    <string name="enter_valid_value">Harap masukkan nilai yang valid</string>
+    <string name="enter_valid_url">Harap masukkan URL yang valid</string>
+    <string name="enter_valid_email">Harap masukkan email yang valid</string>
+    <string name="enter_valid_phone">Harap masukkan nomor telepon yang valid</string>
+    <string name="enter_valid_latitude">Harap masukkan lintang yang valid</string>
+    <string name="enter_valid_longitude">Harap masukkan bujur yang valid</string>
 </resources>

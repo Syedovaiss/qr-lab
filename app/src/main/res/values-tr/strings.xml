@@ -187,5 +187,24 @@
     <string name="ok">Tamam</string>
     <string name="cancel">İptal</string>
     <string name="create">Oluştur</string>
+    <string name="select_code_type">Kod Türü Seçin</string>
+    <string name="enter_your_text">Lütfen metninizi girin</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">kullanıcı adı</string>
+    <string name="phone_number">Telefon numarası</string>
+    <string name="your_message">Mesajınız...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">Burada ara</string>
+    <string name="latitude">Enlem</string>
+    <string name="longitude">Boylam</string>
+    <string name="crypto_hint">Lütfen geçerli kripto adresini girin</string>
+    <string name="meeting_url">Toplantı URL’si...</string>
+    <string name="enter_valid_value">Lütfen geçerli bir değer girin</string>
+    <string name="enter_valid_url">Lütfen geçerli bir URL girin</string>
+    <string name="enter_valid_email">Lütfen geçerli bir e-posta girin</string>
+    <string name="enter_valid_phone">Lütfen geçerli bir telefon numarası girin</string>
+    <string name="enter_valid_latitude">Lütfen geçerli bir enlem girin</string>
+    <string name="enter_valid_longitude">Lütfen geçerli bir boylam girin</string>
     <string name="terms_and_conditions">Şartlar &amp; Koşullar</string>
 </resources>
+

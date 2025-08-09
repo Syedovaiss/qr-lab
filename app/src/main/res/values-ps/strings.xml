@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">کوئیک کود</string>
+    <string name="default_name">میلمن</string>
+    <string name="trademark">© %s سید اویس اختر. ټول حقوق خوندي دي.</string>
+    <string name="app_version">نسخه %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">صادرات_چینل</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">خوش آمدید\nکوئیک کود</string>
+    <string name="create_qr">جوړول</string>
+    <string name="scan_qr">سکین</string>
+    <string name="settings">تنظیمات</string>
+    <string name="history">تاریخچه</string>
+    <string name="create_new">نوې کود جوړه کړئ</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">بټکوین</string>
+    <string name="calendar">کالینډر پیښه</string>
+    <string name="contact">اړیکه</string>
+    <string name="discord">ډیسکارډ</string>
+    <string name="email">بریښنالیک</string>
+    <string name="facebook">فېسبوک</string>
+    <string name="google">ګوګل لټون</string>
+    <string name="instagram">انسټاګرام</string>
+    <string name="linkedin">لینکډین</string>
+    <string name="location">ځای</string>
+    <string name="paypal">پی پال</string>
+    <string name="phone">تلیفون زنګ</string>
+    <string name="skype">سکایپ</string>
+    <string name="sms">ایس ایم ایس</string>
+    <string name="snapchat">سنیپ چیټ</string>
+    <string name="text">متن</string>
+    <string name="threads">تردونه</string>
+    <string name="twitch">ټویچ</string>
+    <string name="website">ویبپاڼه</string>
+    <string name="whatsapp">واټس اپ</string>
+    <string name="wifi">وای فای</string>
+    <string name="youtube">یوټیوب</string>
+    <string name="zoom">زوم</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">پلیټفارم</string>
+    <string name="code_format">د کود بڼه</string>
+    <string name="select_code_format">د کود بڼه وټاکئ</string>
+    <string name="enter_details">د %s جزیات دننه کړئ</string>
+    <string name="select_background_color">د پس منظر رنګ وټاکئ</string>
+    <string name="select_foreground_color">د مخ رنګ وټاکئ</string>
+    <string name="select_color">رنګ وټاکئ</string>
+    <string name="upload_logo">لوگو اضافه کړئ</string>
+    <string name="image">انځور</string>
+    <string name="size">اندازه</string>
+    <string name="width">پلنوالی</string>
+    <string name="height">لوړوالی</string>
+    <string name="customization">ګډون</string>
+    <string name="content_color">د منځپانګې رنګ</string>
+    <string name="content_color_description">هغه ډیفالټ رنګ چې په تولید شوو بارکوډونو او QR کودونو کې کاریږي.</string>
+    <string name="content_background_color">د پس منظر رنګ</string>
+    <string name="content_background_color_description">د تولید شوو بارکوډونو او QR کودونو لپاره ډیفالټ پس منظر.</string>
+    <string name="default_color_description">که کوم رنګ ونه ټاکل شي، ډیفالټ رنګونه به وکارول شي. تاسو کولی شئ دا هر وخت په تنظیماتو کې بدل کړئ.</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">اجازتونه اړین دي</string>
+    <string name="permission_denied_message">
+        کوئیک کود د کیمرې، ذخیره کولو او خبرتیاوو اجازه ته اړتیا لري چې په سمه توګه کار وکړي.
+        دا د کودونو د سکین کولو، ذخیره کولو، او مهمو خبرتیاوو د لیږلو لپاره کارول کیږي.
+        که تاسو مخکې دا اجازه رد کړې وي، مهرباني وکړئ په ایپ تنظیماتو کې یې فعال کړئ.
+    </string>
+    <string name="grant">اجازه ورکړئ</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">د صادراتو بڼه</string>
+    <string name="code_export_format_description">ډیفالټ د صادراتو بڼه (PNG/JPEG).</string>
+    <string name="dialog_title_select_export_format">د صادراتو بڼه وټاکئ</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">د تاریخ صادرات</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">بارکوډ ذخیره کړئ</string>
+    <string name="save_barcode_message">خپل بارکوډ عکس د ذخیره کولو لپاره ځای وټاکئ.</string>
+    <string name="save">ذخیره کړئ</string>
+    <string name="save_image">انځور ذخیره کړئ</string>
+    <string name="download">ډاونلوډ</string>
+    <string name="success">بریالیتوب</string>
+    <string name="image_saved_successfully">انځور په بریالیتوب سره ذخیره شو.</string>
+    <string name="error">تېروتنه</string>
+    <string name="failed_to_save_image">انځور ذخیره نشو. مهرباني وکړئ بیا هڅه وکړئ.</string>
+    <string name="export_text">صادرات</string>
+    <string name="export_title">صادرات بشپړ شو</string>
+    <string name="export_message">لاندې فایل(ونه) صادر شول: %s</string>
+    <string name="export_failed">صادرات ناکام شو</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">د بارکوډ جزییات</string>
+    <string name="generated_barcode">جوړ شوی بارکوډ</string>
+    <string name="barcode_image">د بارکوډ انځور</string>
+    <string name="content_details">د منځپانګې جزییات</string>
+    <string name="invalid_barcode">انځور یو معتبر یا لوستل کیدونکی بارکوډ نه دی.</string>
+    <string name="scan_successful">سکین بریالی شو</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">څنګه QR او بارکوډ سکین کړو</string>
+    <string name="scan_step_1_title">کوډ په ځای کړئ</string>
+    <string name="scan_step_1_desc">QR کود یا بارکوډ د سکرین په سکین چوکاټ کې برابر کړئ.</string>
+    <string name="scan_step_2_title">ښه روښانتیا یقیني کړئ</string>
+    <string name="scan_step_2_desc">ډاډ ترلاسه کړئ چې کود ښه روښانه دی. که اړتیا وي، د فلاش لایټ وکاروئ.</string>
+    <string name="scan_step_3_title">ثابت ونیسئ</string>
+    <string name="scan_step_3_desc">خپل وسیله ثابت وساتئ تر څو چې کود په اوتومات ډول کشف شي.</string>
+    <string name="scan_step_4_title">یا له ګالري څخه انتخاب کړئ</string>
+    <string name="scan_step_4_desc">که سکین ناکام شو، نو د خپلې ګالري څخه انځور وټاکئ.</string>
+    <string name="scan_tips_title">💡 د سکین کولو لارښوونې</string>
+    <string name="scan_tips_bullets">• خپله د کیمرې لینز پاک کړئ\n• له رڼا یا انعکاس څخه ډډه وکړئ\n• که اړتیا وي، زوم وکاروئ\n• ډاډ ترلاسه کړئ چې کود خراب نه وي</string>
+    <string name="got_it">پوهاوی مې شو</string>
+
+    <!-- History -->
+    <string name="empty_history">لا تر اوسه کودونه نشته. خپل لومړی QR یا بارکوډ جوړ کړئ او پیل یې کړئ!</string>
+    <string name="delete_history_dialog_title">تاریخ پاک کړئ</string>
+    <string name="delete_history_dialog_message">باور لرئ چې ټول ذخیره شوی تاریخ پاک کړئ؟</string>
+    <string name="delete">پاکول</string>
+    <string name="clear_history">تاریخ پاکول</string>
+    <string name="clear_history_description">ټول سکین او جوړولو تاریخونه لرې کړئ.</string>
+    <string name="cleared_all_history">تاریخ په بریالیتوب سره پاک شو.</string>
+    <string name="clearing_history">تاریخ پاکیږي…</string>
+    <string name="export_history">د تاریخ صادرات</string>
+    <string name="export_history_description">ټول تاریخ خپل آلې ته ذخیره کړئ.</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">بیاکتنه او چلند</string>
+    <string name="vibrate_on_scan">په سکین کې وائبریشن</string>
+    <string name="vibrate_on_scan_description">کله چې کود په بریالیتوب سره سکین شي، وائبریټ وکړي.</string>
+    <string name="sound_on_scan">په سکین کې غږ</string>
+    <string name="sound_on_scan_description">کله چې کود په بریالیتوب سره سکین شي، غږ ووهئ.</string>
+    <string name="clipboard_setting">کاپي کول په کلیپ بورډ کې</string>
+    <string name="clipboard_setting_description">د سکین پایلې په اتومات ډول کلیپ بورډ ته کاپي کړئ.</string>
+    <string name="web_url">د ویب URL پرانیزئ</string>
+    <string name="web_url_description">سکین شوي URLs په اتومات ډول په براوزر کې پرانیزئ.</string>
+    <string name="history_and_storage">تاریخچه او ذخیره</string>
+    <string name="language_and_regional">ژبه او سیمه</string>
+    <string name="app_language">د ایپ ژبه</string>
+    <string name="app_language_description">د کوئیک کود ښودلو ژبه وټاکئ.</string>
+    <string name="select_language">ژبه وټاکئ</string>
+    <string name="privacy_and_permissions">محرمیت او اجازه لیکونه</string>
+    <string name="camera_status">د کامرې لاسرسی</string>
+    <string name="camera_status_description">د کودونو د سکین کولو او له ګالري څخه د انځورونو د انتخاب لپاره اړین دی.</string>
+    <string name="gallery_status">د ګالري لاسرسی</string>
+    <string name="gallery_status_description">ستاسو د وسیلې په ذخیره کې د انځورونو د انتخاب لپاره اړین دی.</string>
+    <string name="privacy_policy">د محرمیت پالیسي</string>
+    <string name="privacy_policy_description">وګورئ چې څنګه موږ ستاسو معلومات راټولوو، ذخیره کوو او کاروو.</string>
+    <string name="label_send_anonymous_data">بې نومه کارونې معلومات ولیږئ</string>
+    <string name="desc_send_anonymous_data">کوئیک کود ښه کولو کې مرسته وکړئ د بې نومه کارونې احصایو په شراکت سره.</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">د اپلیکیشن معلومات او ملاتړ</string>
+    <string name="label_version">نسخه</string>
+    <string name="desc_version">اوسنۍ د اپلیکیشن نسخه او جوړونې شمېره ښیي.</string>
+    <string name="label_about_app">د کوئیک کود په اړه</string>
+    <string name="desc_about_app">د اپلیکیشن ځانګړتیاوې، هدف او ګټې ومومئ.</string>
+    <string name="label_rate_app">کوئیک کود درجه بندي کړئ</string>
+    <string name="desc_rate_app">خپل تجربه شریک کړئ او موږ ته په پلی سټور کې درجه ورکړئ.</string>
+    <string name="label_share_app">کوئیک کود شریک کړئ</string>
+    <string name="desc_share_app">ملګرو او کورنۍ ته بلنه ورکړئ چې کوئیک کود وکاروي.</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">ټولې ستاسو کودونه په یوه اپلیکیشن کې</string>
+    <string name="on_boarding_title_2">چټک سکین کول. هوښیار ډیزاین.</string>
+    <string name="on_boarding_title_3">آفلاین. شخصي. ځواکمن.</string>
+    <string name="on_boarding_description_1">هر وخت QR یا بارکوډ جوړ او سکین کړئ، د آفلاین لاسرسي او بشپړ تاریخ سره.</string>
+    <string name="on_boarding_description_2">فوراً سکین کړئ یا خپل کودونه په دودیز سټایل ډیزاین کړئ.</string>
+    <string name="on_boarding_description_3">کوئیک کود ستاسو کار آفلاین خوندي کوي او ستاسو غوره توبونو ته مناسب کیږي.</string>
+    <string name="skip">تیرشئ</string>
+    <string name="next">بل</string>
+    <string name="get_started">پیل کړئ</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">شاتګ</string>
+    <string name="close">بندول</string>
+    <string name="copy">کاپي</string>
+    <string name="copied_to_clipboard">کاپي شوی په کلیپ بورډ کې</string>
+    <string name="clipboard_label">پايله</string>
+    <string name="share">شریک کړئ</string>
+    <string name="share_title">کوئیک کود وګورئ</string>
+    <string name="share_description">زه دا حیرانونکې QR کود جنریټر او سکینر کاروم — تاسو هم یې هڅه وکړئ!</string>
+    <string name="ok">سمه ده</string>
+    <string name="cancel">لغوه کول</string>
+    <string name="create">جوړول</string>
+    <string name="terms_and_conditions">شرایط او قوانین</string>
+
+    <string name="select_code_type">د کود ډول غوره کړئ</string>
+    <string name="enter_your_text">خپل متن دننه کړئ</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">د کارونکي نوم</string>
+    <string name="phone_number">د تلیفون شمېره</string>
+    <string name="your_message">ستاسو پیغام...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">دلته لټون وکړئ</string>
+    <string name="latitude">عرض البلد</string>
+    <string name="longitude">طول البلد</string>
+    <string name="crypto_hint">مهرباني وکړئ کرپټو پته دننه کړئ</string>
+    <string name="meeting_url">د ناستې URL...</string>
+    <string name="enter_valid_value">مهرباني وکړئ یوه سمه ارزښت داخل کړئ</string>
+    <string name="enter_valid_url">مهرباني وکړئ یوه سمه URL دننه کړئ</string>
+    <string name="enter_valid_email">مهرباني وکړئ یوه سمه برېښنالیک دننه کړئ</string>
+    <string name="enter_valid_phone">مهرباني وکړئ یوه سمه تلیفون شمېره دننه کړئ</string>
+    <string name="enter_valid_latitude">مهرباني وکړئ یوه سمه عرض البلد دننه کړئ</string>
+    <string name="enter_valid_longitude">مهرباني وکړئ یوه سمه طول البلد دننه کړئ</string>
+</resources>

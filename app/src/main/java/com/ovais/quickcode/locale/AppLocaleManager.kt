@@ -6,7 +6,7 @@ import com.ovais.quickcode.utils.systemLocale
 import java.util.Locale
 
 fun interface AppLocaleManager {
-    fun setLocale(language: String)
+    fun setLocale(language: String): Context?
 }
 
 class DefaultAppLocaleManager(
@@ -17,7 +17,7 @@ class DefaultAppLocaleManager(
         private const val SYSTEM = "System"
     }
 
-    override fun setLocale(language: String) {
+    override fun setLocale(language: String): Context? {
         val lang = if (language == SYSTEM) {
             systemLocale
         } else localeProvider.getLocaleCode(language)
@@ -26,6 +26,6 @@ class DefaultAppLocaleManager(
 
         val config = Configuration(context.resources.configuration)
         config.setLocale(locale)
-        context.createConfigurationContext(config)
+        return context.createConfigurationContext(config)
     }
 }

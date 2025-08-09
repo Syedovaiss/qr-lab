@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">کوئیک کود</string>
+    <string name="default_name">میھمان</string>
+    <string name="trademark">© %s سید اویس اختر. تمام حقوق محفوظ ہیں۔</string>
+    <string name="app_version">ورژن %s (%s)</string>
+    <string name="default_channel_id">123001</string>
+    <string name="export_channel_id">صادرات_چینل</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_title">خوش آمدید\nکوئیک کود</string>
+    <string name="create_qr">بنان</string>
+    <string name="scan_qr">سکین کنگ</string>
+    <string name="settings">ترتیبات</string>
+    <string name="history">تاریخ</string>
+    <string name="create_new">نوکد بنان</string>
+
+    <!-- QR / Barcode Types -->
+    <string name="bitcoin">بٹ کوائن</string>
+    <string name="calendar">کیلنڈر ایونٹ</string>
+    <string name="contact">رابطہ</string>
+    <string name="discord">ڈسکارڈ</string>
+    <string name="email">ای میل</string>
+    <string name="facebook">فیس بک</string>
+    <string name="google">گوگل تلاش</string>
+    <string name="instagram">انسٹاگرام</string>
+    <string name="linkedin">لنکڈ ان</string>
+    <string name="location">جگہ</string>
+    <string name="paypal">پی پال</string>
+    <string name="phone">فون کال</string>
+    <string name="skype">سکائپ</string>
+    <string name="sms">ایس ایم ایس</string>
+    <string name="snapchat">سنیپ چیٹ</string>
+    <string name="text">متن</string>
+    <string name="threads">تھریڈز</string>
+    <string name="twitch">ٹویچ</string>
+    <string name="website">ویب سائٹ</string>
+    <string name="whatsapp">واٹس ایپ</string>
+    <string name="wifi">وائی فائی</string>
+    <string name="youtube">یوٹیوب</string>
+    <string name="zoom">زوم</string>
+
+    <!-- Form & Customization -->
+    <string name="platform">پلیٹ فارم</string>
+    <string name="code_format">کوڈ فارمیٹ</string>
+    <string name="select_code_format">کوڈ فارمیٹ چُنیں</string>
+    <string name="enter_details">%s کے لیے تفصیلات درج کریں</string>
+    <string name="select_background_color">پس منظر کا رنگ چُنیں</string>
+    <string name="select_foreground_color">سامنے کا رنگ چُنیں</string>
+    <string name="select_color">رنگ چُنیں</string>
+    <string name="upload_logo">لوگو شامل کریں</string>
+    <string name="image">تصویر</string>
+    <string name="size">سائز</string>
+    <string name="width">چوڑائی</string>
+    <string name="height">اونچائی</string>
+    <string name="customization">حسبِ ضرورت</string>
+    <string name="content_color">مواد کا رنگ</string>
+    <string name="content_color_description">تولید شدہ بارکوڈز اور کیو آر کوڈز پر لگنے والا ڈیفالٹ رنگ۔</string>
+    <string name="content_background_color">پس منظر کا رنگ</string>
+    <string name="content_background_color_description">تولید شدہ بارکوڈز اور کیو آر کوڈز کے لیے ڈیفالٹ پس منظر۔</string>
+    <string name="default_color_description">اگر کوئی رنگ منتخب نہ کیا جائے تو ڈیفالٹ رنگ لاگو ہوں گے۔ آپ اسے کسی بھی وقت ترتیبات میں تبدیل کر سکتے ہیں۔</string>
+
+    <!-- Permissions -->
+    <string name="permission_denied_title">اجازتیں درکار ہیں</string>
+    <string name="permission_denied_message">
+        کوئیک کود کو کیمرہ، ذخیرہ اور اطلاع کی اجازتیں درکار ہیں تاکہ صحیح طریقے سے کام کر سکے۔
+        یہ کوڈز کو اسکین کرنے، محفوظ کرنے اور اہم الرٹس بھیجنے کے لیے استعمال ہوتی ہیں۔
+        اگر آپ نے پہلے انہیں مسترد کیا ہے تو براہ کرم ایپ کی ترتیبات میں انہیں فعال کریں۔
+    </string>
+    <string name="grant">دستیابی دیں</string>
+
+    <!-- Export / Save -->
+    <string name="code_export_format">برآمد کرنے کی شکل</string>
+    <string name="code_export_format_description">ڈیفالٹ برآمدی فارمیٹ (PNG/JPEG)۔</string>
+    <string name="dialog_title_select_export_format">برآمد کرنے کی شکل چُنیں</string>
+    <string name="option_png">PNG</string>
+    <string name="option_jpg">JPG/JPEG</string>
+    <string name="dialog_title_export_history">تاریخ برآمد کریں</string>
+    <string name="option_csv">CSV</string>
+    <string name="option_pdf">PDF</string>
+    <string name="save_barcode">بارکوڈ محفوظ کریں</string>
+    <string name="save_barcode_message">اپنے بارکوڈ کی تصویر محفوظ کرنے کے لیے جگہ منتخب کریں۔</string>
+    <string name="save">محفوظ کریں</string>
+    <string name="save_image">تصویر محفوظ کریں</string>
+    <string name="download">ڈاؤن لوڈ کریں</string>
+    <string name="success">کامیابی</string>
+    <string name="image_saved_successfully">تصویر کامیابی سے محفوظ ہو گئی۔</string>
+    <string name="error">خرابی</string>
+    <string name="failed_to_save_image">تصویر محفوظ نہیں ہو سکی۔ دوبارہ کوشش کریں۔</string>
+    <string name="export_text">برآمد کریں</string>
+    <string name="export_title">برآمد مکمل ہوگیا</string>
+    <string name="export_message">مندرجہ ذیل فائل(یں) برآمد ہوئیں: %s</string>
+    <string name="export_failed">برآمد ناکام ہوگیا</string>
+
+    <!-- Barcode / Scan -->
+    <string name="barcode_details">بارکوڈ کی تفصیلات</string>
+    <string name="generated_barcode">تخلیق شدہ بارکوڈ</string>
+    <string name="barcode_image">بارکوڈ کی تصویر</string>
+    <string name="content_details">مواد کی تفصیلات</string>
+    <string name="invalid_barcode">تصویر قابلِ پڑھائی یا درست بارکوڈ نہیں ہے۔</string>
+    <string name="scan_successful">سکین کامیاب</string>
+    <string name="zoom_level">%.1fx</string>
+
+    <!-- Scan Help -->
+    <string name="scan_help_title">کیو آر اور بارکوڈ کیسے سکین کریں</string>
+    <string name="scan_step_1_title">کوڈ کی پوزیشن بنائیں</string>
+    <string name="scan_step_1_desc">کیو آر کوڈ یا بارکوڈ کو اسکرین پر سکین فریم کے اندر رکھیں۔</string>
+    <string name="scan_step_2_title">اچھی روشنی یقینی بنائیں</string>
+    <string name="scan_step_2_desc">یقین دہانی کریں کہ کوڈ اچھی طرح روشن ہے۔ ضرورت ہو تو فلیش لائٹ استعمال کریں۔</string>
+    <string name="scan_step_3_title">استحکام برقرار رکھیں</string>
+    <string name="scan_step_3_desc">جب تک کوڈ خود بخود پہچانا نہ جائے، اپنا آلہ مستحکم رکھیں۔</string>
+    <string name="scan_step_4_title">یا گیلری سے منتخب کریں</string>
+    <string name="scan_step_4_desc">اگر سکین ناکام ہو جائے تو گیلری سے تصویر منتخب کریں۔</string>
+    <string name="scan_tips_title">💡 سکیننگ کے مشورے</string>
+    <string name="scan_tips_bullets">• کیمرہ لینز صاف کریں\n• چمک یا عکس سے بچیں\n• ضرورت ہو تو زوم استعمال کریں\n• یقینی بنائیں کہ کوڈ خراب نہ ہو</string>
+    <string name="got_it">سمجھ گیا</string>
+
+    <!-- History -->
+    <string name="empty_history">ابھی کوئی کوڈز نہیں۔ پہلا کیو آر یا بارکوڈ بنائیں اور شروع کریں!</string>
+    <string name="delete_history_dialog_title">تاریخ صاف کریں</string>
+    <string name="delete_history_dialog_message">کیا آپ واقعی تمام محفوظ شدہ تاریخ حذف کرنا چاہتے ہیں؟</string>
+    <string name="delete">حذف کریں</string>
+    <string name="clear_history">تاریخ صاف کریں</string>
+    <string name="clear_history_description">تمام سکین اور تخلیقی تاریخیں ہٹا دیں۔</string>
+    <string name="cleared_all_history">تاریخ کامیابی سے صاف ہوگئی۔</string>
+    <string name="clearing_history">تاریخ صاف کی جارہی ہے…</string>
+    <string name="export_history">تاریخ برآمد کریں</string>
+    <string name="export_history_description">تمام تاریخ کو اپنے ڈیوائس پر محفوظ کریں۔</string>
+
+    <!-- User Settings -->
+    <string name="user_feedback_and_behaviour">رائے اور رویہ</string>
+    <string name="vibrate_on_scan">سکین پر وائبریٹ کریں</string>
+    <string name="vibrate_on_scan_description">جب کوڈ کامیابی سے سکین ہو جائے تو وائبریٹ کرے۔</string>
+    <string name="sound_on_scan">سکین پر آواز</string>
+    <string name="sound_on_scan_description">جب کوڈ کامیابی سے سکین ہو جائے تو آواز چلائیں۔</string>
+    <string name="clipboard_setting">کلپ بورڈ پر کاپی کریں</string>
+    <string name="clipboard_setting_description">سکین کے نتائج خودکار طور پر کلپ بورڈ پر کاپی کریں۔</string>
+    <string name="web_url">ویب URLs کھولیں</string>
+    <string name="web_url_description">اسکین شدہ URLs خودکار طور پر براؤزر میں کھولیں۔</string>
+    <string name="history_and_storage">تاریخ اور ذخیرہ</string>
+    <string name="language_and_regional">زبان اور علاقہ</string>
+    <string name="app_language">ایپ زبان</string>
+    <string name="app_language_description">کوئیک کود کے لئے دکھائی جانے والی زبان منتخب کریں۔</string>
+    <string name="select_language">زبان منتخب کریں</string>
+    <string name="privacy_and_permissions">رازداری اور اجازتیں</string>
+    <string name="camera_status">کیمرہ رسائی</string>
+    <string name="camera_status_description">کوڈز سکین کرنے اور گیلری سے تصاویر منتخب کرنے کے لئے ضروری ہے۔</string>
+    <string name="gallery_status">گیلری رسائی</string>
+    <string name="gallery_status_description">آپ کے آلے پر ذخیرہ شدہ تصاویر منتخب کرنے کے لیے ضروری ہے۔</string>
+    <string name="privacy_policy">رازداری کی پالیسی</string>
+    <string name="privacy_policy_description">جانیں کہ ہم آپ کا ڈیٹا کیسے جمع، محفوظ اور استعمال کرتے ہیں۔</string>
+    <string name="label_send_anonymous_data">گمنام استعمال کا ڈیٹا بھیجیں</string>
+    <string name="desc_send_anonymous_data">کوئیک کود کو بہتر بنانے میں مدد کے لیے گمنام استعمال کے اعدادوشمار شیئر کریں۔</string>
+
+    <!-- App Info & Support -->
+    <string name="app_info_and_support">ایپ معلومات اور مدد</string>
+    <string name="label_version">ورژن</string>
+    <string name="desc_version">موجودہ ایپ ورژن اور بلڈ نمبر دکھاتا ہے۔</string>
+    <string name="label_about_app">کوئیک کود کے بارے میں</string>
+    <string name="desc_about_app">ایپ کی خصوصیات، مقصد اور فوائد دریافت کریں۔</string>
+    <string name="label_rate_app">کوئیک کود کی درجہ بندی کریں</string>
+    <string name="desc_rate_app">پلے اسٹور پر ہمیں درجہ دیں اور اپنا تجربہ شیئر کریں۔</string>
+    <string name="label_share_app">کوئیک کود شیئر کریں</string>
+    <string name="desc_share_app">دوستوں اور خاندان کو کوئیک کود آزمانے کی دعوت دیں۔</string>
+
+    <!-- Onboarding -->
+    <string name="on_boarding_title_1">آپ کے تمام کوڈز ایک ایپ میں</string>
+    <string name="on_boarding_title_2">تیز سکیننگ۔ ہوشیار ڈیزائن۔</string>
+    <string name="on_boarding_title_3">آف لائن۔ ذاتی۔ طاقتور۔</string>
+    <string name="on_boarding_description_1">کسی بھی وقت کیو آر یا بارکوڈ بنائیں اور اسکین کریں، آف لائن رسائی اور مکمل تاریخ کے ساتھ۔</string>
+    <string name="on_boarding_description_2">فوری اسکین کریں یا اپنے کوڈز کو کسٹم اسٹائلز کے ساتھ ڈیزائن کریں۔</string>
+    <string name="on_boarding_description_3">کوئیک کود آپ کا کام آف لائن محفوظ کرتا ہے اور آپ کی ترجیحات کے مطابق ڈھالتا ہے۔</string>
+    <string name="skip">چھوڑیں</string>
+    <string name="next">اگلا</string>
+    <string name="get_started">شروع کریں</string>
+
+    <!-- Common Actions -->
+    <string name="go_back">پیچھے جائیں</string>
+    <string name="close">بند کریں</string>
+    <string name="copy">کاپی کریں</string>
+    <string name="copied_to_clipboard">کاپی ہو گیا</string>
+    <string name="clipboard_label">نتیجہ</string>
+    <string name="share">شیئر کریں</string>
+    <string name="share_title">کوئیک کود دیکھیں</string>
+    <string name="share_description">میں یہ شاندار کیو آر کوڈ جنریٹر اور سکینر استعمال کر رہا ہوں — آپ بھی آزما کر دیکھیں!</string>
+    <string name="ok">ٹھیک ہے</string>
+    <string name="cancel">منسوخ کریں</string>
+    <string name="create">بنان</string>
+    <string name="terms_and_conditions">شرائط و ضوابط</string>
+
+    <string name="select_code_type">کوڈ کی قسم منتخب کریں</string>
+    <string name="enter_your_text">اپنا متن درج کریں</string>
+    <string name="sample_url">https://www.example.com</string>
+    <string name="hint_username">صارف نام</string>
+    <string name="phone_number">فون نمبر</string>
+    <string name="your_message">آپ کا پیغام...</string>
+    <string name="sample_email">someone@example.com</string>
+    <string name="search_here">یہاں تلاش کریں</string>
+    <string name="latitude">عرض بلد</string>
+    <string name="longitude">طول بلد</string>
+    <string name="crypto_hint">براہ کرم کرپٹو ایڈریس درج کریں</string>
+    <string name="meeting_url">میٹنگ URL...</string>
+    <string name="enter_valid_value">براہ کرم ایک درست قدر درج کریں</string>
+    <string name="enter_valid_url">براہ کرم ایک درست URL درج کریں</string>
+    <string name="enter_valid_email">براہ کرم ایک درست ای میل درج کریں</string>
+    <string name="enter_valid_phone">براہ کرم ایک درست فون نمبر درج کریں</string>
+    <string name="enter_valid_latitude">براہ کرم ایک درست عرض بلد درج کریں</string>
+    <string name="enter_valid_longitude">براہ کرم ایک درست طول بلد درج کریں</string>
+</resources>
