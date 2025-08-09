@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">Quick Code</string>
     <string name="default_name">Misafir</string>
     <string name="trademark">© %s Syed Ovais Akhtar. Tüm hakları saklıdır.</string>
@@ -8,7 +8,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">export_channel</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">Quick Code\'anHoş Geldiniz</string>
     <string name="create_qr">Oluştur</string>
     <string name="scan_qr">Tara</string>
@@ -16,7 +16,7 @@
     <string name="history">Geçmiş</string>
     <string name="create_new">Yeni Kod Oluştur</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">Bitcoin</string>
     <string name="calendar">Takvim Etkinliği</string>
     <string name="contact">Kişi</string>
@@ -41,7 +41,7 @@
     <string name="youtube">YouTube</string>
     <string name="zoom">Zoom</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">Platform</string>
     <string name="code_format">Kod Formatı</string>
     <string name="select_code_format">Bir Kod Formatı Seçin</string>
@@ -61,7 +61,7 @@
     <string name="content_background_color_description">Oluşturulan barkod ve QR kodlar için varsayılan arka plan.</string>
     <string name="default_color_description">Renk seçilmezse varsayılan renkler uygulanır. İstediğiniz zaman Ayarlar’dan değiştirebilirsiniz.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">İzinler Gerekli</string>
     <string name="permission_denied_message">
         Quick Code’un düzgün çalışması için Kamera, Depolama ve Bildirim izinlerine ihtiyacı vardır.
@@ -70,7 +70,7 @@
     </string>
     <string name="grant">Erişim Ver</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">Dışa Aktarma Formatı</string>
     <string name="code_export_format_description">Varsayılan dışa aktarma formatı (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">Dışa Aktarma Formatını Seçin</string>
@@ -93,7 +93,7 @@
     <string name="export_message">Şu dosya(lar) dışa aktarıldı: %s</string>
     <string name="export_failed">Dışa Aktarma Başarısız</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">Barkod Ayrıntıları</string>
     <string name="generated_barcode">Oluşturulan Barkod</string>
     <string name="barcode_image">Barkod Görseli</string>
@@ -102,7 +102,7 @@
     <string name="scan_successful">Tarama Başarılı</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">QR &amp; Barkod Nasıl Taranır</string>
     <string name="scan_step_1_title">Kodu Konumlandırın</string>
     <string name="scan_step_1_desc">QR kodu veya barkodu ekrandaki tarama çerçevesine hizalayın.</string>
@@ -116,7 +116,7 @@
     <string name="scan_tips_bullets">• Kamera lensinizi temizleyin\n• Parlama veya yansımadan kaçının\n• Gerekirse yakınlaştırma yapın\n• Kodun hasarsız olduğundan emin olun</string>
     <string name="got_it">Tamam</string>
 
-    <!-- History -->
+
     <string name="empty_history">Henüz kod yok. İlk QR veya barkodunuzu oluşturarak başlayın!</string>
     <string name="delete_history_dialog_title">Geçmişi Temizle</string>
     <string name="delete_history_dialog_message">Tüm kayıtlı geçmişi silmek istediğinizden emin misiniz?</string>
@@ -128,7 +128,7 @@
     <string name="export_history">Geçmişi Dışa Aktar</string>
     <string name="export_history_description">Tüm geçmişi cihazınıza kaydedin.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">Geri Bildirim &amp; Davranış</string>
     <string name="vibrate_on_scan">Taramada Titret</string>
     <string name="vibrate_on_scan_description">Kod başarıyla tarandığında titreşim verir.</string>
@@ -153,7 +153,7 @@
     <string name="label_send_anonymous_data">Anonim Kullanım Verilerini Gönder</string>
     <string name="desc_send_anonymous_data">Anonim kullanım istatistiklerini paylaşarak Quick Code’un gelişmesine yardımcı olun.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">Uygulama Bilgisi &amp; Destek</string>
     <string name="label_version">Sürüm</string>
     <string name="desc_version">Geçerli uygulama sürümünü ve yapı numarasını gösterir.</string>
@@ -164,7 +164,7 @@
     <string name="label_share_app">Quick Code’u Paylaş</string>
     <string name="desc_share_app">Arkadaşlarınızı ve ailenizi Quick Code’u denemeye davet edin.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">Tüm Kodlarınız Tek Uygulamada</string>
     <string name="on_boarding_title_2">Hızlı Tarama. Akıllı Tasarım.</string>
     <string name="on_boarding_title_3">Çevrimdışı. Kişisel. Güçlü.</string>
@@ -175,7 +175,7 @@
     <string name="next">İleri</string>
     <string name="get_started">Başlayın</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">Geri Dön</string>
     <string name="close">Kapat</string>
     <string name="copy">Kopyala</string>

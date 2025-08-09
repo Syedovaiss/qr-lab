@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">ક્વિક કોડ</string>
     <string name="default_name">મહેમાન</string>
     <string name="trademark">© %s સય્યદ ઓવૈસ અખ્તાર. તમામ અધિકારો સુરક્ષિત.</string>
@@ -8,7 +8,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">export_channel</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">ક્વિક કોડમાં\nસ્વાગત છે</string>
     <string name="create_qr">બનાવો</string>
     <string name="scan_qr">સ્કેન કરો</string>
@@ -16,7 +16,7 @@
     <string name="history">ઇતિહાસ</string>
     <string name="create_new">નવો કોડ બનાવો</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">બિટકોઇન</string>
     <string name="calendar">કૅલેન્ડર ઇવેન્ટ</string>
     <string name="contact">સંપર્ક</string>
@@ -41,7 +41,7 @@
     <string name="youtube">યૂટ્યુબ</string>
     <string name="zoom">ઝૂમ</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">પ્લેટફોર્મ</string>
     <string name="code_format">કોડ ફોર્મેટ</string>
     <string name="select_code_format">કોડ ફોર્મેટ પસંદ કરો</string>
@@ -61,7 +61,7 @@
     <string name="content_background_color_description">ઉત્પાદિત બારકોડ અને QR કોડ માટેનું ડિફૉલ્ટ પાછળનું રંગ.</string>
     <string name="default_color_description">જો કોઈ રંગ પસંદ ન કરાયો હોય, તો ડિફૉલ્ટ રંગ લાગુ પડશે. તમે આ સેટિંગ્સમાં ક્યારે પણ બદલી શકો છો.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">અનુમતિઓ જરૂરી</string>
     <string name="permission_denied_message">
         ક્વિક કોડ સારી રીતે કાર્ય કરવા માટે કેમેરા, સ્ટોરેજ અને નોટિફિકેશન અનુમતિઓની જરૂર છે.
@@ -70,7 +70,7 @@
     </string>
     <string name="grant">અનુમતિ આપો</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">નિકાસ ફોર્મેટ</string>
     <string name="code_export_format_description">ડિફૉલ્ટ નિકાસ ફોર્મેટ (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">નિકાસ ફોર્મેટ પસંદ કરો</string>
@@ -93,7 +93,7 @@
     <string name="export_message">નીચેના ફાઈલ(ઓ) નિકાસ થયા છે: %s</string>
     <string name="export_failed">નિકાસ નિષ્ફળ</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">બારકોડ વિગતો</string>
     <string name="generated_barcode">તૈયાર કરાયેલ બારકોડ</string>
     <string name="barcode_image">બારકોડ છબી</string>
@@ -102,7 +102,7 @@
     <string name="scan_successful">સ્કેન સફળ</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">QR અને બારકોડ્સ કેવી રીતે સ્કેન કરવી</string>
     <string name="scan_step_1_title">કોડની સ્થિતિ નિર્ધારિત કરો</string>
     <string name="scan_step_1_desc">સ્ક્રીન પર સ્કેન ફ્રેમમાં QR કોડ અથવા બારકોડને ગોઠવો.</string>
@@ -116,7 +116,7 @@
     <string name="scan_tips_bullets">• તમારા કેમેરાનું લેન્સ સાફ રાખો\n• ચમકદાર પ્રતિબિંબ અથવા પ્રકાશ ટાળો\n• જરૂરી હોય તો ઝૂમ કરો\n• કોડ તૂટેલો નથી તેની ખાતરી કરો</string>
     <string name="got_it">સમજી ગયું</string>
 
-    <!-- History -->
+
     <string name="empty_history">હજી સુધી કોઈ કોડ નથી. શરૂ કરવા માટે તમારો પ્રથમ QR અથવા બારકોડ બનાવો!</string>
     <string name="delete_history_dialog_title">ઇતિહાસ સાફ કરો</string>
     <string name="delete_history_dialog_message">શું તમે સાચવેલી બધી ઇતિહાસ કાઢી નાખવા માંગો છો?</string>
@@ -128,7 +128,7 @@
     <string name="export_history">ઇતિહાસ નિકાસ કરો</string>
     <string name="export_history_description">તમારા ઉપકરણ પર તમામ ઇતિહાસ સાચવો.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">પ્રતિસાદ અને વર્તન</string>
     <string name="vibrate_on_scan">સ્કેન પર વાઈબ્રેટ</string>
     <string name="vibrate_on_scan_description">કોડ સફળતાપૂર્વક સ્કેન થતાં વાઈબ્રેટ કરે.</string>
@@ -153,7 +153,7 @@
     <string name="label_send_anonymous_data">અનામક વપરાશ ડેટા મોકલો</string>
     <string name="desc_send_anonymous_data">ક્વિક કોડને સુધારવામાં મદદ કરવા માટે અનામક વપરાશ આંકડા શેર કરો.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">એપ માહિતી અને સપોર્ટ</string>
     <string name="label_version">સંસ્કરણ</string>
     <string name="desc_version">વર્તમાન એપ સંસ્કરણ અને બિલ્ડ નંબર દર્શાવે છે.</string>
@@ -164,7 +164,7 @@
     <string name="label_share_app">ક્વિક કોડ શેર કરો</string>
     <string name="desc_share_app">મિત્રો અને પરિવારમાં ક્વિક કોડ અજમાવવા માટે આમંત્રિત કરો.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">તમારા બધા કોડ એક એપમાં</string>
     <string name="on_boarding_title_2">ઝડપી સ્કેનિંગ. સ્માર્ટ ડિઝાઇન.</string>
     <string name="on_boarding_title_3">ઓફલાઈન. વ્યક્તિગત. શક્તિશાળી.</string>
@@ -175,7 +175,7 @@
     <string name="next">આગળ</string>
     <string name="get_started">શરુઆત કરો</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">પાછા જાઓ</string>
     <string name="close">બંધ કરો</string>
     <string name="copy">નકલ કરો</string>

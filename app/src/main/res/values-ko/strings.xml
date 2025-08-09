@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">퀵 코드</string>
     <string name="default_name">게스트</string>
     <string name="trademark">© %s 시드 오바이스 악타르. 모든 권리 보유.</string>
@@ -8,7 +8,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">export_channel</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">퀵 코드에\n오신 것을 환영합니다</string>
     <string name="create_qr">생성</string>
     <string name="scan_qr">스캔</string>
@@ -16,7 +16,7 @@
     <string name="history">기록</string>
     <string name="create_new">새 코드 생성</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">비트코인</string>
     <string name="calendar">캘린더 이벤트</string>
     <string name="contact">연락처</string>
@@ -41,7 +41,7 @@
     <string name="youtube">유튜브</string>
     <string name="zoom">줌</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">플랫폼</string>
     <string name="code_format">코드 형식</string>
     <string name="select_code_format">코드 형식 선택</string>
@@ -61,7 +61,7 @@
     <string name="content_background_color_description">생성된 바코드와 QR 코드의 기본 배경입니다.</string>
     <string name="default_color_description">색상을 선택하지 않으면 기본 색상이 적용됩니다. 설정에서 언제든 변경할 수 있습니다.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">권한 필요</string>
     <string name="permission_denied_message">
         퀵 코드는 원활한 작동을 위해 카메라, 저장소, 알림 권한이 필요합니다.
@@ -70,7 +70,7 @@
     </string>
     <string name="grant">접근 허용</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">내보내기 형식</string>
     <string name="code_export_format_description">기본 내보내기 형식 (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">내보내기 형식 선택</string>
@@ -93,7 +93,7 @@
     <string name="export_message">다음 파일이 내보내졌습니다: %s</string>
     <string name="export_failed">내보내기 실패</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">바코드 세부 정보</string>
     <string name="generated_barcode">생성된 바코드</string>
     <string name="barcode_image">바코드 이미지</string>
@@ -102,7 +102,7 @@
     <string name="scan_successful">스캔 성공</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">QR &amp; 바코드 스캔 방법</string>
     <string name="scan_step_1_title">코드 위치 맞추기</string>
     <string name="scan_step_1_desc">QR 코드 또는 바코드를 화면의 스캔 프레임 안에 맞추세요.</string>
@@ -116,7 +116,7 @@
     <string name="scan_tips_bullets">• 카메라 렌즈 청소\n• 눈부심이나 반사 방지\n• 필요 시 확대 사용\n• 코드가 손상되지 않았는지 확인</string>
     <string name="got_it">확인</string>
 
-    <!-- History -->
+
     <string name="empty_history">아직 코드가 없습니다. 첫 QR 코드나 바코드를 생성해 보세요!</string>
     <string name="delete_history_dialog_title">기록 삭제</string>
     <string name="delete_history_dialog_message">저장된 모든 기록을 삭제하시겠습니까?</string>
@@ -128,7 +128,7 @@
     <string name="export_history">기록 내보내기</string>
     <string name="export_history_description">모든 기록을 기기에 저장합니다.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">피드백 &amp; 동작</string>
     <string name="vibrate_on_scan">스캔 시 진동</string>
     <string name="vibrate_on_scan_description">코드가 성공적으로 스캔되면 진동합니다.</string>
@@ -153,7 +153,7 @@
     <string name="label_send_anonymous_data">익명 사용 데이터 전송</string>
     <string name="desc_send_anonymous_data">익명 사용 통계를 공유하여 퀵 코드 개선에 도움을 주세요.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">앱 정보 &amp; 지원</string>
     <string name="label_version">버전</string>
     <string name="desc_version">현재 앱 버전과 빌드 번호를 표시합니다.</string>
@@ -164,7 +164,7 @@
     <string name="label_share_app">퀵 코드 공유</string>
     <string name="desc_share_app">친구와 가족에게 퀵 코드를 추천하세요.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">모든 코드를 한 앱에</string>
     <string name="on_boarding_title_2">빠른 스캔, 스마트 디자인</string>
     <string name="on_boarding_title_3">오프라인, 개인화, 강력함</string>
@@ -175,7 +175,7 @@
     <string name="next">다음</string>
     <string name="get_started">시작하기</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">뒤로 가기</string>
     <string name="close">닫기</string>
     <string name="copy">복사</string>

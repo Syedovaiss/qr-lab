@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">クイックコード</string>
     <string name="default_name">ゲスト</string>
     <string name="trademark">© %s Syed Ovais Akhtar. 無断複写・転載を禁じます。</string>
@@ -8,7 +8,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">export_channel</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">クイックコードへようこそ</string>
     <string name="create_qr">作成</string>
     <string name="scan_qr">スキャン</string>
@@ -16,7 +16,7 @@
     <string name="history">履歴</string>
     <string name="create_new">新しいコードを作成</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">ビットコイン</string>
     <string name="calendar">カレンダーイベント</string>
     <string name="contact">連絡先</string>
@@ -41,7 +41,7 @@
     <string name="youtube">ユーチューブ</string>
     <string name="zoom">ズーム</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">プラットフォーム</string>
     <string name="code_format">コード形式</string>
     <string name="select_code_format">コード形式を選択</string>
@@ -61,7 +61,7 @@
     <string name="content_background_color_description">生成されたバーコードやQRコードのデフォルト背景色です。</string>
     <string name="default_color_description">色が選択されていない場合、デフォルト色が適用されます。設定からいつでも変更できます。</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">権限が必要です</string>
     <string name="permission_denied_message">
         クイックコードは、カメラ、ストレージ、通知の権限が必要です。
@@ -70,7 +70,7 @@
     </string>
     <string name="grant">アクセスを許可</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">エクスポート形式</string>
     <string name="code_export_format_description">デフォルトのエクスポート形式（PNG/JPEG）です。</string>
     <string name="dialog_title_select_export_format">エクスポート形式を選択</string>
@@ -93,7 +93,7 @@
     <string name="export_message">次のファイルがエクスポートされました: %s</string>
     <string name="export_failed">エクスポートに失敗しました</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">バーコードの詳細</string>
     <string name="generated_barcode">生成されたバーコード</string>
     <string name="barcode_image">バーコード画像</string>
@@ -102,7 +102,7 @@
     <string name="scan_successful">スキャン成功</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">QRコード &amp; バーコードのスキャン方法</string>
     <string name="scan_step_1_title">コードを配置</string>
     <string name="scan_step_1_desc">QRコードまたはバーコードを画面上のスキャン枠に合わせます。</string>
@@ -116,7 +116,7 @@
     <string name="scan_tips_bullets">• カメラレンズをきれいにする\n• 反射やまぶしさを避ける\n• 必要に応じてズームを使用\n• コードが損傷していないことを確認</string>
     <string name="got_it">了解</string>
 
-    <!-- History -->
+
     <string name="empty_history">まだコードはありません。最初のQRコードやバーコードを作成してみましょう！</string>
     <string name="delete_history_dialog_title">履歴を消去</string>
     <string name="delete_history_dialog_message">保存された履歴をすべて削除してもよろしいですか？</string>
@@ -128,7 +128,7 @@
     <string name="export_history">履歴をエクスポート</string>
     <string name="export_history_description">履歴をデバイスに保存します。</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">フィードバックと動作</string>
     <string name="vibrate_on_scan">スキャン時にバイブレーション</string>
     <string name="vibrate_on_scan_description">コードが正常にスキャンされたときにバイブレーションします。</string>
@@ -153,7 +153,7 @@
     <string name="label_send_anonymous_data">匿名利用データを送信</string>
     <string name="desc_send_anonymous_data">匿名の利用状況統計を共有してクイックコードの改善にご協力ください。</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">アプリ情報とサポート</string>
     <string name="label_version">バージョン</string>
     <string name="desc_version">現在のアプリのバージョンとビルド番号を表示します。</string>
@@ -164,7 +164,7 @@
     <string name="label_share_app">クイックコードを共有</string>
     <string name="desc_share_app">友人や家族をクイックコードに招待しましょう。</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">すべてのコードを1つのアプリで管理</string>
     <string name="on_boarding_title_2">高速スキャン。スマートデザイン。</string>
     <string name="on_boarding_title_3">オフライン。パーソナル。パワフル。</string>
@@ -175,7 +175,7 @@
     <string name="next">次へ</string>
     <string name="get_started">始める</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">戻る</string>
     <string name="close">閉じる</string>
     <string name="copy">コピー</string>

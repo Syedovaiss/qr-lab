@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">Quick Code</string>
     <string name="default_name">Invitado</string>
     <string name="trademark">© %s Syed Ovais Akhtar. Todos los derechos reservados.</string>
@@ -8,7 +8,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">export_channel</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">Bienvenido a\nQuick Code</string>
     <string name="create_qr">Crear</string>
     <string name="scan_qr">Escanear</string>
@@ -16,7 +16,7 @@
     <string name="history">Historial</string>
     <string name="create_new">Crear nuevo código</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">Bitcoin</string>
     <string name="calendar">Evento de calendario</string>
     <string name="contact">Contacto</string>
@@ -41,7 +41,7 @@
     <string name="youtube">YouTube</string>
     <string name="zoom">Zoom</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">Plataforma</string>
     <string name="code_format">Formato de código</string>
     <string name="select_code_format">Elige un formato de código</string>
@@ -61,7 +61,7 @@
     <string name="content_background_color_description">El fondo predeterminado para códigos de barras y QR generados.</string>
     <string name="default_color_description">Si no se elige un color, se aplicarán colores predeterminados. Puedes cambiarlo en cualquier momento en Ajustes.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">Permisos requeridos</string>
     <string name="permission_denied_message">
         Quick Code necesita permisos de Cámara, Almacenamiento y Notificaciones para funcionar correctamente.
@@ -70,7 +70,7 @@
     </string>
     <string name="grant">Conceder acceso</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">Formato de exportación</string>
     <string name="code_export_format_description">Formato de exportación predeterminado (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">Elige formato de exportación</string>
@@ -93,7 +93,7 @@
     <string name="export_message">Se exportaron los siguientes archivos: %s</string>
     <string name="export_failed">Exportación fallida</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">Detalles del código de barras</string>
     <string name="generated_barcode">Código de barras generado</string>
     <string name="barcode_image">Imagen del código de barras</string>
@@ -102,7 +102,7 @@
     <string name="scan_successful">Escaneo exitoso</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">Cómo escanear códigos QR y de barras</string>
     <string name="scan_step_1_title">Coloca el código</string>
     <string name="scan_step_1_desc">Alinea el código QR o de barras dentro del marco de escaneo en pantalla.</string>
@@ -116,7 +116,7 @@
     <string name="scan_tips_bullets">• Limpia la lente de tu cámara\n• Evita reflejos o brillos\n• Usa zoom si es necesario\n• Asegúrate de que el código no esté dañado</string>
     <string name="got_it">Entendido</string>
 
-    <!-- History -->
+
     <string name="empty_history">No hay códigos aún. ¡Crea tu primer QR o código de barras para comenzar!</string>
     <string name="delete_history_dialog_title">Borrar historial</string>
     <string name="delete_history_dialog_message">¿Estás seguro de que quieres eliminar todo el historial guardado?</string>
@@ -128,7 +128,7 @@
     <string name="export_history">Exportar historial</string>
     <string name="export_history_description">Guardar todo el historial en tu dispositivo.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">Opiniones y comportamiento</string>
     <string name="vibrate_on_scan">Vibrar al escanear</string>
     <string name="vibrate_on_scan_description">Vibra cuando un código se escanee correctamente.</string>
@@ -153,7 +153,7 @@
     <string name="label_send_anonymous_data">Enviar datos de uso anónimos</string>
     <string name="desc_send_anonymous_data">Ayúdanos a mejorar Quick Code compartiendo estadísticas de uso anónimas.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">Información y soporte</string>
     <string name="label_version">Versión</string>
     <string name="desc_version">Muestra la versión y número de compilación actuales de la app.</string>
@@ -164,7 +164,7 @@
     <string name="label_share_app">Compartir Quick Code</string>
     <string name="desc_share_app">Invita a amigos y familiares a probar Quick Code.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">Todos tus códigos en una sola app</string>
     <string name="on_boarding_title_2">Escaneo rápido. Diseño inteligente.</string>
     <string name="on_boarding_title_3">Sin conexión. Personal. Potente.</string>
@@ -175,7 +175,7 @@
     <string name="next">Siguiente</string>
     <string name="get_started">Comenzar</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">Volver</string>
     <string name="close">Cerrar</string>
     <string name="copy">Copiar</string>

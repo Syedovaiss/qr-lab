@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">Quick Code</string>
     <string name="default_name">Gäst</string>
     <string name="trademark">© %s Syed Ovais Akhtar. Alla rättigheter förbehållna.</string>
@@ -8,7 +8,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">export_kanal</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">Välkommen till\nQuick Code</string>
     <string name="create_qr">Skapa</string>
     <string name="scan_qr">Skanna</string>
@@ -16,7 +16,7 @@
     <string name="history">Historik</string>
     <string name="create_new">Skapa ny kod</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">Bitcoin</string>
     <string name="calendar">Kalenderhändelse</string>
     <string name="contact">Kontakt</string>
@@ -41,7 +41,7 @@
     <string name="youtube">YouTube</string>
     <string name="zoom">Zoom</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">Plattform</string>
     <string name="code_format">Kodformat</string>
     <string name="select_code_format">Välj kodformat</string>
@@ -61,7 +61,7 @@
     <string name="content_background_color_description">Standardbakgrund för genererade streckkoder och QR-koder.</string>
     <string name="default_color_description">Om ingen färg väljs används standardfärger. Du kan ändra detta när som helst i inställningarna.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">Behörigheter krävs</string>
     <string name="permission_denied_message">
         Quick Code behöver kameratillstånd, lagring och aviseringar för att fungera korrekt.
@@ -70,7 +70,7 @@
     </string>
     <string name="grant">Ge åtkomst</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">Exportformat</string>
     <string name="code_export_format_description">Standard exportformat (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">Välj exportformat</string>
@@ -93,7 +93,7 @@
     <string name="export_message">Följande fil(er) exporterades: %s</string>
     <string name="export_failed">Export misslyckades</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">Streckkoddetaljer</string>
     <string name="generated_barcode">Genererad streckkod</string>
     <string name="barcode_image">Streckkodsbild</string>
@@ -102,7 +102,7 @@
     <string name="scan_successful">Skanning lyckades</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">Hur man skannar QR- och streckkoder</string>
     <string name="scan_step_1_title">Positionera koden</string>
     <string name="scan_step_1_desc">Justera QR-koden eller streckkoden inom skanningsramen på skärmen.</string>
@@ -116,7 +116,7 @@
     <string name="scan_tips_bullets">• Rengör din kameralins\n• Undvik blänk eller reflektioner\n• Använd zoom vid behov\n• Se till att koden inte är skadad</string>
     <string name="got_it">Förstått</string>
 
-    <!-- History -->
+
     <string name="empty_history">Inga koder än. Skapa din första QR- eller streckkod för att komma igång!</string>
     <string name="delete_history_dialog_title">Rensa historik</string>
     <string name="delete_history_dialog_message">Är du säker på att du vill ta bort all sparad historik?</string>
@@ -128,7 +128,7 @@
     <string name="export_history">Exportera historik</string>
     <string name="export_history_description">Spara all historik till din enhet.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">Feedback &amp; Beteende</string>
     <string name="vibrate_on_scan">Vibrera vid skanning</string>
     <string name="vibrate_on_scan_description">Vibrera när en kod skannats framgångsrikt.</string>
@@ -153,7 +153,7 @@
     <string name="label_send_anonymous_data">Skicka anonym användardata</string>
     <string name="desc_send_anonymous_data">Hjälp oss förbättra Quick Code genom att dela anonym användningsstatistik.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">App-info &amp; support</string>
     <string name="label_version">Version</string>
     <string name="desc_version">Visar aktuell appversion och byggnummer.</string>
@@ -164,7 +164,7 @@
     <string name="label_share_app">Dela Quick Code</string>
     <string name="desc_share_app">Bjud in vänner och familj att prova Quick Code.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">Alla dina koder i en app</string>
     <string name="on_boarding_title_2">Snabb skanning. Smart design.</string>
     <string name="on_boarding_title_3">Offline. Personlig. Kraftfull.</string>
@@ -175,7 +175,7 @@
     <string name="next">Nästa</string>
     <string name="get_started">Kom igång</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">Gå tillbaka</string>
     <string name="close">Stäng</string>
     <string name="copy">Kopiera</string>

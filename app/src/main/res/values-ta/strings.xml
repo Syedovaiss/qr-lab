@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">குவிக் கோடு</string>
     <string name="default_name">விருந்தினர்</string>
     <string name="trademark">© %s சய்யத் ஓவைஸ் அக்‌தார். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</string>
@@ -8,7 +8,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">export_channel</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">குவிக் கோடிற்கு\nவரவேற்கிறோம்</string>
     <string name="create_qr">உருவாக்கு</string>
     <string name="scan_qr">ச்கேன் செய்</string>
@@ -16,7 +16,7 @@
     <string name="history">வரலாறு</string>
     <string name="create_new">புதிய கோடு உருவாக்கு</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">பிட்காயின்</string>
     <string name="calendar">நாட்காட்டி நிகழ்வு</string>
     <string name="contact">தொடர்பு</string>
@@ -41,7 +41,7 @@
     <string name="youtube">யூடியூப்</string>
     <string name="zoom">ஜூம்</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">வளம்</string>
     <string name="code_format">கோடு வடிவம்</string>
     <string name="select_code_format">ஒரு கோடு வடிவத்தைத் தேர்ந்தெடு</string>
@@ -61,7 +61,7 @@
     <string name="content_background_color_description">உருவாக்கப்பட்ட பார்கோடுகள் மற்றும் QR கோடுகளுக்கான இயல்புநிலை பின்னணி.</string>
     <string name="default_color_description">நிறம் தேர்ந்தெடுக்கப்படவில்லை என்றால் இயல்புநிலை நிறங்கள் பயன்படுத்தப்படும். நீங்கள் இதை எப்போதும் அமைப்புகளில் மாற்றலாம்.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">அனுமதிகள் தேவை</string>
     <string name="permission_denied_message">
         குவிக் கோடு சரியாக செயல்பட காமிரா, சேமிப்பு மற்றும் அறிவிப்பு அனுமதிகள் தேவை.
@@ -69,7 +69,7 @@
         நீங்கள் இவற்றை முன்பு மறுத்திருந்தால், தயவுசெய்து அப்பிளிகேஷன் அமைப்புகளில் இயக்கு.</string>
     <string name="grant">அனுமதி கொடு</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">ஏற்றுமதி வடிவம்</string>
     <string name="code_export_format_description">இயல்புநிலை ஏற்றுமதி வடிவம் (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">ஏற்றுமதி வடிவத்தைத் தேர்ந்தெடு</string>
@@ -92,7 +92,7 @@
     <string name="export_message">பின்வரும் கோப்புகள் ஏற்றுமதி செய்யப்பட்டுள்ளன: %s</string>
     <string name="export_failed">ஏற்றுமதி தோல்வி</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">பார்கோடு விவரங்கள்</string>
     <string name="generated_barcode">உருவாக்கப்பட்ட பார்கோடு</string>
     <string name="barcode_image">பார்கோடு படம்</string>
@@ -101,7 +101,7 @@
     <string name="scan_successful">ஸ்கேன் வெற்றி</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">QR மற்றும் பார்கோடுகளை எப்படிச் ஸ்கேன் செய்வது</string>
     <string name="scan_step_1_title">கோடின் இடத்தை அமைக்கவும்</string>
     <string name="scan_step_1_desc">QR கோடு அல்லது பார்கோட்டை திரையில் உள்ள ஸ்கேன் பெட்டிக்குள் வரிசைப்படுத்தவும்.</string>
@@ -115,7 +115,7 @@
     <string name="scan_tips_bullets">• உங்கள் கேமரா லென்ஸை சுத்தமாக வைத்திருங்கள்\n• பிரதிபலிப்பு மற்றும் வெளிச்சத்தைத் தவிர்க்கவும்\n• தேவைப்பட்டால் ஜூம் பயன்படுத்தவும்\n• கோடு சேதமடையாததை உறுதி செய்யவும்</string>
     <string name="got_it">புரிந்துகொண்டேன்</string>
 
-    <!-- History -->
+
     <string name="empty_history">என்னுடைய முதல் QR அல்லது பார்கோடு உருவாக்கி தொடங்குங்கள்!</string>
     <string name="delete_history_dialog_title">வரலாறை அழிக்கவும்</string>
     <string name="delete_history_dialog_message">எல்லா சேமிக்கப்பட்ட வரலாறுகளையும் நீக்க விரும்புகிறீர்களா?</string>
@@ -127,7 +127,7 @@
     <string name="export_history">வரலாறை ஏற்றுமதி செய்</string>
     <string name="export_history_description">எல்லா வரலாறுகளையும் உங்கள் சாதனத்தில் சேமி.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">பின்தொலைவு மற்றும் நடத்தை</string>
     <string name="vibrate_on_scan">ஸ்கேன் செய்யும்போது அதிர்ச்சி</string>
     <string name="vibrate_on_scan_description">கோடு வெற்றிகரமாக ஸ்கேன் செய்யும் போது அதிர்ச்சி வரும்.</string>
@@ -152,7 +152,7 @@
     <string name="label_send_anonymous_data">அடையாளமற்ற பயன்பாட்டு தரவை அனுப்பு</string>
     <string name="desc_send_anonymous_data">குவிக் கோடினை மேம்படுத்த அடையாளமற்ற புள்ளிவிவரங்களை பகிருங்கள்.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">அப்பிளிகேஷன் தகவல் மற்றும் ஆதரவு</string>
     <string name="label_version">பதிப்பு</string>
     <string name="desc_version">தற்போதைய அப்பிளிகேஷன் பதிப்பும் கட்டுமான எணும் காட்டுகிறது.</string>
@@ -163,7 +163,7 @@
     <string name="label_share_app">குவிக் கோடை பகிர்</string>
     <string name="desc_share_app">நண்பர்களும் குடும்பத்தினரும் குவிக் கோடை முயற்சி செய்ய அழைக்கவும்.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">உங்கள் அனைத்து கோடுகளும் ஒரே அப்பில்</string>
     <string name="on_boarding_title_2">விரைவு ஸ்கேனிங். புத்திசாலி வடிவமைப்பு.</string>
     <string name="on_boarding_title_3">ஆஃப்லைன். தனிப்பட்டது. சக்திவாய்ந்தது.</string>
@@ -174,7 +174,7 @@
     <string name="next">அடுத்தது</string>
     <string name="get_started">தொடங்கு</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">பின்னால் செல்லவும்</string>
     <string name="close">மூடு</string>
     <string name="copy">நகல் எடு</string>

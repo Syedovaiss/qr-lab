@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">क्विक कोड</string>
     <string name="default_name">अतिथी</string>
     <string name="trademark">© %s सैयद ओवैस अख्तर. सर्व हक्क राखीव.</string>
@@ -8,7 +8,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">export_channel</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">क्विक कोडमध्ये आपले स्वागत आहे</string>
     <string name="create_qr">तयार करा</string>
     <string name="scan_qr">स्कॅन करा</string>
@@ -16,7 +16,7 @@
     <string name="history">इतिहास</string>
     <string name="create_new">नवीन कोड तयार करा</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">बिटकॉइन</string>
     <string name="calendar">कॅलेंडर इव्हेंट</string>
     <string name="contact">संपर्क</string>
@@ -41,7 +41,7 @@
     <string name="youtube">यूट्यूब</string>
     <string name="zoom">झूम</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">प्लॅटफॉर्म</string>
     <string name="code_format">कोड फॉरमॅट</string>
     <string name="select_code_format">कोड फॉरमॅट निवडा</string>
@@ -61,7 +61,7 @@
     <string name="content_background_color_description">निर्मित बारकोड आणि QR कोडसाठी डीफॉल्ट बॅकग्राउंड.</string>
     <string name="default_color_description">जर रंग निवडला नसेल तर डीफॉल्ट रंग लागू होतात. तुम्ही हे कधीही सेटिंग्जमध्ये बदलू शकता.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">परवानग्या आवश्यक आहेत</string>
     <string name="permission_denied_message">
         क्विक कोड योग्यरित्या काम करण्यासाठी कॅमेरा, स्टोरेज आणि सूचना परवानग्या आवश्यक आहेत.
@@ -70,7 +70,7 @@
     </string>
     <string name="grant">परवानगी द्या</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">एक्सपोर्ट फॉरमॅट</string>
     <string name="code_export_format_description">डीफॉल्ट एक्सपोर्ट फॉरमॅट (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">एक्सपोर्ट फॉरमॅट निवडा</string>
@@ -93,7 +93,7 @@
     <string name="export_message">खालील फाईल(स) एक्सपोर्ट करण्यात आल्या: %s</string>
     <string name="export_failed">एक्सपोर्ट अयशस्वी</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">बारकोड तपशील</string>
     <string name="generated_barcode">निर्मित बारकोड</string>
     <string name="barcode_image">बारकोड प्रतिमा</string>
@@ -102,7 +102,7 @@
     <string name="scan_successful">स्कॅन यशस्वी</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">QR आणि बारकोड स्कॅन कसे करावे</string>
     <string name="scan_step_1_title">कोडची स्थिती बघा</string>
     <string name="scan_step_1_desc">QR कोड किंवा बारकोड स्क्रीनवरील स्कॅन फ्रेममध्ये जुळवा.</string>
@@ -116,7 +116,7 @@
     <string name="scan_tips_bullets">• कॅमेरा लेन्स स्वच्छ ठेवा\n• प्रतिबिंब किंवा चमक टाळा\n• आवश्यक असल्यास झूम वापरा\n• कोड खराब झाला नसल्याची खात्री करा</string>
     <string name="got_it">समजलं</string>
 
-    <!-- History -->
+
     <string name="empty_history">अजून कोड्स नाहीत. प्रथम QR किंवा बारकोड तयार करा!</string>
     <string name="delete_history_dialog_title">इतिहास साफ करा</string>
     <string name="delete_history_dialog_message">सर्व साठवलेला इतिहास हटवायचा आहे का?</string>
@@ -128,7 +128,7 @@
     <string name="export_history">इतिहास एक्सपोर्ट करा</string>
     <string name="export_history_description">सर्व इतिहास आपल्या डिव्हाइसवर जतन करा.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">अभिप्राय आणि वागणूक</string>
     <string name="vibrate_on_scan">स्कॅन करताना व्हायब्रेट करा</string>
     <string name="vibrate_on_scan_description">कोड यशस्वीपणे स्कॅन झाल्यावर डिव्हाइस व्हायब्रेट होईल.</string>
@@ -153,7 +153,7 @@
     <string name="label_send_anonymous_data">गुमनाम वापर डेटा पाठवा</string>
     <string name="desc_send_anonymous_data">क्विक कोड सुधारण्यासाठी गुमनाम वापर आकडेवारी पाठवा.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">अॅप माहिती आणि समर्थन</string>
     <string name="label_version">आवृत्ती</string>
     <string name="desc_version">सध्याची अॅप आवृत्ती आणि बिल्ड नंबर दर्शविते.</string>
@@ -164,7 +164,7 @@
     <string name="label_share_app">क्विक कोड शेअर करा</string>
     <string name="desc_share_app">मित्र आणि कुटुंबियांना क्विक कोड वापरायला आमंत्रित करा.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">सर्व तुमचे कोड एका अॅपमध्ये</string>
     <string name="on_boarding_title_2">वेगवान स्कॅनिंग. स्मार्ट डिझाईन.</string>
     <string name="on_boarding_title_3">ऑफलाइन. वैयक्तिक. सामर्थ्यवान.</string>
@@ -175,7 +175,7 @@
     <string name="next">पुढे</string>
     <string name="get_started">सुरू करा</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">मागे जा</string>
     <string name="close">बंद करा</string>
     <string name="copy">कॉपी करा</string>

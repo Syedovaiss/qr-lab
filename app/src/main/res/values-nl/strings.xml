@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">Quick Code</string>
     <string name="default_name">Gast</string>
     <string name="trademark">© %s Syed Ovais Akhtar. Alle rechten voorbehouden.</string>
@@ -8,7 +8,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">export_kanaal</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">Welkom bij\nQuick Code</string>
     <string name="create_qr">Aanmaken</string>
     <string name="scan_qr">Scannen</string>
@@ -16,7 +16,7 @@
     <string name="history">Geschiedenis</string>
     <string name="create_new">Nieuwe Code Aanmaken</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">Bitcoin</string>
     <string name="calendar">Agenda-item</string>
     <string name="contact">Contact</string>
@@ -41,7 +41,7 @@
     <string name="youtube">YouTube</string>
     <string name="zoom">Zoom</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">Platform</string>
     <string name="code_format">Codeformaat</string>
     <string name="select_code_format">Kies een codeformaat</string>
@@ -61,7 +61,7 @@
     <string name="content_background_color_description">De standaardachtergrond voor gegenereerde barcodes en QR-codes.</string>
     <string name="default_color_description">Als er geen kleur gekozen is, worden standaardkleuren toegepast. Je kunt dit altijd aanpassen in Instellingen.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">Toestemmingen vereist</string>
     <string name="permission_denied_message">
         Quick Code heeft Camera-, Opslag- en Meldingsmachtigingen nodig om goed te werken.
@@ -70,7 +70,7 @@
     </string>
     <string name="grant">Toegang verlenen</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">Exportformaat</string>
     <string name="code_export_format_description">Standaard exportformaat (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">Kies exportformaat</string>
@@ -93,7 +93,7 @@
     <string name="export_message">De volgende bestand(en) zijn geëxporteerd: %s</string>
     <string name="export_failed">Export mislukt</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">Barcode-details</string>
     <string name="generated_barcode">Gegenereerde barcode</string>
     <string name="barcode_image">Barcode-afbeelding</string>
@@ -102,7 +102,7 @@
     <string name="scan_successful">Scannen geslaagd</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">Hoe QR- en barcodes te scannen</string>
     <string name="scan_step_1_title">Positioneer de code</string>
     <string name="scan_step_1_desc">Lijn de QR-code of barcode uit binnen het scanframe op het scherm.</string>
@@ -116,7 +116,7 @@
     <string name="scan_tips_bullets">• Maak je cameralens schoon\n• Vermijd schittering of reflecties\n• Gebruik zoom indien nodig\n• Zorg dat de code niet beschadigd is</string>
     <string name="got_it">Begrepen</string>
 
-    <!-- History -->
+
     <string name="empty_history">Nog geen codes. Maak je eerste QR- of barcode aan om te beginnen!</string>
     <string name="delete_history_dialog_title">Geschiedenis wissen</string>
     <string name="delete_history_dialog_message">Weet je zeker dat je alle opgeslagen geschiedenis wilt verwijderen?</string>
@@ -128,7 +128,7 @@
     <string name="export_history">Geschiedenis exporteren</string>
     <string name="export_history_description">Sla alle geschiedenis op op je apparaat.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">Feedback &amp; Gedrag</string>
     <string name="vibrate_on_scan">Trillen bij scannen</string>
     <string name="vibrate_on_scan_description">Trilt wanneer een code succesvol is gescand.</string>
@@ -153,7 +153,7 @@
     <string name="label_send_anonymous_data">Anonieme gebruiksgegevens verzenden</string>
     <string name="desc_send_anonymous_data">Help Quick Code te verbeteren door anonieme gebruiksstatistieken te delen.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">App-info &amp; ondersteuning</string>
     <string name="label_version">Versie</string>
     <string name="desc_version">Toont de huidige app-versie en buildnummer.</string>
@@ -164,7 +164,7 @@
     <string name="label_share_app">Deel Quick Code</string>
     <string name="desc_share_app">Nodig vrienden en familie uit om Quick Code te proberen.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">Al je codes in één app</string>
     <string name="on_boarding_title_2">Snelle scans. Slim ontwerp.</string>
     <string name="on_boarding_title_3">Offline. Persoonlijk. Krachtig.</string>
@@ -175,7 +175,7 @@
     <string name="next">Volgende</string>
     <string name="get_started">Aan de slag</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">Ga terug</string>
     <string name="close">Sluiten</string>
     <string name="copy">Kopiëren</string>

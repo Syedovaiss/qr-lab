@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">ڪويڪ ڪوڊ</string>
     <string name="default_name">مهمان</string>
     <string name="trademark">© %s سيد اويس اختر. سڀ حق محفوظ آهن.</string>
@@ -9,7 +9,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">برآمد_چينل</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">خوش آمديد\nڪويڪ ڪوڊ</string>
     <string name="create_qr">تيار ڪريو</string>
     <string name="scan_qr">سکین ڪريو</string>
@@ -17,7 +17,7 @@
     <string name="history">تاريخ</string>
     <string name="create_new">نئون ڪوڊ ٺاهيو</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">بِٽ ڪائن</string>
     <string name="calendar">ڪئلينڊر واقعو</string>
     <string name="contact">رابطو</string>
@@ -42,7 +42,7 @@
     <string name="youtube">يوٽيوب</string>
     <string name="zoom">زوم</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">پليٽ فارم</string>
     <string name="code_format">ڪوڊ جو فارميٽ</string>
     <string name="select_code_format">ڪوڊ جو فارميٽ چونڊيو</string>
@@ -62,7 +62,7 @@
     <string name="content_background_color_description">جنريٽ ٿيل بارڪوڊ ۽ QR ڪوڊ لاءِ ڊي فالٽ پس منظر.</string>
     <string name="default_color_description">جيڪڏهن ڪو رنگ چونڊيو نه ويو، ته ڊي فالٽ رنگ لاڳو ڪيا ويندا. توهان ڪنهن به وقت ترتيبات ۾ ان کي تبديل ڪري سگهو ٿا.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">اجازتون گهربل آهن</string>
     <string name="permission_denied_message">
         ڪويڪ ڪوڊ کي ڪم ڪرڻ لاءِ ڪئميرا، اسٽوريج، ۽ نوٽيفڪيشن جون اجازت گهرجن.
@@ -71,7 +71,7 @@
     </string>
     <string name="grant">اجازت ڏيو</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">برآمد جو فارميٽ</string>
     <string name="code_export_format_description">ڊي فالٽ برآمد جو فارميٽ (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">برآمد جو فارميٽ چونڊيو</string>
@@ -94,7 +94,7 @@
     <string name="export_message">هيٺين فائل(ن) کي برآمد ڪيو ويو: %s</string>
     <string name="export_failed">برآمد ناڪام</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">بارڪوڊ جا تفصيل</string>
     <string name="generated_barcode">تيار ڪيل بارڪوڊ</string>
     <string name="barcode_image">بارڪوڊ تصوير</string>
@@ -103,7 +103,7 @@
     <string name="scan_successful">اسڪين ڪامياب</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">QR ۽ بارڪوڊ ڪيئن اسڪين ڪجي</string>
     <string name="scan_step_1_title">ڪوڊ کي درست رکو</string>
     <string name="scan_step_1_desc">QR ڪوڊ يا بارڪوڊ کي اسڪين فريم جي اندر ترتيب ڏيو.</string>
@@ -117,7 +117,7 @@
     <string name="scan_tips_bullets">• پنهنجو ڪئميرا لينس صاف رکو\n• چمڪ يا عڪاس کان پاسو ڪريو\n• ضرورت هجي ته زوم استعمال ڪريو\n• يقيني بڻايو ته ڪوڊ خراب نه ٿيو هجي</string>
     <string name="got_it">سمجهي ويو</string>
 
-    <!-- History -->
+
     <string name="empty_history">ڪو ڪوڊ ناهي. پهريون QR يا بارڪوڊ ٺاهي شروع ڪريو!</string>
     <string name="delete_history_dialog_title">تاريخ صاف ڪريو</string>
     <string name="delete_history_dialog_message">ڇا توهان واقعي سموري محفوظ ٿيل تاريخ کي ختم ڪرڻ چاهيو ٿا؟</string>
@@ -129,7 +129,7 @@
     <string name="export_history">تاريخ برآمد ڪريو</string>
     <string name="export_history_description">سموري تاريخ پنهنجي ڊوائيس تي محفوظ ڪريو.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">راءِ ۽ رويو</string>
     <string name="vibrate_on_scan">اسڪين تي وائبريشن</string>
     <string name="vibrate_on_scan_description">جڏهن ڪوڊ ڪاميابي سان اسڪين ٿئي، وائبريٽ ٿئي.</string>
@@ -154,7 +154,7 @@
     <string name="label_send_anonymous_data">گمنام استعمال جا ڊيٽا موڪليو</string>
     <string name="desc_send_anonymous_data">ڪويڪ ڪوڊ بهتر بڻائڻ ۾ مدد ڪريو گمنام استعمال جي انگن اکرن سان.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">ايپ ڄاڻ ۽ مدد</string>
     <string name="label_version">ورزن</string>
     <string name="desc_version">موجوده ايپ ورزن ۽ بلڊ نمبر ڏيکاري ٿو.</string>
@@ -165,7 +165,7 @@
     <string name="label_share_app">ڪويڪ ڪوڊ شيئر ڪريو</string>
     <string name="desc_share_app">دوستن ۽ ڪٽنب کي دعوت ڏيو ڪويڪ ڪوڊ آزمائڻ لاءِ.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">پنهنجا سڀ ڪوڊ هڪ ايپ ۾</string>
     <string name="on_boarding_title_2">تيز اسڪيننگ. سمارٽ ڊزائين.</string>
     <string name="on_boarding_title_3">آف لائن. ذاتي. طاقتور.</string>
@@ -176,7 +176,7 @@
     <string name="next">اڳيون</string>
     <string name="get_started">شروع ڪريو</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">واپس وڃو</string>
     <string name="close">بند ڪريو</string>
     <string name="copy">ڪاپي ڪريو</string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">کوئیک کود</string>
     <string name="default_name">میلمن</string>
     <string name="trademark">© %s سید اویس اختر. ټول حقوق خوندي دي.</string>
@@ -8,7 +8,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">صادرات_چینل</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">خوش آمدید\nکوئیک کود</string>
     <string name="create_qr">جوړول</string>
     <string name="scan_qr">سکین</string>
@@ -16,7 +16,7 @@
     <string name="history">تاریخچه</string>
     <string name="create_new">نوې کود جوړه کړئ</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">بټکوین</string>
     <string name="calendar">کالینډر پیښه</string>
     <string name="contact">اړیکه</string>
@@ -41,7 +41,7 @@
     <string name="youtube">یوټیوب</string>
     <string name="zoom">زوم</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">پلیټفارم</string>
     <string name="code_format">د کود بڼه</string>
     <string name="select_code_format">د کود بڼه وټاکئ</string>
@@ -61,7 +61,7 @@
     <string name="content_background_color_description">د تولید شوو بارکوډونو او QR کودونو لپاره ډیفالټ پس منظر.</string>
     <string name="default_color_description">که کوم رنګ ونه ټاکل شي، ډیفالټ رنګونه به وکارول شي. تاسو کولی شئ دا هر وخت په تنظیماتو کې بدل کړئ.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">اجازتونه اړین دي</string>
     <string name="permission_denied_message">
         کوئیک کود د کیمرې، ذخیره کولو او خبرتیاوو اجازه ته اړتیا لري چې په سمه توګه کار وکړي.
@@ -70,7 +70,7 @@
     </string>
     <string name="grant">اجازه ورکړئ</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">د صادراتو بڼه</string>
     <string name="code_export_format_description">ډیفالټ د صادراتو بڼه (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">د صادراتو بڼه وټاکئ</string>
@@ -93,7 +93,7 @@
     <string name="export_message">لاندې فایل(ونه) صادر شول: %s</string>
     <string name="export_failed">صادرات ناکام شو</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">د بارکوډ جزییات</string>
     <string name="generated_barcode">جوړ شوی بارکوډ</string>
     <string name="barcode_image">د بارکوډ انځور</string>
@@ -102,7 +102,7 @@
     <string name="scan_successful">سکین بریالی شو</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">څنګه QR او بارکوډ سکین کړو</string>
     <string name="scan_step_1_title">کوډ په ځای کړئ</string>
     <string name="scan_step_1_desc">QR کود یا بارکوډ د سکرین په سکین چوکاټ کې برابر کړئ.</string>
@@ -116,7 +116,7 @@
     <string name="scan_tips_bullets">• خپله د کیمرې لینز پاک کړئ\n• له رڼا یا انعکاس څخه ډډه وکړئ\n• که اړتیا وي، زوم وکاروئ\n• ډاډ ترلاسه کړئ چې کود خراب نه وي</string>
     <string name="got_it">پوهاوی مې شو</string>
 
-    <!-- History -->
+
     <string name="empty_history">لا تر اوسه کودونه نشته. خپل لومړی QR یا بارکوډ جوړ کړئ او پیل یې کړئ!</string>
     <string name="delete_history_dialog_title">تاریخ پاک کړئ</string>
     <string name="delete_history_dialog_message">باور لرئ چې ټول ذخیره شوی تاریخ پاک کړئ؟</string>
@@ -128,7 +128,7 @@
     <string name="export_history">د تاریخ صادرات</string>
     <string name="export_history_description">ټول تاریخ خپل آلې ته ذخیره کړئ.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">بیاکتنه او چلند</string>
     <string name="vibrate_on_scan">په سکین کې وائبریشن</string>
     <string name="vibrate_on_scan_description">کله چې کود په بریالیتوب سره سکین شي، وائبریټ وکړي.</string>
@@ -153,7 +153,7 @@
     <string name="label_send_anonymous_data">بې نومه کارونې معلومات ولیږئ</string>
     <string name="desc_send_anonymous_data">کوئیک کود ښه کولو کې مرسته وکړئ د بې نومه کارونې احصایو په شراکت سره.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">د اپلیکیشن معلومات او ملاتړ</string>
     <string name="label_version">نسخه</string>
     <string name="desc_version">اوسنۍ د اپلیکیشن نسخه او جوړونې شمېره ښیي.</string>
@@ -164,7 +164,7 @@
     <string name="label_share_app">کوئیک کود شریک کړئ</string>
     <string name="desc_share_app">ملګرو او کورنۍ ته بلنه ورکړئ چې کوئیک کود وکاروي.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">ټولې ستاسو کودونه په یوه اپلیکیشن کې</string>
     <string name="on_boarding_title_2">چټک سکین کول. هوښیار ډیزاین.</string>
     <string name="on_boarding_title_3">آفلاین. شخصي. ځواکمن.</string>
@@ -175,7 +175,7 @@
     <string name="next">بل</string>
     <string name="get_started">پیل کړئ</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">شاتګ</string>
     <string name="close">بندول</string>
     <string name="copy">کاپي</string>

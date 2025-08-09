@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">Quick Code</string>
     <string name="default_name">Гость</string>
     <string name="trademark">© %s Syed Ovais Akhtar. Все права защищены.</string>
@@ -8,7 +8,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">export_channel</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">Добро пожаловать в\nQuick Code</string>
     <string name="create_qr">Создать</string>
     <string name="scan_qr">Сканировать</string>
@@ -16,7 +16,7 @@
     <string name="history">История</string>
     <string name="create_new">Создать новый код</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">Bitcoin</string>
     <string name="calendar">Событие календаря</string>
     <string name="contact">Контакт</string>
@@ -41,7 +41,7 @@
     <string name="youtube">YouTube</string>
     <string name="zoom">Zoom</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">Платформа</string>
     <string name="code_format">Формат кода</string>
     <string name="select_code_format">Выберите формат кода</string>
@@ -61,7 +61,7 @@
     <string name="content_background_color_description">Фон по умолчанию для созданных штрихкодов и QR-кодов.</string>
     <string name="default_color_description">Если цвет не выбран, будет применён цвет по умолчанию. Это можно изменить в настройках.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">Требуются разрешения</string>
     <string name="permission_denied_message">
         Quick Code требует доступ к камере, хранилищу и уведомлениям для корректной работы.
@@ -70,7 +70,7 @@
     </string>
     <string name="grant">Предоставить доступ</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">Формат экспорта</string>
     <string name="code_export_format_description">Формат экспорта по умолчанию (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">Выберите формат экспорта</string>
@@ -93,7 +93,7 @@
     <string name="export_message">Были экспортированы следующие файлы: %s</string>
     <string name="export_failed">Ошибка экспорта</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">Детали штрихкода</string>
     <string name="generated_barcode">Созданный штрихкод</string>
     <string name="barcode_image">Изображение штрихкода</string>
@@ -102,7 +102,7 @@
     <string name="scan_successful">Сканирование успешно</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">Как сканировать QR и штрихкоды</string>
     <string name="scan_step_1_title">Разместите код</string>
     <string name="scan_step_1_desc">Поместите QR-код или штрихкод в рамку на экране.</string>
@@ -116,7 +116,7 @@
     <string name="scan_tips_bullets">• Протрите объектив камеры\n• Избегайте бликов и отражений\n• Используйте зум при необходимости\n• Убедитесь, что код не повреждён</string>
     <string name="got_it">Понятно</string>
 
-    <!-- History -->
+
     <string name="empty_history">Кодов пока нет. Создайте первый QR-код или штрихкод, чтобы начать!</string>
     <string name="delete_history_dialog_title">Очистить историю</string>
     <string name="delete_history_dialog_message">Вы уверены, что хотите удалить всю историю?</string>
@@ -128,7 +128,7 @@
     <string name="export_history">Экспорт истории</string>
     <string name="export_history_description">Сохранить всю историю на устройство.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">Обратная связь и поведение</string>
     <string name="vibrate_on_scan">Вибрация при сканировании</string>
     <string name="vibrate_on_scan_description">Вибрация при успешном сканировании кода.</string>
@@ -153,7 +153,7 @@
     <string name="label_send_anonymous_data">Отправлять анонимные данные</string>
     <string name="desc_send_anonymous_data">Помогите улучшить Quick Code, отправляя анонимную статистику использования.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">Информация и поддержка</string>
     <string name="label_version">Версия</string>
     <string name="desc_version">Показывает текущую версию приложения и номер сборки.</string>
@@ -164,7 +164,7 @@
     <string name="label_share_app">Поделиться Quick Code</string>
     <string name="desc_share_app">Пригласите друзей и семью попробовать Quick Code.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">Все ваши коды в одном приложении</string>
     <string name="on_boarding_title_2">Быстрое сканирование. Умный дизайн.</string>
     <string name="on_boarding_title_3">Оффлайн. Персонально. Мощно.</string>
@@ -175,7 +175,7 @@
     <string name="next">Далее</string>
     <string name="get_started">Начать</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">Назад</string>
     <string name="close">Закрыть</string>
     <string name="copy">Копировать</string>

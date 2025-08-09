@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">Quick Code</string>
     <string name="default_name">అతిథి</string>
     <string name="trademark">© %s సైయద్ ఓవైస్ అఖ్తార్. అన్ని హక్కులు సురక్షితం.</string>
@@ -8,7 +8,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">export_channel</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">Quick Codeకి స్వాగతం</string>
     <string name="create_qr">సృష్టించండి</string>
     <string name="scan_qr">స్కాన్ చేయండి</string>
@@ -16,7 +16,7 @@
     <string name="history">చరిత్ర</string>
     <string name="create_new">కొత్త కోడ్ సృష్టించండి</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">బిట్‌కాయిన్</string>
     <string name="calendar">క్యాలెండర్ ఈవెంట్</string>
     <string name="contact">సంప్రదింపు</string>
@@ -41,7 +41,7 @@
     <string name="youtube">యూట్యూబ్</string>
     <string name="zoom">జూమ్</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">ప్లాట్‌ఫార్మ్</string>
     <string name="code_format">కోడ్ ఫార్మాట్</string>
     <string name="select_code_format">కోడ్ ఫార్మాట్ ఎంచుకోండి</string>
@@ -61,7 +61,7 @@
     <string name="content_background_color_description">తయారైన బార్కోడ్ మరియు QR కోడ్‌లకు డిఫాల్ట్ బ్యాక్‌గ్రౌండ్.</string>
     <string name="default_color_description">రంగు ఎంచుకోకపోతే డిఫాల్ట్ రంగులు వర్తించబడతాయి. మీరు ఎప్పుడైనా సెట్టింగ్స్‌లో మార్చుకోవచ్చు.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">అనుమతులు అవసరం</string>
     <string name="permission_denied_message">
         Quick Code సరిగ్గా పని చేసేందుకు కెమెరా, స్టోరేజ్, మరియు నోటిఫికేషన్ అనుమతులు అవసరం.
@@ -70,7 +70,7 @@
     </string>
     <string name="grant">అనుమతి ఇవ్వండి</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">ఎగుమతి ఫార్మాట్</string>
     <string name="code_export_format_description">డిఫాల్ట్ ఎగుమతి ఫార్మాట్ (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">ఎగుమతి ఫార్మాట్ ఎంచుకోండి</string>
@@ -93,7 +93,7 @@
     <string name="export_message">ఈ ఫైల్(లు) ఎగుమతి చేయబడ్డాయి: %s</string>
     <string name="export_failed">ఎగుమతి విఫలం</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">బార్కోడ్ వివరాలు</string>
     <string name="generated_barcode">తయారైన బార్కోడ్</string>
     <string name="barcode_image">బార్కోడ్ చిత్రం</string>
@@ -102,7 +102,7 @@
     <string name="scan_successful">స్కాన్ విజయవంతం</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">QR &amp; బార్కోడ్ స్కాన్ చేయడం ఎలా</string>
     <string name="scan_step_1_title">కోడ్ స్థానాన్ని సరిచూడండి</string>
     <string name="scan_step_1_desc">QR కోడ్ లేదా బార్కోడ్‌ను స్క్రీన్ స్కాన్ ఫ్రేమ్‌లో సరిపడ도록 ఉంచండి.</string>
@@ -116,7 +116,7 @@
     <string name="scan_tips_bullets">• మీ కెమెరా లెన్స్ ని శుభ్రంగా ఉంచండి\n• ప్రతిబింబాలు మరియు ప్రకాశం నివారించండి\n• అవసరమైతే జూమ్ ఉపయోగించండి\n• కోడ్ నష్టం కాకుండా జాగ్రత్త వహించండి</string>
     <string name="got_it">అర్థమైంది</string>
 
-    <!-- History -->
+
     <string name="empty_history">ఇంకా కోడ్‌లు లేవు. మీ మొదటి QR లేదా బార్కోడ్ సృష్టించండి!</string>
     <string name="delete_history_dialog_title">చరిత్ర తొలగించండి</string>
     <string name="delete_history_dialog_message">మీరు అన్ని సేవ్ చేసిన చరిత్రను తొలగించాలనుకుంటున్నారా?</string>
@@ -128,7 +128,7 @@
     <string name="export_history">చరిత్ర ఎగుమతి</string>
     <string name="export_history_description">అన్ని చరిత్రను మీ డివైస్‌లో సేవ్ చేయండి.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">ఫీడ్‌బ్యాక్ &amp; ప్రవర్తన</string>
     <string name="vibrate_on_scan">స్కాన్ సమయంలో కంపన</string>
     <string name="vibrate_on_scan_description">కోడ్ విజయవంతంగా స్కాన్ అయినప్పుడు డివైస్ కంపించును.</string>
@@ -153,7 +153,7 @@
     <string name="label_send_anonymous_data">గుమ్మగుమ్మ లేని వాడుక డేటాను పంపండి</string>
     <string name="desc_send_anonymous_data">Quick Code మెరుగుపరచడానికి గుమ్మగుమ్మ లేని వాడుక గణాంకాలను పంపండి.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">యాప్ సమాచారం &amp; మద్దతు</string>
     <string name="label_version">సంస్కరణ</string>
     <string name="desc_version">ప్రస్తుత యాప్ సంస్కరణ మరియు బిల్డ్ నంబర్ చూపిస్తుంది.</string>
@@ -164,7 +164,7 @@
     <string name="label_share_app">Quick Code షేర్ చేయండి</string>
     <string name="desc_share_app">మిత్రులు మరియు కుటుంబ సభ్యులను Quick Code ప్రయత్నించమని ఆహ్వానించండి.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">మీ అన్ని కోడ్‌లు ఒక యాప్‌లో</string>
     <string name="on_boarding_title_2">వేగంగా స్కాన్ చేయండి. తెలివైన డిజైన్.</string>
     <string name="on_boarding_title_3">ఆఫ్‌లైన్. వ్యక్తిగత. శక్తివంతమైన.</string>
@@ -175,7 +175,7 @@
     <string name="next">తర్వాత</string>
     <string name="get_started">ప్రారంభించండి</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">వెనక్కు వెళ్ళు</string>
     <string name="close">మూసివేయండి</string>
     <string name="copy">కాపీ</string>

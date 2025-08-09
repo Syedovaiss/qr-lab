@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Info -->
+
     <string name="app_name">كويك كود</string>
     <string name="default_name">ضيف</string>
     <string name="trademark">© ‎%s سيد أويس أختر. جميع الحقوق محفوظة.</string>
@@ -8,7 +8,6 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">export_channel</string>
 
-    <!-- Home Screen -->
     <string name="home_screen_title">مرحبًا بك في\nكويك كود</string>
     <string name="create_qr">إنشاء</string>
     <string name="scan_qr">مسح</string>
@@ -16,7 +15,7 @@
     <string name="history">السجل</string>
     <string name="create_new">إنشاء رمز جديد</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">بيتكوين</string>
     <string name="calendar">حدث تقويم</string>
     <string name="contact">جهة اتصال</string>
@@ -41,7 +40,7 @@
     <string name="youtube">يوتيوب</string>
     <string name="zoom">زووم</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">المنصة</string>
     <string name="code_format">صيغة الرمز</string>
     <string name="select_code_format">اختر صيغة الرمز</string>
@@ -61,7 +60,7 @@
     <string name="content_background_color_description">الخلفية الافتراضية للرموز الشريطية ورموز QR التي يتم إنشاؤها.</string>
     <string name="default_color_description">إذا لم يتم اختيار لون، سيتم تطبيق الألوان الافتراضية. يمكنك تغييرها في أي وقت من الإعدادات.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">الأذونات مطلوبة</string>
     <string name="permission_denied_message">
         يحتاج كويك كود إلى أذونات الكاميرا والتخزين والإشعارات للعمل بشكل صحيح.
@@ -70,7 +69,7 @@
     </string>
     <string name="grant">منح الوصول</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">صيغة التصدير</string>
     <string name="code_export_format_description">صيغة التصدير الافتراضية (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">اختر صيغة التصدير</string>
@@ -93,7 +92,7 @@
     <string name="export_message">تم تصدير الملف/الملفات التالية: ‎%s</string>
     <string name="export_failed">فشل التصدير</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">تفاصيل الرمز</string>
     <string name="generated_barcode">الرمز الذي تم إنشاؤه</string>
     <string name="barcode_image">صورة الرمز</string>
@@ -102,7 +101,7 @@
     <string name="scan_successful">تم المسح بنجاح</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">كيفية مسح رموز QR والرموز الشريطية</string>
     <string name="scan_step_1_title">ضع الرمز في الإطار</string>
     <string name="scan_step_1_desc">قم بمحاذاة رمز QR أو الرمز الشريطي داخل إطار المسح على الشاشة.</string>
@@ -116,7 +115,7 @@
     <string name="scan_tips_bullets">• نظف عدسة الكاميرا\n• تجنب الوهج أو الانعكاسات\n• استخدم التكبير إذا لزم الأمر\n• تأكد من أن الرمز غير تالف</string>
     <string name="got_it">فهمت</string>
 
-    <!-- History -->
+
     <string name="empty_history">لا توجد رموز بعد. أنشئ أول رمز QR أو رمز شريطي للبدء!</string>
     <string name="delete_history_dialog_title">مسح السجل</string>
     <string name="delete_history_dialog_message">هل أنت متأكد أنك تريد حذف جميع السجلات المحفوظة؟</string>
@@ -128,7 +127,7 @@
     <string name="export_history">تصدير السجل</string>
     <string name="export_history_description">حفظ جميع السجلات على جهازك.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">التغذية الراجعة والسلوك</string>
     <string name="vibrate_on_scan">اهتزاز عند المسح</string>
     <string name="vibrate_on_scan_description">يهتز الجهاز عند مسح الرمز بنجاح.</string>
@@ -153,7 +152,7 @@
     <string name="label_send_anonymous_data">إرسال بيانات مجهولة</string>
     <string name="desc_send_anonymous_data">ساعدنا في تحسين كويك كود من خلال مشاركة إحصائيات استخدام مجهولة.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">معلومات ودعم التطبيق</string>
     <string name="label_version">الإصدار</string>
     <string name="desc_version">يعرض الإصدار الحالي للتطبيق ورقم البناء.</string>
@@ -164,7 +163,7 @@
     <string name="label_share_app">شارك كويك كود</string>
     <string name="desc_share_app">ادعُ الأصدقاء والعائلة لتجربة كويك كود.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">كل رموزك في تطبيق واحد</string>
     <string name="on_boarding_title_2">مسح سريع. تصميم ذكي.</string>
     <string name="on_boarding_title_3">دون إنترنت. شخصي. قوي.</string>
@@ -175,7 +174,7 @@
     <string name="next">التالي</string>
     <string name="get_started">ابدأ الآن</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">عودة</string>
     <string name="close">إغلاق</string>
     <string name="copy">نسخ</string>

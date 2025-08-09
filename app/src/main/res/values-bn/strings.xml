@@ -7,7 +7,7 @@
     <string name="default_channel_id">123001</string>
     <string name="export_channel_id">export_channel</string>
 
-    <!-- Home Screen -->
+
     <string name="home_screen_title">Khush Amadid ba\nQuick Code</string>
     <string name="create_qr">Bana</string>
     <string name="scan_qr">Scan</string>
@@ -15,7 +15,7 @@
     <string name="history">Tareekh</string>
     <string name="create_new">Nawi Code Bana</string>
 
-    <!-- QR / Barcode Types -->
+
     <string name="bitcoin">Bitcoin</string>
     <string name="calendar">Calendar Event</string>
     <string name="contact">Rabita</string>
@@ -40,7 +40,7 @@
     <string name="youtube">YouTube</string>
     <string name="zoom">Zoom</string>
 
-    <!-- Form & Customization -->
+
     <string name="platform">Platform</string>
     <string name="code_format">Code Format</string>
     <string name="select_code_format">Code Format Pasand Kun</string>
@@ -60,7 +60,7 @@
     <string name="content_background_color_description">Barcode o QR code baray default background.</string>
     <string name="default_color_description">Agar rang na pasand kun, default rang lagaya jata. Har waqt settings main badal sakun.</string>
 
-    <!-- Permissions -->
+
     <string name="permission_denied_title">Ijazat Zaroori</string>
     <string name="permission_denied_message">
         Quick Code ko Camera, Storage aur Notification ijazat chahiye.
@@ -69,7 +69,7 @@
     </string>
     <string name="grant">Ijazat Do</string>
 
-    <!-- Export / Save -->
+
     <string name="code_export_format">Export Format</string>
     <string name="code_export_format_description">Default export format (PNG/JPEG).</string>
     <string name="dialog_title_select_export_format">Export Format Pasand Kun</string>
@@ -92,7 +92,7 @@
     <string name="export_message">Niche wali file(s) export hui hain: %s</string>
     <string name="export_failed">Export Nakam</string>
 
-    <!-- Barcode / Scan -->
+
     <string name="barcode_details">Barcode Tafseelaat</string>
     <string name="generated_barcode">Tayaar Shuda Barcode</string>
     <string name="barcode_image">Barcode Tasweer</string>
@@ -101,7 +101,7 @@
     <string name="scan_successful">Scan Kamyab</string>
     <string name="zoom_level">%.1fx</string>
 
-    <!-- Scan Help -->
+
     <string name="scan_help_title">QR o Barcodes ko Scan Karnay Ka Tarika</string>
     <string name="scan_step_1_title">Code ki Position Sahi Kun</string>
     <string name="scan_step_1_desc">QR ya barcode ko scan frame kay andar rakh.</string>
@@ -115,7 +115,7 @@
     <string name="scan_tips_bullets">• Camera lens saaf rak\n• Chamkila roshni aur reflections se bacho\n• Zarurat par zoom use kun\n• Code ko nuqsan se mehfooz rak</string>
     <string name="got_it">Samajh gaya</string>
 
-    <!-- History -->
+
     <string name="empty_history">Abhi tak koi code nahi. Pehla QR ya barcode banao shuru karne ke liye!</string>
     <string name="delete_history_dialog_title">Tareekh Saf Kun</string>
     <string name="delete_history_dialog_message">Kya aap pakka tamam tareekh delete karna chahte hain?</string>
@@ -127,7 +127,7 @@
     <string name="export_history">Tareekh Export Kun</string>
     <string name="export_history_description">Tamam tareekh apnay device par save kun.</string>
 
-    <!-- User Settings -->
+
     <string name="user_feedback_and_behaviour">Feedback aur Rawayya</string>
     <string name="vibrate_on_scan">Scan par Harkat</string>
     <string name="vibrate_on_scan_description">Jab code scan ho jaye to device vibrate karega.</string>
@@ -152,7 +152,7 @@
     <string name="label_send_anonymous_data">Ghair Shanakhti Istemaal Data Bhijain</string>
     <string name="desc_send_anonymous_data">Quick Code behtari ke liye anonymous usage stats share karain.</string>
 
-    <!-- App Info & Support -->
+
     <string name="app_info_and_support">App Maloomat aur Support</string>
     <string name="label_version">Version</string>
     <string name="desc_version">App ki mojooda version aur build number dikhata hai.</string>
@@ -163,7 +163,7 @@
     <string name="label_share_app">Quick Code Share Kun</string>
     <string name="desc_share_app">Doston aur ghar walon ko invite karain ke Quick Code try karain.</string>
 
-    <!-- Onboarding -->
+
     <string name="on_boarding_title_1">Sab Code aik app main</string>
     <string name="on_boarding_title_2">Tez Scan, Smart Design</string>
     <string name="on_boarding_title_3">Offline, Personal, Powerful</string>
@@ -174,7 +174,7 @@
     <string name="next">Agla</string>
     <string name="get_started">Shuru Kun</string>
 
-    <!-- Common Actions -->
+
     <string name="go_back">Wapas Jao</string>
     <string name="close">Band Kun</string>
     <string name="copy">Copy Kun</string>

@@ -21,6 +21,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.runBlocking
 import org.koin.android.ext.android.getKoin
 import org.koin.core.qualifier.named
+import timber.log.Timber
 
 class QuickCodeActivity : ComponentActivity() {
 
@@ -45,12 +46,17 @@ class QuickCodeActivity : ComponentActivity() {
 
     override fun attachBaseContext(newBase: Context?) {
         val context = runBlocking {
-            DefaultUpdateLocaleUseCase(
-                appLocaleManager = getKoin().get<AppLocaleManager>(),
-                configurationDao = getKoin().get<ConfigurationDao>(),
-                dispatcherIO = getKoin().get<CoroutineDispatcher>(named(BACKGROUND)),
-            ).invoke()
+            try {
+                DefaultUpdateLocaleUseCase(
+                    appLocaleManager = getKoin().get<AppLocaleManager>(),
+                    configurationDao = getKoin().get<ConfigurationDao>(),
+                    dispatcherIO = getKoin().get<CoroutineDispatcher>(named(BACKGROUND)),
+                ).invoke()
+            } catch (e: Exception) {
+                Timber.e(e)
+                newBase
+            }
         }
-        super.attachBaseContext(context)
+        super.attachBaseContext(context ?: newBase)
     }
 }
