@@ -99,6 +99,7 @@ import com.ovais.quickcode.core.ui.theme.ButtonDisabled
 import com.ovais.quickcode.core.ui.theme.ColorPrimary
 import com.ovais.quickcode.core.ui.theme.InitialsBgColors
 import com.ovais.quickcode.core.ui.theme.colorsForColorPicker
+import com.ovais.quickcode.utils.EMPTY_STRING
 import com.ovais.quickcode.utils.file.FileManager
 import kotlinx.coroutines.launch
 
@@ -182,7 +183,7 @@ fun <T> CustomDropdown(
     selectedItem: T?,
     onItemSelected: (T) -> Unit,
     modifier: Modifier = Modifier,
-    label: String = "",
+    label: String = EMPTY_STRING,
     itemToString: (T) -> String = { it.toString() }
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -193,7 +194,7 @@ fun <T> CustomDropdown(
         modifier = modifier
     ) {
         OutlinedTextField(
-            value = selectedItem?.let { itemToString(it) } ?: "",
+            value = selectedItem?.let { itemToString(it) } ?: EMPTY_STRING,
             onValueChange = {},
             readOnly = true,
             label = { BodyText(label) },
@@ -223,7 +224,7 @@ fun <T> CustomDropdown(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ColorPickerDialog(
-    title: String = "Select Color",
+    title: String,
     colors: List<Color> = colorsForColorPicker,
     selectedColor: Color = Color.Black,
     onColorSelected: (Color) -> Unit,
@@ -452,7 +453,9 @@ fun <T> RadioSelectionDialog(
     title: String,
     options: List<T>,
     selectedOption: T?,
-    optionLabel: @Composable (T) -> String,
+    optionLabel: (T) -> String,
+    positiveButtonText: String,
+    negativeButtonText: String,
     onOptionSelected: (T) -> Unit,
     onDismissRequest: () -> Unit
 ) {
@@ -460,31 +463,38 @@ fun <T> RadioSelectionDialog(
 
     AlertDialog(
         onDismissRequest = onDismissRequest,
+        containerColor = Color.White,
+        shape = RoundedCornerShape(20.dp),
         title = {
-            SubtitleText(text = title, modifier = Modifier.fillMaxWidth())
+            SubtitleText(
+                text = title,
+                fontSize = 18.sp,
+                modifier = Modifier.fillMaxWidth()
+            )
         },
         text = {
             Column {
-                LazyColumn {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(max = 300.dp)
+                ) {
                     items(options) { option ->
-                        val interactionSource = remember { MutableInteractionSource() }
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(vertical = 4.dp)
+                                .padding(vertical = 8.dp)
                                 .clickable(
-                                    interactionSource = interactionSource,
-                                    indication = rememberRipple()
-                                ) {
-                                    tempSelectedOption = option
-                                },
+                                    remember { MutableInteractionSource() },
+                                    rememberRipple()
+                                ) { tempSelectedOption = option },
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             RadioButton(
                                 selected = option == tempSelectedOption,
                                 onClick = { tempSelectedOption = option }
                             )
-                            Spacer(modifier = Modifier.width(8.dp))
+                            Spacer(modifier = Modifier.width(12.dp))
                             BodyText(text = optionLabel(option))
                         }
                     }
@@ -494,7 +504,7 @@ fun <T> RadioSelectionDialog(
         confirmButton = {
             val confirmInteractionSource = remember { MutableInteractionSource() }
             BodyText(
-                text = "Confirm",
+                text = positiveButtonText,
                 modifier = Modifier
                     .padding(8.dp)
                     .clickable(
@@ -510,7 +520,7 @@ fun <T> RadioSelectionDialog(
         dismissButton = {
             val dismissInteractionSource = remember { MutableInteractionSource() }
             BodyText(
-                text = "Cancel",
+                text = negativeButtonText,
                 modifier = Modifier
                     .padding(8.dp)
                     .clickable(
