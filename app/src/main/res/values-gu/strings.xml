@@ -207,4 +207,8 @@
     <string name="enter_valid_phone">કૃપા કરીને માન્ય ફોન નંબર દાખલ કરો</string>
     <string name="enter_valid_latitude">કૃપા કરીને માન્ય અક્ષાંશ દાખલ કરો</string>
     <string name="enter_valid_longitude">કૃપા કરીને માન્ય રેખાંશ દાખલ કરો</string>
+    <string name="close_account">એકાઉન્ટ બંધ કરો</string>
+    <string name="close_account_description">આપનું એકાઉન્ટ કાયમી રૂપે બંધ કરો અને તમામ ડેટા દૂર કરો.</string>
+    <string name="logout">લૉગઆઉટ</string>
+    <string name="logout_description">આ ઉપકરણ પર આ એકાઉન્ટમાંથી લૉગઆઉટ કરો.</string>
 </resources>

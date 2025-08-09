@@ -207,4 +207,8 @@
     <string name="enter_valid_phone">Bitte geben Sie eine gültige Telefonnummer ein</string>
     <string name="enter_valid_latitude">Bitte geben Sie einen gültigen Breitengrad ein</string>
     <string name="enter_valid_longitude">Bitte geben Sie einen gültigen Längengrad ein</string>
+    <string name="close_account">Konto schließen</string>
+    <string name="close_account_description">Schließen Sie Ihr Konto dauerhaft und löschen Sie alle Daten.</string>
+    <string name="logout">Abmelden</string>
+    <string name="logout_description">Melden Sie sich auf diesem Gerät von diesem Konto ab.</string>
 </resources>

@@ -9,8 +9,10 @@ import com.ovais.quickcode.auth.AuthType
 import com.ovais.quickcode.features.home.data.AuthState
 import com.ovais.quickcode.features.home.data.CardItemType
 import com.ovais.quickcode.features.home.data.LoggedInParam
+import com.ovais.quickcode.features.home.data.UserAuthInfo
 import com.ovais.quickcode.features.home.domain.CanLoginUseCase
 import com.ovais.quickcode.features.home.domain.CardItemsUseCase
+import com.ovais.quickcode.features.home.domain.GetLoggedInUserUseCase
 import com.ovais.quickcode.features.home.domain.LoginResultUseCase
 import com.ovais.quickcode.logger.AppLogger
 import com.ovais.quickcode.utils.usecase.GetTermsAndConditionsUseCase
@@ -31,7 +33,8 @@ class HomeViewModel(
     private val termsAndConditionsUrl: GetTermsAndConditionsUseCase,
     private val authManager: AuthManager,
     private val loginResultUseCase: LoginResultUseCase,
-    private val canLoginUseCase: CanLoginUseCase
+    private val canLoginUseCase: CanLoginUseCase,
+    private val getLoggedInUserUseCase: GetLoggedInUserUseCase
 ) : ViewModel() {
 
     private val _nextDestination by lazy { MutableSharedFlow<HomeAction>() }
@@ -41,6 +44,9 @@ class HomeViewModel(
     private val _uiState by lazy { MutableStateFlow<HomeUiState>(HomeUiState.Loading) }
     val uiState: StateFlow<HomeUiState>
         get() = _uiState.asStateFlow()
+    private val _userAuthInfo by lazy { MutableSharedFlow<UserAuthInfo>() }
+    val userAuthInfo: SharedFlow<UserAuthInfo>
+        get() = _userAuthInfo.asSharedFlow()
 
     private val _termsAndConditionsIUrl by lazy { MutableSharedFlow<String>() }
     val termsAndConditionsIUrl: SharedFlow<String>
@@ -127,7 +133,21 @@ class HomeViewModel(
                         }
                     }
                 }
+            } else {
+                openUserAuthOptionSheet()
             }
+        }
+    }
+
+    private fun openUserAuthOptionSheet() {
+        viewModelScope.launch {
+            val info = getLoggedInUserUseCase()
+            _userAuthInfo.emit(
+                UserAuthInfo(
+                    canOpen = true,
+                    info = info
+                )
+            )
         }
     }
 
@@ -158,5 +178,12 @@ class HomeViewModel(
 
     private fun updateError(message: String) {
         viewModelScope.launch { _errorMessage.emit(message) }
+    }
+
+    fun onLogout() {
+    }
+
+    fun onDeleteAccount() {
+
     }
 }

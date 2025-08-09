@@ -1,5 +1,6 @@
 package com.ovais.quickcode.features.home.presentation
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,11 +17,16 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,6 +41,7 @@ import com.ovais.quickcode.R
 import com.ovais.quickcode.core.ui.theme.ColorTertiary
 import com.ovais.quickcode.core.ui.theme.HomeCardOne
 import com.ovais.quickcode.core.ui.theme.appBackground
+import com.ovais.quickcode.features.auth_option.AuthBottomSheet
 import com.ovais.quickcode.features.home.data.CardItemType
 import com.ovais.quickcode.features.home.data.HomeCardItem
 import com.ovais.quickcode.features.home.data.UserInfo
@@ -44,18 +51,26 @@ import com.ovais.quickcode.utils.components.HeadingText
 import com.ovais.quickcode.utils.components.SubtitleText
 import com.ovais.quickcode.utils.openURL
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 import java.util.Calendar
 
+@SuppressLint("CoroutineCreationDuringComposition")
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreenView(
     scaffoldPadding: PaddingValues = PaddingValues(),
     snackBarHostState: SnackbarHostState,
     viewModel: HomeViewModel = koinViewModel(),
-    onClick: (HomeAction) -> Unit
-) {
+    onClick: (HomeAction) -> Unit,
+
+    ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    val scope = rememberCoroutineScope()
+    var canShowSheet by remember { mutableStateOf(false) }
+
     LaunchedEffect(Unit) {
         viewModel.nextDestination.collectLatest { intent ->
             onClick(intent)
@@ -91,6 +106,26 @@ fun HomeScreenView(
                 }
             )
         }
+    }
+    LaunchedEffect(Unit) {
+        viewModel.userAuthInfo.collectLatest {
+            canShowSheet = it.canOpen
+            if (it.canOpen) {
+                scope.launch {
+                    sheetState.show()
+                }
+            }
+        }
+    }
+    if (canShowSheet) {
+        AuthBottomSheet(
+            sheetState,
+            onLogout = viewModel::onLogout,
+            onDeleteAccount = viewModel::onDeleteAccount,
+            name = "Syed Ovais Akhtar",
+            initials = "SQ",
+            imageUrl = ""
+        )
     }
 }
 
@@ -192,7 +227,6 @@ fun HomeScreen(
                     onTermsAndConditionsClicked()
                 }
         )
-
     }
 }
 

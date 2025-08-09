@@ -206,4 +206,8 @@
     <string name="enter_valid_phone">Пожалуйста, введите корректный номер телефона</string>
     <string name="enter_valid_latitude">Пожалуйста, введите корректную широту</string>
     <string name="enter_valid_longitude">Пожалуйста, введите корректную долготу</string>
+    <string name="close_account">Закрыть аккаунт</string>
+    <string name="close_account_description">Закройте вашу учётную запись навсегда и удалите все данные.</string>
+    <string name="logout">Выйти</string>
+    <string name="logout_description">Выйдите из этого аккаунта на этом устройстве.</string>
 </resources>

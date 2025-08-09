@@ -207,4 +207,8 @@
     <string name="enter_valid_phone">कृपया एक मान्य फोन नंबर दर्ज करें</string>
     <string name="enter_valid_latitude">कृपया एक मान्य अक्षांश दर्ज करें</string>
     <string name="enter_valid_longitude">कृपया एक मान्य देशांतर दर्ज करें</string>
+    <string name="close_account">खाता बंद करें</string>
+    <string name="close_account_description">अपने खाते को स्थायी रूप से बंद करें और सभी डेटा मिटाएँ।</string>
+    <string name="logout">लॉग आउट करें</string>
+    <string name="logout_description">इस डिवाइस पर इस खाते से लॉग आउट करें।</string>
 </resources>

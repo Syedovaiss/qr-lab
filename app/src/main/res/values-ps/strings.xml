@@ -207,4 +207,8 @@
     <string name="enter_valid_phone">مهرباني وکړئ یوه سمه تلیفون شمېره دننه کړئ</string>
     <string name="enter_valid_latitude">مهرباني وکړئ یوه سمه عرض البلد دننه کړئ</string>
     <string name="enter_valid_longitude">مهرباني وکړئ یوه سمه طول البلد دننه کړئ</string>
+    <string name="close_account">حساب وتړئ</string>
+    <string name="close_account_description">خپل حساب په دائمي توګه وتړئ او ټول معلومات حذف کړئ.</string>
+    <string name="logout">وتل</string>
+    <string name="logout_description">په دې وسیله کې د دې حساب څخه ووځئ.</string>
 </resources>

@@ -207,4 +207,9 @@
     <string name="enter_valid_phone">براہ کرم درست فون نمبر درج کریں</string>
     <string name="enter_valid_latitude">براہ کرم درست عرض بلد درج کریں</string>
     <string name="enter_valid_longitude">براہ کرم درست طول بلد درج کریں</string>
+    <string name="close_account">کھاتہ بند کریں</string>
+    <string name="close_account_description">اپنا کھاتہ مستقل طور پر بند کریں اور تمام ڈیٹا مٹا دیں۔</string>
+    <string name="logout">لاگ آؤٹ</string>
+    <string name="logout_description">اس ڈیوائس پر اس کھاتے سے لاگ آؤٹ کریں۔</string>
+
 </resources>

@@ -193,5 +193,8 @@
     <string name="enter_valid_phone">Please enter a valid phone number</string>
     <string name="enter_valid_latitude">Please enter a valid latitude</string>
     <string name="enter_valid_longitude">Please enter a valid longitude</string>
-
+    <string name="close_account">Close Account</string>
+    <string name="close_account_description">Permanently close your account and erase all data."</string>
+    <string name="logout">Log Out</string>
+    <string name="logout_description">Sign out from this account on this device.</string>
 </resources>

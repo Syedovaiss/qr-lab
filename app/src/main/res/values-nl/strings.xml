@@ -207,4 +207,8 @@
     <string name="enter_valid_phone">Voer een geldig telefoonnummer in</string>
     <string name="enter_valid_latitude">Voer een geldige breedtegraad in</string>
     <string name="enter_valid_longitude">Voer een geldige lengtegraad in</string>
+    <string name="close_account">Account sluiten</string>
+    <string name="close_account_description">Sluit uw account permanent en verwijder alle gegevens.</string>
+    <string name="logout">Uitloggen</string>
+    <string name="logout_description">Log uit bij dit account op dit apparaat.</string>
 </resources>

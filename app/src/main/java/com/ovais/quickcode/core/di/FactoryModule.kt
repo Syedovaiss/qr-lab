@@ -36,7 +36,9 @@ import com.ovais.quickcode.features.home.domain.CanLoginUseCase
 import com.ovais.quickcode.features.home.domain.CardItemsUseCase
 import com.ovais.quickcode.features.home.domain.DefaultCanLoginUseCase
 import com.ovais.quickcode.features.home.domain.DefaultCardItemsUseCase
+import com.ovais.quickcode.features.home.domain.DefaultGetLoggedInUserUseCase
 import com.ovais.quickcode.features.home.domain.DefaultLoginResultUseCase
+import com.ovais.quickcode.features.home.domain.GetLoggedInUserUseCase
 import com.ovais.quickcode.features.home.domain.LoginResultUseCase
 import com.ovais.quickcode.features.on_boarding.domain.DefaultGetOnBoardingItemsUseCase
 import com.ovais.quickcode.features.on_boarding.domain.DefaultUpdateOnBoardingStatusUseCase
@@ -169,4 +171,8 @@ val factoryModule = module {
     factory {
         DefaultGetWorkRequestUseCase()
     } bind GetWorkRequestUseCase::class
+
+    factory {
+        DefaultGetLoggedInUserUseCase(get(), get(), get())
+    } bind GetLoggedInUserUseCase::class
 }

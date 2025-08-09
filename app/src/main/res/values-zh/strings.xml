@@ -207,4 +207,8 @@
     <string name="enter_valid_phone">请输入有效的电话号码</string>
     <string name="enter_valid_latitude">请输入有效的纬度</string>
     <string name="enter_valid_longitude">请输入有效的经度</string>
+    <string name="close_account">关闭帐户</string>
+    <string name="close_account_description">永久关闭您的帐户并删除所有数据。</string>
+    <string name="logout">登出</string>
+    <string name="logout_description">在此设备退出此帐户。</string>
 </resources>

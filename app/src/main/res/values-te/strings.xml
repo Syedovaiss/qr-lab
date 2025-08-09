@@ -206,4 +206,8 @@
     <string name="enter_valid_phone">దయచేసి సరైన ఫోన్ నంబర్ నమోదు చేయండి</string>
     <string name="enter_valid_latitude">దయచేసి సరైన అక్షాంశం నమోదు చేయండి</string>
     <string name="enter_valid_longitude">దయచేసి సరైన రేఖాంశం నమోదు చేయండి</string>
+    <string name="close_account">ఖాతాను మూసివేయండి</string>
+    <string name="close_account_description">మీ ఖాతాను శాశ్వతంగా మూసివేసి అన్ని సమాచారం తొలగించండి.</string>
+    <string name="logout">లాగ్ అవుట్</string>
+    <string name="logout_description">ఈ డివైస్‌లో ఈ ఖాతా నుండి లాగ్ అవుట్ చేయండి.</string>
 </resources>
